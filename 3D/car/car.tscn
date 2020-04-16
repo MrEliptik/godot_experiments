@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://models/HCR2 Buggy.glb" type="PackedScene" id=1]
+[ext_resource path="res://car.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.691767
+height = 1.59951
+
+[node name="Car" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 0.996866, -0.0791029, 0, 0.0791029, 0.996866, 0, 0.914635, -0.108291 )
+shape = SubResource( 1 )
+
+[node name="HCR2_Buggy_FL" parent="." index="9"]
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 0.3
+wheel_radius = 0.39
+suspension_travel = 0.15
+damping_compression = 0.6
+damping_relaxation = 0.8
+
+[node name="HCR2_Buggy_FR" parent="." index="10"]
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 0.3
+wheel_radius = 0.39
+suspension_travel = 0.15
+damping_compression = 0.6
+damping_relaxation = 0.8
+
+[node name="HCR2_Buggy_RL" parent="." index="11"]
+use_as_traction = true
+wheel_roll_influence = 0.3
+wheel_rest_length = 0.2
+wheel_friction_slip = 9.0
+suspension_travel = 0.15
+damping_compression = 0.6
+damping_relaxation = 0.8
+
+[node name="HCR2_Buggy_RR" parent="." index="12"]
+use_as_traction = true
+wheel_roll_influence = 0.3
+wheel_rest_length = 0.2
+wheel_friction_slip = 9.0
+suspension_travel = 0.15
+damping_compression = 0.6
+damping_relaxation = 0.8
