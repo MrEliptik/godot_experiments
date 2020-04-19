@@ -23,9 +23,15 @@ config/icon="res://icon.png"
 
 singletons=[ "res://addons/godot_ovrmobile/godot_ovrmobile.gdnlib" ]
 
+[physics]
+
+3d/physics_engine="GodotPhysics"
+3d/smooth_trimesh_collision=true
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+quality/filters/msaa=6
 environment/default_environment="res://default_env.tres"

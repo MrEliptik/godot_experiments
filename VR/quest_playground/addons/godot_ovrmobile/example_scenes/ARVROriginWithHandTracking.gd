@@ -1,5 +1,10 @@
 extends ARVROrigin
 
+signal right_index_pinching(transform)
+signal left_index_pinching(transform)
+signal right_index_released(transform)
+signal left_index_released(transform)
+
 var ovr_init_config = null;
 
 var ovr_performance = null;
@@ -179,15 +184,33 @@ func _check_and_perform_runtime_config():
 # the pinch press gestures are mapped to button presses of the ARVRController
 # they are mapped at the moment to the A/B X/Y and grip/index trigger presses
 func _on_LeftHand_pinch_pressed(button):
-	if (button == 7): print("Left Index Pinching");
+	if (button == 7): 
+		print("Left Index Pinching")
+		emit_signal("left_index_pinching", global_transform)
 	if (button == 1): print("Left Middle Pinching");
 	if (button == 2): print("Left Pinky Pinching");
 	if (button == 15): print("Left Ring Pinching");
 
-
 func _on_RightHand_pinch_pressed(button):
-	if (button == 7): print("Right Index Pinching");
+	if (button == 7): 
+		print("Right Index Pinching")
+		emit_signal("right_index_pinching", global_transform)
 	if (button == 1): print("Right Middle Pinching");
 	if (button == 2): print("Right Pinky Pinching");
 	if (button == 15): print("Right Ring Pinching");
 
+func _on_LeftHand_button_release(button):
+	if (button == 7): 
+		print("Left Index Released")
+		emit_signal("left_index_released", global_transform)
+	if (button == 1): print("Left Middle Released");
+	if (button == 2): print("Left Pinky Released");
+	if (button == 15): print("Left Ring Released");
+
+func _on_RightHand_button_release(button):
+	if (button == 7): 
+		print("Right Index Released")
+		emit_signal("right_index_released", global_transform)
+	if (button == 1): print("Right Middle Released");
+	if (button == 2): print("Right Pinky Released");
+	if (button == 15): print("Right Ring Released");
