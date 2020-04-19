@@ -1,8 +1,25 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://models/spider/spider.glb" type="PackedScene" id=1]
+[ext_resource path="res://spider.gd" type="Script" id=2]
 
 [node name="spider" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
 
-[node name="Cube001" parent="SpiderArmature/Skeleton" index="0"]
-visible = false
+[node name="Skeleton" parent="Armature" index="0"]
+bones/10/rest = Transform( 0.901, -0.358, 0.245, 0.41, 0.888, -0.208, -0.143, 0.288, 0.947, 0, 0, 0 )
+
+[node name="SkeletonIK" type="SkeletonIK" parent="Armature/Skeleton" index="1"]
+process_priority = 1
+root_bone = "--"
+tip_bone = "--"
+
+[node name="Position3D" type="Position3D" parent="." index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88941, 0.140832, 2.97401 )
+
+[node name="Targets" type="Node" parent="." index="6"]
+
+[node name="R1_target" type="Position3D" parent="Targets" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99498, 0.140832, 1.47442 )
+
+[node name="RayCast" type="RayCast" parent="Targets/R1_target" index="0"]
