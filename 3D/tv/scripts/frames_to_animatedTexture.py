@@ -1,8 +1,8 @@
 import os
 
 
-def frames_to_tres(frames, output_file):
-    f = open(output_name, 'a')
+def framesToTres(frames, fps, output_file):
+    f = open(output_file, 'a')
 
     f.write("[gd_resource type=\"AnimatedTexture\" load_steps={} format=2]\n\n".format(len(frames)+1))
 
@@ -29,6 +29,8 @@ def main():
     frames = os.listdir(path)
     frames = [f.lower() for f in frames if f.endswith('.jpeg')]
     sorted(frames)
+
+    framesToTres(frames, fps, output_name)
 
 if __name__ == "__main__":
     main()
