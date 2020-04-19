@@ -1,9 +1,9 @@
 extends ARVROrigin
 
-signal right_index_pinching(transform)
-signal left_index_pinching(transform)
-signal right_index_released(transform)
-signal left_index_released(transform)
+signal right_index_pinching(hand)
+signal left_index_pinching(hand)
+signal right_index_released(hand)
+signal left_index_released(hand)
 
 var ovr_init_config = null;
 
@@ -186,7 +186,7 @@ func _check_and_perform_runtime_config():
 func _on_LeftHand_pinch_pressed(button):
 	if (button == 7): 
 		print("Left Index Pinching")
-		emit_signal("left_index_pinching", global_transform)
+		emit_signal("left_index_pinching", left_model)
 	if (button == 1): print("Left Middle Pinching");
 	if (button == 2): print("Left Pinky Pinching");
 	if (button == 15): print("Left Ring Pinching");
@@ -194,7 +194,7 @@ func _on_LeftHand_pinch_pressed(button):
 func _on_RightHand_pinch_pressed(button):
 	if (button == 7): 
 		print("Right Index Pinching")
-		emit_signal("right_index_pinching", global_transform)
+		emit_signal("right_index_pinching", right_model)
 	if (button == 1): print("Right Middle Pinching");
 	if (button == 2): print("Right Pinky Pinching");
 	if (button == 15): print("Right Ring Pinching");
@@ -202,7 +202,7 @@ func _on_RightHand_pinch_pressed(button):
 func _on_LeftHand_button_release(button):
 	if (button == 7): 
 		print("Left Index Released")
-		emit_signal("left_index_released", global_transform)
+		emit_signal("left_index_released", left_model)
 	if (button == 1): print("Left Middle Released");
 	if (button == 2): print("Left Pinky Released");
 	if (button == 15): print("Left Ring Released");
@@ -210,7 +210,7 @@ func _on_LeftHand_button_release(button):
 func _on_RightHand_button_release(button):
 	if (button == 7): 
 		print("Right Index Released")
-		emit_signal("right_index_released", global_transform)
+		emit_signal("right_index_released", right_model)
 	if (button == 1): print("Right Middle Released");
 	if (button == 2): print("Right Pinky Released");
 	if (button == 15): print("Right Ring Released");

@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://ARVROriginWithHandTracking_custom.tscn" type="PackedScene" id=1]
 [ext_resource path="res://button.gd" type="Script" id=2]
 [ext_resource path="res://main.gd" type="Script" id=3]
+[ext_resource path="res://logWindow.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 10, 0.25, 10 )
@@ -65,11 +66,11 @@ albedo_color = Color( 0, 0, 0, 1 )
 radius = 0.25
 height = 0.5
 
-[sub_resource type="SpatialMaterial" id=20]
+[sub_resource type="SpatialMaterial" id=21]
 flags_unshaded = true
 albedo_color = Color( 0.760784, 0.00784314, 0.764706, 1 )
 
-[sub_resource type="SphereShape" id=21]
+[sub_resource type="SphereShape" id=22]
 radius = 0.250035
 
 [node name="Spatial" type="Spatial"]
@@ -156,7 +157,7 @@ material/0 = SubResource( 9 )
 shape = SubResource( 10 )
 
 [node name="Button" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.436897, 0.845399, -0.57658 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.436897, 0.845399, -0.57658 )
 script = ExtResource( 2 )
 
 [node name="Button" type="RigidBody" parent="Button"]
@@ -202,7 +203,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00708234, 0 )
 shape = SubResource( 15 )
 
 [node name="RigidBody" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.115781, 2.05974, -0.502413 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.428841, 1.14149, -0.502413 )
 continuous_cd = true
 can_sleep = false
 
@@ -216,12 +217,15 @@ material/0 = SubResource( 18 )
 [node name="Sphere" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12285, -0.570113 )
 mesh = SubResource( 19 )
-material/0 = SubResource( 20 )
+material/0 = SubResource( 21 )
 
 [node name="StaticBody" type="StaticBody" parent="Sphere"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Sphere/StaticBody"]
-shape = SubResource( 21 )
+shape = SubResource( 22 )
+
+[node name="LogWindow" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 0.980464, -0.196699, 0, 0.196699, 0.980464, 0, 1.95798, -1.72039 )
 [connection signal="left_index_pinching" from="ARVROriginWithHandTrackingCustom" to="." method="_on_ARVROriginWithHandTrackingCustom_left_index_pinching"]
 [connection signal="left_index_released" from="ARVROriginWithHandTrackingCustom" to="." method="_on_ARVROriginWithHandTrackingCustom_left_index_released"]
 [connection signal="right_index_pinching" from="ARVROriginWithHandTrackingCustom" to="." method="_on_ARVROriginWithHandTrackingCustom_right_index_pinching"]
