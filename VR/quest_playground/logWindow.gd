@@ -20,9 +20,11 @@ func _ready():
 	pass
 
 func _log(msg, level=LEVELS.DEBUG):
+	var sb = $Viewport/ScrollContainer.get_v_scrollbar();
+	sb.value = sb.max_value;
 	label.add_color_override("font_color", level_color[level])
 	label.text += '\n>>' + msg
-	var sb = $Viewport/ScrollContainer.get_v_scrollbar();
+	sb = $Viewport/ScrollContainer.get_v_scrollbar();
 	sb.value = sb.max_value; # autoscroll to the last line of the log buffer
 	
 func clear():
