@@ -5,6 +5,11 @@ signal left_index_pinching(hand)
 signal right_index_released(hand)
 signal left_index_released(hand)
 
+signal right_pinch(button)
+signal left_pinch(button)
+signal right_release(button)
+signal left_release(button)
+
 var ovr_init_config = null;
 
 var ovr_performance = null;
@@ -184,6 +189,7 @@ func _check_and_perform_runtime_config():
 # the pinch press gestures are mapped to button presses of the ARVRController
 # they are mapped at the moment to the A/B X/Y and grip/index trigger presses
 func _on_LeftHand_pinch_pressed(button):
+	emit_signal('left_pinch', button)
 	if (button == 7): 
 		print("Left Index Pinching")
 		emit_signal("left_index_pinching", left_model)
@@ -192,6 +198,7 @@ func _on_LeftHand_pinch_pressed(button):
 	if (button == 15): print("Left Ring Pinching");
 
 func _on_RightHand_pinch_pressed(button):
+	emit_signal('right_pinch', button)
 	if (button == 7): 
 		print("Right Index Pinching")
 		emit_signal("right_index_pinching", right_model)
@@ -200,6 +207,7 @@ func _on_RightHand_pinch_pressed(button):
 	if (button == 15): print("Right Ring Pinching");
 
 func _on_LeftHand_button_release(button):
+	emit_signal('left_release', button)
 	if (button == 7): 
 		print("Left Index Released")
 		emit_signal("left_index_released", left_model)
@@ -208,6 +216,7 @@ func _on_LeftHand_button_release(button):
 	if (button == 15): print("Left Ring Released");
 
 func _on_RightHand_button_release(button):
+	emit_signal('right_release', button)
 	if (button == 7): 
 		print("Right Index Released")
 		emit_signal("right_index_released", right_model)
