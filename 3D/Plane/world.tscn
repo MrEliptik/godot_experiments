@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://plane.tscn" type="PackedScene" id=1]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 1000, 1000 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.352941, 0.352941, 0.352941, 1 )
+
+[sub_resource type="ConcavePolygonShape" id=3]
+data = PoolVector3Array( 500, 0, 500, -500, 0, 500, 500, 0, -500, -500, 0, 500, -500, 0, -500, 500, 0, -500 )
+
+[node name="World" type="Spatial"]
+
+[node name="Floor" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="StaticBody" type="StaticBody" parent="Floor"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Plane" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.12216, 0 )
