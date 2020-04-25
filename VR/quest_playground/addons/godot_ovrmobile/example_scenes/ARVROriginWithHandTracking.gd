@@ -30,6 +30,17 @@ onready var right_model : Spatial = $RightHand/right_hand_model;
 onready var left_skel : Skeleton =  $LeftHand/left_hand_model/ArmatureLeft/Skeleton;
 onready var right_skel : Skeleton =  $RightHand/right_hand_model/ArmatureRight/Skeleton;
 
+################# Raycast ######################
+export var active := true;
+export var ui_raycast_length := 3.0;
+export var ui_mesh_length := 1.0;
+
+onready var ui_raycast_position : Spatial = $RightHand/RayCastPosition;
+onready var ui_raycast : RayCast = $RightHand/RayCastPosition/RayCast;
+onready var ui_raycast_mesh : MeshInstance = $RightHand/RayCastPosition/RayCastMesh;
+onready var ui_raycast_hitmarker : MeshInstance = $RightHand/RayCastPosition/RayCastHitMarker;
+################################################
+
 # this array is used to get the orientations from the sdk each frame (an array of Quat)
 var _vrapi_bone_orientations = [];
 
@@ -78,6 +89,55 @@ func _update_hand_model(hand: ARVRController, model : Spatial, skel: Skeleton):
 		return true;
 	else:
 		return false;
+		
+func _setup_raycast():
+	ui_raycast.set_cast_to(Vector3(0, 0, -ui_raycast_length));
+	
+	#setup the mesh
+	ui_raycast_mesh.mesh.size.z = ui_mesh_length;
+	ui_raycast_mesh.translation.z = -ui_mesh_length * 0.5;
+	
+	ui_raycast_hitmarker.visible = false;
+	ui_raycast_mesh.visible = false;
+	
+func _update_raycast():
+	ui_raycast_hitmarker.visible = false;
+	
+	if (right_hand.is_hand && ovr_hand_tracking): # hand has separate logic
+		ui_raycast_mesh.visible = ovr_hand_tracking.is_pointer_pose_valid(right_hand.controller_id);
+	else:
+		ui_raycast_mesh.visible = false;
+		
+	if (!ui_raycast_mesh.visible): return;
+	
+	_set_raycast_transform();
+
+	ui_raycast.force_raycast_update(); # need to update here to get the current position; else the marker laggs behind
+	
+	if ui_raycast.is_colliding():
+		var c = ui_raycast.get_collider();
+		if (!c.has_method("ui_raycast_hit_event")): return;
+		
+		var click = false;
+		var release = false;
+#		if (right_hand.is_hand):
+#			click = right_hand._button_just_pressed(hand_click_button);
+#			release = right_hand._button_just_released(hand_click_button);
+		
+		var position = ui_raycast.get_collision_point();
+		ui_raycast_hitmarker.visible = true;
+		ui_raycast_hitmarker.global_transform.origin = position;
+		
+		c.ui_raycast_hit_event(position, click, release);
+
+func _set_raycast_transform():
+	# woraround for now until there is a more standardized way to know the controller
+	# orientation
+	if (right_hand.is_hand):
+		if (ovr_hand_tracking):
+			ui_raycast_position.transform = right_hand.transform.inverse() * ovr_hand_tracking.get_pointer_pose(right_hand.controller_id);
+		else:
+			ui_raycast_position.transform.basis = Basis(Vector3(deg2rad(-90),0,0));
 
 func _ready():
 	_initialize_ovr_mobile_arvr_interface();
@@ -86,6 +146,8 @@ func _ready():
 	_clear_bone_rest(right_skel);
 		
 	_vrapi_bone_orientations.resize(24);
+
+	_setup_raycast()
 	
 
 var t = 0.0;
@@ -95,12 +157,13 @@ func _process(delta_t):
 	_update_hand_model(left_hand, left_model, left_skel);
 	_update_hand_model(right_hand, right_model, right_skel);
 	
+	# Raycast
+	_update_raycast()
+	
 	# If we are on desktop or don't have hand tracking we set a debug pose on the left hand
 	if (!ovr_hand_tracking):
 		for i in range(0, _hand_bone_mappings.size()):
 			left_skel.set_bone_pose(_hand_bone_mappings[i], Transform(test_pose_left_ThumbsUp[i]));
-	
-	
 	
 	t += delta_t;
 	if (t > 1.0):
@@ -111,11 +174,6 @@ func _process(delta_t):
 		print("Left Pinches: %.3f %.3f %.3f %.3f; Right Pinches %.3f %.3f %.3f %.3f" % 
 			 [left_hand.get_joystick_axis(0), left_hand.get_joystick_axis(1), left_hand.get_joystick_axis(2), left_hand.get_joystick_axis(3),
 			  right_hand.get_joystick_axis(0), right_hand.get_joystick_axis(1), right_hand.get_joystick_axis(2), right_hand.get_joystick_axis(3)]);
-
-	
-				
-
-
 
 # this code check for the OVRMobile inteface; and if successful also initializes the
 # .gdns APIs used to communicate with the VR device
@@ -159,7 +217,6 @@ func _initialize_ovr_mobile_arvr_interface():
 		else:
 			print("Failed to enable OVRMobile")
 			return false
-
 
 
 # many settings should only be applied once when running; this variable

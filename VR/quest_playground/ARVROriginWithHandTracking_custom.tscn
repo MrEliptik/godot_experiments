@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://addons/godot_ovrmobile/example_scenes/ARVROriginWithHandTracking.gd" type="Script" id=1]
 [ext_resource path="res://shaders/outline.shader" type="Shader" id=2]
@@ -247,6 +247,13 @@ bind/22/pose = Transform( 96.5994, 24.9915, -6.63181, 1.23382, -30.0747, -95.362
 bind/23/name = "b_r_forearm_stub"
 bind/23/bone = -1
 bind/23/pose = Transform( 100, 0, 0, 0, 1.74846e-05, -100, 0, 100, 1.74846e-05, 0, 0, 0 )
+
+[sub_resource type="CubeMesh" id=24]
+size = Vector3( 0.004, 0.004, 1 )
+
+[sub_resource type="SphereMesh" id=25]
+radius = 0.001
+height = 0.002
 
 [node name="ARVROriginWithHandTrackingCustom" type="ARVROrigin"]
 script = ExtResource( 1 )
@@ -777,6 +784,22 @@ transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, -9.01119, -2.34416, -1.88233 
 transform = Transform( 1, 0, 0, 0, 1, 1.06581e-14, 0, -1.06581e-14, 1, 0, 0, 0 )
 mesh = SubResource( 22 )
 skin = SubResource( 23 )
+material/0 = null
+
+[node name="RayCastPosition" type="Spatial" parent="RightHand"]
+
+[node name="RayCast" type="RayCast" parent="RightHand/RayCastPosition"]
+transform = Transform( -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0, 1, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, -3, 0 )
+
+[node name="RayCastMesh" type="MeshInstance" parent="RightHand/RayCastPosition"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -0.5, 0, 0 )
+mesh = SubResource( 24 )
+material/0 = null
+
+[node name="RayCastHitMarker" type="MeshInstance" parent="RightHand/RayCastPosition"]
+mesh = SubResource( 25 )
 material/0 = null
 [connection signal="button_pressed" from="LeftHand" to="." method="_on_LeftHand_pinch_pressed"]
 [connection signal="button_release" from="LeftHand" to="." method="_on_LeftHand_button_release"]
