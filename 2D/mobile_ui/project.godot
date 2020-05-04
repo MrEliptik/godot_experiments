@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="mobile_ui"
+config/name="Mobile UI"
 run/main_scene="res://ui.tscn"
 boot_splash/bg_color=Color( 0.388235, 0.337255, 0.45098, 1 )
 config/icon="res://icon.png"
