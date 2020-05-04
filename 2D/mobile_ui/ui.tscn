@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://font/NunitoSans-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://medias/big_buck_bunny_short.ogv" type="VideoStream" id=2]
@@ -9,18 +9,10 @@
 size = 48
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxFlat" id=11]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.0313726, 0.678431, 0.556863, 1 )
 
-[sub_resource type="DynamicFont" id=10]
-size = 32
-font_data = ExtResource( 1 )
-
 [sub_resource type="DynamicFont" id=3]
-size = 32
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=5]
 size = 32
 font_data = ExtResource( 1 )
 
@@ -28,21 +20,36 @@ font_data = ExtResource( 1 )
 size = 32
 font_data = ExtResource( 1 )
 
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 1 )
+
 [sub_resource type="DynamicFont" id=6]
 size = 32
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=7]
 size = 32
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.45098, 0.721569, 0.0509804, 1 )
 
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=10]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=12]
+default_font = SubResource( 11 )
+
+[sub_resource type="DynamicFont" id=13]
 size = 32
 font_data = ExtResource( 1 )
 
@@ -50,16 +57,16 @@ font_data = ExtResource( 1 )
 size = 32
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=12]
-size = 30
+[sub_resource type="DynamicFont" id=15]
+size = 35
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=15]
+[sub_resource type="DynamicFont" id=16]
 size = 32
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=13]
-size = 35
+[sub_resource type="DynamicFont" id=17]
+size = 32
 font_data = ExtResource( 1 )
 
 [node name="Control" type="Control"]
@@ -106,15 +113,15 @@ rect_min_size = Vector2( 0, 25 )
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 margin_top = 99.0
 margin_right = 692.0
-margin_bottom = 359.0
+margin_bottom = 321.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer"]
 margin_right = 692.0
 margin_bottom = 45.0
-custom_styles/normal = SubResource( 11 )
-custom_fonts/font = SubResource( 10 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "BUTTONS"
 align = 1
 
@@ -128,32 +135,32 @@ rect_min_size = Vector2( 0, 10 )
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 63.0
 margin_right = 692.0
-margin_bottom = 260.0
+margin_bottom = 222.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
 
 [node name="Button" type="Button" parent="VBoxContainer/VBoxContainer/GridContainer"]
 margin_right = 344.0
-margin_bottom = 63.0
+margin_bottom = 53.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "BUTTON"
 
 [node name="CheckButton" type="CheckButton" parent="VBoxContainer/VBoxContainer/GridContainer"]
 margin_left = 348.0
 margin_right = 692.0
-margin_bottom = 63.0
+margin_bottom = 53.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 5 )
 text = "TOGGLE"
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/VBoxContainer/GridContainer"]
-margin_top = 67.0
+margin_top = 57.0
 margin_right = 344.0
-margin_bottom = 130.0
+margin_bottom = 110.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "COLOR PICK"
@@ -161,42 +168,42 @@ color = Color( 1, 1, 1, 1 )
 
 [node name="CheckBox" type="CheckBox" parent="VBoxContainer/VBoxContainer/GridContainer"]
 margin_left = 348.0
-margin_top = 67.0
+margin_top = 57.0
 margin_right = 692.0
-margin_bottom = 130.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = SubResource( 4 )
-text = "CHECKBOX"
-
-[node name="LinkButton" type="LinkButton" parent="VBoxContainer/VBoxContainer/GridContainer"]
-margin_top = 134.0
-margin_right = 344.0
-margin_bottom = 197.0
+margin_bottom = 110.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 6 )
+text = "CHECKBOX"
+
+[node name="LinkButton" type="LinkButton" parent="VBoxContainer/VBoxContainer/GridContainer"]
+margin_top = 114.0
+margin_right = 344.0
+margin_bottom = 159.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 7 )
 text = "LINK"
 
 [node name="VSeparator2" type="VSeparator" parent="VBoxContainer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 363.0
+margin_top = 325.0
 margin_right = 692.0
-margin_bottom = 383.0
+margin_bottom = 345.0
 rect_min_size = Vector2( 0, 20 )
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 387.0
+margin_top = 349.0
 margin_right = 692.0
-margin_bottom = 647.0
+margin_bottom = 540.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer2"]
 margin_right = 692.0
 margin_bottom = 45.0
-custom_styles/normal = SubResource( 11 )
-custom_fonts/font = SubResource( 10 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "RANGE"
 align = 1
 
@@ -210,84 +217,72 @@ rect_min_size = Vector2( 0, 10 )
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/VBoxContainer2"]
 margin_top = 63.0
 margin_right = 692.0
-margin_bottom = 260.0
+margin_bottom = 191.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
 
-[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer2/GridContainer"]
-margin_right = 344.0
-margin_bottom = 45.0
-custom_fonts/font = SubResource( 2 )
-text = "Horizontal slider"
-
 [node name="HSlider" type="HSlider" parent="VBoxContainer/VBoxContainer2/GridContainer"]
-margin_left = 348.0
-margin_right = 692.0
-margin_bottom = 46.0
+margin_right = 344.0
+margin_bottom = 62.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="Label3" type="Label" parent="VBoxContainer/VBoxContainer2/GridContainer"]
-margin_top = 50.0
-margin_right = 344.0
-margin_bottom = 95.0
-custom_fonts/font = SubResource( 2 )
-text = "Vertical slider"
 
 [node name="VSlider" type="VSlider" parent="VBoxContainer/VBoxContainer2/GridContainer"]
 margin_left = 348.0
-margin_top = 50.0
 margin_right = 692.0
-margin_bottom = 96.0
+margin_bottom = 62.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="Label4" type="Label" parent="VBoxContainer/VBoxContainer2/GridContainer"]
-margin_top = 100.0
-margin_right = 344.0
-margin_bottom = 145.0
-custom_fonts/font = SubResource( 2 )
-text = "Progress bar"
 
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/VBoxContainer2/GridContainer"]
-margin_left = 348.0
-margin_top = 100.0
-margin_right = 692.0
-margin_bottom = 146.0
+margin_top = 66.0
+margin_right = 344.0
+margin_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/fg = SubResource( 7 )
-custom_styles/bg = SubResource( 8 )
-custom_fonts/font = SubResource( 9 )
+custom_styles/fg = SubResource( 8 )
+custom_styles/bg = SubResource( 9 )
+custom_fonts/font = SubResource( 10 )
 value = 50.0
 
 [node name="SpinBox" type="SpinBox" parent="VBoxContainer/VBoxContainer2/GridContainer"]
-margin_top = 150.0
-margin_right = 344.0
-margin_bottom = 196.0
+margin_left = 348.0
+margin_top = 66.0
+margin_right = 692.0
+margin_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = SubResource( 12 )
+align = 1
+
+[node name="Value" type="Label" parent="VBoxContainer"]
+margin_top = 544.0
+margin_right = 692.0
+margin_bottom = 589.0
+custom_fonts/font = SubResource( 13 )
+text = "0"
+align = 1
 
 [node name="VSeparator3" type="VSeparator" parent="VBoxContainer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 651.0
+margin_top = 593.0
 margin_right = 692.0
-margin_bottom = 671.0
+margin_bottom = 613.0
 rect_min_size = Vector2( 0, 20 )
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 675.0
+margin_top = 617.0
 margin_right = 692.0
-margin_bottom = 935.0
+margin_bottom = 808.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer3"]
 margin_right = 692.0
 margin_bottom = 45.0
-custom_styles/normal = SubResource( 11 )
-custom_fonts/font = SubResource( 10 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "TEXT"
 align = 1
 
@@ -301,83 +296,68 @@ rect_min_size = Vector2( 0, 10 )
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/VBoxContainer3"]
 margin_top = 63.0
 margin_right = 692.0
-margin_bottom = 260.0
+margin_bottom = 191.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer3/GridContainer"]
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/VBoxContainer3/GridContainer"]
 margin_right = 344.0
-margin_bottom = 63.0
+margin_bottom = 62.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 14 )
+text = "Try to type here"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/VBoxContainer3/GridContainer"]
+margin_left = 348.0
+margin_right = 692.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 15 )
+text = "Try to type here!"
+wrap_enabled = true
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer3/GridContainer"]
+margin_top = 66.0
+margin_right = 344.0
+margin_bottom = 128.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 16 )
 text = "Label"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/VBoxContainer3/GridContainer"]
 margin_left = 348.0
+margin_top = 66.0
 margin_right = 692.0
-margin_bottom = 63.0
+margin_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-custom_fonts/normal_font = SubResource( 14 )
+custom_fonts/normal_font = SubResource( 17 )
 text = "Rich text label"
 
-[node name="ItemList" type="ItemList" parent="VBoxContainer/VBoxContainer3/GridContainer"]
-margin_top = 67.0
-margin_right = 344.0
-margin_bottom = 130.0
-size_flags_horizontal = 3
-size_flags_vertical = 7
-
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer3/GridContainer/ItemList"]
-margin_right = 40.0
-margin_bottom = 14.0
-custom_fonts/font = SubResource( 12 )
-text = "TEST"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/VBoxContainer3/GridContainer"]
-margin_left = 348.0
-margin_top = 67.0
+[node name="ItemList" type="ItemList" parent="VBoxContainer"]
+margin_top = 812.0
 margin_right = 692.0
-margin_bottom = 130.0
+margin_bottom = 1003.0
+rect_min_size = Vector2( 0, 150 )
 size_flags_horizontal = 3
 size_flags_vertical = 7
-custom_fonts/font = SubResource( 15 )
-text = "Try to type here"
-
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer/VBoxContainer3/GridContainer"]
-margin_top = 134.0
-margin_right = 344.0
-margin_bottom = 197.0
-size_flags_horizontal = 3
-size_flags_vertical = 7
-custom_fonts/font = SubResource( 13 )
-text = "Try to type here!"
-wrap_enabled = true
-
-[node name="Tree" type="Tree" parent="VBoxContainer/VBoxContainer3/GridContainer"]
-margin_left = 348.0
-margin_top = 134.0
-margin_right = 692.0
-margin_bottom = 197.0
-size_flags_horizontal = 3
-size_flags_vertical = 7
+select_mode = 1
+max_columns = 9
+icon_mode = 0
 
 [node name="VSeparator4" type="VSeparator" parent="VBoxContainer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 939.0
+margin_top = 1007.0
 margin_right = 692.0
-margin_bottom = 959.0
+margin_bottom = 1027.0
 rect_min_size = Vector2( 0, 20 )
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 963.0
+margin_top = 1031.0
 margin_right = 692.0
 margin_bottom = 1225.0
 size_flags_horizontal = 3
@@ -386,8 +366,8 @@ size_flags_vertical = 3
 [node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer4"]
 margin_right = 692.0
 margin_bottom = 45.0
-custom_styles/normal = SubResource( 11 )
-custom_fonts/font = SubResource( 10 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "MISC"
 align = 1
 
@@ -401,13 +381,13 @@ rect_min_size = Vector2( 0, 10 )
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer4"]
 margin_top = 63.0
 margin_right = 692.0
-margin_bottom = 262.0
+margin_bottom = 194.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VideoPlayer" type="VideoPlayer" parent="VBoxContainer/VBoxContainer4/MarginContainer"]
 margin_right = 692.0
-margin_bottom = 199.0
+margin_bottom = 131.0
 rect_min_size = Vector2( 128, 72 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -415,12 +395,14 @@ stream = ExtResource( 2 )
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer4/MarginContainer"]
 margin_right = 692.0
-margin_bottom = 199.0
+margin_bottom = 131.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 6
+[connection signal="value_changed" from="VBoxContainer/VBoxContainer2/GridContainer/HSlider" to="." method="_on_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/VBoxContainer2/GridContainer/VSlider" to="." method="_on_value_changed"]
 [connection signal="finished" from="VBoxContainer/VBoxContainer4/MarginContainer/VideoPlayer" to="." method="_on_VideoPlayer_finished"]
 [connection signal="gui_input" from="VBoxContainer/VBoxContainer4/MarginContainer/VideoPlayer" to="." method="_on_VideoPlayer_gui_input"]
 [connection signal="gui_input" from="VBoxContainer/VBoxContainer4/MarginContainer/TextureRect" to="." method="_on_VideoPlayer_gui_input"]
