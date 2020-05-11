@@ -19,9 +19,14 @@ config/name="hang"
 run/main_scene="res://game.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="expand"
+
 [physics]
 
-2d/default_gravity=250
+2d/default_gravity=500
 
 [rendering]
 
@@ -31,5 +36,6 @@ quality/intended_usage/framebuffer_allocation.mobile=0
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 quality/filters/use_nearest_mipmap_filter=true
+environment/default_clear_color=Color( 0.0156863, 0.0156863, 0.0156863, 1 )
 quality/filters/msaa=3
 environment/default_environment="res://default_env.tres"

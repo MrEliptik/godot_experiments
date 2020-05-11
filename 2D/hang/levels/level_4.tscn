@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.4209, 91.5495 )
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0.313726, 0.803922, 0.501961, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[node name="Level_4" type="Node2D"]
+
+[node name="Goal" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+position = Vector2( 793.735, 503.835 )
+rotation = 0.00698132
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Goal"]
+position = Vector2( 794.445, 502.42 )
+rotation = 0.00698132
+scale = Vector2( 0.00647602, 184.939 )
+texture = SubResource( 3 )
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PoolVector2Array( 0.261505, 0.781189, 165.606, 83.8608, 369.739, 199.024, 384.544, 284.152, 545.548, 402.592, 712.103, 328.567, 830.543, 447.006, 871.256, 533.985, 863.854, 595.056, 471.523, 595.056, 21.8228, 596.906, 1.46594, 269.347 )
+default_color = Color( 0.741176, 0.741176, 0.741176, 1 )
