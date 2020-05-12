@@ -4,11 +4,14 @@ onready var ray = $RayCast2D
 
 signal anchor(point, collider)
 signal free
+signal die
 
 var anchor = null
 
 var reset = false
 var reset_position
+
+var dead = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,9 +37,13 @@ func _input(e):
 	if e is InputEventMouseButton && e.button_index == BUTTON_LEFT && e.pressed:	
 		# Raycast to position
 		ray.cast_to = (e.global_position-ray.global_position).rotated(-rotation)
+		print(rad2deg((e.global_position-ray.global_position).angle()))
+		#ray.rotation = (e.global_position-ray.global_position).angle() - deg2rad(90)
+		#ray.rotation = ray.global_position.angle_to_point(e.global_position)
 		# Force update otherwise collision happens next frame
 		ray.force_raycast_update()
 		if ray.is_colliding():
+			$LaunchSound.play()
 			var collider = ray.get_collider()
 			anchor = ray.get_collision_point()
 			print(collider, anchor)
@@ -53,6 +60,22 @@ func reset(pos):
 	anchor = null
 
 func _on_Player_body_entered(body):
-	if reset: return
+	if reset or dead: return
+	$Sprite.visible = false
+	$TrailTimer.stop()
+	$fake_explosion_particles.visible = true
+	$fake_explosion_particles.particles_explode = true
+	dead = true
+	emit_signal("die")
+	$DieSound.play()
 	print('dead')
-	get_tree().reload_current_scene()
+
+
+func _on_TrailTimer_timeout():
+	var this_trail = preload("res://effects/trail.tscn").instance()
+	# give the trail a parent
+	get_parent().add_child(this_trail)
+	this_trail.position = position
+	this_trail.texture = $Sprite.texture
+	this_trail.flip_h = $Sprite.flip_h
+	this_trail.scale = $Sprite.scale
