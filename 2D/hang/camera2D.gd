@@ -53,3 +53,8 @@ func shake(duration, frequency, amplitude):
 	# Reset previous offset, if any.
 	set_offset(get_offset() - _last_offset)
 	_last_offset = Vector2(0, 0)
+
+func zoom(x, y, time=1):
+	$Tween.interpolate_property(self, "zoom", self.zoom, Vector2(x, y), time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.start()
+	#$Camera2D.zoom = Vector2(x, y)
