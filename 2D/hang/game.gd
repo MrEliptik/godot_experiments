@@ -5,6 +5,8 @@ onready var joints = $Joints
 onready var winscreen = $CanvasLayer/WinScreen
 onready var levels = $Levels
 onready var player_pos = $PlayerPos.global_position
+onready var camera = $Camera2D
+onready var player_camera = $Player/Camera2D
 
 var curr_level_nb = 0
 
@@ -12,6 +14,7 @@ var curr_level_nb = 0
 func _ready():
 	player.connect("anchor", self, "on_anchor")
 	player.connect("free", self, "on_free")
+	player.connect("die", self, "on_die")
 	levels.get_child(0).get_node("Goal").connect("body_entered", self, "_on_Goal_body_entered")
 
 func on_anchor(point, collider):
@@ -49,7 +52,10 @@ func on_free():
 
 func _on_Goal_body_entered(body):
 	print(body.name)
+	$WinSound.play()
 	player.contact_monitor = false
+	# Reset player first to avoid colliding with next level
+	player.reset(player_pos)
 #	player.visible = false
 #	winscreen.visible = true
 	load_next_level()
@@ -60,7 +66,14 @@ func _on_Goal_body_entered(body):
 func on_level_ready():
 	# Connect after resetting position to avoid re-triggering
 	levels.get_child(0).get_node("Goal").connect("body_entered", self, "_on_Goal_body_entered")
-	player.reset(player_pos)
 
-func _on_Timer_timeout():
-	pass # Replace with function body.
+func on_die():
+	# Switch to player's camera
+	camera.current = false
+	player_camera.current = true
+	player_camera.zoom(0.7, 0.7, 0.5)
+	player_camera.shake(0.5, 15, 10)
+	$DeathTimer.start()
+
+func _on_DeathTimer_timeout():
+	get_tree().reload_current_scene()
