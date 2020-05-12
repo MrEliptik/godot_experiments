@@ -6,6 +6,8 @@ Some of my 2D/3D experiments in Godot.
 
 ### 2D
 
+- **hang**: you hang from a rope, swinging to reach the goal
+
 ### 3D
 
 - **car**: a test with godot vehicle body physics and trial-like terrain
