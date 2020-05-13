@@ -8,14 +8,15 @@ onready var player_pos = $PlayerPos.global_position
 onready var camera = $Camera2D
 onready var player_camera = $Player/Camera2D
 
-var curr_level_nb = 0
+var curr_level_nb = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	load_level("res://levels/level_" +str(curr_level_nb)+ ".tscn")
 	player.connect("anchor", self, "on_anchor")
 	player.connect("free", self, "on_free")
 	player.connect("die", self, "on_die")
-	levels.get_child(0).get_node("Goal").connect("body_entered", self, "_on_Goal_body_entered")
+	#levels.get_child(0).get_node("Goal").connect("body_entered", self, "_on_Goal_body_entered")
 
 func on_anchor(point, collider):
 	# First, remove the joint
@@ -34,6 +35,7 @@ func load_next_level():
 	curr_level_nb += 1
 	print("level_"+str(curr_level_nb))
 	var lvl = load("res://levels/level_" +str(curr_level_nb)+ ".tscn")
+	if lvl == null: return
 	# Remove curr level
 	if levels.get_child_count() > 0:
 		var to_remove = levels.get_child(0)
@@ -42,7 +44,18 @@ func load_next_level():
 	var level = lvl.instance()
 	level.connect("ready", self, "on_level_ready")
 	levels.call_deferred("add_child", level)
-	
+
+func load_level(level_str):
+	var lvl = load(level_str)
+	# Remove curr level
+	if levels.get_child_count() > 0:
+		var to_remove = levels.get_child(0)
+		levels.call_deferred("remove_child", to_remove)
+	# Add next level
+	var level = lvl.instance()
+	level.connect("ready", self, "on_level_ready")
+	levels.call_deferred("add_child", level)
+
 func reset_player():
 	player.global_position = player_pos
 	
