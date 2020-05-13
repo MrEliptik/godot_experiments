@@ -8,7 +8,8 @@ onready var player_pos = $PlayerPos.global_position
 onready var camera = $Camera2D
 onready var player_camera = $Player/Camera2D
 
-var curr_level_nb = 3
+var curr_level_nb = 0
+var curr_level
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,6 +30,9 @@ func on_anchor(point, collider):
 	joint.node_a = collider.get_path()
 	joint.node_b = player.get_path()
 	joint.global_position = point
+	# Important for the player to be able
+	# to collide with the node_a
+	joint.disable_collision = false
 	joints.add_child(joint)
 	
 func load_next_level():
@@ -64,6 +68,7 @@ func on_free():
 		joints.remove_child(joints.get_child(0))
 
 func _on_Goal_body_entered(body):
+	if player.dead: return
 	print(body.name)
 	$WinSound.play()
 	player.contact_monitor = false
@@ -77,10 +82,25 @@ func _on_Goal_body_entered(body):
 		joints.remove_child(joints.get_child(0))
 	
 func on_level_ready():
+	curr_level = levels.get_child(0)
 	# Connect after resetting position to avoid re-triggering
-	levels.get_child(0).get_node("Goal").connect("body_entered", self, "_on_Goal_body_entered")
+	curr_level.get_node("Goal").connect("body_entered", self, "_on_Goal_body_entered")
 
 func on_die():
+	# Switch wall color
+	if curr_level.has_method("change_wall_color"):
+		curr_level.change_wall_color(curr_level.COLORS.WALL_DEAD)
+	# Switch bg color
+	if curr_level.has_method("change_background_color"):
+		curr_level.change_background_color(curr_level.COLORS.BACKGROUND_DEAD)
+	# Invert bg
+	if curr_level.has_method("invert_background"):
+		curr_level.invert_background(false)
+		
+	# Switch goal color
+	if curr_level.has_method("change_goal_color"):
+		curr_level.change_goal_color(curr_level.COLORS.WALL_DEAD)
+	
 	# Switch to player's camera
 	camera.current = false
 	player_camera.current = true
