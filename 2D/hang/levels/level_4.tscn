@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://levels/wall.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.4209, 91.5495 )
@@ -27,6 +29,9 @@ rotation = 0.00698132
 scale = Vector2( 0.00647602, 184.939 )
 texture = SubResource( 3 )
 
-[node name="Line2D" type="Line2D" parent="."]
-points = PoolVector2Array( 0.261505, 0.781189, 165.606, 83.8608, 369.739, 199.024, 384.544, 284.152, 545.548, 402.592, 712.103, 328.567, 830.543, 447.006, 871.256, 533.985, 863.854, 595.056, 471.523, 595.056, 21.8228, 596.906, 1.46594, 269.347 )
-default_color = Color( 0.741176, 0.741176, 0.741176, 1 )
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="Line2D" type="Line2D" parent="StaticBody2D"]
+points = PoolVector2Array( 0.261536, 0.781197, 165.606, 83.8608, 369.739, 199.024, 384.544, 284.152, 545.548, 402.592, 712.103, 328.567, 830.543, 447.006, 871.256, 533.985, 863.854, 595.056, 471.523, 595.056, 21.8228, 596.906, 0.63797, 0.761475 )
+default_color = Color( 0.12549, 0.12549, 0.12549, 1 )
