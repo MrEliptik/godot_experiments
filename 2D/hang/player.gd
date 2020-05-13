@@ -1,10 +1,21 @@
 extends RigidBody2D
 
-onready var ray = $RayCast2D
-
 signal anchor(point, collider)
 signal free
 signal die
+
+onready var ray = $RayCast2D
+onready var sprite = $Sprite
+
+enum COLORS {
+	NORMAL,
+	DEAD
+}
+
+var player_colors = {
+	COLORS.NORMAL: Color('50cd81'),
+	COLORS.DEAD: Color('c43535'),
+}
 
 var anchor = null
 
@@ -15,9 +26,10 @@ var dead = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	sprite.texture.gradient.set_color(0, player_colors[COLORS.NORMAL])
 	
 func _physics_process(delta):
+	if dead: return
 	update()
 	if !reset: contact_monitor = true
 	
@@ -61,7 +73,9 @@ func reset(pos):
 
 func _on_Player_body_entered(body):
 	if reset or dead: return
-	$Sprite.visible = false
+	#$Sprite.visible = false
+	# There's only one color
+	sprite.texture.gradient.set_color(0, player_colors[COLORS.DEAD])
 	$TrailTimer.stop()
 	$fake_explosion_particles.visible = true
 	$fake_explosion_particles.particles_explode = true

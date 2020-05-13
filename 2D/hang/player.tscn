@@ -10,7 +10,7 @@ extents = Vector2( 17.6111, 17.9525 )
 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 0.314331, 0.804688, 0.505877, 1 )
+colors = PoolColorArray( 0.313726, 0.803922, 0.505882, 1 )
 
 [sub_resource type="GradientTexture" id=3]
 gradient = SubResource( 2 )
