@@ -8,7 +8,7 @@ onready var player_pos = $PlayerPos.global_position
 onready var camera = $Camera2D
 onready var player_camera = $Player/Camera2D
 
-var curr_level_nb = 0
+var curr_level_nb = 6
 var curr_level
 
 # Called when the node enters the scene tree for the first time.
@@ -17,7 +17,6 @@ func _ready():
 	player.connect("anchor", self, "on_anchor")
 	player.connect("free", self, "on_free")
 	player.connect("die", self, "on_die")
-	#levels.get_child(0).get_node("Goal").connect("body_entered", self, "_on_Goal_body_entered")
 
 func on_anchor(point, collider):
 	# First, remove the joint
@@ -34,6 +33,9 @@ func on_anchor(point, collider):
 	# to collide with the node_a
 	joint.disable_collision = false
 	joints.add_child(joint)
+	
+func remove_anchor():
+	joints.remove_child(joints.get_child(0))
 	
 func load_next_level():
 	curr_level_nb += 1
@@ -59,9 +61,16 @@ func load_level(level_str):
 	var level = lvl.instance()
 	level.connect("ready", self, "on_level_ready")
 	levels.call_deferred("add_child", level)
+	
+func reset_current_level():
+	curr_level.reset()
+	player.reset(player_pos)
+	player_camera.zoom(1, 1)
+	camera.current = true
 
 func reset_player():
 	player.global_position = player_pos
+	remove_anchor()
 	
 func on_free():
 	if joints.get_child_count() > 0:
@@ -100,6 +109,12 @@ func on_die():
 	# Switch goal color
 	if curr_level.has_method("change_goal_color"):
 		curr_level.change_goal_color(curr_level.COLORS.WALL_DEAD)
+		
+	# If level has obstacles, change their colors too
+	if curr_level.get_node("Obstacles").get_child_count() > 0:
+		for child in curr_level.get_node("Obstacles").get_children():
+			child.change_wall_color(child.COLORS.WALL_DEAD)
+			child.change_background_color(child.COLORS.BACKGROUND_DEAD)
 	
 	# Switch to player's camera
 	camera.current = false
@@ -109,4 +124,4 @@ func on_die():
 	$DeathTimer.start()
 
 func _on_DeathTimer_timeout():
-	get_tree().reload_current_scene()
+	reset_current_level()
