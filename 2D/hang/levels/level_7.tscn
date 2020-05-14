@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://levels/wall.gd" type="Script" id=1]
+[ext_resource path="res://obstacle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/level.gd" type="Script" id=2]
+[ext_resource path="res://levels/wall.gd" type="Script" id=3]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0 )
@@ -11,9 +12,9 @@ colors = PoolColorArray( 0.313726, 0.803922, 0.501961, 1 )
 gradient = SubResource( 1 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 6.60236, 85.4638 )
+extents = Vector2( 5.09094, 87.8159 )
 
-[node name="Level_3" type="Node2D"]
+[node name="Level_7" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Background" type="Polygon2D" parent="."]
@@ -28,23 +29,22 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="Sprite" type="Sprite" parent="Goal"]
-position = Vector2( 890.23, 515.174 )
-rotation = 1.23569
-scale = Vector2( 0.00647602, 172.439 )
+position = Vector2( 129.401, 472.676 )
+rotation = -0.436332
+scale = Vector2( 0.00518696, 176.997 )
 texture = SubResource( 2 )
 region_filter_clip = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
-position = Vector2( 891.119, 514.835 )
-rotation = 1.23569
+position = Vector2( 128.781, 472.469 )
+rotation = -0.436332
 shape = SubResource( 3 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-script = ExtResource( 1 )
+script = ExtResource( 3 )
 
 [node name="Line2D" type="Line2D" parent="StaticBody2D"]
-position = Vector2( 4.11893, 3.99193 )
-points = PoolVector2Array( 12.1194, 5.32425, 274.431, 144.066, 392.784, 111.417, 765.526, 236.571, 897.483, 368.527, 984.547, 501.844, 834.905, 553.538, 477.127, 380.771, 17.3208, 363.086, 12.0087, 4.89449 )
+points = PoolVector2Array( 12.1194, 5.32425, 346.25, 46.9809, 624.946, 65.3969, 729.304, 167.299, 907.325, 96.0903, 942.93, 213.953, 996.95, 320.766, 934.336, 557.719, 710.888, 538.075, 402.726, 509.837, 144.902, 557.719, 44.2276, 409.163, 289.775, 304.805, 513.998, 331.999, 685.998, 338.999, 519.998, 292.999, 24.5839, 279.023, 11.8018, 5.31467 )
 default_color = Color( 0.12549, 0.12549, 0.12549, 1 )
 joint_mode = 2
 begin_cap_mode = 2
@@ -52,3 +52,10 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Obstacles" type="Node" parent="."]
+
+[node name="Obstacle" parent="Obstacles" instance=ExtResource( 1 )]
+position = Vector2( 290.265, 403.967 )
+
+[node name="Obstacle2" parent="Obstacles" instance=ExtResource( 1 )]
+position = Vector2( 277.398, 113.407 )
+rotation = 1.38056
