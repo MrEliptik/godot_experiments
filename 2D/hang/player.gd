@@ -29,7 +29,6 @@ func _ready():
 	sprite.texture.gradient.set_color(0, player_colors[COLORS.NORMAL])
 	
 func _physics_process(delta):
-	if dead: return
 	update()
 	if !reset: contact_monitor = true
 	
@@ -37,9 +36,11 @@ func _integrate_forces(state):
 	if reset:
 		state.transform = Transform2D(0, reset_position)
 		state.linear_velocity = Vector2()
+		dead = false
 		reset = false
 	
 func _draw():
+	if dead: return
 	if anchor != null:
 		draw_line(ray.position, (ray.get_collision_point()-ray.global_position).rotated(-rotation), Color(1, 1, 1), 2)
 	#else:
@@ -70,6 +71,7 @@ func reset(pos):
 	reset = true
 	reset_position = pos
 	anchor = null
+	sprite.texture.gradient.set_color(0, player_colors[COLORS.NORMAL])
 
 func _on_Player_body_entered(body):
 	if reset or dead: return
@@ -77,8 +79,8 @@ func _on_Player_body_entered(body):
 	# There's only one color
 	sprite.texture.gradient.set_color(0, player_colors[COLORS.DEAD])
 	$TrailTimer.stop()
-	$fake_explosion_particles.visible = true
-	$fake_explosion_particles.particles_explode = true
+#	$fake_explosion_particles.visible = true
+#	$fake_explosion_particles.particles_explode = true
 	dead = true
 	emit_signal("die")
 	$DieSound.play()
