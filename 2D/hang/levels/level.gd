@@ -19,6 +19,7 @@ var level_colors = {
 onready var wall = $StaticBody2D/Line2D
 onready var background = $Background
 onready var goal = $Goal/Sprite
+onready var obstacles = $Obstacles
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,6 +28,15 @@ func _ready():
 	change_wall_color(COLORS.WALL_NORMAL)
 	change_background_color(COLORS.BACKGROUND_NORMAL)
 	change_goal_color(COLORS.GOAL_NORMAL)
+	
+func reset():
+	change_wall_color(COLORS.WALL_NORMAL)
+	change_background_color(COLORS.BACKGROUND_NORMAL)
+	change_goal_color(COLORS.GOAL_NORMAL)
+	invert_background(true)
+	if obstacles.get_child_count() > 0:
+		for obstacle in obstacles.get_children():
+			obstacle.reset()
 
 func change_wall_color(color):
 	wall.default_color = level_colors[color]
