@@ -1,34 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game.gd" type="Script" id=2]
 [ext_resource path="res://winScreen.tscn" type="PackedScene" id=3]
-[ext_resource path="res://camera2D.gd" type="Script" id=5]
+[ext_resource path="res://gui/hud.tscn" type="PackedScene" id=4]
+[ext_resource path="res://camera2D.tscn" type="PackedScene" id=5]
 [ext_resource path="res://sounds/sfx/win.ogg" type="AudioStream" id=6]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" parent="." instance=ExtResource( 5 )]
 offset = Vector2( 512, 300 )
-current = true
-script = ExtResource( 5 )
-
-[node name="Tween" type="Tween" parent="Camera2D"]
 
 [node name="Levels" type="Node" parent="."]
-
-[node name="PlayerPos" type="Node2D" parent="."]
-position = Vector2( 47.6454, 118.56 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 46.55, 118.75 )
 z_index = 1
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-script = ExtResource( 5 )
-
-[node name="Tween" type="Tween" parent="Player/Camera2D"]
 
 [node name="Joints" type="Node" parent="."]
 
@@ -36,6 +25,8 @@ script = ExtResource( 5 )
 
 [node name="WinScreen" parent="CanvasLayer" instance=ExtResource( 3 )]
 visible = false
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource( 4 )]
 
 [node name="DeathTimer" type="Timer" parent="."]
 one_shot = true
