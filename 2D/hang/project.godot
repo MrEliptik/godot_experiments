@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="hang"
 run/main_scene="res://game.tscn"
-config/icon="res://icon.png"
+config/icon="res://medias/icons/res/mipmap-xxhdpi/icon.png"
 
 [display]
 
