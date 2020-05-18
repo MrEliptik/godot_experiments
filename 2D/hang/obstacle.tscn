@@ -5,6 +5,7 @@
 
 [node name="Obstacle" type="Node2D"]
 position = Vector2( -9.1178, 34.721 )
+z_index = 2
 script = ExtResource( 2 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
