@@ -49,3 +49,7 @@ func change_background_color(color):
 	
 func change_goal_color(color):
 	goal.texture.gradient.set_color(0, level_colors[color])
+
+func _on_StartingArea_body_entered(body):
+	if body.name == "Player":
+		$Obstacles/MovingWall.moving = true
