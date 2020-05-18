@@ -25,6 +25,9 @@ custom_fonts/font = ExtResource( 4 )
 text = "Level "
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_left = 1.0
