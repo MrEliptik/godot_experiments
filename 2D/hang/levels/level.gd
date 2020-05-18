@@ -1,5 +1,7 @@
 extends Node2D
 
+export var hooks = -1
+
 enum COLORS {
 	WALL_NORMAL,
 	WALL_DEAD,
@@ -20,6 +22,7 @@ onready var wall = $StaticBody2D/Line2D
 onready var background = $Background
 onready var goal = $Goal/Sprite
 onready var obstacles = $Obstacles
+onready var moving_walls = $Walls
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,6 +40,9 @@ func reset():
 	if obstacles.get_child_count() > 0:
 		for obstacle in obstacles.get_children():
 			obstacle.reset()
+	if moving_walls.get_child_count() > 0:
+		for wall in moving_walls.get_children():
+			wall.reset()
 
 func change_wall_color(color):
 	wall.default_color = level_colors[color]
@@ -49,7 +55,7 @@ func change_background_color(color):
 	
 func change_goal_color(color):
 	goal.texture.gradient.set_color(0, level_colors[color])
-
+	
 func _on_StartingArea_body_entered(body):
 	if body.name == "Player":
-		$Obstacles/MovingWall.moving = true
+		$Walls/MovingWall.moving = true
