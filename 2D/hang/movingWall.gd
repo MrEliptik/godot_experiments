@@ -1,8 +1,6 @@
-extends Node2D
+extends StaticBody2D
 
-const SPEED = 100
-
-onready var wall = $Sprite
+export var SPEED = 100
 
 var moving = false
 
@@ -12,4 +10,8 @@ func _ready():
 
 func _physics_process(delta):
 	if !moving: return
-	wall.position.x += delta*SPEED
+	position.x += delta*SPEED
+
+func reset():
+	moving = false
+	position = Vector2(0, 0)
