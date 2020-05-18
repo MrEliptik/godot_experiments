@@ -154,6 +154,3 @@ func on_swipe(direction):
 
 func _on_DeathTimer_timeout():
 	reset_current_level()
-
-func _on_TouchScreenButton_pressed():
-	remove_anchor()
