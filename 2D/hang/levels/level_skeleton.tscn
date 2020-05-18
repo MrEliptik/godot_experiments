@@ -40,3 +40,6 @@ shape = SubResource( 3 )
 [node name="StaticBody2D" parent="." instance=ExtResource( 1 )]
 
 [node name="Obstacles" type="Node" parent="."]
+
+[node name="PlayerPosition" type="Node2D" parent="."]
+position = Vector2( 57.1357, 97.9468 )

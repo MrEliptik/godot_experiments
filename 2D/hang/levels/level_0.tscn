@@ -49,3 +49,6 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Obstacles" type="Node" parent="."]
+
+[node name="PlayerPosition" type="Node2D" parent="."]
+position = Vector2( 75, 66 )
