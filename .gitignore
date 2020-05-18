@@ -3,3 +3,4 @@
 *.pyc
 2D/mobile_ui/android/build/*
 2D/mobile_ui/android/.build_version
+2D/hang/build/hang.apk
