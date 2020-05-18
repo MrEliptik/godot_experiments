@@ -37,13 +37,20 @@ func _draw():
 	#	draw_line(ray.position, ray.cast_to.rotated(-rotation), Color(0, 1, 0), 2)
 
 func _input(e):
-	if (e is InputEventMouseButton && e.button_index == BUTTON_LEFT && e.pressed) \
-		|| e is InputEventScreenTouch && e.pressed:	
+	if ((e is InputEventMouseButton && e.button_index == BUTTON_LEFT && e.is_pressed()) \
+		|| e is InputEventScreenTouch && e.is_pressed()) && !e.is_echo():
+		print("press: ", e.device)
+		# Emualted mouse on touchscreen
+		if e.device == -1 && e is InputEventMouseButton:
+			# We don't want to count that
+			# We will count the InputEventScreenTouch event
+			return
 		if anchor:
 			print("free")
 			emit_signal("free")
-			anchor == null
+			anchor = null
 			return
+		# -1 is emualted mouse device from touchscreen
 		if e is InputEventScreenTouch:
 			ray.cast_to = (get_canvas_transform().xform_inv(e.position) -ray.global_position).rotated(-rotation)
 		else:		

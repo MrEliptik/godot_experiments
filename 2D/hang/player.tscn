@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://sounds/sfx/die.ogg" type="AudioStream" id=2]
 [ext_resource path="res://sounds/sfx/fire.ogg" type="AudioStream" id=3]
 [ext_resource path="res://fake_explosion_particles.tscn" type="PackedScene" id=4]
-[ext_resource path="res://swipeDetector.tscn" type="PackedScene" id=5]
 [ext_resource path="res://camera2D.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -50,9 +49,6 @@ visible = false
 wait_time = 0.12
 autostart = true
 
-[node name="swiperDetector" parent="." instance=ExtResource( 5 )]
-
 [node name="Camera2D" parent="." instance=ExtResource( 6 )]
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 [connection signal="timeout" from="TrailTimer" to="." method="_on_TrailTimer_timeout"]
-[connection signal="swiped" from="swiperDetector" to="." method="_on_swiperDetector_swiped"]
