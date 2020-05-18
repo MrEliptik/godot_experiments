@@ -17,7 +17,7 @@ extents = Vector2( 5.66089, 81.689 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 11.8754, 246.899 )
 
-[node name="Level_10" type="Node2D"]
+[node name="Level_11" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Background" type="Polygon2D" parent="."]
@@ -60,6 +60,7 @@ antialiased = true
 [node name="Walls" type="Node" parent="."]
 
 [node name="MovingWall" parent="Walls" instance=ExtResource( 3 )]
+SPEED = 300
 
 [node name="PlayerPosition" type="Node2D" parent="."]
 position = Vector2( 69.379, 96.5864 )
