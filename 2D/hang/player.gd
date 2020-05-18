@@ -22,6 +22,8 @@ var anchor = null
 
 var dead = false
 
+var hooks = -1
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite.texture.gradient.set_color(0, player_colors[COLORS.NORMAL])
@@ -50,6 +52,12 @@ func _input(e):
 			emit_signal("free")
 			anchor = null
 			return
+		
+		if hooks != -1:
+			if hooks > 0:
+				hooks -= 1
+			else: return
+			
 		# -1 is emualted mouse device from touchscreen
 		if e is InputEventScreenTouch:
 			ray.cast_to = (get_canvas_transform().xform_inv(e.position) -ray.global_position).rotated(-rotation)

@@ -10,8 +10,11 @@ onready var hud = $CanvasLayer/HUD
 
 const player_scene = preload("res://player.tscn")
 
-var curr_level_nb = 0
+var curr_level_nb = 10
 var curr_level
+
+var level_hooks = -1
+var player_hooks = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,7 +28,13 @@ func on_anchor(point, collider):
 	# First, remove the joint
 	if joints.get_child_count() > 0:
 		joints.remove_child(joints.get_child(0))
-	
+		
+	# If level_hooks is != -1, we use a hook
+	if level_hooks != -1:
+		if player_hooks > 0:
+			player_hooks -= 1
+			$CanvasLayer/HUD.set_hooks(player_hooks)
+		else: return
 	# Add a joint
 	var joint = PinJoint2D.new()
 	# Joint need path to node
@@ -70,6 +79,9 @@ func reset_current_level():
 	curr_level.reset()
 	#player.reset(curr_level.get_node('PlayerPosition'))
 	reset_player()
+	level_hooks = curr_level.hooks
+	player_hooks = level_hooks
+	player.hooks = level_hooks
 
 func reset_player():
 	# Add player instance to node2D, to place it in space
@@ -106,6 +118,11 @@ func on_level_ready():
 	curr_level.get_node("Goal").connect("body_entered", self, "_on_Goal_body_entered")
 
 	reset_player()
+	
+	level_hooks = curr_level.hooks
+	player_hooks = level_hooks
+	player.hooks = level_hooks
+	$CanvasLayer/HUD.set_hooks(level_hooks)
 	
 func on_player_node_ready():
 	player = $Player
