@@ -7,6 +7,7 @@ Some of my 2D/3D experiments in Godot.
 ### 2D
 
 - **hang**: you hang from a rope, swinging to reach the goal
+- **quick_prototype**: 
 
 ### 3D
 
@@ -22,5 +23,7 @@ Some of my 2D/3D experiments in Godot.
 
 
 ### MISC
+
+- **slow_down_sound**: showcase an effect where the pitch and volume of the music is decreased with a tween. Useful for a "loosing" effect, when a player dies for example.
 
 Icon background color: 022C4D
