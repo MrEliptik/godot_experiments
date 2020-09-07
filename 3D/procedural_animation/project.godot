@@ -16,8 +16,10 @@ _global_script_class_icons={
 [application]
 
 config/name="procedural_animation"
+run/main_scene="res://world.tscn"
 config/icon="res://icon.png"
 
 [rendering]
 
+quality/filters/msaa=3
 environment/default_environment="res://default_env.tres"
