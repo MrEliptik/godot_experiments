@@ -2,7 +2,7 @@
 
 [ext_resource path="res://shouting_thingy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://spectrumAnalyzer.gd" type="Script" id=2]
-[ext_resource path="res://music/bensound-moose.ogg" type="AudioStream" id=3]
+[ext_resource path="res://music/vocals.ogg" type="AudioStream" id=3]
 [ext_resource path="res://gui.tscn" type="PackedScene" id=4]
 
 [sub_resource type="SpatialMaterial" id=1]
