@@ -18,9 +18,14 @@ _global_script_class_icons={
 config/name="bow_and_arrow"
 config/icon="res://icon.png"
 
+[gdnative]
+
+singletons=[ "res://addons/godot_ovrmobile/godot_ovrmobile.gdnlib" ]
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+quality/filters/msaa=6
 environment/default_environment="res://default_env.tres"
