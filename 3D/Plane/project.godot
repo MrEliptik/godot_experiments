@@ -52,4 +52,7 @@ ui_down={
 
 [rendering]
 
+quality/filters/anisotropic_filter_level=6
+quality/filters/use_nearest_mipmap_filter=true
+quality/filters/msaa=2
 environment/default_environment="res://default_env.tres"
