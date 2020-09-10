@@ -5,4 +5,5 @@
 *.tres eol=lf
 *.import eol=lf
 
+* linguist-vendored
 *.gd linguist-vendored=false
