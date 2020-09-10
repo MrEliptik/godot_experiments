@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://wheel_bot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://MODELS/SeconadryColor.material" type="Material" id=2]
+[ext_resource path="res://MODELS/Blue.material" type="Material" id=3]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 100, 100 )
+
+[sub_resource type="ConcavePolygonShape" id=2]
+data = PoolVector3Array( 50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50 )
+
+[sub_resource type="PlaneMesh" id=3]
+size = Vector2( 10, 10 )
+
+[sub_resource type="ConcavePolygonShape" id=4]
+data = PoolVector3Array( 5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5 )
+
+[sub_resource type="ConcavePolygonShape" id=5]
+data = PoolVector3Array( 5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5 )
+
+[node name="World" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="StaticBody" type="StaticBody" parent="MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
+shape = SubResource( 2 )
+
+[node name="wheel_bot" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40.071, 15.3425, 0 )
+
+[node name="InterpolatedCamera" type="InterpolatedCamera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -65.2305, 18.6722, 2.47973 )
+fov = 80.4
+target = NodePath("../wheel_bot/Position3D")
+speed = 2.0
+enabled = true
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 0.88609, -0.463513, 0, 0.463513, 0.88609, 0, 0, 0, 1, -12.6325, 2.33183, 19.6712 )
+material_override = ExtResource( 3 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="MeshInstance2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance2/StaticBody"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.39958, 4.6058, 19.6712 )
+material_override = ExtResource( 3 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="MeshInstance3"]
+
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance3/StaticBody"]
+shape = SubResource( 5 )
+
+[editable path="wheel_bot"]

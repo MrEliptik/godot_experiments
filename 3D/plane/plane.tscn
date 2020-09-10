@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://plane.gd" type="Script" id=1]
+[ext_resource path="res://reggiane.tscn" type="PackedScene" id=2]
+
+[node name="Plane" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="reggiane" parent="." instance=ExtResource( 2 )]
+
+[node name="Camera" type="Camera" parent="reggiane"]
+transform = Transform( -1.62418e-07, -0.0784591, 0.996917, -1.27826e-08, 0.996917, 0.0784591, -1, 1.77636e-15, -1.62921e-07, 11.7803, 4.12407, 0 )
