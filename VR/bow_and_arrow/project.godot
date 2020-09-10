@@ -16,11 +16,18 @@ _global_script_class_icons={
 [application]
 
 config/name="bow_and_arrow"
+run/main_scene="res://world.tscn"
 config/icon="res://icon.png"
 
 [gdnative]
 
 singletons=[ "res://addons/godot_ovrmobile/godot_ovrmobile.gdnlib" ]
+
+[layer_names]
+
+3d_physics/layer_1="Player"
+3d_physics/layer_2="Environment"
+3d_physics/layer_3="Objects"
 
 [rendering]
 
