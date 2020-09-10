@@ -1,13 +1,19 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://addons/godot_ovrmobile/example_scenes/ARVROriginWithInitAndMovement.tscn" type="PackedScene" id=1]
 [ext_resource path="res://bow.tscn" type="PackedScene" id=2]
+[ext_resource path="res://pickup.tscn" type="PackedScene" id=4]
 
 [node name="Player" type="Spatial"]
 
 [node name="ARVROriginWithInitAndMovement" parent="." instance=ExtResource( 1 )]
 
+[node name="left-controller" parent="ARVROriginWithInitAndMovement/LeftTouchController" index="0"]
+visible = false
+
 [node name="recurveBow" parent="ARVROriginWithInitAndMovement/LeftTouchController" index="1" instance=ExtResource( 2 )]
-transform = Transform( -5.70222e-08, 0, 0.35, 0, 0.35, 0, -0.35, 0, -5.70222e-08, -0.015424, -0.0639627, 0.0214536 )
+transform = Transform( -5.70222e-08, 0, 0.35, -0.206638, 0.28249, -3.36656e-08, -0.28249, -0.206638, -4.60235e-08, -0.015424, -0.0603175, 0.0722353 )
+
+[node name="Pickup" parent="ARVROriginWithInitAndMovement/RightTouchController" index="1" instance=ExtResource( 4 )]
 
 [editable path="ARVROriginWithInitAndMovement"]

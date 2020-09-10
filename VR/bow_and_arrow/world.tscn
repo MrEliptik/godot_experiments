@@ -1,22 +1,33 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://pickableArrow.tscn" type="PackedScene" id=2]
 
 [sub_resource type="SpatialMaterial" id=1]
-albedo_color = Color( 0.160784, 0.160784, 0.160784, 1 )
+albedo_color = Color( 0.72549, 0.772549, 0.647059, 1 )
 
 [sub_resource type="PlaneMesh" id=2]
 size = Vector2( 100, 100 )
 
-[sub_resource type="ConcavePolygonShape" id=3]
-data = PoolVector3Array( 50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50 )
+[sub_resource type="ConvexPolygonShape" id=3]
+points = PoolVector3Array( 50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, -50 )
 
 [node name="World" type="Spatial"]
 
-[node name="Floor" type="MeshInstance" parent="."]
+[node name="Floor" type="StaticBody" parent="."]
+collision_layer = 7
+collision_mask = 7
+
+[node name="Floor" type="MeshInstance" parent="Floor"]
 material_override = SubResource( 1 )
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="Floor"]
-
-[node name="CollisionShape" type="CollisionShape" parent="Floor/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Floor"]
 shape = SubResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( -0.48629, 0, -0.873798, 0, 1, 0, 0.873798, 0, -0.48629, 0, 0, 0 )
+
+[node name="PickableObject" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.900963, 0, 0.433895, 0, 1, 0, -0.433895, 0, 0.900963, 0.281142, 1.49469, 0.433601 )
