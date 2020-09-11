@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://models/recurveBow.glb" type="PackedScene" id=1]
 [ext_resource path="res://models/BlackMetal.material" type="Material" id=2]
 [ext_resource path="res://models/FeatherGreen.material" type="Material" id=3]
 [ext_resource path="res://models/Tip.material" type="Material" id=4]
 [ext_resource path="res://models/FeatherRed.material" type="Material" id=5]
+[ext_resource path="res://bow.gd" type="Script" id=6]
+[ext_resource path="res://sfx/arrow_nock.wav" type="AudioStream" id=7]
+[ext_resource path="res://sfx/rope_arm.ogg" type="AudioStream" id=8]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Arrow"
@@ -57,9 +60,40 @@ surfaces/3 = {
 "vertex_count": 32
 }
 
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.503819, 0.264331, 0.0704808 )
+
+[sub_resource type="CylinderShape" id=3]
+radius = 0.0233604
+height = 3.07832
+
 [node name="recurveBow" instance=ExtResource( 1 )]
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0 )
+script = ExtResource( 6 )
 
 [node name="Arrow" parent="." index="1"]
 transform = Transform( 1.22275e-09, -1.8085, -3.3422e-09, -0.0205143, -2.1559e-07, -3.3422e-09, 3.3422e-09, 2.94641e-07, -0.0205143, 1.045, 0.377119, 0.0426165 )
 visible = false
 mesh = SubResource( 1 )
+
+[node name="ArrowPlacingArea" type="Area" parent="." index="3"]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape" type="CollisionShape" parent="ArrowPlacingArea" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0518665, 0.428708, 0.0725929 )
+shape = SubResource( 2 )
+
+[node name="RopeArea" type="Area" parent="." index="4"]
+
+[node name="CollisionShape" type="CollisionShape" parent="RopeArea" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.781016, 0.382167, 0.0415533 )
+shape = SubResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="5"]
+stream = ExtResource( 7 )
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." index="6"]
+stream = ExtResource( 8 )
+[connection signal="body_entered" from="ArrowPlacingArea" to="." method="_on_ArrowPlacingArea_body_entered"]
+[connection signal="body_exited" from="ArrowPlacingArea" to="." method="_on_ArrowPlacingArea_body_exited"]

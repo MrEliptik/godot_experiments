@@ -1,16 +1,18 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://pickableObject.tscn" type="PackedScene" id=1]
-[ext_resource path="res://arrow.tscn" type="PackedScene" id=2]
+[ext_resource path="res://models/arrow.glb" type="PackedScene" id=2]
 
 [sub_resource type="CylinderShape" id=1]
-radius = 0.0220493
-height = 3.39851
+radius = 0.00404989
+height = 0.659139
 
 [node name="PickableArrow" instance=ExtResource( 1 )]
+continuous_cd = true
 
 [node name="CollisionShape" parent="." index="0"]
-transform = Transform( -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0, 1, 0.908623, 0.375912, 0.0382903 )
+transform = Transform( 2.65431e-14, -1.62921e-07, 1, -1, -1.62921e-07, 0, 1.62921e-07, -1, -1.62921e-07, 0, 0, 0 )
 shape = SubResource( 1 )
 
-[node name="Arrow" parent="." index="1" instance=ExtResource( 2 )]
+[node name="arrow" parent="." index="1" instance=ExtResource( 2 )]
+transform = Transform( -4.07302e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -4.07302e-08, 0, 0, 0 )

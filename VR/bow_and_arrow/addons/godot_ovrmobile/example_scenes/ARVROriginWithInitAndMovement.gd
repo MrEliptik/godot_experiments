@@ -33,6 +33,8 @@ var ovrVrApiTypes = load("res://addons/godot_ovrmobile/OvrVrApiTypes.gd").new();
 # react to the worldscale changing
 var was_world_scale = 1.0
 
+var touching_rope = false
+
 func _ready():
 	_initialize_ovr_mobile_arvr_interface();
 
@@ -271,6 +273,11 @@ func _on_RightTouchController_button_release(button):
 	if (ovr_utilities):
 		# reset the color to neutral again
 		ovr_utilities.set_default_layer_color_scale(Color(1.0, 1.0, 1.0, 1.0));
+		
+	if button == CONTROLLER_BUTTON.TOUCH_INDEX_TRIGGER and touching_rope:
+		# Launch arrow
+		$LeftTouchController/ArrowPoint.get_child(0).let_go()
+	
 
 func _check_worldscale():
 	if was_world_scale != world_scale:
@@ -279,3 +286,19 @@ func _check_worldscale():
 		var controller_scale = Vector3(inv_world_scale, inv_world_scale, inv_world_scale)
 		$"LeftTouchController/left-controller".scale = controller_scale
 		$"RightTouchController/right-controller".scale = -controller_scale
+
+func _on_recurveBow_body_entered(body):
+	if body.has_method('is_picked_up'):
+		$LeftTouchController/recurveBow/AudioStreamPlayer2.play()
+		if !body.is_picked_up():
+			$LeftTouchController/recurveBow/AudioStreamPlayer.play()
+			body.pick_up($LeftTouchController/ArrowPoint)
+
+func _on_InteractionArea_area_entered(area):
+	if area.name == "RopeArea":
+		touching_rope = true
+
+
+func _on_InteractionArea_area_exited(area):
+	if area.name == "RopeArea":
+		touching_rope = false

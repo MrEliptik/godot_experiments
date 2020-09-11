@@ -8,6 +8,11 @@ var original_collision_layer
 
 var picked_up_by = null
 
+func is_picked_up():
+	if picked_up_by: return true
+	else: return false
+	#return picked_up_by != null
+
 func pick_up(by):
 	if picked_up_by == by:
 		return
@@ -32,7 +37,6 @@ func pick_up(by):
 func let_go(impulse = Vector3(0.0, 0.0, 0.0)):
 	if picked_up_by:
 		# get our current global transform
-		
 		var t = global_transform
 		
 		# reparent it

@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://addons/godot_ovrmobile/example_scenes/ARVROriginWithInitAndMovement.tscn" type="PackedScene" id=1]
 [ext_resource path="res://bow.tscn" type="PackedScene" id=2]
 [ext_resource path="res://pickup.tscn" type="PackedScene" id=4]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.0415819, 0.0643576, 0.0474157 )
 
 [node name="Player" type="Spatial"]
 
@@ -12,8 +15,20 @@
 visible = false
 
 [node name="recurveBow" parent="ARVROriginWithInitAndMovement/LeftTouchController" index="1" instance=ExtResource( 2 )]
-transform = Transform( -5.70222e-08, 0, 0.35, -0.206638, 0.28249, -3.36656e-08, -0.28249, -0.206638, -4.60235e-08, -0.015424, -0.0603175, 0.0722353 )
+transform = Transform( -4.07302e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -4.07302e-08, -0.015424, -0.0419954, 0.0317321 )
+
+[node name="ArrowPoint" type="Spatial" parent="ARVROriginWithInitAndMovement/LeftTouchController" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49012e-08, 0.0527191, -0.151264 )
 
 [node name="Pickup" parent="ARVROriginWithInitAndMovement/RightTouchController" index="1" instance=ExtResource( 4 )]
+
+[node name="InteractionArea" type="Area" parent="ARVROriginWithInitAndMovement/RightTouchController" index="2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="ARVROriginWithInitAndMovement/RightTouchController/InteractionArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0107988, 0, 0.0120613 )
+shape = SubResource( 1 )
+[connection signal="body_entered" from="ARVROriginWithInitAndMovement/LeftTouchController/recurveBow" to="ARVROriginWithInitAndMovement" method="_on_recurveBow_body_entered"]
+[connection signal="area_entered" from="ARVROriginWithInitAndMovement/RightTouchController/InteractionArea" to="ARVROriginWithInitAndMovement" method="_on_InteractionArea_area_entered"]
+[connection signal="area_exited" from="ARVROriginWithInitAndMovement/RightTouchController/InteractionArea" to="ARVROriginWithInitAndMovement" method="_on_InteractionArea_area_exited"]
 
 [editable path="ARVROriginWithInitAndMovement"]
