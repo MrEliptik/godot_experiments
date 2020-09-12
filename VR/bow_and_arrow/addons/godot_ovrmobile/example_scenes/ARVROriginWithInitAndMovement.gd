@@ -294,9 +294,10 @@ func _on_RightTouchController_button_release(button):
 		rope_grabbed = false
 		var skel = $"LeftTouchController/recurveBow_rigged/Armature/Skeleton"	
 		var bone_rest = skel.get_bone_rest(1)
-#		skel.set_bone_pose(1, Transform(bone_rest.basis)) # use the original rest as pose
-#		bone_rest.basis = Basis()
-#		skel.set_bone_rest(1, bone_rest)
+		# TODO: test if pose is correctly reset
+		skel.set_bone_pose(1, Transform())
+		#bone_rest.basis = Basis()
+		#skel.set_bone_rest(1, bone_rest)
 		
 	if button == CONTROLLER_BUTTON.INDEX_TRIGGER and $LeftTouchController/ArrowPoint.get_child_count() > 0:
 #		# Launch arrow
