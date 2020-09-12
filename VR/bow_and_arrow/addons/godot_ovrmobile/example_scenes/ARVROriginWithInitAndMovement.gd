@@ -7,6 +7,7 @@
 # To view log/print messages use `adb logcat -s godot:* GodotOVRMobile:*` from a command prompt
 extends ARVROrigin
 
+export var physics_factor = 2.0
 
 # these will be initialized in the _ready() function; but they will be only available
 # on device
@@ -34,9 +35,20 @@ var ovrVrApiTypes = load("res://addons/godot_ovrmobile/OvrVrApiTypes.gd").new();
 var was_world_scale = 1.0
 
 var touching_rope = false
+var rope_grabbed = true
+var arrow_loaded = false
+var start_grab_rope_pos
+
+var max_rope_translation = Vector3(0, 2.05, 0.15)
+
+var rope_rest_pose
 
 func _ready():
 	_initialize_ovr_mobile_arvr_interface();
+	
+	start_grab_rope_pos = $"RightTouchController/right-controller".global_transform
+	
+	rope_rest_pose = $"LeftTouchController/recurveBow_rigged/Armature/Skeleton".get_bone_rest(1)
 
 
 func _process(delta_t):
@@ -44,7 +56,7 @@ func _process(delta_t):
 	_check_move(delta_t)
 	_check_worldscale()
 	_update_controllers_vibration(delta_t)
-
+	check_draw_distance()
 
 # this code check for the OVRMobile inteface; and if successful also initializes the
 # .gdns APIs used to communicate with the VR device
@@ -63,7 +75,7 @@ func _initialize_ovr_mobile_arvr_interface():
 		# Configure the interface init parameters.
 		if arvr_interface.initialize():
 			get_viewport().arvr = true
-			Engine.iterations_per_second = 72 # Quest
+			Engine.iterations_per_second = 72 * physics_factor # Quest
 
 			# load the .gdns classes.
 			ovr_display_refresh_rate = load("res://addons/godot_ovrmobile/OvrDisplayRefreshRate.gdns");
@@ -220,7 +232,7 @@ enum CONTROLLER_BUTTON {
 
 # this is a function connected to the button release signal from the controller
 func _on_LeftTouchController_button_pressed(button):
-	print("Primary controller id: " + str(ovr_input.get_primary_controller_id()))
+	#print("Primary controller id: " + str(ovr_input.get_primary_controller_id()))
 
 	if (button == CONTROLLER_BUTTON.YB):
 		# examples on using the ovr api from gdscript
@@ -256,7 +268,7 @@ func _on_LeftTouchController_button_pressed(button):
 		_start_controller_vibration($LeftTouchController, 40, 0.5)
 
 func _on_RightTouchController_button_pressed(button):
-	print("Primary controller id: " + str(ovr_input.get_primary_controller_id()))
+	#print("Primary controller id: " + str(ovr_input.get_primary_controller_id()))
 
 	if (button == CONTROLLER_BUTTON.YB):
 		if (ovr_utilities):
@@ -265,18 +277,36 @@ func _on_RightTouchController_button_pressed(button):
 
 	if (button == CONTROLLER_BUTTON.XA):
 		_start_controller_vibration($RightTouchController, 40, 0.5)
+		
+	if button == CONTROLLER_BUTTON.INDEX_TRIGGER and touching_rope:
+		rope_grabbed = true
+		start_grab_rope_pos = $"RightTouchController/right-controller".global_transform
 
 
 func _on_RightTouchController_button_release(button):
-	if (button != CONTROLLER_BUTTON.YB): return;
+	#if (button != CONTROLLER_BUTTON.YB): return;
 
 	if (ovr_utilities):
 		# reset the color to neutral again
-		ovr_utilities.set_default_layer_color_scale(Color(1.0, 1.0, 1.0, 1.0));
+		ovr_utilities.set_default_layer_color_scale(Color(1.0, 1.0, 1.0, 1.0))
 		
-	if button == CONTROLLER_BUTTON.TOUCH_INDEX_TRIGGER and touching_rope:
-		# Launch arrow
-		$LeftTouchController/ArrowPoint.get_child(0).let_go()
+	if button == CONTROLLER_BUTTON.INDEX_TRIGGER:
+		rope_grabbed = false
+		var skel = $"LeftTouchController/recurveBow_rigged/Armature/Skeleton"	
+		var bone_rest = skel.get_bone_rest(1)
+#		skel.set_bone_pose(1, Transform(bone_rest.basis)) # use the original rest as pose
+#		bone_rest.basis = Basis()
+#		skel.set_bone_rest(1, bone_rest)
+		
+	if button == CONTROLLER_BUTTON.INDEX_TRIGGER and $LeftTouchController/ArrowPoint.get_child_count() > 0:
+#		# Launch arrow
+#		$LeftTouchController/recurveBow_rigged/AudioStreamPlayer3.play()
+#		# TODO: deactivate pickup zone the time of launch, otherwise the arrow
+#		# get grabbed instantly
+		#$LeftTouchController/ArrowPoint.get_child(0).let_go($"LeftTouchController/recurveBow_rigged/RayCast".cast_to.normalized() * 10)
+		$LeftTouchController/ArrowPoint.get_child(0).let_go(-$"LeftTouchController/ArrowPoint".global_transform.basis.z  * 15)
+#		print("Letting go of arrow", arrow_loaded)
+		rope_grabbed = false
 	
 
 func _check_worldscale():
@@ -286,19 +316,49 @@ func _check_worldscale():
 		var controller_scale = Vector3(inv_world_scale, inv_world_scale, inv_world_scale)
 		$"LeftTouchController/left-controller".scale = controller_scale
 		$"RightTouchController/right-controller".scale = -controller_scale
-
-func _on_recurveBow_body_entered(body):
-	if body.has_method('is_picked_up'):
-		$LeftTouchController/recurveBow/AudioStreamPlayer2.play()
-		if !body.is_picked_up():
-			$LeftTouchController/recurveBow/AudioStreamPlayer.play()
-			body.pick_up($LeftTouchController/ArrowPoint)
+		
+func check_draw_distance():
+	if rope_grabbed:
+		var skel = $"LeftTouchController/recurveBow_rigged/Armature/Skeleton"
+		#print("Bone: ", $"LeftTouchController/recurveBow_rigged/Armature/Skeleton".get_bone_pose(1))
+		#print("Controller: ", $"RightTouchController/right-controller".global_transform)
+		
+		var bone_transf = Transform()
+		#bone_transf.origin = $"RightTouchController/right-controller".global_transform.origin - bone_transf.origin
+		
+		var dist = $"RightTouchController".global_transform.origin.distance_to($"LeftTouchController/recurveBow_rigged/RopePosition".global_transform.origin)
+		#print("distance: ", dist)
+		#print("dist scaled: ", dist*world_scale)
+		bone_transf.origin.y = 1 + dist
+		skel.set_bone_pose(1, bone_transf)
+		
+		if $"LeftTouchController/ArrowPoint".get_child_count() > 0:
+			$"LeftTouchController/ArrowPoint".get_child(0).global_transform.translated(Vector3(0, 1 + dist, 0))
 
 func _on_InteractionArea_area_entered(area):
 	if area.name == "RopeArea":
 		touching_rope = true
 
-
 func _on_InteractionArea_area_exited(area):
 	if area.name == "RopeArea":
 		touching_rope = false
+
+func _on_recurveBow_rigged_body_entered(body):
+	print("body enter bow loading: ", body)
+	# The body is pickable and we have no arrow under arrow point
+	if body.has_method('is_picked_up') and $LeftTouchController/ArrowPoint.get_child_count() == 0 and !arrow_loaded:
+		if !body.is_picked_up():
+			arrow_loaded = true
+			$LeftTouchController/recurveBow_rigged/AudioStreamPlayer.play()
+			_start_controller_vibration($LeftTouchController, 40, 0.5)
+			body.pick_up($LeftTouchController/ArrowPoint)
+			print("Body picked up:", body, arrow_loaded)
+			
+func _on_recurveBow_rigged_body_exited(body):
+	if body.has_method('is_picked_up'):
+		print("Launching timer")
+		$Timer.start()
+
+func _on_Timer_timeout():
+	arrow_loaded = false
+	print("Arrow let go: ", arrow_loaded)

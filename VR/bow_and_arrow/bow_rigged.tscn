@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://models/bow_rigged/recurveBow_rigged.glb" type="PackedScene" id=1]
+[ext_resource path="res://sfx/arrow_nock.wav" type="AudioStream" id=2]
+[ext_resource path="res://sfx/rope_arm.ogg" type="AudioStream" id=3]
+[ext_resource path="res://bow.gd" type="Script" id=4]
+[ext_resource path="res://sfx/arrow_hit.ogg" type="AudioStream" id=5]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.531015, 0.549954, 0.200612 )
+
+[sub_resource type="CylinderShape" id=2]
+radius = 0.0191062
+height = 3.69332
+
+[node name="recurveBow_rigged" instance=ExtResource( 1 )]
+script = ExtResource( 4 )
+
+[node name="BoneAttachment" parent="Armature/Skeleton" index="0"]
+transform = Transform( 0.971139, 0.238526, 1.09896e-07, -0.238525, 0.971137, -6.39632e-06, -1.6382e-06, 6.1281e-06, 1, -0.0860911, 1.17515, 0.0247471 )
+
+[node name="TopHolder" parent="Armature/Skeleton/BoneAttachment" index="0"]
+transform = Transform( 0.971134, -0.238524, 6.6518e-07, 0.238524, 0.971137, -2.73573e-07, -5.80726e-07, 4.24337e-07, 1, 0.255332, -0.613418, 0.0322628 )
+
+[node name="BoneAttachment 2" parent="Armature/Skeleton" index="1"]
+transform = Transform( 0.996632, -0.0819189, 0.00437873, 0.0819945, 0.996406, -0.0213104, -0.00261728, 0.0215975, 0.999763, 0.00777386, 0.0334439, 4.77304e-08 )
+
+[node name="Cube004" parent="Armature/Skeleton/BoneAttachment 2/Riser/Cube003" index="0"]
+transform = Transform( 1, 4.73792e-14, 0, -4.01632e-15, 1, 0, 0, 0, 1, 0.415928, -0.0017724, -0.000453748 )
+
+[node name="BoneAttachment 3" parent="Armature/Skeleton" index="2"]
+transform = Transform( -0.971137, 0.238525, 1.82725e-06, -0.238525, -0.971137, -3.8743e-07, 1.69687e-06, -7.71135e-07, 1, -0.0860925, -0.628264, 0.0197911 )
+
+[node name="BottomHolder" parent="Armature/Skeleton/BoneAttachment 3" index="0"]
+transform = Transform( -0.971136, -0.238525, 1.48577e-06, 0.238525, -0.971136, -6.12057e-07, 1.58887e-06, -2.39999e-07, 1, -0.254976, -0.611966, 0.0372113 )
+
+[node name="BottomScrew" parent="Armature/Skeleton/BoneAttachment 3/BottomHolder" index="0"]
+transform = Transform( 1, 3.59842e-15, -5.68434e-14, 2.10247e-14, 1, 0, 0, 0, 1, 0.0267407, -0.67701, -0.031906 )
+
+[node name="BoneAttachment 4" parent="Armature/Skeleton" index="3"]
+transform = Transform( -0.989383, -0.145232, 0.00541218, 0.145333, -0.988697, 0.0368433, 1.64844e-07, 0.0372387, 0.999306, -0.00890614, -0.102804, -2.3267e-10 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="1"]
+stream = ExtResource( 2 )
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." index="2"]
+stream = ExtResource( 3 )
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="." index="3"]
+stream = ExtResource( 5 )
+
+[node name="ArrowPlacingArea" type="Area" parent="." index="4"]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape" type="CollisionShape" parent="ArrowPlacingArea" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.264457, 0 )
+shape = SubResource( 1 )
+
+[node name="RopeArea" type="Area" parent="." index="5"]
+collision_layer = 7
+collision_mask = 2147483655
+
+[node name="CollisionShape" type="CollisionShape" parent="RopeArea" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.786153, 0.439851, 0.0467396 )
+shape = SubResource( 2 )
+
+[node name="RopePosition" type="Position3D" parent="." index="6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.786507, 0.378396, 0.0415916 )
+
+[node name="RayCast" type="RayCast" parent="." index="7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.389134, 0 )
+enabled = true
+cast_to = Vector3( 100, 0, 0 )
+collide_with_areas = true
+[connection signal="body_entered" from="ArrowPlacingArea" to="." method="_on_ArrowPlacingArea_body_entered"]
+[connection signal="body_exited" from="ArrowPlacingArea" to="." method="_on_ArrowPlacingArea_body_exited"]
+[connection signal="area_entered" from="RopeArea" to="." method="_on_RopeArea_area_entered"]
+[connection signal="area_exited" from="RopeArea" to="." method="_on_RopeArea_area_exited"]

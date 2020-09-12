@@ -1,6 +1,6 @@
 extends Area
 
-export var impulse_factor = 10.0
+export var impulse_factor = 1.0
 
 var object_in_area = Array()
 var picked_up_obj = null
@@ -35,7 +35,7 @@ func _ready():
 	last_position = global_transform.origin
 	
 func _process(delta):
-	velocity = global_transform.origin - last_position
+	velocity = (global_transform.origin - last_position) / delta
 	last_position = global_transform.origin
 	
 func _on_button_pressed(button):

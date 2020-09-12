@@ -3,7 +3,7 @@
 [ext_resource path="res://pickup.gd" type="Script" id=1]
 
 [sub_resource type="SphereShape" id=1]
-radius = 0.5
+radius = 0.25
 
 [node name="Pickup" type="Area"]
 collision_mask = 4
