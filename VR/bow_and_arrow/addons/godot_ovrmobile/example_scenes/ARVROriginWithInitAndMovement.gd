@@ -35,13 +35,17 @@ var ovrVrApiTypes = load("res://addons/godot_ovrmobile/OvrVrApiTypes.gd").new();
 var was_world_scale = 1.0
 
 var touching_rope = false
-var rope_grabbed = true
+var rope_grabbed = false
 var arrow_loaded = false
 var start_grab_rope_pos
 
 var max_rope_translation = Vector3(0, 2.05, 0.15)
 
+var max_rope_draw = 2.05
+
 var rope_rest_pose
+
+var ARROW_SPEED = 10
 
 func _ready():
 	_initialize_ovr_mobile_arvr_interface();
@@ -294,7 +298,7 @@ func _on_RightTouchController_button_release(button):
 		rope_grabbed = false
 		var skel = $"LeftTouchController/recurveBow_rigged/Armature/Skeleton"	
 		var bone_rest = skel.get_bone_rest(1)
-		# TODO: test if pose is correctly reset
+		# TODO: interpolate transform to make it smoother
 		skel.set_bone_pose(1, Transform())
 		#bone_rest.basis = Basis()
 		#skel.set_bone_rest(1, bone_rest)
@@ -305,14 +309,21 @@ func _on_RightTouchController_button_release(button):
 #		# TODO: deactivate pickup zone the time of launch, otherwise the arrow
 #		# get grabbed instantly
 		#$LeftTouchController/ArrowPoint.get_child(0).let_go($"LeftTouchController/recurveBow_rigged/RayCast".cast_to.normalized() * 10)
-		$LeftTouchController/ArrowPoint.get_child(0).let_go(-$"LeftTouchController/ArrowPoint".global_transform.basis.z  * 15)
+		#TODO: calculate force based on how far the rope is drawn
+		$LeftTouchController/ArrowPoint.get_child(0).let_go(-$"LeftTouchController/ArrowPoint".global_transform.basis.z  * ARROW_SPEED)
+		$LeftTouchController/recurveBow_rigged/AudioStreamPlayer4.play()
 #		print("Letting go of arrow", arrow_loaded)
 		rope_grabbed = false
+		var skel = $"LeftTouchController/recurveBow_rigged/Armature/Skeleton"	
+		var bone_rest = skel.get_bone_rest(1)
+		# TODO: interpolate transform to make it smoother
+		skel.set_bone_pose(1, Transform())
 	
 
 func _check_worldscale():
 	if was_world_scale != world_scale:
 		was_world_scale = world_scale
+		print("world_scale: ", world_scale)
 		var inv_world_scale = 1.0 / was_world_scale
 		var controller_scale = Vector3(inv_world_scale, inv_world_scale, inv_world_scale)
 		$"LeftTouchController/left-controller".scale = controller_scale
@@ -321,20 +332,19 @@ func _check_worldscale():
 func check_draw_distance():
 	if rope_grabbed:
 		var skel = $"LeftTouchController/recurveBow_rigged/Armature/Skeleton"
-		#print("Bone: ", $"LeftTouchController/recurveBow_rigged/Armature/Skeleton".get_bone_pose(1))
-		#print("Controller: ", $"RightTouchController/right-controller".global_transform)
+		var dist = $"RightTouchController/right-controller".global_transform.origin.distance_to($"LeftTouchController/recurveBow_rigged/RopePosition".global_transform.origin)
+		
+		if dist > 0.1:
+			$LeftTouchController/recurveBow_rigged/AudioStreamPlayer3.play()
 		
 		var bone_transf = Transform()
-		#bone_transf.origin = $"RightTouchController/right-controller".global_transform.origin - bone_transf.origin
-		
-		var dist = $"RightTouchController".global_transform.origin.distance_to($"LeftTouchController/recurveBow_rigged/RopePosition".global_transform.origin)
-		#print("distance: ", dist)
-		#print("dist scaled: ", dist*world_scale)
-		bone_transf.origin.y = 1 + dist
+		bone_transf.origin.y = dist*4 # need to multiply by 4 because we scaled to 0.25
 		skel.set_bone_pose(1, bone_transf)
 		
-		if $"LeftTouchController/ArrowPoint".get_child_count() > 0:
-			$"LeftTouchController/ArrowPoint".get_child(0).global_transform.translated(Vector3(0, 1 + dist, 0))
+		if $"LeftTouchController/ArrowPoint".get_child_count() > 0 and $"LeftTouchController/ArrowPoint".get_child(0).translation.z < max_rope_draw:
+			$"LeftTouchController/ArrowPoint".get_child(0).translation.z = dist
+			if $"LeftTouchController/ArrowPoint".get_child(0).translation.z > max_rope_draw: 
+				$"LeftTouchController/ArrowPoint".get_child(0).translation.z = max_rope_draw
 
 func _on_InteractionArea_area_entered(area):
 	if area.name == "RopeArea":

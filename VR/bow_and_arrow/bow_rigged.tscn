@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://models/bow_rigged/recurveBow_rigged.glb" type="PackedScene" id=1]
 [ext_resource path="res://sfx/arrow_nock.wav" type="AudioStream" id=2]
 [ext_resource path="res://sfx/rope_arm.ogg" type="AudioStream" id=3]
 [ext_resource path="res://bow.gd" type="Script" id=4]
 [ext_resource path="res://sfx/arrow_hit.ogg" type="AudioStream" id=5]
+[ext_resource path="res://sfx/arrow_swoosh.ogg" type="AudioStream" id=6]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.531015, 0.549954, 0.200612 )
@@ -16,6 +17,12 @@ height = 3.69332
 [node name="recurveBow_rigged" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
 
+[node name="Skeleton" parent="Armature" index="0"]
+bones/0/bound_children = [ NodePath("BoneAttachment 4") ]
+bones/2/bound_children = [ NodePath("BoneAttachment 2") ]
+bones/3/bound_children = [ NodePath("BoneAttachment") ]
+bones/17/bound_children = [ NodePath("BoneAttachment 3") ]
+
 [node name="BoneAttachment" parent="Armature/Skeleton" index="0"]
 transform = Transform( 0.971139, 0.238526, 1.09896e-07, -0.238525, 0.971137, -6.39632e-06, -1.6382e-06, 6.1281e-06, 1, -0.0860911, 1.17515, 0.0247471 )
 
@@ -24,6 +31,9 @@ transform = Transform( 0.971134, -0.238524, 6.6518e-07, 0.238524, 0.971137, -2.7
 
 [node name="BoneAttachment 2" parent="Armature/Skeleton" index="1"]
 transform = Transform( 0.996632, -0.0819189, 0.00437873, 0.0819945, 0.996406, -0.0213104, -0.00261728, 0.0215975, 0.999763, 0.00777386, 0.0334439, 4.77304e-08 )
+
+[node name="Cube003" parent="Armature/Skeleton/BoneAttachment 2/Riser" index="0"]
+transform = Transform( 1, 4.73792e-14, 0, -4.01632e-15, 1, 0, 0, 0, 1, 0.0124151, 0.55335, -0.105467 )
 
 [node name="Cube004" parent="Armature/Skeleton/BoneAttachment 2/Riser/Cube003" index="0"]
 transform = Transform( 1, 4.73792e-14, 0, -4.01632e-15, 1, 0, 0, 0, 1, 0.415928, -0.0017724, -0.000453748 )
@@ -49,7 +59,10 @@ stream = ExtResource( 3 )
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="." index="3"]
 stream = ExtResource( 5 )
 
-[node name="ArrowPlacingArea" type="Area" parent="." index="4"]
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource( 6 )
+
+[node name="ArrowPlacingArea" type="Area" parent="." index="5"]
 collision_layer = 7
 collision_mask = 7
 
@@ -57,7 +70,7 @@ collision_mask = 7
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.264457, 0 )
 shape = SubResource( 1 )
 
-[node name="RopeArea" type="Area" parent="." index="5"]
+[node name="RopeArea" type="Area" parent="." index="6"]
 collision_layer = 7
 collision_mask = 2147483655
 
@@ -65,10 +78,10 @@ collision_mask = 2147483655
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.786153, 0.439851, 0.0467396 )
 shape = SubResource( 2 )
 
-[node name="RopePosition" type="Position3D" parent="." index="6"]
+[node name="RopePosition" type="Position3D" parent="." index="7"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.786507, 0.378396, 0.0415916 )
 
-[node name="RayCast" type="RayCast" parent="." index="7"]
+[node name="RayCast" type="RayCast" parent="." index="8"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.389134, 0 )
 enabled = true
 cast_to = Vector3( 100, 0, 0 )

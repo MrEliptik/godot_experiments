@@ -84,8 +84,9 @@ transform = Transform( 0.493866, 0, 0.869538, 0, 1, 0, -0.869538, 0, 0.493866, 0
 transform = Transform( 0.290252, 0, 0.407129, 0, 0.5, 0, -0.407129, 0, 0.290252, 7.57013, 0, 5.08183 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( -0.698241, -2.28901e-07, -0.715863, -0.524273, 0.680912, 0.511367, 0.48744, 0.732365, -0.475441, -2.94665, 8.4851, 0 )
+transform = Transform( -0.698241, 4.16186e-08, -0.715863, -0.524273, 0.680912, 0.511367, 0.48744, 0.732365, -0.475441, -2.94665, 11.3552, -7.19901 )
 light_color = Color( 0.972549, 0.866667, 0.447059, 1 )
+light_energy = 0.88
 
 [node name="BakedLightmap" type="BakedLightmap" parent="."]
 visible = false
