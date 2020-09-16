@@ -26,8 +26,8 @@ material = SubResource( 2 )
 size = Vector2( 0.1, 0.1 )
 
 [node name="PickableArrow" instance=ExtResource( 1 )]
-collision_layer = 7
-collision_mask = 7
+collision_layer = 15
+collision_mask = 15
 mass = 0.2
 continuous_cd = true
 contacts_reported = 1

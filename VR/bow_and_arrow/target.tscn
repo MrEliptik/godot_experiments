@@ -58,8 +58,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.08146, 0 )
 script = ExtResource( 5 )
 
 [node name="RigidBody" type="RigidBody" parent="." index="0"]
-collision_layer = 7
-collision_mask = 7
+collision_layer = 11
+collision_mask = 11
 mass = 30.0
 continuous_cd = true
 contacts_reported = 3

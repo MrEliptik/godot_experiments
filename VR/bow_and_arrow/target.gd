@@ -15,5 +15,17 @@ func _on_RigidBody_body_entered(body):
 		var arrow_pos_spatial = Spatial.new()
 		$Arrows.add_child(arrow_pos_spatial)
 		arrow_pos_spatial.global_transform = arrow_pos
-		body.get_node("CollisionShape").disabled = true
-		body.pick_up(arrow_pos_spatial)
+		#body.get_node("CollisionShape").disabled = true
+		body.set_collision_layer_bit(3, false)
+		body.set_collision_mask_bit(3, false)
+		#body.pick_up(arrow_pos_spatial)
+		
+		body.picked_up_by = arrow_pos_spatial
+		body.mode = RigidBody.MODE_STATIC
+		
+		# now reparent it
+		body.get_parent().remove_child(body)
+		arrow_pos_spatial.add_child(body)
+		
+		# reset our transform
+		body.transform = Transform()
