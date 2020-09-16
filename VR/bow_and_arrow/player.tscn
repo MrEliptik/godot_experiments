@@ -12,21 +12,25 @@ extents = Vector3( 0.0415819, 0.0643576, 0.0474157 )
 [node name="ARVROriginWithInitAndMovement" parent="." instance=ExtResource( 1 )]
 
 [node name="ARVRCamera" parent="ARVROriginWithInitAndMovement" index="0"]
+current = true
 fov = 90.2
 
 [node name="left-controller" parent="ARVROriginWithInitAndMovement/LeftTouchController" index="0"]
 visible = false
 
 [node name="ArrowPoint" type="Spatial" parent="ARVROriginWithInitAndMovement/LeftTouchController" index="1"]
-transform = Transform( 1, 0, 0, 0, 0.761561, 0.648093, 0, -0.648093, 0.761561, 1.49012e-08, -0.0956717, -0.150259 )
+transform = Transform( 1, 0, 0, 0, 0.761561, 0.648093, 0, -0.648093, 0.761561, -0.0315878, -0.0956717, -0.150259 )
 
 [node name="recurveBow_rigged" parent="ARVROriginWithInitAndMovement/LeftTouchController" index="2" instance=ExtResource( 3 )]
-transform = Transform( -0.000392716, 0, 0.25, -0.162023, 0.19039, -0.000254517, -0.19039, -0.162023, -0.000299077, -0.0155936, -0.0481966, 0.0498308 )
+transform = Transform( -0.000392716, 2.91038e-10, -0.25, -0.162023, 0.19039, 0.000254517, -0.19039, -0.162023, 0.000299077, -0.0155936, -0.0481966, 0.0498308 )
 
 [node name="right-controller" parent="ARVROriginWithInitAndMovement/RightTouchController" index="0"]
 transform = Transform( 1, 8.74228e-08, -8.74228e-08, -8.74228e-08, 1, 0, -8.74228e-08, -7.64274e-15, -1, 0, 0, 0 )
 
 [node name="Pickup" parent="ARVROriginWithInitAndMovement/RightTouchController" index="1" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.59213, 0, 0 )
+collision_layer = 5
+collision_mask = 5
 
 [node name="InteractionArea" type="Area" parent="ARVROriginWithInitAndMovement/RightTouchController" index="2"]
 collision_layer = 7
@@ -37,9 +41,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0107988, 0, 0.0120613 )
 shape = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="ARVROriginWithInitAndMovement"]
+wait_time = 0.5
 one_shot = true
 [connection signal="body_entered" from="ARVROriginWithInitAndMovement/LeftTouchController/recurveBow_rigged" to="ARVROriginWithInitAndMovement" method="_on_recurveBow_rigged_body_entered"]
-[connection signal="body_exited" from="ARVROriginWithInitAndMovement/LeftTouchController/recurveBow_rigged" to="ARVROriginWithInitAndMovement" method="_on_recurveBow_rigged_body_exited"]
 [connection signal="area_entered" from="ARVROriginWithInitAndMovement/RightTouchController/InteractionArea" to="ARVROriginWithInitAndMovement" method="_on_InteractionArea_area_entered"]
 [connection signal="area_exited" from="ARVROriginWithInitAndMovement/RightTouchController/InteractionArea" to="ARVROriginWithInitAndMovement" method="_on_InteractionArea_area_exited"]
 [connection signal="timeout" from="ARVROriginWithInitAndMovement/Timer" to="ARVROriginWithInitAndMovement" method="_on_Timer_timeout"]

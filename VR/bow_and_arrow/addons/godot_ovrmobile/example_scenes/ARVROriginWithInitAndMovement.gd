@@ -37,11 +37,11 @@ var was_world_scale = 1.0
 var touching_rope = false
 var rope_grabbed = false
 var arrow_loaded = false
-var start_grab_rope_pos
 
 var max_rope_translation = Vector3(0, 2.05, 0.15)
 
-var max_rope_draw = 2.05
+#var max_rope_draw = 2.05
+var max_rope_draw = 1
 
 var rope_rest_pose
 
@@ -49,8 +49,6 @@ var ARROW_SPEED = 10
 
 func _ready():
 	_initialize_ovr_mobile_arvr_interface();
-	
-	start_grab_rope_pos = $"RightTouchController/right-controller".global_transform
 	
 	rope_rest_pose = $"LeftTouchController/recurveBow_rigged/Armature/Skeleton".get_bone_rest(1)
 
@@ -272,54 +270,34 @@ func _on_LeftTouchController_button_pressed(button):
 		_start_controller_vibration($LeftTouchController, 40, 0.5)
 
 func _on_RightTouchController_button_pressed(button):
-	#print("Primary controller id: " + str(ovr_input.get_primary_controller_id()))
-
-	if (button == CONTROLLER_BUTTON.YB):
-		if (ovr_utilities):
-			# use this for fade to black for example: here we just do a color change
-			ovr_utilities.set_default_layer_color_scale(Color(0.5, 0.0, 1.0, 1.0));
-
 	if (button == CONTROLLER_BUTTON.XA):
 		_start_controller_vibration($RightTouchController, 40, 0.5)
 		
 	if button == CONTROLLER_BUTTON.INDEX_TRIGGER and touching_rope:
 		rope_grabbed = true
-		start_grab_rope_pos = $"RightTouchController/right-controller".global_transform
 
 
-func _on_RightTouchController_button_release(button):
-	#if (button != CONTROLLER_BUTTON.YB): return;
-
-	if (ovr_utilities):
-		# reset the color to neutral again
-		ovr_utilities.set_default_layer_color_scale(Color(1.0, 1.0, 1.0, 1.0))
-		
-	if button == CONTROLLER_BUTTON.INDEX_TRIGGER:
+func _on_RightTouchController_button_release(button):	
+	if button == CONTROLLER_BUTTON.INDEX_TRIGGER and rope_grabbed:
 		rope_grabbed = false
 		var skel = $"LeftTouchController/recurveBow_rigged/Armature/Skeleton"	
 		var bone_rest = skel.get_bone_rest(1)
 		# TODO: interpolate transform to make it smoother
 		skel.set_bone_pose(1, Transform())
-		#bone_rest.basis = Basis()
-		#skel.set_bone_rest(1, bone_rest)
+		$"LeftTouchController/recurveBow_rigged/ArrowPlacingArea/CollisionShape".disabled = false
 		
-	if button == CONTROLLER_BUTTON.INDEX_TRIGGER and $LeftTouchController/ArrowPoint.get_child_count() > 0:
-#		# Launch arrow
-#		$LeftTouchController/recurveBow_rigged/AudioStreamPlayer3.play()
-#		# TODO: deactivate pickup zone the time of launch, otherwise the arrow
-#		# get grabbed instantly
-		#$LeftTouchController/ArrowPoint.get_child(0).let_go($"LeftTouchController/recurveBow_rigged/RayCast".cast_to.normalized() * 10)
-		#TODO: calculate force based on how far the rope is drawn
-		$LeftTouchController/ArrowPoint.get_child(0).let_go(-$"LeftTouchController/ArrowPoint".global_transform.basis.z  * ARROW_SPEED)
-		$LeftTouchController/recurveBow_rigged/AudioStreamPlayer4.play()
-#		print("Letting go of arrow", arrow_loaded)
-		rope_grabbed = false
-		var skel = $"LeftTouchController/recurveBow_rigged/Armature/Skeleton"	
-		var bone_rest = skel.get_bone_rest(1)
-		# TODO: interpolate transform to make it smoother
-		skel.set_bone_pose(1, Transform())
-	
-
+		if $LeftTouchController/ArrowPoint.get_child_count() > 0:
+			#TODO: calculate force based on how far the rope is drawn
+			# Launch arrow
+			#$ARVRCamera.current = false
+			#$LeftTouchController/ArrowPoint.get_child(0).get_node("Camera").current = true
+			#get_parent().get_parent().get_node("Camera").current = true
+			$LeftTouchController/ArrowPoint.get_child(0).get_node("CPUParticles").emitting = true
+			$LeftTouchController/ArrowPoint.get_child(0).let_go(-$"LeftTouchController/ArrowPoint".global_transform.basis.z  * ARROW_SPEED)
+			$LeftTouchController/recurveBow_rigged/AudioStreamPlayer4.play()
+			$Timer.start()
+			
+		
 func _check_worldscale():
 	if was_world_scale != world_scale:
 		was_world_scale = world_scale
@@ -335,7 +313,8 @@ func check_draw_distance():
 		var dist = $"RightTouchController/right-controller".global_transform.origin.distance_to($"LeftTouchController/recurveBow_rigged/RopePosition".global_transform.origin)
 		
 		if dist > 0.1:
-			$LeftTouchController/recurveBow_rigged/AudioStreamPlayer3.play()
+			pass
+			#$LeftTouchController/recurveBow_rigged/AudioStreamPlayer2.play()
 		
 		var bone_transf = Transform()
 		bone_transf.origin.y = dist*4 # need to multiply by 4 because we scaled to 0.25
@@ -355,21 +334,18 @@ func _on_InteractionArea_area_exited(area):
 		touching_rope = false
 
 func _on_recurveBow_rigged_body_entered(body):
-	print("body enter bow loading: ", body)
 	# The body is pickable and we have no arrow under arrow point
 	if body.has_method('is_picked_up') and $LeftTouchController/ArrowPoint.get_child_count() == 0 and !arrow_loaded:
 		if !body.is_picked_up():
-			arrow_loaded = true
 			$LeftTouchController/recurveBow_rigged/AudioStreamPlayer.play()
 			_start_controller_vibration($LeftTouchController, 40, 0.5)
 			body.pick_up($LeftTouchController/ArrowPoint)
+			arrow_loaded = true
 			print("Body picked up:", body, arrow_loaded)
+			print("Arrow loaded")
+			$"LeftTouchController/recurveBow_rigged/ArrowPlacingArea/CollisionShape".disabled = true			
 			
-func _on_recurveBow_rigged_body_exited(body):
-	if body.has_method('is_picked_up'):
-		print("Launching timer")
-		$Timer.start()
-
 func _on_Timer_timeout():
+	# Arrow is launched, we can detect collision again
 	arrow_loaded = false
-	print("Arrow let go: ", arrow_loaded)
+	$"LeftTouchController/recurveBow_rigged/ArrowPlacingArea/CollisionShape".disabled = false

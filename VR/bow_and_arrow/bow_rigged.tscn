@@ -8,7 +8,7 @@
 [ext_resource path="res://sfx/arrow_swoosh.ogg" type="AudioStream" id=6]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.531015, 0.549954, 0.200612 )
+extents = Vector3( 0.772029, 0.549954, 0.200612 )
 
 [sub_resource type="CylinderShape" id=2]
 radius = 0.0191062
@@ -18,10 +18,7 @@ height = 3.69332
 script = ExtResource( 4 )
 
 [node name="Skeleton" parent="Armature" index="0"]
-bones/0/bound_children = [ NodePath("BoneAttachment 4") ]
-bones/2/bound_children = [ NodePath("BoneAttachment 2") ]
-bones/3/bound_children = [ NodePath("BoneAttachment") ]
-bones/17/bound_children = [ NodePath("BoneAttachment 3") ]
+bones/1/rest = Transform( 0, 0.99, 0.144, -0.037, 0.144, -0.989, -0.999, -0.005, 0.037, 0.809, -0.403, 0.009 )
 
 [node name="BoneAttachment" parent="Armature/Skeleton" index="0"]
 transform = Transform( 0.971139, 0.238526, 1.09896e-07, -0.238525, 0.971137, -6.39632e-06, -1.6382e-06, 6.1281e-06, 1, -0.0860911, 1.17515, 0.0247471 )
@@ -63,11 +60,11 @@ stream = ExtResource( 5 )
 stream = ExtResource( 6 )
 
 [node name="ArrowPlacingArea" type="Area" parent="." index="5"]
-collision_layer = 7
-collision_mask = 7
+collision_layer = 5
+collision_mask = 5
 
 [node name="CollisionShape" type="CollisionShape" parent="ArrowPlacingArea" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.264457, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.114799, 0.264457, 0 )
 shape = SubResource( 1 )
 
 [node name="RopeArea" type="Area" parent="." index="6"]
