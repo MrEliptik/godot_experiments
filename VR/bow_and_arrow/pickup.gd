@@ -49,9 +49,11 @@ func _on_button_pressed(button):
 			picked_up_obj.pick_up(self)
 	
 func _on_Pickup_body_entered(body):
+	print("Pickup body entered: ", body)
 	if body.has_method('pick_up') and object_in_area.find(body) == -1:
 		object_in_area.push_back(body)
 
 func _on_Pickup_body_exited(body):
+	print("Pickup body exited: ", body)
 	if object_in_area.find(body) != -1:
 		object_in_area.erase(body)

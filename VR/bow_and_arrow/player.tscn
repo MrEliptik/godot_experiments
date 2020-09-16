@@ -28,9 +28,7 @@ transform = Transform( -0.000392716, 2.91038e-10, -0.25, -0.162023, 0.19039, 0.0
 transform = Transform( 1, 8.74228e-08, -8.74228e-08, -8.74228e-08, 1, 0, -8.74228e-08, -7.64274e-15, -1, 0, 0, 0 )
 
 [node name="Pickup" parent="ARVROriginWithInitAndMovement/RightTouchController" index="1" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.59213, 0, 0 )
-collision_layer = 5
-collision_mask = 5
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106958, -0.00483215, 0.00898519 )
 
 [node name="InteractionArea" type="Area" parent="ARVROriginWithInitAndMovement/RightTouchController" index="2"]
 collision_layer = 7

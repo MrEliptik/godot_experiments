@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://pickableObject.tscn" type="PackedScene" id=1]
 [ext_resource path="res://models/arrow.glb" type="PackedScene" id=2]
 [ext_resource path="res://arrow.gd" type="Script" id=3]
 [ext_resource path="res://models/FeatherRed.material" type="Material" id=4]
+[ext_resource path="res://textures/smoke_03.png" type="Texture" id=5]
 
 [sub_resource type="BoxShape" id=1]
 resource_local_to_scene = true
@@ -11,16 +12,18 @@ margin = 0.001
 extents = Vector3( 0.004, 0.338, 0.004 )
 
 [sub_resource type="SpatialMaterial" id=2]
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.05
+albedo_texture = ExtResource( 5 )
 emission_enabled = true
 emission = Color( 1, 1, 1, 1 )
 emission_energy = 1.0
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="CapsuleMesh" id=3]
+[sub_resource type="PlaneMesh" id=3]
 material = SubResource( 2 )
-radius = 0.005
-mid_height = 0.005
+size = Vector2( 0.1, 0.1 )
 
 [node name="PickableArrow" instance=ExtResource( 1 )]
 collision_layer = 7
@@ -41,10 +44,17 @@ transform = Transform( -4.07302e-08, -0.176777, 0.176777, 0, 0.176777, 0.176777,
 
 [node name="CPUParticles" type="CPUParticles" parent="." index="2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.387721 )
+visible = false
 amount = 50
-lifetime = 0.05
-speed_scale = 3.44
+lifetime = 20.0
+speed_scale = 53.94
+lifetime_randomness = 0.36
 local_coords = false
 mesh = SubResource( 3 )
-gravity = Vector3( 0, -0.5, 0 )
+direction = Vector3( 0, 0, 0 )
+spread = 1.03
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 0.5
+angular_velocity = 0.58
+angular_velocity_random = 0.28
 [connection signal="body_entered" from="." to="." method="_on_PickableArrow_body_entered"]
