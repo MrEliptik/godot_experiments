@@ -13,13 +13,14 @@ func _on_RigidBody_body_entered(body):
 		if body.is_picked_up(): return
 		var arrow_pos = body.global_transform
 		var arrow_pos_spatial = Spatial.new()
-		$Arrows.add_child(arrow_pos_spatial)
+		$RigidBody/Arrows.add_child(arrow_pos_spatial)
 		arrow_pos_spatial.global_transform = arrow_pos
 		#body.get_node("CollisionShape").disabled = true
 		body.set_collision_layer_bit(3, false)
 		body.set_collision_mask_bit(3, false)
 		#body.pick_up(arrow_pos_spatial)
 		
+		body.get_node("Trail3D").visible = false
 		body.picked_up_by = arrow_pos_spatial
 		body.mode = RigidBody.MODE_STATIC
 		

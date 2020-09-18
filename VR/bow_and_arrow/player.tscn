@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://addons/godot_ovrmobile/example_scenes/ARVROriginWithInitAndMovement.tscn" type="PackedScene" id=1]
+[ext_resource path="res://models/hands/RightHand.fbx" type="PackedScene" id=2]
 [ext_resource path="res://bow_rigged.tscn" type="PackedScene" id=3]
 [ext_resource path="res://pickup.tscn" type="PackedScene" id=4]
+[ext_resource path="res://models/hands/LeftHand.fbx" type="PackedScene" id=5]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.0415819, 0.0643576, 0.0474157 )
@@ -18,19 +20,26 @@ fov = 90.2
 [node name="left-controller" parent="ARVROriginWithInitAndMovement/LeftTouchController" index="0"]
 visible = false
 
-[node name="ArrowPoint" type="Spatial" parent="ARVROriginWithInitAndMovement/LeftTouchController" index="1"]
-transform = Transform( 1, 0, 0, 0, 0.761561, 0.648093, 0, -0.648093, 0.761561, -0.0315878, -0.0956717, -0.150259 )
+[node name="LeftHand" parent="ARVROriginWithInitAndMovement/LeftTouchController" index="1" instance=ExtResource( 5 )]
+transform = Transform( -0.954313, 0.298807, 0, -0.1275, -0.407201, 0.904396, 0.27024, 0.863077, 0.426695, -0.0330622, 0.0169983, 0.0939764 )
 
-[node name="recurveBow_rigged" parent="ARVROriginWithInitAndMovement/LeftTouchController" index="2" instance=ExtResource( 3 )]
+[node name="ArrowPoint" type="Spatial" parent="ARVROriginWithInitAndMovement/LeftTouchController" index="2"]
+transform = Transform( 1, 0, 0, 0, 0.761561, 0.648093, 0, -0.648093, 0.761561, -0.0247562, -0.0956717, -0.150259 )
+
+[node name="recurveBow_rigged" parent="ARVROriginWithInitAndMovement/LeftTouchController" index="3" instance=ExtResource( 3 )]
 transform = Transform( -0.000392716, 2.91038e-10, -0.25, -0.162023, 0.19039, 0.000254517, -0.19039, -0.162023, 0.000299077, -0.0155936, -0.0481966, 0.0498308 )
 
 [node name="right-controller" parent="ARVROriginWithInitAndMovement/RightTouchController" index="0"]
 transform = Transform( 1, 8.74228e-08, -8.74228e-08, -8.74228e-08, 1, 0, -8.74228e-08, -7.64274e-15, -1, 0, 0, 0 )
+visible = false
 
-[node name="Pickup" parent="ARVROriginWithInitAndMovement/RightTouchController" index="1" instance=ExtResource( 4 )]
+[node name="RightHand" parent="ARVROriginWithInitAndMovement/RightTouchController" index="1" instance=ExtResource( 2 )]
+transform = Transform( -0.979035, -0.203693, 0, 0.169959, -0.816893, 0.55118, -0.112271, 0.539624, 0.834386, 0.0157536, -0.0225322, 0.114263 )
+
+[node name="Pickup" parent="ARVROriginWithInitAndMovement/RightTouchController" index="2" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106958, -0.00483215, 0.00898519 )
 
-[node name="InteractionArea" type="Area" parent="ARVROriginWithInitAndMovement/RightTouchController" index="2"]
+[node name="InteractionArea" type="Area" parent="ARVROriginWithInitAndMovement/RightTouchController" index="3"]
 collision_layer = 7
 collision_mask = 7
 

@@ -1,99 +1,178 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://pickableArrow.tscn" type="PackedScene" id=2]
 [ext_resource path="res://target.tscn" type="PackedScene" id=3]
+[ext_resource path="res://textures/forrest_ground_01_2k_jpg/forrest_ground_01_rough_2k.jpg" type="Texture" id=4]
+[ext_resource path="res://wood.tres" type="Material" id=5]
+[ext_resource path="res://environment/full_fence1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://environment/full_fence2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://sky.shader" type="Shader" id=8]
+[ext_resource path="res://textures/noise.png" type="Texture" id=9]
+[ext_resource path="res://outodoor.gd" type="Script" id=10]
+[ext_resource path="res://textures/forrest_ground_01_2k_jpg/forrest_ground_01_ao_2k.jpg" type="Texture" id=11]
+[ext_resource path="res://textures/forrest_ground_01_2k_jpg/forrest_ground_01_diff_2k.jpg" type="Texture" id=12]
+[ext_resource path="res://textures/forrest_ground_01_2k_jpg/forrest_ground_01_nor_2k.jpg" type="Texture" id=13]
+[ext_resource path="res://monitor.tscn" type="PackedScene" id=14]
 
-[sub_resource type="PlaneMesh" id=1]
-size = Vector2( 100, 100 )
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 12 )
+roughness_texture = ExtResource( 4 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 13 )
+ao_enabled = true
+ao_light_affect = 0.0
+ao_texture = ExtResource( 11 )
+ao_on_uv2 = false
+ao_texture_channel = 0
+uv1_triplanar = true
 
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0.364706, 0.454902, 0.278431, 1 )
+[sub_resource type="CubeMesh" id=2]
+material = SubResource( 1 )
+size = Vector3( 100, 0.05, 100 )
 
 [sub_resource type="ConvexPolygonShape" id=3]
+points = PoolVector3Array( -50, 0.025, 50, 50, 0.025, -50, 50, 0.025, 50, -50, 0.025, -50, -50, -0.025, 50, 50, -0.025, -50, 50, -0.025, 50, -50, -0.025, -50, 50, 0.025, 50, -50, 0.025, -50, 50, 0.025, -50, -50, 0.025, 50, 50, -0.025, 50, -50, -0.025, -50, 50, -0.025, -50, -50, -0.025, 50, 50, 0.025, 50, -50, -0.025, 50, -50, 0.025, 50, 50, -0.025, 50, 50, 0.025, -50, -50, -0.025, -50, -50, 0.025, -50, 50, -0.025, -50 )
+
+[sub_resource type="CubeMesh" id=4]
+size = Vector3( 2, 1, 1 )
+
+[sub_resource type="BoxShape" id=5]
 margin = 0.001
-points = PoolVector3Array( 50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, -50 )
+extents = Vector3( 1.00223, 0.504061, 0.488232 )
 
-[sub_resource type="SpatialMaterial" id=4]
-albedo_color = Color( 0.0784314, 0.262745, 0.356863, 1 )
+[sub_resource type="SpatialMaterial" id=6]
+resource_local_to_scene = true
+albedo_color = Color( 0.254902, 0.254902, 0.254902, 1 )
 
-[sub_resource type="CubeMesh" id=5]
-size = Vector3( 2, 2, 1 )
+[sub_resource type="ViewportTexture" id=7]
+viewport_path = NodePath("Monitor/Viewport")
 
-[sub_resource type="ConvexPolygonShape" id=6]
-margin = 0.001
-points = PoolVector3Array( -1, 1, 0.5, 1, 1, -0.5, 1, 1, 0.5, -1, 1, -0.5, -1, -1, 0.5, 1, -1, -0.5, 1, -1, 0.5, -1, -1, -0.5, 1, 1, 0.5, -1, 1, -0.5, 1, 1, -0.5, -1, 1, 0.5, 1, -1, 0.5, -1, -1, -0.5, 1, -1, -0.5, -1, -1, 0.5, 1, 1, 0.5, -1, -1, 0.5, -1, 1, 0.5, 1, -1, 0.5, 1, 1, -0.5, -1, -1, -0.5, -1, 1, -0.5, 1, -1, -0.5 )
+[sub_resource type="SpatialMaterial" id=8]
+resource_local_to_scene = true
+flags_unshaded = true
+albedo_texture = SubResource( 7 )
 
-[sub_resource type="BakedLightmapData" id=7]
-bounds = AABB( -13.063, -11.6893, -12.5721, 26.1259, 23.3785, 25.1441 )
-cell_space_transform = Transform( 2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 32.6574, 29.2232, 31.4301 )
-cell_subdiv = 8
-octree = PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255 )
+[sub_resource type="ShaderMaterial" id=9]
+shader = ExtResource( 8 )
+shader_param/iTime = 0.0
+shader_param/iFrame = 0
+shader_param/COVERAGE = 0.391
+shader_param/THICKNESS = 17.727
+shader_param/ABSORPTION = 0.758
+shader_param/iChannel0 = ExtResource( 9 )
 
-[sub_resource type="ProceduralSky" id=8]
+[sub_resource type="SphereMesh" id=10]
+radius = 50.0
+height = 100.0
 
-[sub_resource type="Environment" id=9]
+[sub_resource type="ProceduralSky" id=11]
+
+[sub_resource type="Environment" id=12]
 background_mode = 2
-background_sky = SubResource( 8 )
+background_sky = SubResource( 11 )
 ambient_light_color = Color( 1, 1, 1, 1 )
+fog_enabled = true
+fog_color = Color( 0.501961, 0.505882, 0.509804, 1 )
+fog_depth_end = 65.5
 adjustment_enabled = true
 
-[node name="World" type="Spatial"]
+[node name="Outdoor" type="Spatial"]
+script = ExtResource( 10 )
 
 [node name="Floor" type="StaticBody" parent="."]
-collision_layer = 7
-collision_mask = 7
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0147185, 0 )
+collision_layer = 15
+collision_mask = 15
 
 [node name="Floor" type="MeshInstance" parent="Floor"]
-mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor"]
 shape = SubResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( -0.48629, 0, -0.873798, 0, 1, 0, 0.873798, 0, -0.48629, 0, 0, 0 )
 
 [node name="Table" type="StaticBody" parent="."]
-transform = Transform( 0.552795, 0, 0.833317, 0, 1, 0, -0.833317, 0, 0.552795, -0.036968, 0, 0.930936 )
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -0.036968, 0.228099, -0.65105 )
 collision_layer = 7
 collision_mask = 7
 
 [node name="MeshInstance" type="MeshInstance" parent="Table"]
-transform = Transform( 1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0.824705, -0.221764, 0.349391 )
-material_override = SubResource( 4 )
-mesh = SubResource( 5 )
+transform = Transform( 1, 0, -2.98027e-08, 0, 1, 0, 2.98027e-08, 0, 1, 0, 0.000680923, 0 )
+material_override = ExtResource( 5 )
+mesh = SubResource( 4 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Table"]
-transform = Transform( 1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0.824705, -0.221764, 0.349391 )
-shape = SubResource( 6 )
+transform = Transform( 1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0 )
+shape = SubResource( 5 )
 
-[node name="Node" type="Node" parent="."]
+[node name="Targets" type="Spatial" parent="."]
 
-[node name="PickableArrow" parent="Node" instance=ExtResource( 2 )]
-transform = Transform( 0.493866, 0, 0.869538, 0, 1, 0, -0.869538, 0, 0.493866, 0.860311, 0.989963, 0.160017 )
+[node name="target" parent="Targets" instance=ExtResource( 3 )]
+transform = Transform( -0.5, 0, -1.62921e-07, 0, 0.5, 0, 1.62921e-07, 0, -0.5, 0, 0, -10 )
 
-[node name="PickableArrow2" parent="Node" instance=ExtResource( 2 )]
-transform = Transform( 0.493866, 0, 0.869538, 0, 1, 0, -0.869538, 0, 0.493866, 0.811601, 1.0295, 0.386088 )
+[node name="Monitor" parent="." instance=ExtResource( 14 )]
+transform = Transform( 0.123695, 0, -0.157161, 0, 0.2, 0, 0.157161, 0, 0.123695, -0.76124, 0.928588, -0.852756 )
 
-[node name="PickableArrow3" parent="Node" instance=ExtResource( 2 )]
-transform = Transform( 0.493866, 0, 0.869538, 0, 1, 0, -0.869538, 0, 0.493866, 0.474485, 0.92286, 0.518819 )
+[node name="MeshInstance" parent="Monitor" index="0"]
+material/0 = SubResource( 6 )
 
-[node name="target" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.290252, 0, 0.407129, 0, 0.5, 0, -0.407129, 0, 0.290252, 7.57013, 0, 5.08183 )
+[node name="MeshInstance2" parent="Monitor" index="1"]
+material/0 = SubResource( 8 )
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( -0.698241, 4.16186e-08, -0.715863, -0.524273, 0.680912, 0.511367, 0.48744, 0.732365, -0.475441, -2.94665, 11.3552, -7.19901 )
+[node name="Camera" type="Camera" parent="Monitor/Viewport" index="0"]
+transform = Transform( 0.879566, 0, -0.475778, 0, 1, 0, 0.475778, 0, 0.879566, -0.793775, 1.33545, -8.60568 )
+current = true
+fov = 50.0
+
+[node name="Arrows" type="Node" parent="."]
+
+[node name="PickableArrow" parent="Arrows" instance=ExtResource( 2 )]
+transform = Transform( 0.928965, 0, 0.370168, 0, 1, 0, -0.370168, 0, 0.928965, 0.162774, 1.07742, -0.772334 )
+
+[node name="PickableArrow2" parent="Arrows" instance=ExtResource( 2 )]
+transform = Transform( 0.928965, 0, 0.370168, 0, 1, 0, -0.370168, 0, 0.928965, -0.0165367, 1.08887, -0.626291 )
+
+[node name="PickableArrow3" parent="Arrows" instance=ExtResource( 2 )]
+transform = Transform( 0.928965, 0, 0.370168, 0, 1, 0, -0.370168, 0, 0.928965, -0.362661, 1.09645, -0.733356 )
+
+[node name="Fences" type="Node" parent="."]
+
+[node name="FullFence_2" parent="Fences" instance=ExtResource( 7 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0.365836, 2.87426 )
+
+[node name="FullFence_4" parent="Fences" instance=ExtResource( 7 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -0.0733318, 0.365836, -16.697 )
+
+[node name="FullFence_1" parent="Fences" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.82441, 0.326468, -2.04557 )
+
+[node name="FullFence_3" parent="Fences" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 1.80296, 0.326468, -2.0103 )
+
+[node name="FullFence_5" parent="Fences" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.85635, 0.326468, -11.8281 )
+
+[node name="FullFence_6" parent="Fences" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 1.77102, 0.326468, -11.7929 )
+
+[node name="Sky" type="MeshInstance" parent="."]
+visible = false
+material_override = SubResource( 9 )
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 12 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
+transform = Transform( -0.698241, 1.87283e-07, -0.715863, -0.524273, 0.680912, 0.511367, 0.48744, 0.732365, -0.475441, -2.94665, 11.3552, -7.19901 )
 light_color = Color( 0.972549, 0.866667, 0.447059, 1 )
 light_energy = 0.88
 
-[node name="BakedLightmap" type="BakedLightmap" parent="."]
-visible = false
-bake_cell_size = 0.2
-bake_quality = 2
-bake_extents = Vector3( 13.063, 11.6893, 12.5721 )
-light_data = SubResource( 7 )
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 9 )
+[editable path="Monitor"]

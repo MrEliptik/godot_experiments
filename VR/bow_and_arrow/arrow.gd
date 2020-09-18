@@ -7,7 +7,8 @@ var delta_position = Vector3()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$CPUParticles.emitting = false
+	pass
+	#$CPUParticles.emitting = false
 
 func _physics_process(delta):
 	var new_position = global_transform.origin

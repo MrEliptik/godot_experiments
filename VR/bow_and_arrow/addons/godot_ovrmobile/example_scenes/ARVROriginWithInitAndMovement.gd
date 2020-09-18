@@ -51,6 +51,11 @@ func _ready():
 	_initialize_ovr_mobile_arvr_interface();
 	
 	rope_rest_pose = $"LeftTouchController/recurveBow_rigged/Armature/Skeleton".get_bone_rest(1)
+	
+	# Check if player is right or left handed
+	# Right handed by default, but bow model is left handed
+	# So we flip the distance meter
+	$"LeftTouchController/recurveBow_rigged/DistanceMeter".scale.x = -1
 
 
 func _process(delta_t):
@@ -59,6 +64,8 @@ func _process(delta_t):
 	_check_worldscale()
 	_update_controllers_vibration(delta_t)
 	check_draw_distance()
+	
+	#$Label.text = str(Engine.get_frames_per_second())
 
 # this code check for the OVRMobile inteface; and if successful also initializes the
 # .gdns APIs used to communicate with the VR device
@@ -292,7 +299,7 @@ func _on_RightTouchController_button_release(button):
 			#$ARVRCamera.current = false
 			#$LeftTouchController/ArrowPoint.get_child(0).get_node("Camera").current = true
 			#get_parent().get_parent().get_node("Camera").current = true
-			$LeftTouchController/ArrowPoint.get_child(0).get_node("CPUParticles").emitting = true
+			$LeftTouchController/ArrowPoint.get_child(0).get_node("Trail3D").visible = true
 			$LeftTouchController/ArrowPoint.get_child(0).let_go(-$"LeftTouchController/ArrowPoint".global_transform.basis.z  * ARROW_SPEED)
 			$LeftTouchController/recurveBow_rigged/AudioStreamPlayer4.play()
 			$Timer.start()
@@ -310,7 +317,7 @@ func _check_worldscale():
 func check_draw_distance():
 	if rope_grabbed:
 		var skel = $"LeftTouchController/recurveBow_rigged/Armature/Skeleton"
-		var dist = $"RightTouchController/right-controller".global_transform.origin.distance_to($"LeftTouchController/recurveBow_rigged/RopePosition".global_transform.origin)
+		var dist = $"RightTouchController".global_transform.origin.distance_to($"LeftTouchController/recurveBow_rigged/RopePosition".global_transform.origin)
 		
 		if dist > 0.1:
 			pass

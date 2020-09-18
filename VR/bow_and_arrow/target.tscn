@@ -58,31 +58,31 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.08146, 0 )
 script = ExtResource( 5 )
 
 [node name="RigidBody" type="RigidBody" parent="." index="0"]
-collision_layer = 11
-collision_mask = 11
-mass = 30.0
+collision_layer = 8
+collision_mask = 8
+mass = 45.0
 continuous_cd = true
 contacts_reported = 3
 contact_monitor = true
 
-[node name="Target" type="MeshInstance" parent="RigidBody" index="0"]
+[node name="Arrows" type="Spatial" parent="RigidBody" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8698, -0.423516 )
+
+[node name="Target" type="MeshInstance" parent="RigidBody" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000334938, 2.65733, -0.132827 )
 mesh = SubResource( 1 )
 material/0 = null
 material/1 = null
 material/2 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="RigidBody" index="1"]
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody" index="2"]
 transform = Transform( 1, 0, 0, 0, 0.176758, 0.984254, 0, -0.984254, 0.176758, 0.0146197, 2.74561, -0.170171 )
 shape = SubResource( 2 )
 
-[node name="CollisionShape2" type="CollisionShape" parent="RigidBody" index="2"]
+[node name="CollisionShape2" type="CollisionShape" parent="RigidBody" index="3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0146197, 0.300118, 0.463497 )
 shape = SubResource( 3 )
 
-[node name="Arrows" type="Spatial" parent="." index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8698, -0.423516 )
-
-[node name="Target" parent="." index="2"]
+[node name="Target" parent="." index="1"]
 visible = false
 [connection signal="body_entered" from="RigidBody" to="." method="_on_RigidBody_body_entered"]
