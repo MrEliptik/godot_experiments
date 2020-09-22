@@ -2,7 +2,7 @@
 
 Some of my 2D/3D/VR/UI experiments in Godot.
 
-## Projects & description
+## Projects & descriptions
 
 | Icon | Type   |  Tittle | Description | Status |
 :-----:|:-------:|:-------:|:-----------:|:------:|
@@ -23,6 +23,12 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 ![](VR/bow_and_arrow/icon.png) | VR | bow_and_arrow | bow and arrow mechanic | WIP 🛠
 | | | | |
 ![](MISC/slow_down_sound/icon.png) | MISC | slow_down_sound | showcase an effect where the pitch and volume of the music is decreased with a tween. Useful for a "loosing" effect, when a player dies for example | DONE ✔
+
+## Videos & GIFs
+
+### Area_gravity
+
+![](videos_gifs/area_gravity.gif)
 
 ## Useful
 

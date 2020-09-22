@@ -2,39 +2,39 @@
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 
-[sub_resource type="SphereShape" id=8]
+[sub_resource type="SphereShape" id=1]
 radius = 4.0
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="SphereShape" id=2]
+[sub_resource type="SphereShape" id=3]
 radius = 20.5714
 
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="SpatialMaterial" id=4]
 albedo_color = Color( 0.839216, 0.247059, 0.905882, 1 )
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=5]
 
-[sub_resource type="SpatialMaterial" id=10]
+[sub_resource type="SpatialMaterial" id=6]
 albedo_color = Color( 1, 0.647059, 0.27451, 1 )
 
-[sub_resource type="SpatialMaterial" id=11]
+[sub_resource type="SpatialMaterial" id=7]
 albedo_color = Color( 0.345098, 0.415686, 0.996078, 1 )
 
-[sub_resource type="SphereShape" id=7]
+[sub_resource type="SphereShape" id=8]
 radius = 2.0
 
-[sub_resource type="SpatialMaterial" id=12]
+[sub_resource type="SpatialMaterial" id=9]
 albedo_color = Color( 0.792157, 0, 0, 1 )
 
-[sub_resource type="CubeMesh" id=4]
+[sub_resource type="CubeMesh" id=10]
 size = Vector3( 100, 0.2, 100 )
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=11]
 albedo_color = Color( 0, 0.486275, 0.580392, 1 )
 
-[sub_resource type="ConcavePolygonShape" id=6]
+[sub_resource type="ConcavePolygonShape" id=12]
 data = PoolVector3Array( -50, 0.1, 50, 50, 0.1, 50, -50, -0.1, 50, 50, 0.1, 50, 50, -0.1, 50, -50, -0.1, 50, 50, 0.1, -50, -50, 0.1, -50, 50, -0.1, -50, -50, 0.1, -50, -50, -0.1, -50, 50, -0.1, -50, 50, 0.1, 50, 50, 0.1, -50, 50, -0.1, 50, 50, 0.1, -50, 50, -0.1, -50, 50, -0.1, 50, -50, 0.1, -50, -50, 0.1, 50, -50, -0.1, -50, -50, 0.1, 50, -50, -0.1, 50, -50, -0.1, -50, 50, 0.1, 50, -50, 0.1, 50, 50, 0.1, -50, -50, 0.1, 50, -50, 0.1, -50, 50, 0.1, -50, -50, -0.1, 50, 50, -0.1, 50, -50, -0.1, -50, 50, -0.1, 50, 50, -0.1, -50, -50, -0.1, -50 )
 
 [sub_resource type="Environment" id=13]
@@ -68,37 +68,37 @@ gravity = 89.34
 [node name="StaticBody" type="StaticBody" parent="Area"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Area/StaticBody"]
-shape = SubResource( 8 )
+shape = SubResource( 1 )
 disabled = true
 
 [node name="CSGSphere" type="CSGSphere" parent="Area"]
 radius = 4.0
 radial_segments = 18
 rings = 13
-material = SubResource( 1 )
+material = SubResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Box" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8441, 5.56983, 35.8206 )
 linear_velocity = Vector3( 0, 0, -20 )
 
 [node name="CSGBox" type="CSGBox" parent="Box"]
-material = SubResource( 9 )
+material = SubResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Box"]
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [node name="Box2" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8441, 22.5419, 29.0467 )
 linear_velocity = Vector3( 0, 0, -10 )
 
 [node name="CSGBox" type="CSGBox" parent="Box2"]
-material = SubResource( 10 )
+material = SubResource( 6 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Box2"]
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [node name="Sphere" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7786, 3.47102, -27.7545 )
@@ -107,41 +107,41 @@ linear_velocity = Vector3( 0, 0, 10 )
 [node name="CSGSphere" type="CSGSphere" parent="Sphere"]
 transform = Transform( 0.707255, 0, -0.706959, 0, 1, 0, 0.706959, 0, 0.707255, 0, 0, 0 )
 radius = 2.0
-material = SubResource( 11 )
+material = SubResource( 7 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Sphere"]
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="Sphere2" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.90629, 3.47102, -7.2221 )
 
 [node name="CSGSphere" type="CSGSphere" parent="Sphere2"]
 transform = Transform( 0.707255, 0, -0.706959, 0, 1, 0, 0.706959, 0, 0.707255, 0, 0, 0 )
-material_override = SubResource( 12 )
+material_override = SubResource( 9 )
 radius = 2.0
 
 [node name="CollisionShape" type="CollisionShape" parent="Sphere2"]
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="Sphere3" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.90629, 38.9166, 2.12853 )
 
 [node name="CSGSphere" type="CSGSphere" parent="Sphere3"]
 transform = Transform( 0.707255, 0, -0.706959, 0, 1, 0, 0.706959, 0, 0.707255, 0, 0, 0 )
-material_override = SubResource( 12 )
+material_override = SubResource( 9 )
 radius = 2.0
 
 [node name="CollisionShape" type="CollisionShape" parent="Sphere3"]
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="Floor" type="StaticBody" parent="."]
 
 [node name="MeshInstance" type="MeshInstance" parent="Floor"]
-mesh = SubResource( 4 )
-material/0 = SubResource( 5 )
+mesh = SubResource( 10 )
+material/0 = SubResource( 11 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor"]
-shape = SubResource( 6 )
+shape = SubResource( 12 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -1.62735e-07, -0.0476817, -0.998863, -7.76834e-09, 0.998863, -0.0476817, 1, 3.55271e-15, -1.62921e-07, -27.0239, 11.8384, 0 )
