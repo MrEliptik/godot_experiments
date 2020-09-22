@@ -11,7 +11,7 @@ resource_local_to_scene = true
 margin = 0.001
 extents = Vector3( 0.004, 0.338, 0.004 )
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=2]
 flags_unshaded = true
 albedo_color = Color( 0.862745, 0.862745, 0.862745, 1 )
 
@@ -35,10 +35,13 @@ transform = Transform( -4.07302e-08, -0.176777, 0.176777, 0, 0.176777, 0.176777,
 [node name="Trail3D" type="ImmediateGeometry" parent="." index="2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.37897 )
 visible = false
-material_override = SubResource( 4 )
+material_override = SubResource( 2 )
 script = ExtResource( 6 )
 length = 8.0
 max_radius = 0.01
 density_around = 10
 shape = 1.0
+
+[node name="Position3D" type="Position3D" parent="." index="3"]
+transform = Transform( 0.929609, 0, -0.368546, 0, 1, 0, 0.368546, 0, 0.929609, 0.520424, -0.583538, 0.207354 )
 [connection signal="body_entered" from="." to="." method="_on_PickableArrow_body_entered"]

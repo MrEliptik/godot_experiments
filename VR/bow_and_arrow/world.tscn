@@ -35,24 +35,24 @@ size = Vector3( 100, 0.05, 100 )
 [sub_resource type="ConvexPolygonShape" id=3]
 points = PoolVector3Array( -50, 0.025, 50, 50, 0.025, -50, 50, 0.025, 50, -50, 0.025, -50, -50, -0.025, 50, 50, -0.025, -50, 50, -0.025, 50, -50, -0.025, -50, 50, 0.025, 50, -50, 0.025, -50, 50, 0.025, -50, -50, 0.025, 50, 50, -0.025, 50, -50, -0.025, -50, 50, -0.025, -50, -50, -0.025, 50, 50, 0.025, 50, -50, -0.025, 50, -50, 0.025, 50, 50, -0.025, 50, 50, 0.025, -50, -50, -0.025, -50, -50, 0.025, -50, 50, -0.025, -50 )
 
-[sub_resource type="CubeMesh" id=4]
-size = Vector3( 2, 1, 1 )
-
-[sub_resource type="BoxShape" id=5]
-margin = 0.001
-extents = Vector3( 1.00223, 0.504061, 0.488232 )
-
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=4]
 resource_local_to_scene = true
 albedo_color = Color( 0.254902, 0.254902, 0.254902, 1 )
 
-[sub_resource type="ViewportTexture" id=7]
+[sub_resource type="ViewportTexture" id=5]
 viewport_path = NodePath("Monitor/Viewport")
 
-[sub_resource type="SpatialMaterial" id=8]
+[sub_resource type="SpatialMaterial" id=6]
 resource_local_to_scene = true
 flags_unshaded = true
-albedo_texture = SubResource( 7 )
+albedo_texture = SubResource( 5 )
+
+[sub_resource type="CubeMesh" id=7]
+size = Vector3( 2, 1, 1 )
+
+[sub_resource type="BoxShape" id=8]
+margin = 0.001
+extents = Vector3( 1.00223, 0.504061, 0.488232 )
 
 [sub_resource type="ShaderMaterial" id=9]
 shader = ExtResource( 8 )
@@ -94,42 +94,6 @@ material/0 = SubResource( 1 )
 [node name="CollisionShape" type="CollisionShape" parent="Floor"]
 shape = SubResource( 3 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-
-[node name="Table" type="StaticBody" parent="."]
-transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -0.036968, 0.228099, -0.65105 )
-collision_layer = 7
-collision_mask = 7
-
-[node name="MeshInstance" type="MeshInstance" parent="Table"]
-transform = Transform( 1, 0, -2.98027e-08, 0, 1, 0, 2.98027e-08, 0, 1, 0, 0.000680923, 0 )
-material_override = ExtResource( 5 )
-mesh = SubResource( 4 )
-material/0 = null
-
-[node name="CollisionShape" type="CollisionShape" parent="Table"]
-transform = Transform( 1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0 )
-shape = SubResource( 5 )
-
-[node name="Targets" type="Spatial" parent="."]
-
-[node name="target" parent="Targets" instance=ExtResource( 3 )]
-transform = Transform( -0.5, 0, -1.62921e-07, 0, 0.5, 0, 1.62921e-07, 0, -0.5, 0, 0, -10 )
-
-[node name="Monitor" parent="." instance=ExtResource( 14 )]
-transform = Transform( 0.123695, 0, -0.157161, 0, 0.2, 0, 0.157161, 0, 0.123695, -0.76124, 0.928588, -0.852756 )
-
-[node name="MeshInstance" parent="Monitor" index="0"]
-material/0 = SubResource( 6 )
-
-[node name="MeshInstance2" parent="Monitor" index="1"]
-material/0 = SubResource( 8 )
-
-[node name="Camera" type="Camera" parent="Monitor/Viewport" index="0"]
-transform = Transform( 0.879566, 0, -0.475778, 0, 1, 0, 0.475778, 0, 0.879566, -0.793775, 1.33545, -8.60568 )
-current = true
-fov = 50.0
-
 [node name="Arrows" type="Node" parent="."]
 
 [node name="PickableArrow" parent="Arrows" instance=ExtResource( 2 )]
@@ -160,6 +124,46 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.85635, 0.326468, -11.8281 )
 
 [node name="FullFence_6" parent="Fences" instance=ExtResource( 6 )]
 transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 1.77102, 0.326468, -11.7929 )
+
+[node name="CameraResetPos" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00550926 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00550926 )
+
+[node name="Targets" type="Spatial" parent="."]
+
+[node name="target" parent="Targets" instance=ExtResource( 3 )]
+transform = Transform( -0.5, 0, -1.62921e-07, 0, 0.5, 0, 1.62921e-07, 0, -0.5, 0, 0, -10 )
+
+[node name="Monitor" parent="." instance=ExtResource( 14 )]
+transform = Transform( 0.123695, 0, -0.157161, 0, 0.2, 0, 0.157161, 0, 0.123695, -0.76124, 0.928588, -0.852756 )
+
+[node name="MeshInstance" parent="Monitor" index="0"]
+material/0 = SubResource( 4 )
+
+[node name="MeshInstance2" parent="Monitor" index="1"]
+material/0 = SubResource( 6 )
+
+[node name="Camera" type="Camera" parent="Monitor/Viewport" index="0"]
+transform = Transform( 0.879566, 0, -0.475778, 0, 1, 0, 0.475778, 0, 0.879566, -0.793775, 1.33545, -8.60568 )
+current = true
+fov = 50.0
+
+[node name="Table" type="StaticBody" parent="."]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -0.036968, 0.228099, -0.65105 )
+collision_layer = 7
+collision_mask = 7
+
+[node name="MeshInstance" type="MeshInstance" parent="Table"]
+transform = Transform( 1, 0, -2.98027e-08, 0, 1, 0, 2.98027e-08, 0, 1, 0, 0.000680923, 0 )
+material_override = ExtResource( 5 )
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Table"]
+transform = Transform( 1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0 )
+shape = SubResource( 8 )
 
 [node name="Sky" type="MeshInstance" parent="."]
 visible = false

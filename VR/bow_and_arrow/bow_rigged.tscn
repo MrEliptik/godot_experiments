@@ -124,7 +124,7 @@ mesh = SubResource( 5 )
 material/0 = SubResource( 7 )
 
 [node name="DistanceViewport" type="Viewport" parent="." index="11"]
-size = Vector2( 256, 256 )
+size = Vector2( 64, 64 )
 transparent_bg = true
 disable_3d = true
 usage = 0
