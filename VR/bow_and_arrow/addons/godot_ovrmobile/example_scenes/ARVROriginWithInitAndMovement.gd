@@ -7,6 +7,7 @@
 # To view log/print messages use `adb logcat -s godot:* GodotOVRMobile:*` from a command prompt
 extends ARVROrigin
 
+export var physics_factor = 2.0
 
 # these will be initialized in the _ready() function; but they will be only available
 # on device
@@ -34,9 +35,27 @@ var ovrVrApiTypes = load("res://addons/godot_ovrmobile/OvrVrApiTypes.gd").new();
 var was_world_scale = 1.0
 
 var touching_rope = false
+var rope_grabbed = false
+var arrow_loaded = false
+
+var max_rope_translation = Vector3(0, 2.05, 0.15)
+
+#var max_rope_draw = 2.05
+var max_rope_draw = 1
+
+var rope_rest_pose
+
+var ARROW_SPEED = 10
 
 func _ready():
 	_initialize_ovr_mobile_arvr_interface();
+	
+	rope_rest_pose = $"LeftTouchController/recurveBow_rigged/Armature/Skeleton".get_bone_rest(1)
+	
+	# Check if player is right or left handed
+	# Right handed by default, but bow model is left handed
+	# So we flip the distance meter
+	$"LeftTouchController/recurveBow_rigged/DistanceMeter".scale.x = -1
 
 
 func _process(delta_t):
@@ -44,7 +63,9 @@ func _process(delta_t):
 	_check_move(delta_t)
 	_check_worldscale()
 	_update_controllers_vibration(delta_t)
-
+	check_draw_distance()
+	
+	#$Label.text = str(Engine.get_frames_per_second())
 
 # this code check for the OVRMobile inteface; and if successful also initializes the
 # .gdns APIs used to communicate with the VR device
@@ -63,7 +84,7 @@ func _initialize_ovr_mobile_arvr_interface():
 		# Configure the interface init parameters.
 		if arvr_interface.initialize():
 			get_viewport().arvr = true
-			Engine.iterations_per_second = 72 # Quest
+			Engine.iterations_per_second = 72 * physics_factor # Quest
 
 			# load the .gdns classes.
 			ovr_display_refresh_rate = load("res://addons/godot_ovrmobile/OvrDisplayRefreshRate.gdns");
@@ -220,7 +241,7 @@ enum CONTROLLER_BUTTON {
 
 # this is a function connected to the button release signal from the controller
 func _on_LeftTouchController_button_pressed(button):
-	print("Primary controller id: " + str(ovr_input.get_primary_controller_id()))
+	#print("Primary controller id: " + str(ovr_input.get_primary_controller_id()))
 
 	if (button == CONTROLLER_BUTTON.YB):
 		# examples on using the ovr api from gdscript
@@ -256,49 +277,82 @@ func _on_LeftTouchController_button_pressed(button):
 		_start_controller_vibration($LeftTouchController, 40, 0.5)
 
 func _on_RightTouchController_button_pressed(button):
-	print("Primary controller id: " + str(ovr_input.get_primary_controller_id()))
-
-	if (button == CONTROLLER_BUTTON.YB):
-		if (ovr_utilities):
-			# use this for fade to black for example: here we just do a color change
-			ovr_utilities.set_default_layer_color_scale(Color(0.5, 0.0, 1.0, 1.0));
-
 	if (button == CONTROLLER_BUTTON.XA):
 		_start_controller_vibration($RightTouchController, 40, 0.5)
-
-
-func _on_RightTouchController_button_release(button):
-	if (button != CONTROLLER_BUTTON.YB): return;
-
-	if (ovr_utilities):
-		# reset the color to neutral again
-		ovr_utilities.set_default_layer_color_scale(Color(1.0, 1.0, 1.0, 1.0));
 		
-	if button == CONTROLLER_BUTTON.TOUCH_INDEX_TRIGGER and touching_rope:
-		# Launch arrow
-		$LeftTouchController/ArrowPoint.get_child(0).let_go()
-	
+	if button == CONTROLLER_BUTTON.INDEX_TRIGGER and touching_rope:
+		rope_grabbed = true
 
+
+func _on_RightTouchController_button_release(button):	
+	if button == CONTROLLER_BUTTON.INDEX_TRIGGER and rope_grabbed:
+		rope_grabbed = false
+		var skel = $"LeftTouchController/recurveBow_rigged/Armature/Skeleton"	
+		var bone_rest = skel.get_bone_rest(1)
+		# TODO: interpolate transform to make it smoother
+		skel.set_bone_pose(1, Transform())
+		$"LeftTouchController/recurveBow_rigged/ArrowPlacingArea/CollisionShape".disabled = false
+		
+		if $LeftTouchController/ArrowPoint.get_child_count() > 0:
+			#TODO: calculate force based on how far the rope is drawn
+			# Launch arrow
+			#$ARVRCamera.current = false
+			#$LeftTouchController/ArrowPoint.get_child(0).get_node("Camera").current = true
+			#get_parent().get_parent().get_node("Camera").current = true
+			$LeftTouchController/ArrowPoint.get_child(0).get_node("Trail3D").visible = true
+			$LeftTouchController/ArrowPoint.get_child(0).let_go(-$"LeftTouchController/ArrowPoint".global_transform.basis.z  * ARROW_SPEED)
+			$LeftTouchController/recurveBow_rigged/AudioStreamPlayer4.play()
+			$Timer.start()
+			
+		
 func _check_worldscale():
 	if was_world_scale != world_scale:
 		was_world_scale = world_scale
+		print("world_scale: ", world_scale)
 		var inv_world_scale = 1.0 / was_world_scale
 		var controller_scale = Vector3(inv_world_scale, inv_world_scale, inv_world_scale)
 		$"LeftTouchController/left-controller".scale = controller_scale
 		$"RightTouchController/right-controller".scale = -controller_scale
-
-func _on_recurveBow_body_entered(body):
-	if body.has_method('is_picked_up'):
-		$LeftTouchController/recurveBow/AudioStreamPlayer2.play()
-		if !body.is_picked_up():
-			$LeftTouchController/recurveBow/AudioStreamPlayer.play()
-			body.pick_up($LeftTouchController/ArrowPoint)
+		
+func check_draw_distance():
+	if rope_grabbed:
+		var skel = $"LeftTouchController/recurveBow_rigged/Armature/Skeleton"
+		var dist = $"RightTouchController".global_transform.origin.distance_to($"LeftTouchController/recurveBow_rigged/RopePosition".global_transform.origin)
+		
+		if dist > 0.1:
+			pass
+			#$LeftTouchController/recurveBow_rigged/AudioStreamPlayer2.play()
+		
+		var bone_transf = Transform()
+		bone_transf.origin.y = dist*4 # need to multiply by 4 because we scaled to 0.25
+		skel.set_bone_pose(1, bone_transf)
+		
+		if $"LeftTouchController/ArrowPoint".get_child_count() > 0 and $"LeftTouchController/ArrowPoint".get_child(0).translation.z < max_rope_draw:
+			$"LeftTouchController/ArrowPoint".get_child(0).translation.z = dist
+			if $"LeftTouchController/ArrowPoint".get_child(0).translation.z > max_rope_draw: 
+				$"LeftTouchController/ArrowPoint".get_child(0).translation.z = max_rope_draw
 
 func _on_InteractionArea_area_entered(area):
 	if area.name == "RopeArea":
 		touching_rope = true
 
-
 func _on_InteractionArea_area_exited(area):
 	if area.name == "RopeArea":
 		touching_rope = false
+
+func _on_recurveBow_rigged_body_entered(body):
+	# The body is pickable and we have no arrow under arrow point
+	if body.has_method('is_picked_up') and $LeftTouchController/ArrowPoint.get_child_count() == 0 and !arrow_loaded:
+		if !body.is_picked_up():
+			$LeftTouchController/recurveBow_rigged/AudioStreamPlayer.play()
+			_start_controller_vibration($LeftTouchController, 40, 0.5)
+			body.pick_up($LeftTouchController/ArrowPoint)
+			arrow_loaded = true
+			print("Body picked up:", body, arrow_loaded)
+			print("Arrow loaded")
+			$"LeftTouchController/recurveBow_rigged/ArrowPlacingArea/CollisionShape".disabled = true			
+			
+func _on_Timer_timeout():
+	# Arrow is launched, we can detect collision again
+	arrow_loaded = false
+	$"LeftTouchController/recurveBow_rigged/ArrowPlacingArea/CollisionShape".disabled = false

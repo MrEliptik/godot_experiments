@@ -8,9 +8,26 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "ResourceFormatLoader",
+"class": "HTerrainDataLoader",
+"language": "GDScript",
+"path": "res://addons/zylann.hterrain/hterrain_resource_loader.gd"
+}, {
+"base": "ResourceFormatSaver",
+"class": "HTerrainDataSaver",
+"language": "GDScript",
+"path": "res://addons/zylann.hterrain/hterrain_resource_saver.gd"
+}, {
+"base": "ImmediateGeometry",
+"class": "Trail3D",
+"language": "GDScript",
+"path": "res://trail3D.gd"
+} ]
 _global_script_class_icons={
-
+"HTerrainDataLoader": "",
+"HTerrainDataSaver": "",
+"Trail3D": "res://icons/icon_trail_3d.svg"
 }
 
 [application]
@@ -18,6 +35,18 @@ _global_script_class_icons={
 config/name="bow_and_arrow"
 run/main_scene="res://world.tscn"
 config/icon="res://icon.png"
+
+[debug]
+
+settings/stdout/print_fps=true
+
+[display]
+
+window/vsync/use_vsync=false
+
+[editor_plugins]
+
+enabled=PoolStringArray( "zylann.hterrain" )
 
 [gdnative]
 
@@ -28,6 +57,7 @@ singletons=[ "res://addons/godot_ovrmobile/godot_ovrmobile.gdnlib" ]
 3d_physics/layer_1="Player"
 3d_physics/layer_2="Environment"
 3d_physics/layer_3="Objects"
+3d_physics/layer_4="Target"
 
 [rendering]
 

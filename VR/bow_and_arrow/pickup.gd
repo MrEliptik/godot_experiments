@@ -1,6 +1,6 @@
 extends Area
 
-export var impulse_factor = 10.0
+export var impulse_factor = 1.0
 
 var object_in_area = Array()
 var picked_up_obj = null
@@ -35,7 +35,7 @@ func _ready():
 	last_position = global_transform.origin
 	
 func _process(delta):
-	velocity = global_transform.origin - last_position
+	velocity = (global_transform.origin - last_position) / delta
 	last_position = global_transform.origin
 	
 func _on_button_pressed(button):
@@ -47,13 +47,13 @@ func _on_button_pressed(button):
 		elif !object_in_area.empty():
 			picked_up_obj = object_in_area[0]
 			picked_up_obj.pick_up(self)
-		
 	
 func _on_Pickup_body_entered(body):
+	print("Pickup body entered: ", body)
 	if body.has_method('pick_up') and object_in_area.find(body) == -1:
 		object_in_area.push_back(body)
 
-
 func _on_Pickup_body_exited(body):
+	print("Pickup body exited: ", body)
 	if object_in_area.find(body) != -1:
 		object_in_area.erase(body)
