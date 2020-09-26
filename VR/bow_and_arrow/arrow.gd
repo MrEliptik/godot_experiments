@@ -8,7 +8,6 @@ var delta_position = Vector3()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
-	#$CPUParticles.emitting = false
 
 func _physics_process(delta):
 	var new_position = global_transform.origin
@@ -43,6 +42,9 @@ func _add_test_object():
 	#spawn_point.add_child(new_object)
 	new_object.global_transform = $CollisionShape.global_transform
 	new_object.set_surface_material(0, material)
+
+func set_material_override(material):
+	$arrow/Arrow001.material_override = material
 
 func _on_PickableArrow_body_entered(body):
 	pass
