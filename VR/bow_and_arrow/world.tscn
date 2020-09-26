@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://pickableArrow.tscn" type="PackedScene" id=2]
@@ -35,17 +35,13 @@ size = Vector3( 100, 0.05, 100 )
 [sub_resource type="ConvexPolygonShape" id=3]
 points = PoolVector3Array( -50, 0.025, 50, 50, 0.025, -50, 50, 0.025, 50, -50, 0.025, -50, -50, -0.025, 50, 50, -0.025, -50, 50, -0.025, 50, -50, -0.025, -50, 50, 0.025, 50, -50, 0.025, -50, 50, 0.025, -50, -50, 0.025, 50, 50, -0.025, 50, -50, -0.025, -50, 50, -0.025, -50, -50, -0.025, 50, 50, 0.025, 50, -50, -0.025, 50, -50, 0.025, 50, 50, -0.025, 50, 50, 0.025, -50, -50, -0.025, -50, -50, 0.025, -50, 50, -0.025, -50 )
 
-[sub_resource type="SpatialMaterial" id=4]
-resource_local_to_scene = true
-albedo_color = Color( 0.254902, 0.254902, 0.254902, 1 )
+[sub_resource type="ViewportTexture" id=13]
+viewport_path = NodePath("Viewport")
 
-[sub_resource type="ViewportTexture" id=5]
-viewport_path = NodePath("Monitor/Viewport")
-
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=14]
 resource_local_to_scene = true
 flags_unshaded = true
-albedo_texture = SubResource( 5 )
+albedo_texture = SubResource( 13 )
 
 [sub_resource type="CubeMesh" id=7]
 size = Vector3( 2, 1, 1 )
@@ -137,18 +133,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00550926 )
 transform = Transform( -0.5, 0, -1.62921e-07, 0, 0.5, 0, 1.62921e-07, 0, -0.5, 0, 0, -10 )
 
 [node name="Monitor" parent="." instance=ExtResource( 14 )]
-transform = Transform( 0.123695, 0, -0.157161, 0, 0.2, 0, 0.157161, 0, 0.123695, -0.76124, 0.928588, -0.852756 )
-
-[node name="MeshInstance" parent="Monitor" index="0"]
-material/0 = SubResource( 4 )
-
-[node name="MeshInstance2" parent="Monitor" index="1"]
-material/0 = SubResource( 6 )
+transform = Transform( 0.123695, 0, -0.157161, 0, 0.2, 0, 0.157161, 0, 0.123695, -0.834308, 0.736541, -0.963527 )
 
 [node name="Camera" type="Camera" parent="Monitor/Viewport" index="0"]
 transform = Transform( 0.879566, 0, -0.475778, 0, 1, 0, 0.475778, 0, 0.879566, -0.793775, 1.33545, -8.60568 )
 current = true
 fov = 50.0
+
+[node name="Cube" parent="Monitor/monitor" index="0"]
+material/0 = SubResource( 14 )
 
 [node name="Table" type="StaticBody" parent="."]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -0.036968, 0.228099, -0.65105 )
