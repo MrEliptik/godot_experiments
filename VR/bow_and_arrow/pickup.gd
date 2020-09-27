@@ -2,6 +2,8 @@ extends Area
 
 export var impulse_factor = 1.0
 
+const selectable_material = preload("res://selectedMaterial.tres")
+
 var object_in_area = Array()
 var picked_up_obj = null
 
@@ -51,9 +53,13 @@ func _on_button_pressed(button):
 func _on_Pickup_body_entered(body):
 	print("Pickup body entered: ", body)
 	if body.has_method('pick_up') and object_in_area.find(body) == -1:
+		if body.has_method('set_material_override'):
+			body.set_material_override(selectable_material)
 		object_in_area.push_back(body)
 
 func _on_Pickup_body_exited(body):
 	print("Pickup body exited: ", body)
 	if object_in_area.find(body) != -1:
+		if body.has_method('set_material_override'):
+			body.set_material_override(null)
 		object_in_area.erase(body)

@@ -18,6 +18,7 @@ var points = []
 var segment_length = 1.0
 
 func _ready():
+	set_process(false)
 	if length <= 0:
 		length = 2
 	if density_around < 3:
@@ -29,11 +30,15 @@ func _ready():
 	for i in range(density_lengthwise):
 		points.append(global_transform.origin)
 
-
 func _process(_delta):
 	update_trail()
 	render_trail()
 
+func start():
+	set_process(true)
+	
+func stop():
+	set_process(false)
 
 func update_trail():
 	var ind = 0

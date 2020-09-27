@@ -47,6 +47,12 @@ var rope_rest_pose
 
 var ARROW_SPEED = 10
 
+var camera_arrow_target = null
+var arrow_camera = null
+
+var ARVRorigin_transform = null
+var transition_finished = false
+
 func _ready():
 	_initialize_ovr_mobile_arvr_interface();
 	
@@ -65,7 +71,9 @@ func _process(delta_t):
 	_update_controllers_vibration(delta_t)
 	check_draw_distance()
 	
-	#$Label.text = str(Engine.get_frames_per_second())
+	cameraFollowPoint(delta_t)
+	
+	$CanvasLayer/Label.text = str(Engine.get_frames_per_second())
 
 # this code check for the OVRMobile inteface; and if successful also initializes the
 # .gdns APIs used to communicate with the VR device
@@ -278,7 +286,8 @@ func _on_LeftTouchController_button_pressed(button):
 
 func _on_RightTouchController_button_pressed(button):
 	if (button == CONTROLLER_BUTTON.XA):
-		_start_controller_vibration($RightTouchController, 40, 0.5)
+		# Reset camera 
+		resetCamera()
 		
 	if button == CONTROLLER_BUTTON.INDEX_TRIGGER and touching_rope:
 		rope_grabbed = true
@@ -295,11 +304,20 @@ func _on_RightTouchController_button_release(button):
 		
 		if $LeftTouchController/ArrowPoint.get_child_count() > 0:
 			#TODO: calculate force based on how far the rope is drawn
+			
+			# Check if laser is going to bullseye
+			if $LeftTouchController/recurveBow_rigged/RayCast.is_colliding():
+				if $LeftTouchController/recurveBow_rigged/RayCast.get_collider().get_name() == "BullseyeArea":
+					print("bullseye")
+					pass
+			transition_finished = false
+			ARVRorigin_transform = global_transform
+			$CameraTimer.start()
+			Engine.time_scale = 0.025
+			camera_arrow_target = $LeftTouchController/ArrowPoint.get_child(0).get_node("Position3D")
+			
+			$LeftTouchController/ArrowPoint.get_child(0).get_node("Trail3D").start()
 			# Launch arrow
-			#$ARVRCamera.current = false
-			#$LeftTouchController/ArrowPoint.get_child(0).get_node("Camera").current = true
-			#get_parent().get_parent().get_node("Camera").current = true
-			$LeftTouchController/ArrowPoint.get_child(0).get_node("Trail3D").visible = true
 			$LeftTouchController/ArrowPoint.get_child(0).let_go(-$"LeftTouchController/ArrowPoint".global_transform.basis.z  * ARROW_SPEED)
 			$LeftTouchController/recurveBow_rigged/AudioStreamPlayer4.play()
 			$Timer.start()
@@ -332,6 +350,27 @@ func check_draw_distance():
 			if $"LeftTouchController/ArrowPoint".get_child(0).translation.z > max_rope_draw: 
 				$"LeftTouchController/ArrowPoint".get_child(0).translation.z = max_rope_draw
 
+func cameraFollowPoint(delta):
+	if camera_arrow_target:
+		$LeftTouchController.visible = false
+		$RightTouchController.visible = false
+		if transition_finished:
+			global_transform.origin = camera_arrow_target.global_transform.origin
+			global_transform.origin.x += 0.505
+		else:
+			global_transform.origin = lerp(global_transform.origin,  
+											camera_arrow_target.global_transform.origin + Vector3(0.505, 0.0, 0.0), 
+											$CameraTimer.wait_time/$CameraTimer.time_left)
+		look_at(camera_arrow_target.global_transform.origin, Vector3.UP)
+		
+func resetCamera():
+	print("reset camera")
+	camera_arrow_target = null
+	global_transform = ARVRorigin_transform
+	$LeftTouchController.visible = true
+	$RightTouchController.visible = true
+	Engine.time_scale = 1.0
+
 func _on_InteractionArea_area_entered(area):
 	if area.name == "RopeArea":
 		touching_rope = true
@@ -350,9 +389,12 @@ func _on_recurveBow_rigged_body_entered(body):
 			arrow_loaded = true
 			print("Body picked up:", body, arrow_loaded)
 			print("Arrow loaded")
-			$"LeftTouchController/recurveBow_rigged/ArrowPlacingArea/CollisionShape".disabled = true			
+			$"LeftTouchController/recurveBow_rigged/ArrowPlacingArea/CollisionShape".disabled = true
 			
 func _on_Timer_timeout():
 	# Arrow is launched, we can detect collision again
 	arrow_loaded = false
 	$"LeftTouchController/recurveBow_rigged/ArrowPlacingArea/CollisionShape".disabled = false
+
+func _on_CameraTimer_timeout():
+	transition_finished = true
