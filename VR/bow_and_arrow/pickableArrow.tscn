@@ -94,7 +94,6 @@ material/3 = null
 
 [node name="Trail3D" type="ImmediateGeometry" parent="." index="2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.37897 )
-visible = false
 material_override = SubResource( 3 )
 script = ExtResource( 6 )
 length = 8.0
@@ -104,4 +103,3 @@ shape = 1.0
 
 [node name="Position3D" type="Position3D" parent="." index="3"]
 transform = Transform( 0.929609, 0, -0.368546, 0, 1, 0, 0.368546, 0, 0.929609, 0.520424, -0.583538, 0.207354 )
-[connection signal="body_entered" from="." to="." method="_on_PickableArrow_body_entered"]

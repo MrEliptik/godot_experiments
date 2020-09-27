@@ -57,6 +57,10 @@ shape = SubResource( 1 )
 wait_time = 0.5
 one_shot = true
 
+[node name="CameraTimer" type="Timer" parent="ARVROriginWithInitAndMovement"]
+wait_time = 1.5
+one_shot = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="ARVROriginWithInitAndMovement"]
 
 [node name="Label" type="Label" parent="ARVROriginWithInitAndMovement/CanvasLayer"]
@@ -77,5 +81,6 @@ __meta__ = {
 [connection signal="area_entered" from="ARVROriginWithInitAndMovement/RightTouchController/InteractionArea" to="ARVROriginWithInitAndMovement" method="_on_InteractionArea_area_entered"]
 [connection signal="area_exited" from="ARVROriginWithInitAndMovement/RightTouchController/InteractionArea" to="ARVROriginWithInitAndMovement" method="_on_InteractionArea_area_exited"]
 [connection signal="timeout" from="ARVROriginWithInitAndMovement/Timer" to="ARVROriginWithInitAndMovement" method="_on_Timer_timeout"]
+[connection signal="timeout" from="ARVROriginWithInitAndMovement/CameraTimer" to="ARVROriginWithInitAndMovement" method="_on_CameraTimer_timeout"]
 
 [editable path="ARVROriginWithInitAndMovement"]

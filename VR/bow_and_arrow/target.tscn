@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://models/target/target.glb" type="PackedScene" id=1]
 [ext_resource path="res://models/target/Target.material" type="Material" id=2]
@@ -53,6 +53,10 @@ height = 0.40973
 [sub_resource type="BoxShape" id=3]
 extents = Vector3( 1.80413, 0.30445, 1.01841 )
 
+[sub_resource type="CylinderShape" id=4]
+radius = 0.059965
+height = 0.0296453
+
 [node name="target" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.08146, 0 )
 script = ExtResource( 5 )
@@ -82,6 +86,15 @@ shape = SubResource( 2 )
 [node name="CollisionShape2" type="CollisionShape" parent="RigidBody" index="3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0146197, 0.300118, 0.463497 )
 shape = SubResource( 3 )
+
+[node name="BullseyeArea" type="Area" parent="RigidBody" index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.74547, -0.358596 )
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody/BullseyeArea" index="0"]
+transform = Transform( 1, 0, 0, 0, 0.133156, 0.991095, 0, -0.991095, 0.133156, 0, 0.0286036, -0.00920287 )
+shape = SubResource( 4 )
 
 [node name="Target" parent="." index="1"]
 visible = false
