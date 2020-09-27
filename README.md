@@ -9,6 +9,7 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 ![](2D/hang/icon.png) | 2D | hang | you hang from a rope, swinging to reach the goal | DONE ✔
 ![](2D/mobile_ui/icon.png) | 2D | mobile_ui | trying the Godot's UI node on mobile | DONE ✔
 ![](2D/quick_prototype/icon.png)| 2D | quick_prototype | a small scene with a script to allow quick prototyping. You draw a shape with the line2D, and it automatically add a physics body and a background to your shape. | DONE ✔
+![](2D/android_accelerometer/icon.png)| 2D | android_accelerometer | trying to use the accelerometer to set the gravity | WIP 🛠
 | | | | |
 ![](3D/car/icon.png) | 3D | car | a test with godot vehicle body physics and trial-like terrain | WIP 🛠
 ![](3D/plane/icon.png) | 3D | plane | plane controller | WIP 🛠
@@ -21,7 +22,7 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 ![](VR/quest_playground/icon.png) | VR | quest_playground | a project testing various things in VR for the Oculus Quest: handtracking, handtrackings physics | WIP 🛠
 ![](VR/table_tennis/icon.png) | VR | table_tennis | trying to use Godot's physic to recreate a table tennis game | WIP 🛠
 ![](VR/bow_and_arrow/icon.png) | VR | bow_and_arrow | bow and arrow mechanic | WIP 🛠
-![](VR/control_like_interaction/icon.png) | VR | control_like_interaction |  | WIP 🛠
+![](VR/control_like_interaction/icon.png) | VR | control_like_interaction | trying to recreate CONTROL like movement, and messing with area's gravity | WIP 🛠
 | | | | |
 ![](MISC/slow_down_sound/icon.png) | MISC | slow_down_sound | showcase an effect where the pitch and volume of the music is decreased with a tween. Useful for a "loosing" effect, when a player dies for example | DONE ✔
 
