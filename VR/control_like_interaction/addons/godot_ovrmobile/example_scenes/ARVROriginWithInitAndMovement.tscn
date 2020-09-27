@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/godot_ovrmobile/example_scenes/touch_controller.dae" type="PackedScene" id=1]
+[ext_resource path="res://addons/godot_ovrmobile/example_scenes/ARVROriginWithInitAndMovement.gd" type="Script" id=3]
+
+[node name="ARVROriginWithInitAndMovement" type="ARVROrigin"]
+script = ExtResource( 3 )
+
+[node name="ARVRCamera" type="ARVRCamera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72656, 0 )
+
+[node name="LeftTouchController" type="ARVRController" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 1.72656, -0.4 )
+
+[node name="left-controller" parent="LeftTouchController" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0 )
+
+[node name="RightTouchController" type="ARVRController" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1.72656, -0.4 )
+controller_id = 2
+
+[node name="right-controller" parent="RightTouchController" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, -8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0 )
+[connection signal="button_pressed" from="LeftTouchController" to="." method="_on_LeftTouchController_button_pressed"]
+[connection signal="button_pressed" from="RightTouchController" to="." method="_on_RightTouchController_button_pressed"]
+[connection signal="button_release" from="RightTouchController" to="." method="_on_RightTouchController_button_release"]
