@@ -21,6 +21,7 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 ![](VR/quest_playground/icon.png) | VR | quest_playground | a project testing various things in VR for the Oculus Quest: handtracking, handtrackings physics | WIP 🛠
 ![](VR/table_tennis/icon.png) | VR | table_tennis | trying to use Godot's physic to recreate a table tennis game | WIP 🛠
 ![](VR/bow_and_arrow/icon.png) | VR | bow_and_arrow | bow and arrow mechanic | WIP 🛠
+![](VR/control_like_interaction/icon.png) | VR | control_like_interaction |  | WIP 🛠
 | | | | |
 ![](MISC/slow_down_sound/icon.png) | MISC | slow_down_sound | showcase an effect where the pitch and volume of the music is decreased with a tween. Useful for a "loosing" effect, when a player dies for example | DONE ✔
 
