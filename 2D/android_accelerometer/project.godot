@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="android_accelerometer"
 run/main_scene="res://game.tscn"
+boot_splash/bg_color=Color( 0, 0.027451, 0.0901961, 1 )
 config/icon="res://icon.png"
 
 [display]
@@ -31,11 +32,12 @@ window/stretch/aspect="expand"
 
 [physics]
 
-2d/default_gravity=150
+2d/default_gravity=700
 
 [rendering]
 
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+environment/default_clear_color=Color( 0, 0.0313726, 0.101961, 1 )
 environment/default_environment="res://default_env.tres"

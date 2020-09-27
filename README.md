@@ -9,7 +9,7 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 ![](2D/hang/icon.png) | 2D | hang | you hang from a rope, swinging to reach the goal | DONE ✔
 ![](2D/mobile_ui/icon.png) | 2D | mobile_ui | trying the Godot's UI node on mobile | DONE ✔
 ![](2D/quick_prototype/icon.png)| 2D | quick_prototype | a small scene with a script to allow quick prototyping. You draw a shape with the line2D, and it automatically add a physics body and a background to your shape. | DONE ✔
-![](2D/android_accelerometer/icon.png)| 2D | android_accelerometer | trying to use the accelerometer to set the gravity | WIP 🛠
+![](2D/android_accelerometer/icon.png)| 2D | android_accelerometer | trying to use the accelerometer to set the gravity | DONE ✔
 | | | | |
 ![](3D/car/icon.png) | 3D | car | a test with godot vehicle body physics and trial-like terrain | WIP 🛠
 ![](3D/plane/icon.png) | 3D | plane | plane controller | WIP 🛠
@@ -30,6 +30,8 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 
 ### Area_gravity
 
+![](videos_gifs/android_accelerometer.gif)
+
 ![](videos_gifs/area_gravity.gif)
 
 ## Useful
@@ -41,3 +43,7 @@ Icon background color: #022C4D
 - [Twitter](https://twitter.com/VicMeunier) 
 - [Sketchfab](https://sketchfab.com/victor.meunierpk)
 - [Itch.io](https://mreliptik.itch.io/)
+
+## LICENCE
+
+- [2D/android_accelerometer]: [Kenney](https://www.kenney.nl/)
