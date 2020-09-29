@@ -38,6 +38,8 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 
 Icon background color: #022C4D
 
+http://www.mazegenerator.net/
+
 ## About me
 
 - [Twitter](https://twitter.com/VicMeunier) 
