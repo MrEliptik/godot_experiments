@@ -18,6 +18,7 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 ![](3D/tv/icon.png) | 3D | tv | displaying a video or frames on a crt tv | DONE ✔
 ![](3D/wheelBot/icon.png) | 3D | wheelBot | a robot rolling on one wheel | WIP 🛠
 ![](3D/area_gravity/icon.png) | 3D | area_gravity | a simple test using the gravity of an area | DONE ✔
+![](3D/android_maze_accelerometer/icon.png) | 3D | android_maze_accelerometer | control a maze's orientation with the phone's acceleromter | WIP 🛠
 ![](3D/robotic_arm/icon.png) | 3D | robotic_arm | computer vision + IK test with a robotic pick and place arm | WIP 🛠
 | | | | |
 ![](VR/quest_playground/icon.png) | VR | quest_playground | a project testing various things in VR for the Oculus Quest: handtracking, handtrackings physics | WIP 🛠
@@ -29,9 +30,15 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 
 ## Videos & GIFs
 
-### Area_gravity
+### Accelerometer android maze 3D
+
+<img src="videos_gifs/accelerometer_android_maze.gif" width=400>
+
+### Accelerometer android 2D
 
 ![](videos_gifs/android_accelerometer.gif)
+
+### Area_gravity
 
 ![](videos_gifs/area_gravity.gif)
 
@@ -49,4 +56,5 @@ http://www.mazegenerator.net/
 
 ## LICENCE
 
-- [2D/android_accelerometer]: [Kenney](https://www.kenney.nl/)
+- **2D/android_accelerometer**: (texture + balls) [Kenney](https://www.kenney.nl/)
+- **3D/android_accelerometer**: (Ball + flag) [Kenney](https://www.kenney.nl/)
