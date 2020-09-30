@@ -11,6 +11,8 @@ export var thread_number = 12
 onready var objects = $Room/Objects
 onready var reference_obj = $Room/ReferenceObject
 
+var colors = [Color("#0C96BE"), Color("B023DD"), Color("E59D0E"), Color("#00F638")]
+
 var spawned_number = 0
 onready var reference_color_hsv = RGBtoHSV(reference_color)
 
@@ -22,8 +24,12 @@ var output_mutex = Mutex.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
+	
 	reference_obj.get_surface_material(0).albedo_color = reference_color
 	$CanvasLayer/VBoxContainer/ColorPickerButton.color = reference_color
+	
+	colors.append(reference_color)
 	
 	# Create X threads
 #	for i in range(thread_number):
@@ -31,7 +37,7 @@ func _ready():
 	
 	# Start the threads
 #	for i in range(thread_number):
-#		threads[i].start(self, "threadedFindColorBlob", 0)
+#		threads[i].start(self, "threadedbinarizeWithColor", 0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -39,8 +45,8 @@ func _process(delta):
 	
 	var data = $Room/robotic_arm/Viewport.get_texture().get_data()
 	
-	#$ThreadPool.submit_task(self, "findColorBlob", [data, reference_color_hsv, color_tolerance])
-	#$FutureThreadPool.submit_task(self, "findColorBlob", [data, reference_color_hsv, color_tolerance])
+	#$ThreadPool.submit_task(self, "binarizeWithColor", [data, reference_color_hsv, color_tolerance])
+	#$FutureThreadPool.submit_task(self, "binarizeWithColor", [data, reference_color_hsv, color_tolerance])
 
 	
 	#input_q.append([data, reference_color_hsv, color_tolerance])
@@ -49,11 +55,11 @@ func _process(delta):
 #	if res != null:
 #		$CanvasLayer/VBoxContainer2/VBoxContainer2/BinarizedImage.texture = res
 	
-	var res = findColorBlob([data, reference_color_hsv, color_tolerance])
+	var res = binarizeWithColor([data, reference_color_hsv, color_tolerance])
 	$CanvasLayer/VBoxContainer2/VBoxContainer2/BinarizedImage.texture = res
 	
 # Threaded function must have an argument, even if not used
-func threadedFindColorBlob(_userdata):
+func threadedinarizeWithColor(_userdata):
 	while true:
 		input_mutex.lock()
 		var data = input_q.pop_front()
@@ -61,10 +67,10 @@ func threadedFindColorBlob(_userdata):
 	
 		if data != null:
 			output_mutex.lock()
-			output_q.append(findColorBlob(data))
+			output_q.append(binarizeWithColor(data))
 			output_mutex.unlock()
 	
-func findColorBlob(args):
+func binarizeWithColor(args):
 	var im = args[0]
 	var color = args[1]
 	var tolerance = args[2]
@@ -93,6 +99,9 @@ func findColorBlob(args):
 	binarized_texture.create_from_image(binarized_im)
 	
 	return binarized_texture
+	
+func detectColorBlob(im, color):
+	pass
 			
 func RGBtoHSV(color_rgb: Color) -> HSV:
 	var hsv = HSV.new()
@@ -138,14 +147,19 @@ func _on_SpawnIntervalTimer_timeout():
 	else:
 		# Spawn an object at the spawn location
 		var instance = object.instance()
-		instance.global_transform = $Room/Spawner/SpawnPoint.global_transform
+		
+		# Select a random location
+		instance.global_transform = $Room/Spawner.get_child(int(rand_range(0, $Room/Spawner.get_child_count()))).global_transform
+		
 		# TODO: Choose a color
+		instance.set_color(colors[int(rand_range(0, colors.size()))])
 		
 		objects.add_child(instance)
 		spawned_number += 1
 
 func _on_ColorPickerButton_color_changed(color):
 	reference_color = color
+	reference_color_hsv = RGBtoHSV(color)
 	reference_obj.get_surface_material(0).albedo_color = color
 
 func _on_ThreadPool_task_finished(task_tag):

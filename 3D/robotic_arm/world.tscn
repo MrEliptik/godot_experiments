@@ -93,18 +93,6 @@ bones/1/bound_children = [ NodePath("BoneAttachment 3") ]
 bones/2/bound_children = [ NodePath("BoneAttachment 2") ]
 bones/6/bound_children = [ NodePath("BoneAttachment") ]
 
-[node name="BoneAttachment" parent="Room/robotic_arm/Armature/Skeleton" index="0"]
-transform = Transform( 0.00275018, -0.906189, -0.422865, -0.00283818, -0.422871, 0.906185, -0.999992, -0.00129201, -0.0037349, 0.221664, -2.10607, 7.954e-08 )
-
-[node name="BoneAttachment 2" parent="Room/robotic_arm/Armature/Skeleton" index="1"]
-transform = Transform( -6.38017e-08, -0.522877, -0.852408, 4.2686e-08, -0.852408, 0.522877, -1, -3.02541e-09, 7.67046e-08, 1.09794, -0.338589, 9.13321e-08 )
-
-[node name="BoneAttachment 3" parent="Room/robotic_arm/Armature/Skeleton" index="2"]
-transform = Transform( 7.96211e-08, 0.5409, -0.841087, -2.29208e-09, -0.841087, -0.5409, -1, 4.49949e-08, -6.57284e-08, 0, 1.36867, 0 )
-
-[node name="BoneAttachment 4" parent="Room/robotic_arm/Armature/Skeleton" index="3"]
-transform = Transform( 0, 0, -1, 0, -1, 0, -1, 0, 0, 0, 2.3183, 0 )
-
 [node name="Camera" parent="Room/robotic_arm/Viewport" index="0"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, -0.0016253, 3.37734, 0 )
 
@@ -163,7 +151,14 @@ material/0 = SubResource( 9 )
 [node name="SpawnPoint" type="Position3D" parent="Room/Spawner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.09869, 0 )
 
+[node name="SpawnPoint2" type="Position3D" parent="Room/Spawner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55921, -1.09869, 0.721757 )
+
+[node name="SpawnPoint3" type="Position3D" parent="Room/Spawner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.481372, -1.09869, 0.668218 )
+
 [node name="SpawnIntervalTimer" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -232,13 +227,12 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -331.0
-margin_top = -467.0
-margin_right = -11.0
+margin_left = -248.0
+margin_top = -434.0
+margin_right = -1.0
 margin_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
-rect_min_size = Vector2( 340, 463 )
 color = Color( 0.341176, 0.341176, 0.341176, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -249,65 +243,83 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -331.0
-margin_top = -467.0
-margin_right = -11.0
-margin_bottom = -4.0
+margin_left = -233.0
+margin_top = -424.0
+margin_right = -10.0
+margin_bottom = -17.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/VBoxContainer2"]
-margin_top = 7.0
-margin_right = 320.0
-margin_bottom = 229.0
+margin_right = 223.0
+margin_bottom = 222.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="CanvasLayer/VBoxContainer2/VBoxContainer2"]
-margin_right = 320.0
-margin_bottom = 38.0
+margin_right = 223.0
+margin_bottom = 79.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "BINARIZED VIEW"
 align = 1
+autowrap = true
 
 [node name="BinarizedImage" type="TextureRect" parent="CanvasLayer/VBoxContainer2/VBoxContainer2"]
-margin_top = 42.0
-margin_right = 320.0
+margin_top = 83.0
+margin_right = 223.0
 margin_bottom = 222.0
-rect_min_size = Vector2( 320, 180 )
+rect_min_size = Vector2( 223, 139 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 texture = SubResource( 13 )
+expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/VBoxContainer2"]
-margin_top = 233.0
-margin_right = 320.0
-margin_bottom = 455.0
+margin_top = 226.0
+margin_right = 223.0
+margin_bottom = 407.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="CanvasLayer/VBoxContainer2/VBoxContainer"]
-margin_right = 320.0
+margin_right = 223.0
 margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "ARM VIEW"
 align = 1
+autowrap = true
 
 [node name="ArmCameraView" type="TextureRect" parent="CanvasLayer/VBoxContainer2/VBoxContainer"]
 margin_top = 42.0
-margin_right = 320.0
-margin_bottom = 222.0
-rect_min_size = Vector2( 320, 180 )
-size_flags_horizontal = 5
+margin_right = 223.0
+margin_bottom = 181.0
+rect_min_size = Vector2( 223, 139 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = SubResource( 15 )
 texture = SubResource( 14 )
+expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
