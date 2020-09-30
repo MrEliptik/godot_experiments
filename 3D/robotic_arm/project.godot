@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "FutureThreadPool",
+"language": "GDScript",
+"path": "res://addons/thread_pool/future_thread_pool.gd"
+}, {
+"base": "Node",
+"class": "ThreadPool",
+"language": "GDScript",
+"path": "res://addons/thread_pool/thread_pool.gd"
+} ]
 _global_script_class_icons={
-
+"FutureThreadPool": "",
+"ThreadPool": ""
 }
 
 [application]
@@ -25,7 +36,10 @@ window/size/width=1920
 window/size/height=1080
 window/size/test_width=1280
 window/size/test_height=720
-window/vsync/use_vsync=false
+
+[editor_plugins]
+
+enabled=PoolStringArray( "thread_pool" )
 
 [physics]
 

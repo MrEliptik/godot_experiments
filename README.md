@@ -51,6 +51,7 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 - [3D/robotic_arm]: 
   - GLES2 doesn't work correctly with IK, part of the mesh is not moved
   - Bullet physics' constant velocity for static body doesn't work -> use Godot physics instead
+  - The IK target must be high in the tree than the SkeletonIK node, otherwise Godot freaks out
 
 Icon background color: #022C4D
 
