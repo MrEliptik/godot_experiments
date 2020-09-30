@@ -44,6 +44,14 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 
 ## Useful
 
+- [3D/android_maze_acceloremeter]:
+  - GLES2 was buggy for me, some texture were not shown
+  - Bullet physics has a bug when you change the gravity vector at runtime -> use Godot physics instead
+
+- [3D/robotic_arm]: 
+  - GLES2 doesn't work correctly with IK, part of the mesh is not moved
+  - Bullet physics' constant velocity for static body doesn't work -> use Godot physics instead
+
 Icon background color: #022C4D
 
 http://www.mazegenerator.net/
