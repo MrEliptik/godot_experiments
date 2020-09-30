@@ -122,6 +122,9 @@ tracks/1/keys = {
 [node name="wheel_bot" type="KinematicBody"]
 script = ExtResource( 3 )
 
+[node name="CameraOrbit" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.459, 0 )
+
 [node name="Rim" type="MeshInstance" parent="."]
 transform = Transform( 0.0121541, 2.88884e-08, 0.697022, 0.697022, -2.93966e-08, -0.0121541, 2.99412e-08, 0.672617, -3.04678e-08, 0, 0, 0 )
 mesh = SubResource( 1 )
@@ -147,5 +150,5 @@ material/0 = null
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/forward = SubResource( 5 )
 
-[node name="Position3D" type="Position3D" parent="."]
+[node name="CameraTarget" type="Position3D" parent="."]
 transform = Transform( 1.65551e-05, 0.320977, -0.947087, -5.61069e-06, 0.947087, 0.320977, 1, -4.54747e-13, 1.74801e-05, -9.09553, 6.35521, 0 )
