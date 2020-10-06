@@ -11,7 +11,7 @@ export var thread_number = 12
 onready var objects = $Room/Objects
 onready var reference_obj = $Room/ReferenceObject
 
-var colors = [Color("#0C96BE"), Color("B023DD"), Color("E59D0E"), Color("#00F638")]
+var colors = [Color("#0C96BE"), Color("B023DD"), Color("BFB713"), Color("#00FE3A")]
 
 var spawned_number = 0
 onready var reference_color_hsv = RGBtoHSV(reference_color)
@@ -21,6 +21,8 @@ var input_q = Array()
 var output_q = Array()
 var input_mutex = Mutex.new()
 var output_mutex = Mutex.new()
+
+var blobs = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,6 +47,19 @@ func _process(delta):
 	
 	var data = $Room/robotic_arm/Viewport.get_texture().get_data()
 	
+	# Test with shader
+	var text = ImageTexture.new()
+	text.create_from_image(data)
+	$CanvasLayer/VBoxContainer2/VBoxContainer3/BinarizedImageShader.texture = text
+	
+	var compute_text = ImageTexture.new()
+	compute_text.create_from_image(data)
+	$ComputeViewport/BinarizedImageShader.texture = compute_text
+	$ComputeViewport.render_target_update_mode = Viewport.UPDATE_ONCE
+	
+	# Get previous frame result
+	blobs = detectColorBlob($ComputeViewport.get_texture().get_data(), Color(1.0, 1.0, 1.0, 1.0))
+	
 	#$ThreadPool.submit_task(self, "binarizeWithColor", [data, reference_color_hsv, color_tolerance])
 	#$FutureThreadPool.submit_task(self, "binarizeWithColor", [data, reference_color_hsv, color_tolerance])
 
@@ -55,8 +70,8 @@ func _process(delta):
 #	if res != null:
 #		$CanvasLayer/VBoxContainer2/VBoxContainer2/BinarizedImage.texture = res
 	
-	var res = binarizeWithColor([data, reference_color_hsv, color_tolerance])
-	$CanvasLayer/VBoxContainer2/VBoxContainer2/BinarizedImage.texture = res
+#	var res = binarizeWithColor([data, reference_color_hsv, color_tolerance])
+#	$CanvasLayer/VBoxContainer2/VBoxContainer2/BinarizedImage.texture = res
 	
 # Threaded function must have an argument, even if not used
 func threadedinarizeWithColor(_userdata):
@@ -100,8 +115,80 @@ func binarizeWithColor(args):
 	
 	return binarized_texture
 	
-func detectColorBlob(im, color):
+func detectColorBlob(im, color):	
+	if !im: return
+	
+	# Lock image before reading
+	im.lock()
+	var binarized_im = Image.new()
+	binarized_im.copy_from(im)
+	im.unlock()
+
+	var blobs = []
+	
+	var h = binarized_im.get_height()
+	var w = binarized_im.get_width()
+
+	binarized_im.lock()
+	
+	for i in range(h):
+		for j in range(w):
+			# Not white pixel, we don't care
+			var pixel = binarized_im.get_pixel(i, j)
+			#print(pixel)
+			if pixel == color:	
+				var found = false
+				# Loop through existing blobs
+				for blob in blobs:
+					if blob.is_near(i, j):
+						blob.add(i, j)
+						found = true
+						break
+				if !found:
+					var b = Blob.new()
+					b.blob(i, j)
+					blobs.append(b)
+#
+	# Unlock when finished
+	binarized_im.unlock()
+#
+	return blobs
+	
+func union(x, y):
 	pass
+	
+func find(x):
+	pass 
+
+class Blob:
+	var min_x : float
+	var min_y : float
+	var max_x : float
+	var max_y : float
+	
+	func blob(x, y):
+		min_x = x
+		min_y = y
+		max_x = x
+		max_y = y
+		
+	func rect():
+		return Rect2(min_x, min_y, max_x-min_x, max_y-min_y)
+		
+	func add(x, y):
+		min_x = min(min_x, x)
+		min_y = min(min_y, y)
+		max_x = max(min_x, x)
+		max_y = max(min_y, y)
+		
+	func is_near(x, y):
+		var cx = (min_x+max_x) / 2
+		var cy = (min_y+max_y) / 2
+		
+		var d = Vector2(cx, cy).distance_to(Vector2(x, y))
+		if d < 25: return true
+		else: return false
+	
 			
 func RGBtoHSV(color_rgb: Color) -> HSV:
 	var hsv = HSV.new()
