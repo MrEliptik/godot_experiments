@@ -11,7 +11,7 @@ export var thread_number = 12
 onready var objects = $Room/Objects
 onready var reference_obj = $Room/ReferenceObject
 
-var colors = [Color("#0C96BE"), Color("B023DD"), Color("BFB713"), Color("#00FE3A")]
+var colors = [Color("#0C96BE"), Color("B023DD"), Color("857f10"), Color("#00FE3A")]
 
 var spawned_number = 0
 onready var reference_color_hsv = RGBtoHSV(reference_color)
@@ -27,6 +27,8 @@ var blobs = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
+	
+	$Room/robotic_arm/Armature/Skeleton/SkeletonIK.start()
 	
 	reference_obj.get_surface_material(0).albedo_color = reference_color
 	$CanvasLayer/VBoxContainer/ColorPickerButton.color = reference_color
@@ -59,6 +61,15 @@ func _process(delta):
 	
 	# Get previous frame result
 	blobs = detectColorBlob($ComputeViewport.get_texture().get_data(), Color(1.0, 1.0, 1.0, 1.0))
+	
+	if blobs.empty():
+		$Room/robotic_arm/Target.global_transform.origin = $Room/robotic_arm/RestPosition.global_transform.origin
+	else:
+		for blob in blobs:
+			var point = blob.center()
+			
+			$Room/robotic_arm/Target.global_transform.origin = $Room/robotic_arm/Viewport/Camera.project_position(point, 1.0)
+		
 	
 	#$ThreadPool.submit_task(self, "binarizeWithColor", [data, reference_color_hsv, color_tolerance])
 	#$FutureThreadPool.submit_task(self, "binarizeWithColor", [data, reference_color_hsv, color_tolerance])
@@ -153,12 +164,6 @@ func detectColorBlob(im, color):
 	binarized_im.unlock()
 #
 	return blobs
-	
-func union(x, y):
-	pass
-	
-func find(x):
-	pass 
 
 class Blob:
 	var min_x : float
@@ -174,6 +179,9 @@ class Blob:
 		
 	func rect():
 		return Rect2(min_x, min_y, max_x-min_x, max_y-min_y)
+		
+	func center():
+		return Vector2(rect().position.x + (rect().size.x/2), rect().position.y + (rect().size.y/2))
 		
 	func add(x, y):
 		min_x = min(min_x, x)

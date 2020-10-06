@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://textures/texture_07.png" type="Texture" id=1]
 [ext_resource path="res://textures/texture_13.png" type="Texture" id=2]
@@ -10,6 +10,18 @@
 [ext_resource path="res://addons/thread_pool/future_thread_pool.gd" type="Script" id=8]
 [ext_resource path="res://threshold.shader" type="Shader" id=9]
 [ext_resource path="res://drawingLayer.gd" type="Script" id=10]
+
+[sub_resource type="SphereMesh" id=19]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SpatialMaterial" id=20]
+albedo_color = Color( 0.45098, 0.733333, 0.294118, 1 )
+emission_enabled = true
+emission = Color( 0.360784, 1, 0.184314, 1 )
+emission_energy = 12.35
+emission_operator = 0
+emission_on_uv2 = false
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 0.25, 0.25, 0.25 )
@@ -53,7 +65,7 @@ uv1_scale = Vector3( 11, 9, 1 )
 
 [sub_resource type="ShaderMaterial" id=14]
 shader = ExtResource( 9 )
-shader_param/threshold_val = 0.195
+shader_param/threshold_val = 0.126
 shader_param/ref_color = Color( 0.988235, 0.105882, 0.0156863, 1 )
 
 [sub_resource type="ImageTexture" id=15]
@@ -94,8 +106,16 @@ transform = Transform( 1, 0, 0, 0, 0.939782, 0.341774, 0, -0.341774, 0.939782, 0
 [node name="robotic_arm" parent="Room" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.746528, 4.52914, 0 )
 
-[node name="Target" parent="Room/robotic_arm" index="0"]
+[node name="RestPosition" type="Position3D" parent="Room/robotic_arm"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02046, -1.70213, 0 )
+
+[node name="Target" parent="Room/robotic_arm" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.29619, -0.65404, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/robotic_arm/Target" index="0"]
+layers = 512
+mesh = SubResource( 19 )
+material/0 = SubResource( 20 )
 
 [node name="Skeleton" parent="Room/robotic_arm/Armature" index="0"]
 bones/0/bound_children = [ NodePath("BoneAttachment 4") ]
@@ -106,23 +126,36 @@ bones/6/bound_children = [ NodePath("BoneAttachment") ]
 [node name="BoneAttachment" parent="Room/robotic_arm/Armature/Skeleton" index="0"]
 transform = Transform( 0.00275018, -0.906189, -0.422865, -0.00283818, -0.422871, 0.906185, -0.999992, -0.00129201, -0.0037349, 0.221664, -2.10607, 7.954e-08 )
 
+[node name="FingerL" parent="Room/robotic_arm/Armature/Skeleton/BoneAttachment" index="0"]
+layers = 512
+
 [node name="BoneAttachment 2" parent="Room/robotic_arm/Armature/Skeleton" index="1"]
 transform = Transform( -6.38017e-08, -0.522877, -0.852408, 4.2686e-08, -0.852408, 0.522877, -1, -3.02541e-09, 7.67046e-08, 1.09794, -0.338589, 9.13321e-08 )
+
+[node name="Arm2" parent="Room/robotic_arm/Armature/Skeleton/BoneAttachment 2" index="0"]
+layers = 512
 
 [node name="BoneAttachment 3" parent="Room/robotic_arm/Armature/Skeleton" index="2"]
 transform = Transform( 7.96211e-08, 0.5409, -0.841087, -2.29208e-09, -0.841087, -0.5409, -1, 4.49949e-08, -6.57284e-08, 0, 1.36867, 0 )
 
+[node name="Arm1" parent="Room/robotic_arm/Armature/Skeleton/BoneAttachment 3" index="0"]
+layers = 512
+
 [node name="BoneAttachment 4" parent="Room/robotic_arm/Armature/Skeleton" index="3"]
 transform = Transform( 0, 0, -1, 0, -1, 0, -1, 0, 0, 0, 2.3183, 0 )
 
-[node name="Viewport" parent="Room/robotic_arm" index="3"]
+[node name="FingerR" parent="Room/robotic_arm/Armature/Skeleton" index="4"]
+layers = 512
+
+[node name="Viewport" parent="Room/robotic_arm" index="4"]
 size = Vector2( 128, 128 )
 
 [node name="Camera" parent="Room/robotic_arm/Viewport" index="0"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, -0.0016253, 3.37734, 0 )
+cull_mask = 523775
 
 [node name="ReferenceObject" type="MeshInstance" parent="Room"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.687, 2.35861, -0.0262885 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.687, 2.1879, -0.0262885 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
