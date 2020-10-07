@@ -16,7 +16,9 @@ func _draw():
 	if blobs == null: return
 	for blob in blobs:
 		var offseted_rect = Rect2(offset + blob.rect().position, blob.rect().size)
+		var offseted_center = offset + blob.center()
 		draw_rect(offseted_rect, Color(0.0, 1.0, 0.0), false)
+		draw_circle(offseted_center, 2.0, Color(0.0, 1.0, 0.0))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
