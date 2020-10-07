@@ -12,13 +12,6 @@ script = ExtResource( 2 )
 [node name="Target" type="Position3D" parent="." index="0"]
 transform = Transform( -0.380813, -0.19012, 0.904895, 0.403977, 0.846083, 0.347772, -0.831735, 0.497993, -0.245396, 1.67666, -1.35952, 0 )
 
-[node name="Skeleton" parent="Armature" index="0"]
-bones/0/bound_children = [ NodePath("BoneAttachment 4") ]
-bones/1/bound_children = [ NodePath("BoneAttachment 3") ]
-bones/2/bound_children = [ NodePath("BoneAttachment 2") ]
-bones/6/bound_children = [ NodePath("BoneAttachment") ]
-bones/7/bound_children = [ NodePath("BoneAttachment2") ]
-
 [node name="BoneAttachment" parent="Armature/Skeleton" index="0"]
 transform = Transform( 0.00377874, -0.589643, -0.807655, -0.00115754, -0.807663, 0.589644, -0.999992, -0.00129322, -0.00373449, 1.84195, -1.61949, -2.61311e-07 )
 
