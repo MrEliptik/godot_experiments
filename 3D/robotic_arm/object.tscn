@@ -13,6 +13,7 @@ margin = 0.01
 extents = Vector3( 0.15, 0.15, 0.15 )
 
 [node name="Object" type="RigidBody"]
+collision_layer = 3
 script = ExtResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]

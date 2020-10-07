@@ -2,6 +2,12 @@ extends Spatial
 
 const object = preload("res://object.tscn")
 
+const MAX_FOV = 96
+const MIN_FOV = 33
+
+var mouse_sens = 0.15
+var zoom_sens = 3
+
 export var object_number = 10000
 export var spawn_time_interval = 1.0
 export var reference_color = Color("#fc1b04") 
@@ -9,43 +15,73 @@ export var color_tolerance = 4.5
 export var thread_number = 12
 
 onready var objects = $Room/Objects
-onready var reference_obj = $Room/ReferenceObject
+onready var reference_obj = $Room/Reference/ReferenceObject
+
+var middle_button_clicked = false
 
 var colors = [Color("#0C96BE"), Color("B023DD"), Color("857f10"), Color("#00FE3A")]
 
 var spawned_number = 0
 onready var reference_color_hsv = RGBtoHSV(reference_color)
 
-var threads = []
-var input_q = Array()
-var output_q = Array()
-var input_mutex = Mutex.new()
-var output_mutex = Mutex.new()
-
 var blobs = null
+var target = null
+var target_grabbed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
 	
-	$Room/robotic_arm/Armature/Skeleton/SkeletonIK.start()
+	$Room/robotic_arm/Armature/Skeleton/SkeletonIK.start(true)
 	
 	reference_obj.get_surface_material(0).albedo_color = reference_color
 	$CanvasLayer/VBoxContainer/ColorPickerButton.color = reference_color
 	
 	colors.append(reference_color)
-	
-	# Create X threads
-#	for i in range(thread_number):
-#		threads.append(Thread.new())
-	
-	# Start the threads
-#	for i in range(thread_number):
-#		threads[i].start(self, "threadedbinarizeWithColor", 0)
+
+func _unhandled_input(event):
+	if event is InputEventMouseButton:
+
+		if event.is_pressed():
+			# zoom in
+			if event.button_index == BUTTON_WHEEL_UP:
+				$CameraRotationPoint/Camera.fov -= zoom_sens
+				if $CameraRotationPoint/Camera.fov < MIN_FOV: $CameraRotationPoint/Camera.fov = MIN_FOV
+			
+			# zoom out
+			if event.button_index == BUTTON_WHEEL_DOWN:
+				$CameraRotationPoint/Camera.fov += zoom_sens
+				if $CameraRotationPoint/Camera.fov > MAX_FOV: $CameraRotationPoint/Camera.fov = MAX_FOV
+			
+		if event.button_index == 3:
+			if event.is_pressed():
+				middle_button_clicked = true
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			else:
+				middle_button_clicked = false
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+				
+				
+	if event is InputEventMouseMotion:
+		if !middle_button_clicked: return
+		$CameraRotationPoint.rotate_y(deg2rad(-event.relative.x*mouse_sens))
+		var changev=-event.relative.y*mouse_sens
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	$CanvasLayer/FPS.text = "FPS: "+ str(Engine.get_frames_per_second())
+	
+	# Get previous frame result
+	var compute_data = $ComputeViewport.get_texture().get_data()
+	blobs = detectColorBlob(compute_data, Color(1.0, 1.0, 1.0, 1.0))
+	
+	if !blobs.empty():
+		var point = blobs[0].center()
+		target = point
+	else:
+		target = null
+		
+	move_arm()
 	
 	var data = $Room/robotic_arm/Viewport.get_texture().get_data()
 	
@@ -59,42 +95,41 @@ func _process(delta):
 	$ComputeViewport/BinarizedImageShader.texture = compute_text
 	$ComputeViewport.render_target_update_mode = Viewport.UPDATE_ONCE
 	
-	# Get previous frame result
-	blobs = detectColorBlob($ComputeViewport.get_texture().get_data(), Color(1.0, 1.0, 1.0, 1.0))
-	
-	if blobs.empty():
-		$Room/robotic_arm/Target.global_transform.origin = $Room/robotic_arm/RestPosition.global_transform.origin
-	else:
-		for blob in blobs:
-			var point = blob.center()
-			
-			$Room/robotic_arm/Target.global_transform.origin = $Room/robotic_arm/Viewport/Camera.project_position(point, 1.0)
-		
-	
-	#$ThreadPool.submit_task(self, "binarizeWithColor", [data, reference_color_hsv, color_tolerance])
-	#$FutureThreadPool.submit_task(self, "binarizeWithColor", [data, reference_color_hsv, color_tolerance])
-
-	
-	#input_q.append([data, reference_color_hsv, color_tolerance])
-	
-#	var res = output_q.pop_front()
-#	if res != null:
-#		$CanvasLayer/VBoxContainer2/VBoxContainer2/BinarizedImage.texture = res
-	
 #	var res = binarizeWithColor([data, reference_color_hsv, color_tolerance])
 #	$CanvasLayer/VBoxContainer2/VBoxContainer2/BinarizedImage.texture = res
-	
-# Threaded function must have an argument, even if not used
-func threadedinarizeWithColor(_userdata):
-	while true:
-		input_mutex.lock()
-		var data = input_q.pop_front()
-		input_mutex.unlock()
-	
-		if data != null:
-			output_mutex.lock()
-			output_q.append(binarizeWithColor(data))
-			output_mutex.unlock()
+
+func move_arm():
+	if target:
+		# We arrived to the target
+		if !$Room/robotic_arm/Armature/Skeleton/SkeletonIK.is_running():
+			grab()
+		# We grabbed tha target, go to drop position
+		if target_grabbed:
+			$Room/robotic_arm/Target.global_transform.origin = $Room/DropPosition.global_transform.origin
+			$Room/robotic_arm/Armature/Skeleton/SkeletonIK.start(true)
+			if !$Room/robotic_arm/Armature/Skeleton/SkeletonIK.is_running():
+				$Room/robotic_arm/Armature/Skeleton/BoneAttachment2.get_child(1).let_go()
+				$Room/robotic_arm/Armature/Skeleton/BoneAttachment2/Area.monitoring = false
+				target_grabbed = false
+				target = null
+		# We go to the target position
+		else:
+			$Room/robotic_arm/Target.global_transform.origin = $Room/robotic_arm/Viewport/Camera.project_position(target, 1.0)
+			$Room/robotic_arm/Armature/Skeleton/SkeletonIK.start(true)
+	# No target, we go to rest position
+	else:
+		$Room/robotic_arm/Target.global_transform.origin = $Room/RestPosition.global_transform.origin
+		$Room/robotic_arm/Armature/Skeleton/SkeletonIK.start(true)
+		
+func grab():
+	$Room/robotic_arm/Armature/Skeleton/BoneAttachment2/Area.monitoring = true
+	var bodies = $Room/robotic_arm/Armature/Skeleton/BoneAttachment2/Area.get_overlapping_bodies()
+	if bodies.empty(): return
+	for body in bodies:
+		if body.has_method("pick_up"):
+			body.pick_up($Room/robotic_arm/Armature/Skeleton/BoneAttachment2)
+			target_grabbed = true
+			$Room/robotic_arm/Armature/Skeleton/BoneAttachment2/Area.monitoring = false
 	
 func binarizeWithColor(args):
 	var im = args[0]

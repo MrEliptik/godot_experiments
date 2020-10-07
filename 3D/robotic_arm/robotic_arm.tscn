@@ -33,3 +33,4 @@ render_target_update_mode = 3
 
 [node name="Camera" type="Camera" parent="Viewport" index="0"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0.221664, -2.10607, 0 )
+cull_mask = 523775

@@ -8,20 +8,9 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Node",
-"class": "FutureThreadPool",
-"language": "GDScript",
-"path": "res://addons/thread_pool/future_thread_pool.gd"
-}, {
-"base": "Node",
-"class": "ThreadPool",
-"language": "GDScript",
-"path": "res://addons/thread_pool/thread_pool.gd"
-} ]
+_global_script_classes=[  ]
 _global_script_class_icons={
-"FutureThreadPool": "",
-"ThreadPool": ""
+
 }
 
 [application]
