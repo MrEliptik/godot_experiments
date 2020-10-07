@@ -76,6 +76,8 @@ func _unhandled_input(event):
 func _process(delta):
 	$CanvasLayer/FPS.text = "FPS: "+ str(Engine.get_frames_per_second())
 	
+	arm.move_arm(target)
+	
 	# Get previous frame result
 	var compute_data = $ComputeViewport.get_texture().get_data()
 	blobs = detector.detectColorBlob(compute_data, Color(1.0, 1.0, 1.0, 1.0))
@@ -86,17 +88,19 @@ func _process(delta):
 	else:
 		target = null
 		
-	arm.move_arm(target)
 	
 	var data = cv_viewport.get_texture().get_data()
 	
 	# Test with shader
 	var text = ImageTexture.new()
 	text.create_from_image(data)
+	#Set reference color
+	$CanvasLayer/VBoxContainer2/VBoxContainer3/BinarizedImageShader.material.set_shader_param("ref_color", reference_color)
 	$CanvasLayer/VBoxContainer2/VBoxContainer3/BinarizedImageShader.texture = text
 	
 	var compute_text = ImageTexture.new()
 	compute_text.create_from_image(data)
+	$ComputeViewport/BinarizedImageShader.material.set_shader_param("ref_color", reference_color)
 	$ComputeViewport/BinarizedImageShader.texture = compute_text
 	$ComputeViewport.render_target_update_mode = Viewport.UPDATE_ONCE
 	
