@@ -11,8 +11,9 @@ export var spawn_time_interval = 1.0
 export var reference_color = Color("#fc1b04") 
 export var color_tolerance = 4.5
 
-onready var objects = $Room/Objects
-onready var reference_obj = $Room/Reference/ReferenceObject
+onready var objects = $Room/Things/Objects
+onready var reference_obj = $Room/Things/Reference/ReferenceObject
+onready var arm = $Room/Robotic_arm
 
 # Camera zoom & rotation
 var mouse_sens = 0.15
@@ -25,15 +26,18 @@ var spawned_number = 0
 
 # CV & arm
 onready var detector = Detector.new()
+onready var cv_camera = $Room/Viewport/CVCamera
+onready var cv_viewport = $Room/Viewport
 var blobs = null
 var target = null
-var target_grabbed = false
+#var target_grabbed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-		
-	$Room/robotic_arm/Armature/Skeleton/SkeletonIK.start(true)
+	
+	arm.set_positions($Room/RestPosition, $Room/DropPosition)
+	arm.set_cv_camera(cv_camera)
 	
 	reference_obj.get_surface_material(0).albedo_color = reference_color
 	$CanvasLayer/VBoxContainer/ColorPickerButton.color = reference_color
@@ -82,9 +86,9 @@ func _process(delta):
 	else:
 		target = null
 		
-	move_arm()
+	arm.move_arm(target)
 	
-	var data = $Room/robotic_arm/Viewport.get_texture().get_data()
+	var data = cv_viewport.get_texture().get_data()
 	
 	# Test with shader
 	var text = ImageTexture.new()
@@ -99,39 +103,6 @@ func _process(delta):
 #	var res = binarizeWithColor([data, reference_color_hsv, color_tolerance])
 #	$CanvasLayer/VBoxContainer2/VBoxContainer2/BinarizedImage.texture = res
 
-func move_arm():
-	if target:
-		# We arrived to the target
-		if !$Room/robotic_arm/Armature/Skeleton/SkeletonIK.is_running():
-			grab()
-		# We grabbed tha target, go to drop position
-		if target_grabbed:
-			$Room/robotic_arm/Target.global_transform.origin = $Room/DropPosition.global_transform.origin
-			$Room/robotic_arm/Armature/Skeleton/SkeletonIK.start(true)
-			if !$Room/robotic_arm/Armature/Skeleton/SkeletonIK.is_running():
-				$Room/robotic_arm/Armature/Skeleton/BoneAttachment2.get_child(1).let_go()
-				$Room/robotic_arm/Armature/Skeleton/BoneAttachment2/Area.monitoring = false
-				target_grabbed = false
-				target = null
-		# We go to the target position
-		else:
-			$Room/robotic_arm/Target.global_transform.origin = $Room/robotic_arm/Viewport/Camera.project_position(target, 1.0)
-			$Room/robotic_arm/Armature/Skeleton/SkeletonIK.start(true)
-	# No target, we go to rest position
-	else:
-		$Room/robotic_arm/Target.global_transform.origin = $Room/RestPosition.global_transform.origin
-		$Room/robotic_arm/Armature/Skeleton/SkeletonIK.start(true)
-		
-func grab():
-	$Room/robotic_arm/Armature/Skeleton/BoneAttachment2/Area.monitoring = true
-	var bodies = $Room/robotic_arm/Armature/Skeleton/BoneAttachment2/Area.get_overlapping_bodies()
-	if bodies.empty(): return
-	for body in bodies:
-		if body.has_method("pick_up"):
-			body.pick_up($Room/robotic_arm/Armature/Skeleton/BoneAttachment2)
-			target_grabbed = true
-			$Room/robotic_arm/Armature/Skeleton/BoneAttachment2/Area.monitoring = false
-	
 func _on_SpawnIntervalTimer_timeout():
 	if spawned_number == object_number:
 		$SpawnIntervalTimer.stop()
@@ -140,7 +111,7 @@ func _on_SpawnIntervalTimer_timeout():
 		var instance = object.instance()
 		
 		# Select a random location
-		instance.global_transform = $Room/Spawner.get_child(int(rand_range(0, $Room/Spawner.get_child_count()))).global_transform
+		instance.global_transform = $Room/Things/Spawner.get_child(int(rand_range(0, $Room/Things/Spawner.get_child_count()))).global_transform
 		
 		instance.set_color(colors[int(rand_range(0, colors.size()))])
 		

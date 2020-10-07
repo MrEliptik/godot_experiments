@@ -29,7 +29,7 @@ window/vsync/use_vsync=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "thread_pool" )
+enabled=PoolStringArray(  )
 
 [physics]
 
