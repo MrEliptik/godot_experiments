@@ -42,7 +42,7 @@ class HSV:
 			self.h += 360.0
 
 
-func RGB_to_HSV(color_rgb: Color) -> HSV:
+static func RGB_to_HSV(color_rgb: Color) -> HSV:
 	var hsv = HSV.new()
 	var _min
 	var _max
