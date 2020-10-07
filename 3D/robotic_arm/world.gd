@@ -88,15 +88,8 @@ func _process(delta):
 	else:
 		target = null
 		
-	
 	var data = cv_viewport.get_texture().get_data()
 	
-	# Test with shader
-	var text = ImageTexture.new()
-	text.create_from_image(data)
-	#Set reference color
-	$CanvasLayer/VBoxContainer2/VBoxContainer3/BinarizedImageShader.material.set_shader_param("ref_color", reference_color)
-	$CanvasLayer/VBoxContainer2/VBoxContainer3/BinarizedImageShader.texture = text
 	
 	var compute_text = ImageTexture.new()
 	compute_text.create_from_image(data)
