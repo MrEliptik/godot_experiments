@@ -11,15 +11,16 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 ![](2D/quick_prototype/icon.png)| 2D | quick_prototype | a small scene with a script to allow quick prototyping. You draw a shape with the line2D, and it automatically add a physics body and a background to your shape. | DONE ✔
 ![](2D/android_accelerometer/icon.png)| 2D | android_accelerometer | trying to use the accelerometer to set the gravity | DONE ✔
 | | | | |
+![](3D/android_maze_accelerometer/icon.png) | 3D | android_maze_accelerometer | control a maze's orientation with the phone's acceleromter | DONE ✔
+![](3D/area_gravity/icon.png) | 3D | area_gravity | a simple test using the gravity of an area | DONE ✔
 ![](3D/car/icon.png) | 3D | car | a test with godot vehicle body physics and trial-like terrain | WIP 🛠
+![](3D/inverted_pendulum/icon.png) | 3D | inverted_pendulum | a test with bullet's physics. An inverted pendulm with an inertia wheel | DONE ✔
 ![](3D/plane/icon.png) | 3D | plane | plane controller | WIP 🛠
 ![](3D/procedural_animation/icon.png) | 3D | procedural_animation | prodecural animation of a spider-like (or robot) model, with inverse kinematics | WIP 🛠
+![](3D/robotic_arm/icon.png) | 3D | robotic_arm | computer vision + IK test with a robotic pick and place arm | WIP 🛠
 ![](3D/spectrum_analyzer/icon.png) | 3D | spectrum_analyzer | simple spectrum analyzer moving 3d objects | DONE ✔
 ![](3D/tv/icon.png) | 3D | tv | displaying a video or frames on a crt tv | DONE ✔
 ![](3D/wheelBot/icon.png) | 3D | wheelBot | a robot rolling on one wheel | DONE ✔
-![](3D/area_gravity/icon.png) | 3D | area_gravity | a simple test using the gravity of an area | DONE ✔
-![](3D/android_maze_accelerometer/icon.png) | 3D | android_maze_accelerometer | control a maze's orientation with the phone's acceleromter | WIP 🛠
-![](3D/robotic_arm/icon.png) | 3D | robotic_arm | computer vision + IK test with a robotic pick and place arm | WIP 🛠
 | | | | |
 ![](VR/quest_playground/icon.png) | VR | quest_playground | a project testing various things in VR for the Oculus Quest: handtracking, handtrackings physics | WIP 🛠
 ![](VR/table_tennis/icon.png) | VR | table_tennis | trying to use Godot's physic to recreate a table tennis game | WIP 🛠
