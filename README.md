@@ -65,11 +65,14 @@ http://www.mazegenerator.net/
 
 ## About me
 
-- [Twitter](https://twitter.com/VicMeunier) 
-- [Sketchfab](https://sketchfab.com/victor.meunierpk)
-- [Itch.io](https://mreliptik.itch.io/)
+Software engineer & gamedev. 3D, 2D & VR. 
 
-## LICENCE
+- [Twitter](https://twitter.com/VicMeunier) 
+- [Instagram](https://www.instagram.com/vico.choco)
+- [Itch.io](https://mreliptik.itch.io/)
+- [Sketchfab](https://sketchfab.com/victor.meunierpk)
+
+## LICENCE & Credits
 
 - **2D/android_accelerometer**: (texture + balls) [Kenney](https://www.kenney.nl/)
 - **3D/android_accelerometer**: (Ball + flag) [Kenney](https://www.kenney.nl/)
