@@ -71,7 +71,9 @@ Software engineer & gamedev. 3D, 2D & VR.
 - [Itch.io](https://mreliptik.itch.io/)
 - [Sketchfab](https://sketchfab.com/victor.meunierpk)
 
-## LICENCE & Credits
+## LICENSE & Credits
+
+This project is distributed under the MIT license, which it's free to use, modify and redistribute, for both personnal and commercial projects. For more information see [LICENSE.md](https://github.com/MrEliptik/godot_experiments/blob/master/LICENSE).
 
 - **2D/android_accelerometer**: (texture + balls) [Kenney](https://www.kenney.nl/)
 - **3D/android_accelerometer**: (Ball + flag) [Kenney](https://www.kenney.nl/)
