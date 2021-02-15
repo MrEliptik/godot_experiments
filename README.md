@@ -1,5 +1,9 @@
 # Godot experiments
 
+<p align="center">
+  <img src="godot_experiments_social_preview.jpg" width="720">
+</p>
+
 Some of my 2D/3D/VR/UI experiments in Godot.
 
 ## Projects & descriptions
