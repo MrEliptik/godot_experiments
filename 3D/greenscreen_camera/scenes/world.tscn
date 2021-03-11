@@ -5,56 +5,56 @@
 [ext_resource path="res://visuals/textures/texture_11.png" type="Texture" id=3]
 [ext_resource path="res://scenes/world.gd" type="Script" id=4]
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.701961, 0.701961, 0.701961, 1 )
 albedo_texture = ExtResource( 1 )
 uv1_triplanar = true
 
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.0196078, 0.0196078, 0.0196078, 1 )
 
-[sub_resource type="ViewportTexture" id=11]
+[sub_resource type="ViewportTexture" id=3]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="SpatialMaterial" id=12]
+[sub_resource type="SpatialMaterial" id=4]
 resource_local_to_scene = true
-albedo_texture = SubResource( 11 )
+albedo_texture = SubResource( 3 )
 
-[sub_resource type="PlaneMesh" id=13]
+[sub_resource type="PlaneMesh" id=5]
 resource_local_to_scene = true
-material = SubResource( 12 )
+material = SubResource( 4 )
 size = Vector2( 8, 4 )
 
-[sub_resource type="ViewportTexture" id=10]
+[sub_resource type="ViewportTexture" id=6]
 viewport_path = NodePath("Viewport2")
 
-[sub_resource type="SpatialMaterial" id=8]
+[sub_resource type="SpatialMaterial" id=7]
 resource_local_to_scene = true
 flags_unshaded = true
-albedo_texture = SubResource( 10 )
+albedo_texture = SubResource( 6 )
 
-[sub_resource type="PlaneMesh" id=1]
+[sub_resource type="PlaneMesh" id=8]
 resource_local_to_scene = true
-material = SubResource( 8 )
+material = SubResource( 7 )
 size = Vector2( 8, 4 )
 
-[sub_resource type="ProceduralSky" id=5]
+[sub_resource type="ProceduralSky" id=9]
 
-[sub_resource type="Environment" id=6]
+[sub_resource type="Environment" id=10]
 background_mode = 2
-background_sky = SubResource( 5 )
+background_sky = SubResource( 9 )
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_sky_contribution = 0.0
 tonemap_mode = 1
 adjustment_enabled = true
 
-[sub_resource type="SpatialMaterial" id=15]
+[sub_resource type="SpatialMaterial" id=11]
 albedo_color = Color( 1, 0.917647, 0.0509804, 1 )
 albedo_texture = ExtResource( 3 )
 uv1_triplanar = true
 
-[sub_resource type="CubeMesh" id=14]
-material = SubResource( 15 )
+[sub_resource type="CubeMesh" id=12]
+material = SubResource( 11 )
 
 [node name="World" type="Spatial"]
 script = ExtResource( 4 )
@@ -69,7 +69,7 @@ invert_faces = true
 width = 25.0
 height = 10.0
 depth = 25.0
-material = SubResource( 4 )
+material = SubResource( 1 )
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 1920, 1080 )
@@ -85,7 +85,7 @@ fov = 40.0
 
 [node name="Camera2" type="CSGBox" parent="Viewport/Camera"]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -0.000247955, -0.00028944, -0.000444412 )
-material_override = SubResource( 9 )
+material_override = SubResource( 2 )
 width = 1.0
 height = 0.4
 depth = 0.4
@@ -98,7 +98,7 @@ sides = 16
 
 [node name="Screen" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -0.171413, -0.985199, 0, 0.985199, -0.171413, -4.33926, 4.02376, -11.6551 )
-mesh = SubResource( 13 )
+mesh = SubResource( 5 )
 material/0 = null
 
 [node name="Viewport2" type="Viewport" parent="."]
@@ -114,7 +114,7 @@ fov = 40.0
 
 [node name="Camera2" type="CSGBox" parent="Viewport2/Camera"]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -0.000247955, -0.00028944, -0.000444412 )
-material_override = SubResource( 9 )
+material_override = SubResource( 2 )
 width = 1.0
 height = 0.4
 depth = 0.4
@@ -127,11 +127,11 @@ sides = 16
 
 [node name="Screen2" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -0.171413, -0.985199, 0, 0.985199, -0.171413, 4.15281, 4.02376, -11.6551 )
-mesh = SubResource( 1 )
+mesh = SubResource( 8 )
 material/0 = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 6 )
+environment = SubResource( 10 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
 transform = Transform( 0.896965, 0.253231, -0.362391, 0, 0.819702, 0.57279, 0.442101, -0.513773, 0.735245, 0, 8.55322, 0 )
@@ -140,14 +140,14 @@ shadow_enabled = true
 [node name="CSGMesh" type="CSGMesh" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4.2244 )
 use_collision = true
-mesh = SubResource( 14 )
+mesh = SubResource( 12 )
 
 [node name="CSGMesh2" type="CSGMesh" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.81883, 1, 4.2244 )
 use_collision = true
-mesh = SubResource( 14 )
+mesh = SubResource( 12 )
 
 [node name="CSGMesh3" type="CSGMesh" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.55169, 1, 4.2244 )
 use_collision = true
-mesh = SubResource( 14 )
+mesh = SubResource( 12 )
