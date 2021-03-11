@@ -23,6 +23,7 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 ![](3D/robotic_arm/icon.png) | 3D | robotic_arm | computer vision + IK test with a robotic pick and place arm | WIP 🛠
 ![](3D/spectrum_analyzer/icon.png) | 3D | spectrum_analyzer | simple spectrum analyzer moving 3d objects | DONE ✔
 ![](3D/tv/icon.png) | 3D | tv | displaying a video or frames on a crt tv | DONE ✔
+![](3D/camera_wall/icon.png) | 3D | camera_wall | wall hiding to reveal player to the camera | DONE ✔
 ![](3D/wheelBot/icon.png) | 3D | wheelBot | a robot rolling on one wheel | DONE ✔
 | | | | |
 ![](VR/quest_playground/icon.png) | VR | quest_playground | a project testing various things in VR for the Oculus Quest: handtracking, handtrackings physics | WIP 🛠
@@ -49,6 +50,10 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 ### Area_gravity
 
 ![](videos_gifs/area_gravity.gif)
+
+### Camera_walls
+
+![](videos_gifs/camera_walls.gif)
 
 ## Useful
 
