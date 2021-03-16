@@ -1,28 +1,25 @@
 extends VehicleBody
 
 #########################################
-# Behavior values
+# VEHICLE
+var horse_power = 550
+var accel_speed = 120
+var steer_angle = deg2rad(30)
+var steer_speed = 3
+var brake_power = 30
+var brake_speed = 25
 
-export var MAX_ENGINE_FORCE = 200.0
-export var MAX_BRAKE_FROCE = 5.0
-export var MAX_STEER_ANGLE = 0.5
-
-export var steer_speed = 5.0
-
-var steer_target = 0.0
-var steer_angle = 0.0
 
 ########################################
-# Input
-export var joy_steering = JOY_ANALOG_LX
-export var steering_mult = -1.0
+# GAMEPAD INPUT
+export var joy_steer_x = JOY_ANALOG_LX
+export var joy_steer_y = JOY_ANALOG_LY
 export var joy_throttle = JOY_ANALOG_R2
-export var throttle_mult = 1.0
 export var joy_brake = JOY_ANALOG_L2
-export var brake_mult = 1.0
+export var joy_camera_x = JOY_ANALOG_RX
+export var joy_camera_y = JOY_ANALOG_RY
 
 const JOY_DEADZONE = 0.15
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,36 +27,40 @@ func _ready():
 
 
 func _physics_process(delta):
-	var in_steer = Input.get_joy_axis(0, joy_steering)
-	var steer_val = 0
-	if abs(in_steer) > JOY_DEADZONE:
-		steer_val = steering_mult * in_steer
-	var throttle_val = throttle_mult * Input.get_joy_axis(0, joy_throttle)
-	var brake_val = brake_mult * Input.get_joy_axis(0, joy_brake)
+	var throttle_force = 0.0
+	var brake_force = 0.0
+	var steer_force = 0.0
 	
-	if Input.is_action_pressed("ui_up"):
-		throttle_val = 1.0
-	if Input.is_action_pressed("ui_down"):
-		brake_val = 1.0
-	if Input.is_action_pressed("ui_left"):
-		steer_val = 1.0
-	elif Input.is_action_pressed("ui_right"):
-		steer_val = -1.0
+#	if Input.is_action_pressed("ui_up"):
+#		throttle_val = 1.0
+#	if Input.is_action_pressed("ui_down"):
+#		brake_val = 1.0
+#	if Input.is_action_pressed("ui_left"):
+#		steer_val = 1.0
+#	elif Input.is_action_pressed("ui_right"):
+#		steer_val = -1.0
 		
-	engine_force = throttle_val * MAX_ENGINE_FORCE
-	brake = brake_val * MAX_BRAKE_FROCE
+	var throttle_input = Input.get_joy_axis(0, joy_throttle)
+	if throttle_input > JOY_DEADZONE:
+		throttle_force = throttle_input
 	
-	steer_target = steer_val * MAX_STEER_ANGLE
-	if(steer_target < steer_angle):
-		steer_angle -= steer_speed * delta
-		if (steer_target > steer_angle):
-			steer_target = steer_angle
-	elif(steer_target > steer_angle):
-		steer_angle += steer_speed * delta
-		if (steer_target < steer_angle):
-			steer_target = steer_angle
-			
-	steering = steer_angle
+	engine_force = lerp(engine_force, throttle_force*horse_power, accel_speed*delta)
+	
+	var steer_input = Input.get_joy_axis(0, joy_steer_x)
+	if abs(steer_input) > JOY_DEADZONE:
+		steer_force = -steer_input
+	steering = lerp_angle(steering, steer_force*steer_angle, steer_speed*delta)
+	
+	var brake_input = Input.get_joy_axis(0, joy_brake)
+	if brake_input > JOY_DEADZONE:
+		brake_force = brake_input
+	brake = lerp(brake, brake_force*brake_power, brake_speed*delta)
+	
+	## CAMERA
+#	var camera_x_input = 0.0
+#	camera_x_input = Input.get_joy_axis(0, joy_camera_x)
+#	if abs(camera_x_input) > JOY_DEADZONE:
+#		$SpringArm.rotation.y += camera_x_input * camera_speed * delta
 
 
 
