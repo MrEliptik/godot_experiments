@@ -16,7 +16,7 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 | | | | |
 ![](3D/android_maze_accelerometer/icon.png) | 3D | android_maze_accelerometer | control a maze's orientation with the phone's acceleromter | DONE ✔
 ![](3D/area_gravity/icon.png) | 3D | area_gravity | a simple test using the gravity of an area | DONE ✔
-![](3D/car/icon.png) | 3D | car | a test with godot vehicle body physics and trial-like terrain | WIP 🛠
+![](3D/car/icon.png) | 3D | car | a test with godot vehicle body physics and trial-like terrain | DONE ✔
 ![](3D/inverted_pendulum/icon.png) | 3D | inverted_pendulum | a test with bullet's physics. An inverted pendulm with an inertia wheel | DONE ✔
 ![](3D/plane/icon.png) | 3D | plane | plane controller | WIP 🛠
 ![](3D/procedural_animation/icon.png) | 3D | procedural_animation | prodecural animation of a spider-like (or robot) model, with inverse kinematics | WIP 🛠
@@ -59,6 +59,10 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 ### Audio_visualizer
 
 ![](videos_gifs/audio_visualizer.gif)
+
+### Car
+
+![Car](videos_gifs/car.gif)
 
 ## Useful
 
