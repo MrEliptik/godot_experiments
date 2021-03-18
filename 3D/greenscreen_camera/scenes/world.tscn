@@ -44,8 +44,9 @@ size = Vector2( 8, 4 )
 background_mode = 2
 background_sky = SubResource( 9 )
 ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.5
 ambient_light_sky_contribution = 0.0
-tonemap_mode = 1
+tonemap_mode = 3
 adjustment_enabled = true
 
 [sub_resource type="SpatialMaterial" id=11]
@@ -95,6 +96,17 @@ transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0, 1, 0.57003
 radius = 0.15
 height = 0.2
 sides = 16
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Viewport"]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Viewport/CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0.647059, 0.223529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Screen" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -0.171413, -0.985199, 0, 0.985199, -0.171413, -4.33926, 4.02376, -11.6551 )
