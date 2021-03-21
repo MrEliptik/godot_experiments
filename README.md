@@ -19,6 +19,7 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 ![](3D/balloon_deploy/icon.png) | 3D | balloon_deploy | recreating solid snake balloon deploy mechanic with physics | DONE ✔
 ![](3D/camera_wall/icon.png) | 3D | camera_wall | wall hiding to reveal player to the camera | DONE ✔
 ![](3D/car/icon.png) | 3D | car | a test with godot vehicle body physics and trial-like terrain | DONE ✔
+![](3D/control_remedy/icon.png) | 3D | control_remedy | mechanic re-creation from control remedy: grabbing and throwing object through telekinesis | DONE ✔
 ![](3D/greenscreen_camera/icon.png) | 3D | greenscreen_camera | a greenscreen effect to a camera. The camera only sees an object, allowing you to put something in the background, like an image. | DONE ✔
 ![](3D/inverted_pendulum/icon.png) | 3D | inverted_pendulum | a test with bullet's physics. An inverted pendulm with an inertia wheel | DONE ✔
 ![](3D/plane/icon.png) | 3D | plane | plane controller | WIP 🛠
@@ -73,6 +74,10 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 ### Balloon_deploy
 
 ![Car](videos_gifs/balloon_deploy.gif)
+
+### Control_remedy
+
+![Car](videos_gifs/control_throw.gif)
 
 ## Useful
 
