@@ -16,7 +16,7 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 | | | | |
 ![](3D/android_maze_accelerometer/icon.png) | 3D | android_maze_accelerometer | control a maze's orientation with the phone's acceleromter | DONE ✔
 ![](3D/area_gravity/icon.png) | 3D | area_gravity | a simple test using the gravity of an area | DONE ✔
-![](3D/balloon_deploy/icon.png) | 3D | balloon_deploy | recreating solid snake balloon deploy mechanic with physics | DONE ✔
+![](3D/balloon_deploy/icon.png) | 3D | balloon_deploy | recreating just cause balloon deploy mechanic with physics | DONE ✔
 ![](3D/camera_wall/icon.png) | 3D | camera_wall | wall hiding to reveal player to the camera | DONE ✔
 ![](3D/car/icon.png) | 3D | car | a test with godot vehicle body physics and trial-like terrain | DONE ✔
 ![](3D/control_remedy/icon.png) | 3D | control_remedy | mechanic re-creation from control remedy: grabbing and throwing object through telekinesis | DONE ✔
