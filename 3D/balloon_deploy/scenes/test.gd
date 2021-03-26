@@ -31,8 +31,8 @@ func _process(delta):
 		p.append($Package.transform.origin)
 		p.append(balloon.transform.origin)
 		
-		for x in p:
-			ig.add_vertex(x)
+	for x in p:
+		ig.add_vertex(x)
 			
 	ig.end()
 

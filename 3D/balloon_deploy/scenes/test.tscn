@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/balloon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/package.tscn" type="PackedScene" id=2]
@@ -7,11 +7,8 @@
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.168627, 0.168627, 0.168627, 1 )
 
-[sub_resource type="ProceduralSky" id=3]
-
 [sub_resource type="Environment" id=2]
 background_mode = 2
-background_sky = SubResource( 3 )
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_sky_contribution = 0.0
 tonemap_mode = 2
