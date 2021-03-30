@@ -22,6 +22,7 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 ![](3D/control_remedy/icon.png) | 3D | control_remedy | mechanic re-creation from control remedy: grabbing and throwing object through telekinesis | DONE ✔
 ![](3D/greenscreen_camera/icon.png) | 3D | greenscreen_camera | a greenscreen effect to a camera. The camera only sees an object, allowing you to put something in the background, like an image. | DONE ✔
 ![](3D/inverted_pendulum/icon.png) | 3D | inverted_pendulum | a test with bullet's physics. An inverted pendulm with an inertia wheel | DONE ✔
+![](3D/mirrors/icon.png) | 3D | mirrors | two ways of faking mirrors | DONE ✔
 ![](3D/plane/icon.png) | 3D | plane | plane controller | WIP 🛠
 ![](3D/procedural_animation/icon.png) | 3D | procedural_animation | prodecural animation of a spider-like (or robot) model, with inverse kinematics | WIP 🛠
 ![](3D/robotic_arm/icon.png) | 3D | robotic_arm | computer vision + IK test with a robotic pick and place arm | WIP 🛠
