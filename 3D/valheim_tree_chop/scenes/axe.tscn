@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/axe_model.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/axe.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "chop"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("axe:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -0.392363, 0.082803, -0.293567 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("axe:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -20.5021, 76.5742, -61.5887 ), Vector3( 0, 0, 0 ) ]
+}
+
+[node name="Axe" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="axe" parent="." instance=ExtResource( 1 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/chop = SubResource( 1 )
