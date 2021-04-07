@@ -3,6 +3,8 @@ extends RigidBody
 const highlight = preload("res://visuals/highlight.tres")
 
 onready var original_parent = get_parent()
+onready var original_collision_layer = collision_layer
+onready var original_collision_mask = collision_mask
 
 var picked_up_by = null
 
@@ -15,9 +17,6 @@ func _ready():
 
 func _physics_process(delta):
 	if !picked_up_by: return
-	
-	var dist = global_transform.origin.distance_to(picked_up_by.global_transform.origin) 
-	var dir = picked_up_by.global_transform.origin - global_transform.origin 
 	
 	global_transform.origin = lerp(global_transform.origin, picked_up_by.global_transform.origin, speed * delta)
 
@@ -39,9 +38,9 @@ func pick_up(by):
 	original_transform = global_transform
 	
 	# turn of physics for our pickable object
-	mode = RigidBody.MODE_KINEMATIC
-	#collision_layer = 0
-	#collision_mask = 0
+	mode = RigidBody.MODE_STATIC
+	collision_layer = 0
+	collision_mask = 0
 	
 	# now reparent it
 	original_parent.remove_child(self)
@@ -62,8 +61,8 @@ func let_go(impulse = Vector3(0.0, 0.0, 0.0)):
 		# reposition it and apply impulse
 		global_transform = t
 		mode = RigidBody.MODE_RIGID
-		#collision_layer = original_collision_layer
-		#collision_mask = original_collision_mask
+		collision_layer = original_collision_layer
+		collision_mask = original_collision_mask
 		apply_impulse(Vector3(0.0, 0.0, 0.0), impulse)
 		
 		picked_up_by = null
