@@ -58,49 +58,18 @@ func _physics_process(delta):
 	velocity.z = desired_velocity.z
 	velocity = move_and_slide(velocity, Vector3.UP, true)
 	
-#	if $Pivot/RayCast.is_colliding() && !picked_up:
-#		collider = $Pivot/RayCast.get_collider()
-#		if collider != previous_collider && previous_collider:
-#			if previous_collider.has_method("highlight"):
-#				previous_collider.highlight(false)
-#			previous_collider = collider
-#		else:
-#			previous_collider = collider
-#			if collider.has_method("highlight"):
-#				collider.highlight(true)
-#
-#	if Input.is_action_just_pressed("pick"):
-#		if !collider or (collider && !collider.has_method("pick_up")):
-#			var bodies = $PickArea.get_overlapping_bodies()
-#			if !bodies: return
-#			var smallest_dist = 100000
-#			var closest_object = null
-#			for body in bodies:
-#				var dist = global_transform.origin.distance_to(body.global_transform.origin)
-#				if dist < smallest_dist && body.has_method("pick_up"): 
-#					smallest_dist = dist
-#					closest_object = body
-#			if picked_up: return
-#			elif closest_object:
-#				closest_object.pick_up($Pivot/PickPoint)
-#				closest_object.highlight(false)
-#				picked_up = closest_object
-#		else:
-#			if picked_up: return
-#			elif collider.has_method("pick_up"):
-#				collider.pick_up($Pivot/PickPoint)
-#				collider.highlight(false)
-#				picked_up = collider
-#	if Input.is_action_just_pressed("throw"):
-#		if !picked_up: return
-#		picked_up.let_go(-$Pivot/PickPoint.global_transform.basis.z * throw_force)
-#		picked_up = null
-
 	if $Pivot/RayCast.is_colliding() && !picked_up:
 		collider = $Pivot/RayCast.get_collider()
-		
+		if collider != previous_collider && previous_collider:
+			if previous_collider.has_method("highlight"):
+				previous_collider.highlight(false)
+			previous_collider = collider
+		else:
+			previous_collider = collider
+			if collider.has_method("highlight"):
+				collider.highlight(true)
+
 	if Input.is_action_just_pressed("pick"):
-		# No object in direct sight
 		if !collider or (collider && !collider.has_method("pick_up")):
 			var bodies = $PickArea.get_overlapping_bodies()
 			if !bodies: return
@@ -114,17 +83,17 @@ func _physics_process(delta):
 			if picked_up: return
 			elif closest_object:
 				closest_object.pick_up($Pivot/PickPoint)
+				closest_object.highlight(false)
 				picked_up = closest_object
-		# Object collide with raycast
 		else:
 			if picked_up: return
 			elif collider.has_method("pick_up"):
 				collider.pick_up($Pivot/PickPoint)
+				collider.highlight(false)
 				picked_up = collider
 	if Input.is_action_just_pressed("throw"):
 		if !picked_up: return
 		picked_up.let_go(-$Pivot/PickPoint.global_transform.basis.z * throw_force)
 		picked_up = null
-
 
 
