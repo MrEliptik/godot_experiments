@@ -21,6 +21,7 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 ![](3D/car/icon.png) | 3D | car | a test with godot vehicle body physics and trial-like terrain | DONE ✔
 ![](3D/control_remedy/icon.png) | 3D | control_remedy | mechanic re-creation from control remedy: grabbing and throwing object through telekinesis | DONE ✔
 ![](3D/greenscreen_camera/icon.png) | 3D | greenscreen_camera | a greenscreen effect to a camera. The camera only sees an object, allowing you to put something in the background, like an image. | DONE ✔
+![](3D/hoverboard/icon.png) | 3D | hoverboard | a physics based hoverboard, inspired by [Codeer](https://twitter.com/CodeerDev). | DONE ✔
 ![](3D/inverted_pendulum/icon.png) | 3D | inverted_pendulum | a test with bullet's physics. An inverted pendulm with an inertia wheel | DONE ✔
 ![](3D/mirrors/icon.png) | 3D | mirrors | two ways of faking mirrors | DONE ✔
 ![](3D/plane/icon.png) | 3D | plane | plane controller | WIP 🛠
@@ -28,6 +29,7 @@ Some of my 2D/3D/VR/UI experiments in Godot.
 ![](3D/robotic_arm/icon.png) | 3D | robotic_arm | computer vision + IK test with a robotic pick and place arm | WIP 🛠
 ![](3D/spectrum_analyzer/icon.png) | 3D | spectrum_analyzer | simple spectrum analyzer moving 3d objects | DONE ✔
 ![](3D/tv/icon.png) | 3D | tv | displaying a video or frames on a crt tv | DONE ✔
+![](3D/valheim_tree_chop/icon.png) | 3D | valheim_tree_chop | recreating the Valheim tree chop mechanic | DONE ✔
 ![](3D/wheelBot/icon.png) | 3D | wheelBot | a robot rolling on one wheel | DONE ✔
 | | | | |
 ![](VR/quest_playground/icon.png) | VR | quest_playground | a project testing various things in VR for the Oculus Quest: handtracking, handtrackings physics | WIP 🛠

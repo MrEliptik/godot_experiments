@@ -3,17 +3,10 @@ extends KinematicBody
 onready var camera = $Pivot/Camera
 
 var gravity: float = -30
-var max_speed: float = 8
+var max_speed: float = 12
 var mouse_sensitivity: float  = 0.0015  # radians/pixel
 
-var throw_force: float = 200
-
 var velocity: Vector3 = Vector3()
-
-# OBJECT
-var collider = null
-var previous_collider = null
-var picked_up = null
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -21,7 +14,6 @@ func _ready():
 func get_input():
 	var input_dir = Vector3()
 	# desired move in camera direction
-
 	if Input.is_action_pressed("move_forward"):
 		input_dir += -camera.global_transform.basis.z
 	if Input.is_action_pressed("move_back"):
@@ -40,7 +32,6 @@ func _unhandled_input(event):
 		$Pivot.rotation.x = clamp($Pivot.rotation.x, -1.2, 1.2)
 		
 func _process(delta):
-	
 	if Input.is_action_just_pressed("ui_cancel"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -54,12 +45,12 @@ func _process(delta):
 		$Pivot/Axe.chop()
 		
 func _physics_process(delta):
-	
 	velocity.y += gravity * delta
 	var desired_velocity = get_input() * max_speed
 
 	velocity.x = desired_velocity.x
 	velocity.z = desired_velocity.z
-	velocity = move_and_slide(velocity, Vector3.UP, true)
+	# Disable infinite inertia to avoid yeeting the tree trunk
+	velocity = move_and_slide_with_snap(velocity,Vector3.DOWN, Vector3.UP, true, 4, 0.785398, false)
 
 
