@@ -59,6 +59,8 @@ font_data = ExtResource( 12 )
 [node name="Home" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -479,10 +481,19 @@ text = "polygon"
 align = 1
 valign = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-margin_top = 440.0
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 468.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer2"]
 margin_right = 1080.0
-margin_bottom = 1766.0
+margin_bottom = 1452.0
 mouse_filter = 1
 size_flags_vertical = 3
 theme = SubResource( 4 )
@@ -491,24 +502,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/ScrollContainer"]
 margin_right = 1080.0
 margin_bottom = 3208.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Post" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 10 )]
+[node name="Post" parent="VBoxContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 10 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 1080.0
 margin_bottom = 1602.0
 
-[node name="Post2" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 10 )]
+[node name="Post2" parent="VBoxContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 10 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 1606.0
 margin_right = 1080.0
 margin_bottom = 3208.0
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -149.0
+margin_bottom = 1.0
+rect_min_size = Vector2( 0, 150 )
+texture = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BottomPanel" type="GridContainer" parent="."]
 anchor_top = 1.0
