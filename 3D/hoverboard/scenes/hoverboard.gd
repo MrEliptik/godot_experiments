@@ -1,6 +1,6 @@
 extends RigidBody
 
-onready var points = get_tree().get_nodes_in_group("Points")
+onready var rays = get_tree().get_nodes_in_group("Raycasts")
 
 var speed = 15000
 var turn_speed = 2000
@@ -27,23 +27,17 @@ func _input(event):
 			hover_force = clamp(hover_force, 0, 1200)
 
 func _physics_process(delta):
-	# Loop through rays and points
-	for i in range(points.size()):
-		var point = points[i]
-		var ray = point.get_child(0)
+	# Loop through rays
+	for ray in rays:
 		ray.force_raycast_update()
 		if ray.is_colliding():
 			var collision_point = ray.get_collision_point()
 			
-			# Calculate distance between point and raycast hit
-			var dist = collision_point.distance_to(point.global_transform.origin)
-			#var force_vec = (point.global_transform.origin - collision_point).normalized()
+			# Calculate distance between ray position and raycast hit
+			var dist = collision_point.distance_to(ray.global_transform.origin)
 			
 			# Apply force based on distance
-			add_force(Vector3.UP * (1/dist) * hover_force * delta, point.global_transform.origin - global_transform.origin)
-			
-			var board_pos = get_global_transform().origin
-			var thruster_pos = $ThrusterPos.get_global_transform().origin
+			add_force(Vector3.UP * (1/dist) * hover_force * delta, ray.global_transform.origin - global_transform.origin)
 			
 	# Apply force to move
 	if Input.is_action_pressed("forward"):

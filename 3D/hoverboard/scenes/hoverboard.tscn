@@ -16,6 +16,8 @@ height = 0.1
 [node name="Hoverboard" type="Spatial"]
 
 [node name="Hoverboard" type="RigidBody" parent="."]
+collision_layer = 2
+collision_mask = 2
 mass = 10.0
 physics_material_override = SubResource( 1 )
 continuous_cd = true
@@ -30,92 +32,73 @@ shape = SubResource( 2 )
 
 [node name="hoverboard" parent="Hoverboard" instance=ExtResource( 2 )]
 
-[node name="ThrusterPos" type="Position3D" parent="Hoverboard"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.725691, 0, 0 )
-
 [node name="RemoteTransform" type="RemoteTransform" parent="Hoverboard"]
-transform = Transform( 0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1, -0.749999, -0.030277, 0.172 )
-remote_path = NodePath("../../PointFL")
+transform = Transform( 0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1, -0.749999, -0.030277, 0.233542 )
+remote_path = NodePath("../../RayFL")
 update_rotation = false
 update_scale = false
 
 [node name="RemoteTransform2" type="RemoteTransform" parent="Hoverboard"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, -0.030277, -0.172 )
-remote_path = NodePath("../../PointFR")
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, -0.03, -0.234 )
+remote_path = NodePath("../../RayFR")
 update_rotation = false
 update_scale = false
 
 [node name="RemoteTransform3" type="RemoteTransform" parent="Hoverboard"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.030277, 0.172 )
-remote_path = NodePath("../../PointRL")
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.03, 0.234 )
+remote_path = NodePath("../../RayRL")
 update_rotation = false
 update_scale = false
 
 [node name="RemoteTransform4" type="RemoteTransform" parent="Hoverboard"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.030277, -0.172 )
-remote_path = NodePath("../../PointRR")
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.03, -0.234 )
+remote_path = NodePath("../../RayRR")
 update_rotation = false
 update_scale = false
 
 [node name="Camera" type="Camera" parent="Hoverboard"]
 transform = Transform( -1.40375e-07, -0.359362, 0.933198, -5.85474e-08, 0.933198, 0.359362, -1, -4.19102e-09, -1.52037e-07, 3.62559, 2.75614, 0 )
 
-[node name="PointFL" type="Position3D" parent="." groups=[
-"Points",
-]]
-transform = Transform( 0.999989, 0, 0, 0, 0.999989, 0, 0, 0, 1, -0.749999, -0.030277, 0.172 )
-
-[node name="RayCast" type="RayCast" parent="PointFL" groups=[
+[node name="RayFL" type="RayCast" parent="." groups=[
 "Raycasts",
 ]]
+transform = Transform( 0.999989, 0, 0, 0, 0.999989, 0, 0, 0, 1, -0.749999, -0.030277, 0.233542 )
 enabled = true
-collision_mask = 2
 
-[node name="MeshInstance" type="MeshInstance" parent="PointFL"]
+[node name="MeshInstance" type="MeshInstance" parent="RayFL"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 3 )
 material/0 = null
 
-[node name="PointFR" type="Position3D" parent="." groups=[
-"Points",
-]]
-transform = Transform( 0.999997, 0, 0, 0, 0.999997, 0, 0, 0, 1, -0.75, -0.030277, -0.172 )
-
-[node name="RayCast" type="RayCast" parent="PointFR" groups=[
+[node name="RayFR" type="RayCast" parent="." groups=[
 "Raycasts",
 ]]
+transform = Transform( 0.999997, 0, 0, 0, 0.999997, 0, 0, 0, 1, -0.75, -0.03, -0.234 )
 enabled = true
 
-[node name="MeshInstance" type="MeshInstance" parent="PointFR"]
+[node name="MeshInstance" type="MeshInstance" parent="RayFR"]
 transform = Transform( 1, 1.49012e-08, 2.98023e-08, -1.49012e-08, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 3 )
 material/0 = null
 
-[node name="PointRL" type="Position3D" parent="." groups=[
-"Points",
-]]
-transform = Transform( 0.999997, 0, 0, 0, 0.999997, 0, 0, 0, 1, 0.75, -0.030277, 0.172 )
-
-[node name="RayCast" type="RayCast" parent="PointRL" groups=[
+[node name="RayRL" type="RayCast" parent="." groups=[
 "Raycasts",
 ]]
+transform = Transform( 0.999997, 0, 0, 0, 0.999997, 0, 0, 0, 1, 0.75, -0.03, 0.234 )
 enabled = true
 
-[node name="MeshInstance" type="MeshInstance" parent="PointRL"]
+[node name="MeshInstance" type="MeshInstance" parent="RayRL"]
 transform = Transform( 1, 1.49012e-08, 2.98023e-08, -1.49012e-08, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 3 )
 material/0 = null
 
-[node name="PointRR" type="Position3D" parent="." groups=[
-"Points",
-]]
-transform = Transform( 0.999997, 0, 0, 0, 0.999997, 0, 0, 0, 1, 0.75, -0.030277, -0.172 )
-
-[node name="RayCast" type="RayCast" parent="PointRR" groups=[
+[node name="RayRR" type="RayCast" parent="." groups=[
 "Raycasts",
 ]]
+transform = Transform( 0.999997, 0, 0, 0, 0.999997, 0, 0, 0, 1, 0.75, -0.03, -0.234 )
 enabled = true
 
-[node name="MeshInstance" type="MeshInstance" parent="PointRR"]
+[node name="MeshInstance" type="MeshInstance" parent="RayRR"]
 transform = Transform( 1, 1.49012e-08, 2.98023e-08, -1.49012e-08, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 3 )
 material/0 = null

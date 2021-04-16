@@ -21,11 +21,11 @@ size = Vector3( 30, 0.1, 30 )
 albedo_color = Color( 0.952941, 0.886275, 0.439216, 1 )
 albedo_texture = ExtResource( 4 )
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=5]
 albedo_color = Color( 0.568627, 0.568627, 0.568627, 1 )
 albedo_texture = ExtResource( 3 )
 
-[sub_resource type="Environment" id=5]
+[sub_resource type="Environment" id=6]
 background_mode = 1
 background_color = Color( 0.411765, 0.411765, 0.411765, 1 )
 ambient_light_color = Color( 1, 1, 1, 1 )
@@ -65,7 +65,7 @@ collision_mask = 3
 polygon = PoolVector2Array( 0, 0, 1.1137, 0.550381, 2.45808, 1.29792, 2.32235, -0.0158158 )
 depth = 2.0
 smooth_faces = true
-material = SubResource( 6 )
+material = SubResource( 5 )
 
 [node name="Ramp2" type="CSGPolygon" parent="."]
 transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 2.1684, 0.0135469, 6.10426 )
@@ -75,7 +75,7 @@ collision_mask = 3
 polygon = PoolVector2Array( 0, 0, 1.1137, 0.550381, 2.45808, 1.29792, 2.32235, -0.0158158 )
 depth = 2.0
 smooth_faces = true
-material = SubResource( 6 )
+material = SubResource( 5 )
 
 [node name="CSGBox" type="CSGBox" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.90831, 0.655371, 7.08079 )
@@ -84,13 +84,13 @@ collision_layer = 3
 collision_mask = 3
 width = 5.93169
 height = 1.21964
-material = SubResource( 6 )
+material = SubResource( 5 )
 
 [node name="Hoverboard" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.86909, 0.777358, 0 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 5 )
+environment = SubResource( 6 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
 transform = Transform( 1, 0, 0, 0, 0.640204, 0.768205, 0, -0.768205, 0.640204, 0, 5.36977, 0 )
