@@ -1,0 +1,124 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://visuals/icons/tinder_icon.png" type="Texture" id=1]
+[ext_resource path="res://scenes/card.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0.875, 0.875, 0.875, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0.917969, 0.917969, 0.917969, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[node name="App" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopMenu" type="MarginContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 105.0
+custom_constants/margin_top = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="TopMenu"]
+margin_right = 1080.0
+margin_bottom = 105.0
+texture = SubResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopMenu"]
+margin_right = 1080.0
+margin_bottom = 105.0
+size_flags_horizontal = 3
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HomeBtn" type="TextureButton" parent="TopMenu/HBoxContainer"]
+margin_right = 267.0
+margin_bottom = 105.0
+size_flags_horizontal = 3
+texture_normal = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+
+[node name="HomeBtn2" type="TextureButton" parent="TopMenu/HBoxContainer"]
+margin_left = 271.0
+margin_right = 538.0
+margin_bottom = 105.0
+size_flags_horizontal = 3
+texture_normal = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+
+[node name="HomeBtn3" type="TextureButton" parent="TopMenu/HBoxContainer"]
+margin_left = 542.0
+margin_right = 809.0
+margin_bottom = 105.0
+size_flags_horizontal = 3
+texture_normal = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+
+[node name="HomeBtn4" type="TextureButton" parent="TopMenu/HBoxContainer"]
+margin_left = 813.0
+margin_right = 1080.0
+margin_bottom = 105.0
+size_flags_horizontal = 3
+texture_normal = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+
+[node name="CardContainer" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -518.0
+margin_top = -811.0
+margin_right = 512.0
+margin_bottom = 709.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Card" parent="CardContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1030.0
+margin_bottom = 1520.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BottomMenu" type="MarginContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomMenu"]
+margin_right = 1080.0
+
+[node name="TextureButton" type="TextureButton" parent="BottomMenu/HBoxContainer"]
