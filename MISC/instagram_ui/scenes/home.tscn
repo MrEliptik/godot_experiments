@@ -1,56 +1,59 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://visuals/icons/icons8-envoi-de-courriel-80.png" type="Texture" id=1]
 [ext_resource path="res://visuals/icons/instagram.png" type="Texture" id=2]
-[ext_resource path="res://visuals/icons/icons8-liste-de-lecture-video-96.png" type="Texture" id=3]
-[ext_resource path="res://visuals/icons/icons8-accueil-144.png" type="Texture" id=4]
+[ext_resource path="res://visuals/images/room_cycles.png" type="Texture" id=3]
+[ext_resource path="res://visuals/images/pacman_2.png" type="Texture" id=4]
 [ext_resource path="res://visuals/icons/story_placeholder.png" type="Texture" id=5]
-[ext_resource path="res://visuals/icons/icons8-person-64.png" type="Texture" id=6]
+[ext_resource path="res://visuals/images/buddha_pills.png" type="Texture" id=6]
 [ext_resource path="res://visuals/icons/icons8-plus-144.png" type="Texture" id=7]
 [ext_resource path="res://visuals/icons/icons8-heart-96.png" type="Texture" id=8]
-[ext_resource path="res://visuals/icons/icons8-search-144.png" type="Texture" id=9]
+[ext_resource path="res://visuals/images/train_diorama.png" type="Texture" id=9]
 [ext_resource path="res://scenes/post.tscn" type="PackedScene" id=10]
-[ext_resource path="res://visuals/icons/icons8-sac-de-courses-plein-96.png" type="Texture" id=11]
+[ext_resource path="res://visuals/images/incubator_dark.png" type="Texture" id=11]
 [ext_resource path="res://visuals/fonts/milliard-cufonfonts/Rene Bieder  Milliard Thin.otf" type="DynamicFontData" id=12]
 [ext_resource path="res://visuals/icons/myself_round_outline_150.png" type="Texture" id=13]
 [ext_resource path="res://visuals/icons/icons8-plus-96.png" type="Texture" id=14]
+[ext_resource path="res://scenes/home.gd" type="Script" id=15]
+[ext_resource path="res://visuals/images/devil_2.png" type="Texture" id=16]
 
-[sub_resource type="Gradient" id=1]
+[sub_resource type="Gradient" id=6]
 offsets = PoolRealArray( 0 )
 colors = PoolColorArray( 0.0546875, 0.0546875, 0.0546875, 1 )
 
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
-[sub_resource type="Theme" id=4]
+[sub_resource type="Theme" id=5]
 HScrollBar/icons/decrement = null
 HScrollBar/icons/decrement_highlight = null
 HScrollBar/icons/increment = null
 HScrollBar/icons/increment_highlight = null
-HScrollBar/styles/grabber = SubResource( 3 )
-HScrollBar/styles/grabber_highlight = SubResource( 3 )
-HScrollBar/styles/grabber_pressed = SubResource( 3 )
-HScrollBar/styles/scroll = SubResource( 3 )
-HScrollBar/styles/scroll_focus = SubResource( 3 )
+HScrollBar/styles/grabber = SubResource( 4 )
+HScrollBar/styles/grabber_highlight = SubResource( 4 )
+HScrollBar/styles/grabber_pressed = SubResource( 4 )
+HScrollBar/styles/scroll = SubResource( 4 )
+HScrollBar/styles/scroll_focus = SubResource( 4 )
 VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
 VScrollBar/icons/increment_highlight = null
-VScrollBar/styles/grabber = SubResource( 3 )
-VScrollBar/styles/grabber_highlight = SubResource( 3 )
-VScrollBar/styles/grabber_pressed = SubResource( 3 )
-VScrollBar/styles/scroll = SubResource( 3 )
-VScrollBar/styles/scroll_focus = SubResource( 3 )
+VScrollBar/styles/grabber = SubResource( 4 )
+VScrollBar/styles/grabber_highlight = SubResource( 4 )
+VScrollBar/styles/grabber_pressed = SubResource( 4 )
+VScrollBar/styles/scroll = SubResource( 4 )
+VScrollBar/styles/scroll_focus = SubResource( 4 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=8]
 size = 40
+use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 12 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=9]
 size = 100
 outline_color = Color( 0.784314, 0.784314, 0.784314, 1 )
 use_filter = true
@@ -61,6 +64,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -68,7 +72,7 @@ __meta__ = {
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = SubResource( 2 )
+texture = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -84,13 +88,13 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_right = 1080.0
-margin_bottom = 140.0
-rect_min_size = Vector2( 0, 140 )
+margin_bottom = 125.0
+rect_min_size = Vector2( 0, 125 )
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/HBoxContainer"]
 modulate = Color( 1, 1, 1, 0 )
 margin_right = 30.0
-margin_bottom = 140.0
+margin_bottom = 125.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 30, 15 )
@@ -98,7 +102,7 @@ rect_min_size = Vector2( 30, 15 )
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
 margin_left = 34.0
 margin_right = 324.0
-margin_bottom = 140.0
+margin_bottom = 125.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 2 )
@@ -109,7 +113,7 @@ stretch_mode = 6
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 328.0
 margin_right = 618.0
-margin_bottom = 140.0
+margin_bottom = 125.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -117,7 +121,7 @@ size_flags_horizontal = 3
 [node name="AddBtn" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 margin_left = 622.0
 margin_right = 772.0
-margin_bottom = 140.0
+margin_bottom = 125.0
 rect_min_size = Vector2( 150, 0 )
 size_flags_vertical = 3
 texture_normal = ExtResource( 7 )
@@ -127,7 +131,7 @@ stretch_mode = 3
 [node name="IgtvBtn" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 margin_left = 776.0
 margin_right = 926.0
-margin_bottom = 140.0
+margin_bottom = 125.0
 rect_min_size = Vector2( 150, 0 )
 size_flags_vertical = 3
 texture_normal = ExtResource( 8 )
@@ -137,43 +141,69 @@ stretch_mode = 3
 [node name="MsgBtn" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 margin_left = 930.0
 margin_right = 1080.0
-margin_bottom = 140.0
+margin_bottom = 125.0
 rect_min_size = Vector2( 150, 0 )
 size_flags_vertical = 3
 texture_normal = ExtResource( 1 )
 expand = true
 stretch_mode = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
-margin_top = 160.0
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 123.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer2"]
 margin_right = 1080.0
-margin_bottom = 419.0
+margin_bottom = 1797.0
+mouse_filter = 1
+size_flags_vertical = 3
+theme = SubResource( 5 )
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/ScrollContainer"]
+margin_right = 1080.0
+margin_bottom = 9895.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="StoriesContainer" type="ScrollContainer" parent="VBoxContainer2/ScrollContainer/VBoxContainer"]
+margin_right = 1080.0
+margin_bottom = 259.0
 rect_min_size = Vector2( 0, 200 )
 mouse_filter = 1
-theme = SubResource( 4 )
+theme = SubResource( 5 )
 scroll_vertical_enabled = false
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ScrollContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer"]
 margin_right = 1972.0
 margin_bottom = 259.0
 rect_min_size = Vector2( 0, 250 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/ScrollContainer/HBoxContainer2"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2"]
 modulate = Color( 1, 1, 1, 0 )
 margin_right = 20.0
 margin_bottom = 259.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2"]
 margin_left = 24.0
 margin_right = 264.0
 margin_bottom = 259.0
 rect_min_size = Vector2( 240, 200 )
 custom_constants/separation = 10
 
-[node name="StoryBtn" type="TextureButton" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer"]
+[node name="StoryBtn" type="TextureButton" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer"]
 margin_right = 240.0
 margin_bottom = 210.0
 grow_horizontal = 2
@@ -184,7 +214,7 @@ texture_normal = ExtResource( 13 )
 expand = true
 stretch_mode = 5
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer/StoryBtn"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer/StoryBtn"]
 modulate = Color( 0.0392157, 0.694118, 0.94902, 1 )
 anchor_left = 1.0
 anchor_top = 1.0
@@ -199,23 +229,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer"]
 margin_top = 220.0
 margin_right = 240.0
 margin_bottom = 259.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 8 )
 text = "Your story"
 align = 1
 valign = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer2"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2"]
 margin_left = 268.0
 margin_right = 508.0
 margin_bottom = 259.0
 rect_min_size = Vector2( 240, 200 )
 custom_constants/separation = 10
 
-[node name="StoryBtn" type="TextureButton" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer2"]
+[node name="StoryBtn" type="TextureButton" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer2"]
 margin_right = 240.0
 margin_bottom = 210.0
 grow_horizontal = 2
@@ -226,10 +256,10 @@ texture_normal = ExtResource( 5 )
 expand = true
 stretch_mode = 5
 
-[node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer2/StoryBtn"]
+[node name="Label2" type="Label" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer2/StoryBtn"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
 text = "V"
 align = 1
@@ -238,23 +268,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer2"]
+[node name="Label" type="Label" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer2"]
 margin_top = 220.0
 margin_right = 240.0
 margin_bottom = 259.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 8 )
 text = "polygon"
 align = 1
 valign = 1
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer2"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2"]
 margin_left = 512.0
 margin_right = 752.0
 margin_bottom = 259.0
 rect_min_size = Vector2( 240, 200 )
 custom_constants/separation = 10
 
-[node name="StoryBtn" type="TextureButton" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer3"]
+[node name="StoryBtn" type="TextureButton" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer3"]
 margin_right = 240.0
 margin_bottom = 210.0
 grow_horizontal = 2
@@ -265,10 +295,10 @@ texture_normal = ExtResource( 5 )
 expand = true
 stretch_mode = 5
 
-[node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer3/StoryBtn"]
+[node name="Label2" type="Label" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer3/StoryBtn"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
 text = "V"
 align = 1
@@ -277,23 +307,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer3"]
+[node name="Label" type="Label" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer3"]
 margin_top = 220.0
 margin_right = 240.0
 margin_bottom = 259.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 8 )
 text = "polygon"
 align = 1
 valign = 1
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer2"]
+[node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2"]
 margin_left = 756.0
 margin_right = 996.0
 margin_bottom = 259.0
 rect_min_size = Vector2( 240, 200 )
 custom_constants/separation = 10
 
-[node name="StoryBtn" type="TextureButton" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer4"]
+[node name="StoryBtn" type="TextureButton" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer4"]
 margin_right = 240.0
 margin_bottom = 210.0
 grow_horizontal = 2
@@ -304,10 +334,10 @@ texture_normal = ExtResource( 5 )
 expand = true
 stretch_mode = 5
 
-[node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer4/StoryBtn"]
+[node name="Label2" type="Label" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer4/StoryBtn"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
 text = "V"
 align = 1
@@ -316,23 +346,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer4"]
+[node name="Label" type="Label" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer4"]
 margin_top = 220.0
 margin_right = 240.0
 margin_bottom = 259.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 8 )
 text = "polygon"
 align = 1
 valign = 1
 
-[node name="VBoxContainer5" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer2"]
+[node name="VBoxContainer5" type="VBoxContainer" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2"]
 margin_left = 1000.0
 margin_right = 1240.0
 margin_bottom = 259.0
 rect_min_size = Vector2( 240, 200 )
 custom_constants/separation = 10
 
-[node name="StoryBtn" type="TextureButton" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer5"]
+[node name="StoryBtn" type="TextureButton" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer5"]
 margin_right = 240.0
 margin_bottom = 210.0
 grow_horizontal = 2
@@ -343,10 +373,10 @@ texture_normal = ExtResource( 5 )
 expand = true
 stretch_mode = 5
 
-[node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer5/StoryBtn"]
+[node name="Label2" type="Label" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer5/StoryBtn"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
 text = "V"
 align = 1
@@ -355,23 +385,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer5"]
+[node name="Label" type="Label" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer5"]
 margin_top = 220.0
 margin_right = 240.0
 margin_bottom = 259.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 8 )
 text = "polygon"
 align = 1
 valign = 1
 
-[node name="VBoxContainer6" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer2"]
+[node name="VBoxContainer6" type="VBoxContainer" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2"]
 margin_left = 1244.0
 margin_right = 1484.0
 margin_bottom = 259.0
 rect_min_size = Vector2( 240, 200 )
 custom_constants/separation = 10
 
-[node name="StoryBtn" type="TextureButton" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer6"]
+[node name="StoryBtn" type="TextureButton" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer6"]
 margin_right = 240.0
 margin_bottom = 210.0
 grow_horizontal = 2
@@ -382,10 +412,10 @@ texture_normal = ExtResource( 5 )
 expand = true
 stretch_mode = 5
 
-[node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer6/StoryBtn"]
+[node name="Label2" type="Label" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer6/StoryBtn"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
 text = "V"
 align = 1
@@ -394,23 +424,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer6"]
+[node name="Label" type="Label" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer6"]
 margin_top = 220.0
 margin_right = 240.0
 margin_bottom = 259.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 8 )
 text = "polygon"
 align = 1
 valign = 1
 
-[node name="VBoxContainer7" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer2"]
+[node name="VBoxContainer7" type="VBoxContainer" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2"]
 margin_left = 1488.0
 margin_right = 1728.0
 margin_bottom = 259.0
 rect_min_size = Vector2( 240, 200 )
 custom_constants/separation = 10
 
-[node name="StoryBtn" type="TextureButton" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer7"]
+[node name="StoryBtn" type="TextureButton" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer7"]
 margin_right = 240.0
 margin_bottom = 210.0
 grow_horizontal = 2
@@ -421,10 +451,10 @@ texture_normal = ExtResource( 5 )
 expand = true
 stretch_mode = 5
 
-[node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer7/StoryBtn"]
+[node name="Label2" type="Label" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer7/StoryBtn"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
 text = "V"
 align = 1
@@ -433,23 +463,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer7"]
+[node name="Label" type="Label" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer7"]
 margin_top = 220.0
 margin_right = 240.0
 margin_bottom = 259.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 8 )
 text = "polygon"
 align = 1
 valign = 1
 
-[node name="VBoxContainer8" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/HBoxContainer2"]
+[node name="VBoxContainer8" type="VBoxContainer" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2"]
 margin_left = 1732.0
 margin_right = 1972.0
 margin_bottom = 259.0
 rect_min_size = Vector2( 240, 200 )
 custom_constants/separation = 10
 
-[node name="StoryBtn" type="TextureButton" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer8"]
+[node name="StoryBtn" type="TextureButton" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer8"]
 margin_right = 240.0
 margin_bottom = 210.0
 grow_horizontal = 2
@@ -460,10 +490,10 @@ texture_normal = ExtResource( 5 )
 expand = true
 stretch_mode = 5
 
-[node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer8/StoryBtn"]
+[node name="Label2" type="Label" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer8/StoryBtn"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
 text = "V"
 align = 1
@@ -472,140 +502,59 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/HBoxContainer2/VBoxContainer8"]
+[node name="Label" type="Label" parent="VBoxContainer2/ScrollContainer/VBoxContainer/StoriesContainer/HBoxContainer2/VBoxContainer8"]
 margin_top = 220.0
 margin_right = 240.0
 margin_bottom = 259.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 8 )
 text = "polygon"
 align = 1
 valign = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 468.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer2"]
-margin_right = 1080.0
-margin_bottom = 1452.0
-mouse_filter = 1
-size_flags_vertical = 3
-theme = SubResource( 4 )
-scroll_horizontal_enabled = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/ScrollContainer"]
-margin_right = 1080.0
-margin_bottom = 3208.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
 [node name="Post" parent="VBoxContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 10 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
+margin_top = 263.0
 margin_right = 1080.0
-margin_bottom = 1602.0
+margin_bottom = 1865.0
+picture = ExtResource( 4 )
 
 [node name="Post2" parent="VBoxContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 10 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 1606.0
+margin_top = 1869.0
 margin_right = 1080.0
-margin_bottom = 3208.0
+margin_bottom = 3471.0
+picture = ExtResource( 6 )
 
-[node name="NinePatchRect2" type="NinePatchRect" parent="."]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -149.0
-margin_bottom = 1.0
-rect_min_size = Vector2( 0, 150 )
-texture = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Post3" parent="VBoxContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 10 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 3475.0
+margin_right = 1080.0
+margin_bottom = 5077.0
+picture = ExtResource( 16 )
 
-[node name="BottomPanel" type="GridContainer" parent="."]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -152.0
-margin_bottom = -2.0
-rect_min_size = Vector2( 0, 125 )
-size_flags_horizontal = 3
-columns = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Post4" parent="VBoxContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 10 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 5081.0
+margin_right = 1080.0
+margin_bottom = 6683.0
+picture = ExtResource( 3 )
 
-[node name="HomeBtn" type="TextureButton" parent="BottomPanel"]
-margin_right = 212.0
-margin_bottom = 150.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture_normal = ExtResource( 4 )
-expand = true
-stretch_mode = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Post5" parent="VBoxContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 10 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 6687.0
+margin_right = 1080.0
+margin_bottom = 8289.0
+picture = ExtResource( 11 )
 
-[node name="HomeBtn2" type="TextureButton" parent="BottomPanel"]
-margin_left = 216.0
-margin_right = 428.0
-margin_bottom = 150.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture_normal = ExtResource( 9 )
-expand = true
-stretch_mode = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HomeBtn3" type="TextureButton" parent="BottomPanel"]
-margin_left = 432.0
-margin_right = 644.0
-margin_bottom = 150.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture_normal = ExtResource( 3 )
-expand = true
-stretch_mode = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HomeBtn4" type="TextureButton" parent="BottomPanel"]
-margin_left = 648.0
-margin_right = 860.0
-margin_bottom = 150.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture_normal = ExtResource( 11 )
-expand = true
-stretch_mode = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HomeBtn5" type="TextureButton" parent="BottomPanel"]
-margin_left = 864.0
-margin_right = 1076.0
-margin_bottom = 150.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture_normal = ExtResource( 6 )
-expand = true
-stretch_mode = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Post6" parent="VBoxContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 10 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 8293.0
+margin_right = 1080.0
+margin_bottom = 9895.0
+picture = ExtResource( 9 )

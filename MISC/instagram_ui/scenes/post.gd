@@ -4,6 +4,7 @@ signal like()
 
 export var heart_full: StreamTexture
 export var heart: StreamTexture
+export var picture: StreamTexture
 
 onready var like_btn = $Content/VBoxContainer/ButtonContainer/LikeBtn
 
@@ -14,6 +15,7 @@ var timeout = true
 
 func _ready():
 	$Timer.wait_time = (double_click_delay/1000.0)
+	$Content/TextureRect.texture = picture
 	
 func like(toggle=false):
 	if liked && toggle:

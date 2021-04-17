@@ -16,7 +16,8 @@ _global_script_class_icons={
 [application]
 
 config/name="Instagram UI"
-run/main_scene="res://scenes/home.tscn"
+run/main_scene="res://scenes/app.tscn"
+boot_splash/image="res://splashscreen.png"
 config/icon="res://icon.png"
 
 [display]
@@ -25,6 +26,7 @@ window/size/width=1080
 window/size/height=1920
 window/size/test_width=540
 window/size/test_height=960
+window/dpi/allow_hidpi=true
 window/handheld/orientation="portrait"
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
