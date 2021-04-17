@@ -50,9 +50,11 @@ use_filter = true
 font_data = ExtResource( 2 )
 
 [node name="Post" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_bottom = -251.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -540.0
+margin_right = 540.0
+margin_bottom = 1656.0
 rect_min_size = Vector2( 1080, 1602 )
 mouse_filter = 1
 size_flags_vertical = 3
@@ -77,6 +79,7 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -134,12 +137,12 @@ stretch_mode = 3
 [node name="TextureRect" type="TextureRect" parent="Content"]
 margin_top = 154.0
 margin_right = 1080.0
-margin_bottom = 1285.0
+margin_bottom = 1272.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 1 )
 expand = true
-stretch_mode = 5
+stretch_mode = 7
 
 [node name="Heart" type="TextureRect" parent="Content/TextureRect"]
 anchor_left = 0.5
@@ -158,9 +161,9 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Content"]
-margin_top = 1289.0
+margin_top = 1276.0
 margin_right = 1080.0
-margin_bottom = 1669.0
+margin_bottom = 1656.0
 custom_constants/separation = 15
 
 [node name="ButtonContainer" type="HBoxContainer" parent="Content/VBoxContainer"]

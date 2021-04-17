@@ -7,7 +7,7 @@
 [ext_resource path="res://visuals/icons/icons8-accueil-144.png" type="Texture" id=5]
 [ext_resource path="res://visuals/icons/icons8-liste-de-lecture-video-96.png" type="Texture" id=6]
 [ext_resource path="res://visuals/icons/icons8-person-64.png" type="Texture" id=7]
-[ext_resource path="res://scenes/profile_doublescroll.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/profile.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0 )
