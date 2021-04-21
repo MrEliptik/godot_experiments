@@ -1,25 +1,45 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://visuals/icons/tinder_icon.png" type="Texture" id=1]
 [ext_resource path="res://scenes/card.tscn" type="PackedScene" id=2]
-
-[sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 0.875, 0.875, 0.875, 1 )
-
-[sub_resource type="GradientTexture" id=4]
-gradient = SubResource( 3 )
+[ext_resource path="res://visuals/icons/icons8-personne-homme-64.png" type="Texture" id=3]
+[ext_resource path="res://visuals/icons/icons8-bulle-160.png" type="Texture" id=4]
+[ext_resource path="res://visuals/icons/icons8-diamants-96.png" type="Texture" id=5]
+[ext_resource path="res://visuals/icons/icons8-redemarrer-90.png" type="Texture" id=6]
+[ext_resource path="res://visuals/icons/icons8-multiplier-90.png" type="Texture" id=7]
+[ext_resource path="res://visuals/icons/icons8-eclair-96.png" type="Texture" id=8]
+[ext_resource path="res://visuals/icons/icons8-aimer-96.png" type="Texture" id=9]
+[ext_resource path="res://visuals/icons/icons8-etoile-90.png" type="Texture" id=10]
+[ext_resource path="res://scenes/app.gd" type="Script" id=11]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 0.917969, 0.917969, 0.917969, 1 )
+colors = PoolColorArray( 0.964844, 0.964844, 0.964844, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
 
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0.964706, 0.964706, 0.964706, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+shadow_color = Color( 0.615686, 0.615686, 0.615686, 0.0666667 )
+shadow_size = 6
+shadow_offset = Vector2( 0, 6 )
+
 [node name="App" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -27,77 +47,127 @@ __meta__ = {
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = SubResource( 4 )
+texture = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TopMenu" type="MarginContainer" parent="."]
 anchor_right = 1.0
-margin_bottom = 105.0
-custom_constants/margin_top = 0
+margin_bottom = 161.0
+custom_constants/margin_right = 0
+custom_constants/margin_top = 20
+custom_constants/margin_left = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="NinePatchRect" type="NinePatchRect" parent="TopMenu"]
+margin_top = 20.0
 margin_right = 1080.0
-margin_bottom = 105.0
-texture = SubResource( 2 )
+margin_bottom = 161.0
+texture = SubResource( 4 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TopMenu"]
+margin_top = 20.0
 margin_right = 1080.0
-margin_bottom = 105.0
+margin_bottom = 161.0
 size_flags_horizontal = 3
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HomeBtn" type="TextureButton" parent="TopMenu/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TopMenu/HBoxContainer"]
 margin_right = 267.0
-margin_bottom = 105.0
+margin_bottom = 141.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 10
+custom_constants/margin_top = 30
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 30
+
+[node name="HomeBtn" type="TextureButton" parent="TopMenu/HBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 30.0
+margin_right = 257.0
+margin_bottom = 111.0
 size_flags_horizontal = 3
 texture_normal = ExtResource( 1 )
 expand = true
 stretch_mode = 5
 
-[node name="HomeBtn2" type="TextureButton" parent="TopMenu/HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="TopMenu/HBoxContainer"]
 margin_left = 271.0
 margin_right = 538.0
-margin_bottom = 105.0
+margin_bottom = 141.0
 size_flags_horizontal = 3
-texture_normal = ExtResource( 1 )
+size_flags_vertical = 3
+custom_constants/margin_right = 10
+custom_constants/margin_top = 30
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 30
+
+[node name="HomeBtn" type="TextureButton" parent="TopMenu/HBoxContainer/MarginContainer2"]
+margin_left = 10.0
+margin_top = 30.0
+margin_right = 257.0
+margin_bottom = 111.0
+size_flags_horizontal = 3
+texture_normal = ExtResource( 5 )
 expand = true
 stretch_mode = 5
 
-[node name="HomeBtn3" type="TextureButton" parent="TopMenu/HBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="TopMenu/HBoxContainer"]
 margin_left = 542.0
 margin_right = 809.0
-margin_bottom = 105.0
+margin_bottom = 141.0
 size_flags_horizontal = 3
-texture_normal = ExtResource( 1 )
+size_flags_vertical = 3
+custom_constants/margin_right = 10
+custom_constants/margin_top = 30
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 30
+
+[node name="HomeBtn" type="TextureButton" parent="TopMenu/HBoxContainer/MarginContainer3"]
+margin_left = 10.0
+margin_top = 30.0
+margin_right = 257.0
+margin_bottom = 111.0
+size_flags_horizontal = 3
+texture_normal = ExtResource( 4 )
 expand = true
 stretch_mode = 5
 
-[node name="HomeBtn4" type="TextureButton" parent="TopMenu/HBoxContainer"]
+[node name="MarginContainer4" type="MarginContainer" parent="TopMenu/HBoxContainer"]
 margin_left = 813.0
 margin_right = 1080.0
-margin_bottom = 105.0
+margin_bottom = 141.0
 size_flags_horizontal = 3
-texture_normal = ExtResource( 1 )
+size_flags_vertical = 3
+custom_constants/margin_right = 10
+custom_constants/margin_top = 30
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 30
+
+[node name="HomeBtn" type="TextureButton" parent="TopMenu/HBoxContainer/MarginContainer4"]
+margin_left = 10.0
+margin_top = 30.0
+margin_right = 257.0
+margin_bottom = 111.0
+size_flags_horizontal = 3
+texture_normal = ExtResource( 3 )
 expand = true
 stretch_mode = 5
 
 [node name="CardContainer" type="MarginContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -518.0
-margin_top = -811.0
-margin_right = 512.0
-margin_bottom = 709.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = 181.0
+margin_right = -25.0
+margin_bottom = -258.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -106,7 +176,8 @@ __meta__ = {
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 1030.0
-margin_bottom = 1520.0
+margin_bottom = 1481.0
+rect_pivot_offset = Vector2( 515, 740 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -114,11 +185,214 @@ size_flags_vertical = 3
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -232.0
+custom_constants/margin_bottom = 25
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomMenu"]
 margin_right = 1080.0
+margin_bottom = 207.0
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenu/HBoxContainer"]
+[node name="MarginContainer6" type="MarginContainer" parent="BottomMenu/HBoxContainer"]
+margin_right = 212.0
+margin_bottom = 207.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+
+[node name="Button" type="Button" parent="BottomMenu/HBoxContainer/MarginContainer6"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 162.0
+margin_bottom = 157.0
+custom_styles/normal = SubResource( 5 )
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomMenu/HBoxContainer/MarginContainer6"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 162.0
+margin_bottom = 157.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 25
+custom_constants/margin_top = 25
+custom_constants/margin_left = 25
+custom_constants/margin_bottom = 25
+
+[node name="TextureButton" type="TextureButton" parent="BottomMenu/HBoxContainer/MarginContainer6/MarginContainer"]
+margin_left = 25.0
+margin_top = 25.0
+margin_right = 87.0
+margin_bottom = 82.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 6 )
+expand = true
+stretch_mode = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="BottomMenu/HBoxContainer"]
+margin_left = 216.0
+margin_right = 429.0
+margin_bottom = 207.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="Button" type="Button" parent="BottomMenu/HBoxContainer/MarginContainer2"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 193.0
+margin_bottom = 187.0
+custom_styles/normal = SubResource( 5 )
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomMenu/HBoxContainer/MarginContainer2"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 193.0
+margin_bottom = 187.0
+custom_constants/margin_right = 35
+custom_constants/margin_top = 35
+custom_constants/margin_left = 35
+custom_constants/margin_bottom = 35
+
+[node name="TextureButton" type="TextureButton" parent="BottomMenu/HBoxContainer/MarginContainer2/MarginContainer"]
+margin_left = 35.0
+margin_top = 35.0
+margin_right = 138.0
+margin_bottom = 132.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 7 )
+expand = true
+stretch_mode = 5
+
+[node name="MarginContainer7" type="MarginContainer" parent="BottomMenu/HBoxContainer"]
+margin_left = 433.0
+margin_right = 646.0
+margin_bottom = 207.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+
+[node name="Button" type="Button" parent="BottomMenu/HBoxContainer/MarginContainer7"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 163.0
+margin_bottom = 157.0
+custom_styles/normal = SubResource( 5 )
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomMenu/HBoxContainer/MarginContainer7"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 163.0
+margin_bottom = 157.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 25
+custom_constants/margin_top = 25
+custom_constants/margin_left = 25
+custom_constants/margin_bottom = 25
+
+[node name="TextureButton" type="TextureButton" parent="BottomMenu/HBoxContainer/MarginContainer7/MarginContainer"]
+margin_left = 25.0
+margin_top = 25.0
+margin_right = 88.0
+margin_bottom = 82.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 10 )
+expand = true
+stretch_mode = 5
+
+[node name="MarginContainer3" type="MarginContainer" parent="BottomMenu/HBoxContainer"]
+margin_left = 650.0
+margin_right = 863.0
+margin_bottom = 207.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="Button" type="Button" parent="BottomMenu/HBoxContainer/MarginContainer3"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 193.0
+margin_bottom = 187.0
+custom_styles/normal = SubResource( 5 )
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomMenu/HBoxContainer/MarginContainer3"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 193.0
+margin_bottom = 187.0
+custom_constants/margin_right = 35
+custom_constants/margin_top = 35
+custom_constants/margin_left = 35
+custom_constants/margin_bottom = 35
+
+[node name="TextureButton" type="TextureButton" parent="BottomMenu/HBoxContainer/MarginContainer3/MarginContainer"]
+margin_left = 35.0
+margin_top = 35.0
+margin_right = 138.0
+margin_bottom = 132.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 9 )
+expand = true
+stretch_mode = 5
+
+[node name="MarginContainer8" type="MarginContainer" parent="BottomMenu/HBoxContainer"]
+margin_left = 867.0
+margin_right = 1080.0
+margin_bottom = 207.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+
+[node name="Button" type="Button" parent="BottomMenu/HBoxContainer/MarginContainer8"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 163.0
+margin_bottom = 157.0
+custom_styles/normal = SubResource( 5 )
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomMenu/HBoxContainer/MarginContainer8"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 163.0
+margin_bottom = 157.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 25
+custom_constants/margin_top = 25
+custom_constants/margin_left = 25
+custom_constants/margin_bottom = 25
+
+[node name="TextureButton" type="TextureButton" parent="BottomMenu/HBoxContainer/MarginContainer8/MarginContainer"]
+margin_left = 25.0
+margin_top = 25.0
+margin_right = 88.0
+margin_bottom = 82.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+[connection signal="finished" from="CardContainer/Card" to="." method="_on_Card_finished"]
+[connection signal="moving" from="CardContainer/Card" to="." method="_on_Card_moving"]

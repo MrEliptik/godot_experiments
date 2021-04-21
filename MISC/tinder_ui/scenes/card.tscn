@@ -1,51 +1,314 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=20 format=2]
 
-[sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0.490066 )
-colors = PoolColorArray( 0.761719, 0.291595, 0.291595, 1 )
+[ext_resource path="res://visuals/medias/person1.jpg" type="Texture" id=1]
+[ext_resource path="res://visuals/icons/icons8-chevron-left-96.png" type="Texture" id=2]
+[ext_resource path="res://visuals/icons/icons8-chevron-right-96.png" type="Texture" id=3]
+[ext_resource path="res://visuals/icons/information.png" type="Texture" id=4]
+[ext_resource path="res://visuals/fonts/montserrat/Montserrat-Bold.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://visuals/fonts/montserrat/Montserrat-Regular.otf" type="DynamicFontData" id=6]
+[ext_resource path="res://scenes/card.gd" type="Script" id=7]
+[ext_resource path="res://visuals/medias/person3.jpg" type="Texture" id=8]
+[ext_resource path="res://visuals/medias/person2.jpg" type="Texture" id=9]
 
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
-width = 1080
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode blend_mix,unshaded;
 
-[sub_resource type="StyleBoxFlat" id=3]
+uniform vec4 color : hint_color = vec4(1.0, 1.0, 1.0, 1.0);
+
+uniform float radius : hint_range(0.0, 1.0) = 0.0;
+uniform vec2 size = vec2(1.0, 1.0);
+
+void fragment() {
+	vec4 texture_color = texture(TEXTURE, UV);
+	//COLOR = texture_color * color;
+	COLOR = texture_color;
+	
+	vec2 size_ratio = vec2(max(1.0, size.x / size.y), max(1.0, size.y / size.x));
+	float half_radius = 0.5 * radius;
+	vec2 dist_max = half_radius / size_ratio;
+	vec2 edge_pos = clamp(UV, dist_max, 1.0 - dist_max);
+	float edge_dist = distance(UV * size_ratio, edge_pos * size_ratio);
+	COLOR.a *= step(edge_dist, half_radius + 0.000001);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/radius = 0.069
+shader_param/size = Vector2( 1080, 1920 )
+
+[sub_resource type="StyleBoxLine" id=3]
+color = Color( 0.839216, 0.839216, 0.839216, 1 )
+thickness = 10
+
+[sub_resource type="StyleBoxLine" id=4]
+color = Color( 0.196078, 0.196078, 0.196078, 0.521569 )
+thickness = 10
+
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+
+[sub_resource type="DynamicFont" id=6]
+size = 96
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 54
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+content_margin_right = 10.0
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0.968627, 0.286275, 0.286275, 1 )
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+expand_margin_left = 25.0
+expand_margin_right = 25.0
+
+[sub_resource type="DynamicFont" id=9]
+size = 136
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+content_margin_right = 10.0
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0.254902, 0.882353, 0.705882, 1 )
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+expand_margin_left = 25.0
+expand_margin_right = 25.0
 
 [node name="Card" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 540, 960 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+image1 = ExtResource( 1 )
+image2 = ExtResource( 9 )
+image3 = ExtResource( 8 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+scroll_horizontal_enabled = false
+scroll_vertical_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton" type="TextureButton" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_normal = SubResource( 2 )
-expand = true
-stretch_mode = 6
-
-[node name="Button" type="Button" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_styles/normal = SubResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="Button"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_right = 1080.0
+margin_bottom = 1920.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = SubResource( 2 )
+
+[node name="Image" type="TextureRect" parent="ScrollContainer/VBoxContainer"]
+material = SubResource( 2 )
+margin_right = 1080.0
+margin_bottom = 1920.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 1 )
 expand = true
-stretch_mode = 7
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 1080.0
+margin_bottom = 1920.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PreviousBtn" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+visible = false
+margin_right = 538.0
+margin_bottom = 1920.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_hover = ExtResource( 2 )
+expand = true
+stretch_mode = 3
+
+[node name="NextBtn" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+visible = false
+margin_right = 1080.0
+margin_bottom = 1920.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_hover = ExtResource( 3 )
+expand = true
+stretch_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 69.0
+custom_constants/margin_right = 30
+custom_constants/margin_top = 5
+custom_constants/margin_left = 30
+custom_constants/margin_bottom = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 30.0
+margin_top = 5.0
+margin_right = 1050.0
+margin_bottom = 69.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer"]
+margin_right = 505.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/separator = SubResource( 3 )
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer"]
+margin_left = 515.0
+margin_right = 1020.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/separator = SubResource( 4 )
+
+[node name="Button" type="Button" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -264.0
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/normal = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_left = 60
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Button/MarginContainer"]
+margin_left = 60.0
+margin_right = 1080.0
+margin_bottom = 264.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Button/MarginContainer/HBoxContainer"]
+margin_right = 649.0
+margin_bottom = 264.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="NameAge" type="Label" parent="Button/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 37.0
+margin_right = 649.0
+margin_bottom = 155.0
+custom_fonts/font = SubResource( 6 )
+text = "Stla 22"
+
+[node name="Label" type="Label" parent="Button/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 159.0
+margin_right = 649.0
+margin_bottom = 226.0
+custom_fonts/font = SubResource( 7 )
+text = "The shittiest description"
+
+[node name="MarginContainer" type="MarginContainer" parent="Button/MarginContainer/HBoxContainer"]
+margin_left = 653.0
+margin_right = 1020.0
+margin_bottom = 264.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 0
+custom_constants/margin_top = 85
+custom_constants/margin_left = 0
+custom_constants/margin_bottom = 85
+
+[node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/HBoxContainer/MarginContainer"]
+margin_left = 217.0
+margin_top = 85.0
+margin_right = 367.0
+margin_bottom = 179.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 8
+size_flags_vertical = 3
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+
+[node name="Nope" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -495.274
+margin_top = 141.111
+margin_right = -75.2739
+margin_bottom = 328.111
+rect_rotation = 15.5
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0.968627, 0.286275, 0.286275, 1 )
+text = "NOPE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Like" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -979.0
+margin_top = 233.0
+margin_right = -641.0
+margin_bottom = 420.0
+rect_rotation = -15.5
+custom_styles/normal = SubResource( 10 )
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0.254902, 0.882353, 0.705882, 1 )
+text = "LIKE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="gui_input" from="." to="." method="_on_Card_gui_input"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/PreviousBtn" to="." method="_on_PreviousBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/NextBtn" to="." method="_on_NextBtn_pressed"]
