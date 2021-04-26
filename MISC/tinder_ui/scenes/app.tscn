@@ -13,8 +13,8 @@
 [ext_resource path="res://scenes/app.gd" type="Script" id=11]
 
 [sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 0.964844, 0.964844, 0.964844, 1 )
+offsets = PoolRealArray( 0.0129032 )
+colors = PoolColorArray( 0.94902, 0.94902, 0.94902, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
@@ -39,6 +39,7 @@ shadow_offset = Vector2( 0, 6 )
 [node name="App" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -47,26 +48,28 @@ __meta__ = {
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 texture = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+margin_bottom = 161.0
+mouse_filter = 1
+texture = SubResource( 4 )
+
 [node name="TopMenu" type="MarginContainer" parent="."]
 anchor_right = 1.0
 margin_bottom = 161.0
+mouse_filter = 1
 custom_constants/margin_right = 0
 custom_constants/margin_top = 20
 custom_constants/margin_left = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="NinePatchRect" type="NinePatchRect" parent="TopMenu"]
-margin_top = 20.0
-margin_right = 1080.0
-margin_bottom = 161.0
-texture = SubResource( 4 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TopMenu"]
 margin_top = 20.0
@@ -81,6 +84,7 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="TopMenu/HBoxContainer"]
 margin_right = 267.0
 margin_bottom = 141.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 10
@@ -93,6 +97,7 @@ margin_left = 10.0
 margin_top = 30.0
 margin_right = 257.0
 margin_bottom = 111.0
+mouse_filter = 1
 size_flags_horizontal = 3
 texture_normal = ExtResource( 1 )
 expand = true
@@ -102,6 +107,7 @@ stretch_mode = 5
 margin_left = 271.0
 margin_right = 538.0
 margin_bottom = 141.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 10
@@ -114,6 +120,7 @@ margin_left = 10.0
 margin_top = 30.0
 margin_right = 257.0
 margin_bottom = 111.0
+mouse_filter = 1
 size_flags_horizontal = 3
 texture_normal = ExtResource( 5 )
 expand = true
@@ -123,6 +130,7 @@ stretch_mode = 5
 margin_left = 542.0
 margin_right = 809.0
 margin_bottom = 141.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 10
@@ -135,6 +143,7 @@ margin_left = 10.0
 margin_top = 30.0
 margin_right = 257.0
 margin_bottom = 111.0
+mouse_filter = 1
 size_flags_horizontal = 3
 texture_normal = ExtResource( 4 )
 expand = true
@@ -144,6 +153,7 @@ stretch_mode = 5
 margin_left = 813.0
 margin_right = 1080.0
 margin_bottom = 141.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 10
@@ -156,6 +166,7 @@ margin_left = 10.0
 margin_top = 30.0
 margin_right = 257.0
 margin_bottom = 111.0
+mouse_filter = 1
 size_flags_horizontal = 3
 texture_normal = ExtResource( 3 )
 expand = true
@@ -168,6 +179,7 @@ margin_left = 25.0
 margin_top = 181.0
 margin_right = -25.0
 margin_bottom = -258.0
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -186,6 +198,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -232.0
+mouse_filter = 1
 custom_constants/margin_bottom = 25
 __meta__ = {
 "_edit_use_anchors_": false
@@ -394,5 +407,13 @@ size_flags_vertical = 3
 texture_normal = ExtResource( 8 )
 expand = true
 stretch_mode = 5
+
+[node name="MatchContainer" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="finished" from="CardContainer/Card" to="." method="_on_Card_finished"]
 [connection signal="moving" from="CardContainer/Card" to="." method="_on_Card_moving"]

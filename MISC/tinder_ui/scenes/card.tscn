@@ -1,14 +1,20 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=26 format=2]
 
-[ext_resource path="res://visuals/medias/person1.jpg" type="Texture" id=1]
+[ext_resource path="res://visuals/medias/person2_2.png" type="Texture" id=1]
 [ext_resource path="res://visuals/icons/icons8-chevron-left-96.png" type="Texture" id=2]
 [ext_resource path="res://visuals/icons/icons8-chevron-right-96.png" type="Texture" id=3]
 [ext_resource path="res://visuals/icons/information.png" type="Texture" id=4]
 [ext_resource path="res://visuals/fonts/montserrat/Montserrat-Bold.otf" type="DynamicFontData" id=5]
 [ext_resource path="res://visuals/fonts/montserrat/Montserrat-Regular.otf" type="DynamicFontData" id=6]
 [ext_resource path="res://scenes/card.gd" type="Script" id=7]
-[ext_resource path="res://visuals/medias/person3.jpg" type="Texture" id=8]
-[ext_resource path="res://visuals/medias/person2.jpg" type="Texture" id=9]
+[ext_resource path="res://visuals/medias/person2_3.png" type="Texture" id=8]
+[ext_resource path="res://visuals/medias/person3_1.png" type="Texture" id=9]
+[ext_resource path="res://visuals/medias/person2_1.png" type="Texture" id=10]
+[ext_resource path="res://visuals/medias/person3_2.png" type="Texture" id=11]
+[ext_resource path="res://visuals/medias/person3_3.png" type="Texture" id=12]
+[ext_resource path="res://visuals/medias/person1_2.png" type="Texture" id=13]
+[ext_resource path="res://visuals/medias/person1_1.png" type="Texture" id=14]
+[ext_resource path="res://visuals/medias/person1_3.png" type="Texture" id=15]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -38,13 +44,19 @@ shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/radius = 0.069
 shader_param/size = Vector2( 1080, 1920 )
 
-[sub_resource type="StyleBoxLine" id=3]
-color = Color( 0.839216, 0.839216, 0.839216, 1 )
-thickness = 10
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
-[sub_resource type="StyleBoxLine" id=4]
-color = Color( 0.196078, 0.196078, 0.196078, 0.521569 )
-thickness = 10
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.258824, 0.258824, 0.258824, 0.47451 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
@@ -98,17 +110,25 @@ expand_margin_right = 25.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 540, 960 )
+mouse_filter = 1
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-image1 = ExtResource( 1 )
-image2 = ExtResource( 9 )
+image1 = ExtResource( 10 )
+image2 = ExtResource( 1 )
 image3 = ExtResource( 8 )
+image4 = ExtResource( 14 )
+image5 = ExtResource( 13 )
+image6 = ExtResource( 15 )
+image7 = ExtResource( 9 )
+image8 = ExtResource( 11 )
+image9 = ExtResource( 12 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 scroll_horizontal_enabled = false
 scroll_vertical_enabled = false
 __meta__ = {
@@ -127,8 +147,9 @@ margin_right = 1080.0
 margin_bottom = 1920.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 1 )
+texture = ExtResource( 10 )
 expand = true
+stretch_mode = 7
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -168,44 +189,67 @@ stretch_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
-margin_bottom = 69.0
+margin_bottom = 70.0
+mouse_filter = 1
 custom_constants/margin_right = 30
-custom_constants/margin_top = 5
+custom_constants/margin_top = 15
 custom_constants/margin_left = 30
-custom_constants/margin_bottom = 0
+custom_constants/margin_bottom = 40
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 margin_left = 30.0
-margin_top = 5.0
+margin_top = 15.0
 margin_right = 1050.0
-margin_bottom = 69.0
+margin_bottom = 30.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer"]
-margin_right = 505.0
-margin_bottom = 64.0
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer"]
+margin_right = 333.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 0, 15 )
+mouse_filter = 1
 size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_styles/separator = SubResource( 3 )
+size_flags_vertical = 1
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+value = 100.0
+percent_visible = false
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer"]
-margin_left = 515.0
-margin_right = 1020.0
-margin_bottom = 64.0
+[node name="ProgressBar2" type="ProgressBar" parent="MarginContainer/HBoxContainer"]
+margin_left = 343.0
+margin_right = 676.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 0, 15 )
+mouse_filter = 1
 size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_styles/separator = SubResource( 4 )
+size_flags_vertical = 1
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+percent_visible = false
+
+[node name="ProgressBar3" type="ProgressBar" parent="MarginContainer/HBoxContainer"]
+margin_left = 686.0
+margin_right = 1020.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 0, 15 )
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+percent_visible = false
 
 [node name="Button" type="Button" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -264.0
+mouse_filter = 1
 custom_styles/hover = SubResource( 5 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 5 )
@@ -217,6 +261,7 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 custom_constants/margin_left = 60
 __meta__ = {
 "_edit_use_anchors_": false
@@ -243,6 +288,7 @@ alignment = 1
 margin_top = 37.0
 margin_right = 649.0
 margin_bottom = 155.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 6 )
 text = "Stla 22"
 
@@ -250,6 +296,7 @@ text = "Stla 22"
 margin_top = 159.0
 margin_right = 649.0
 margin_bottom = 226.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 7 )
 text = "The shittiest description"
 
@@ -257,6 +304,7 @@ text = "The shittiest description"
 margin_left = 653.0
 margin_right = 1020.0
 margin_bottom = 264.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 0
@@ -285,6 +333,7 @@ margin_top = 141.111
 margin_right = -75.2739
 margin_bottom = 328.111
 rect_rotation = 15.5
+mouse_filter = 1
 custom_styles/normal = SubResource( 8 )
 custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0.968627, 0.286275, 0.286275, 1 )
@@ -302,6 +351,7 @@ margin_top = 233.0
 margin_right = -641.0
 margin_bottom = 420.0
 rect_rotation = -15.5
+mouse_filter = 1
 custom_styles/normal = SubResource( 10 )
 custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0.254902, 0.882353, 0.705882, 1 )
@@ -312,3 +362,4 @@ __meta__ = {
 [connection signal="gui_input" from="." to="." method="_on_Card_gui_input"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/PreviousBtn" to="." method="_on_PreviousBtn_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NextBtn" to="." method="_on_NextBtn_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
