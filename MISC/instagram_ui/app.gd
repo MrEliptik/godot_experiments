@@ -4,12 +4,19 @@ export var home: PackedScene = preload("res://scenes/home.tscn")
 export var profile: PackedScene = preload("res://scenes/profile.tscn")
 
 func _ready():
-	pass 
+	$BottomPanel/HomeBtn.pressed = true 
 
 func switch_scene(new_scene):
 	$CurrentView.remove_child($CurrentView.get_child(0))
 	var instance = new_scene.instance()
 	$CurrentView.add_child(instance)
+	
+	$BottomPanel/HomeBtn.pressed = false
+	$BottomPanel/MarginContainer/ProfileBtn.pressed = false
+	if new_scene == home:
+		$BottomPanel/HomeBtn.pressed = true
+	elif new_scene == profile:
+		$BottomPanel/MarginContainer/ProfileBtn.pressed = true
 
 func _on_HomeBtn_pressed():
 	switch_scene(home)

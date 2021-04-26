@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://app.gd" type="Script" id=1]
 [ext_resource path="res://scenes/home.tscn" type="PackedScene" id=2]
@@ -6,8 +6,9 @@
 [ext_resource path="res://visuals/icons/icons8-sac-de-courses-plein-96.png" type="Texture" id=4]
 [ext_resource path="res://visuals/icons/icons8-accueil-144.png" type="Texture" id=5]
 [ext_resource path="res://visuals/icons/icons8-liste-de-lecture-video-96.png" type="Texture" id=6]
-[ext_resource path="res://visuals/icons/icons8-person-64.png" type="Texture" id=7]
-[ext_resource path="res://scenes/profile.tscn" type="PackedScene" id=8]
+[ext_resource path="res://visuals/icons/myself_round_outline_150.png" type="Texture" id=7]
+[ext_resource path="res://visuals/icons/icons8-accueil-96.png" type="Texture" id=8]
+[ext_resource path="res://visuals/icons/myself_round_outline_150_outline.png" type="Texture" id=9]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0 )
@@ -23,7 +24,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-profile = ExtResource( 8 )
 
 [node name="CurrentView" type="Control" parent="."]
 anchor_right = 1.0
@@ -60,10 +60,12 @@ __meta__ = {
 
 [node name="HomeBtn" type="TextureButton" parent="BottomPanel"]
 margin_right = 212.0
-margin_bottom = 125.0
+margin_bottom = 130.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture_normal = ExtResource( 5 )
+toggle_mode = true
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 5 )
 expand = true
 stretch_mode = 3
 __meta__ = {
@@ -73,7 +75,7 @@ __meta__ = {
 [node name="SearchBtn" type="TextureButton" parent="BottomPanel"]
 margin_left = 216.0
 margin_right = 428.0
-margin_bottom = 125.0
+margin_bottom = 130.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = ExtResource( 3 )
@@ -86,7 +88,7 @@ __meta__ = {
 [node name="VideoBtn" type="TextureButton" parent="BottomPanel"]
 margin_left = 432.0
 margin_right = 644.0
-margin_bottom = 125.0
+margin_bottom = 130.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = ExtResource( 6 )
@@ -99,7 +101,7 @@ __meta__ = {
 [node name="ShopBtn" type="TextureButton" parent="BottomPanel"]
 margin_left = 648.0
 margin_right = 860.0
-margin_bottom = 125.0
+margin_bottom = 130.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = ExtResource( 4 )
@@ -109,20 +111,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ProfilBtn" type="TextureButton" parent="BottomPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="BottomPanel"]
 margin_left = 864.0
 margin_right = 1076.0
-margin_bottom = 125.0
+margin_bottom = 130.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/margin_top = 20
+custom_constants/margin_bottom = 20
+
+[node name="ProfileBtn" type="TextureButton" parent="BottomPanel/MarginContainer"]
+margin_top = 20.0
+margin_right = 212.0
+margin_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 0, 90 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
 texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 9 )
 expand = true
-stretch_mode = 3
+stretch_mode = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="BottomPanel/HomeBtn" to="." method="_on_HomeBtn_pressed"]
 [connection signal="pressed" from="BottomPanel/SearchBtn" to="." method="_on_SearchBtn_pressed"]
 [connection signal="pressed" from="BottomPanel/VideoBtn" to="." method="_on_VideoBtn_pressed"]
 [connection signal="pressed" from="BottomPanel/ShopBtn" to="." method="_on_ShopBtn_pressed"]
-[connection signal="pressed" from="BottomPanel/ProfilBtn" to="." method="_on_ProfilBtn_pressed"]
+[connection signal="pressed" from="BottomPanel/MarginContainer/ProfileBtn" to="." method="_on_ProfilBtn_pressed"]
