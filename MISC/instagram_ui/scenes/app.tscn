@@ -137,7 +137,6 @@ stretch_mode = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
 [connection signal="pressed" from="BottomPanel/HomeBtn" to="." method="_on_HomeBtn_pressed"]
 [connection signal="pressed" from="BottomPanel/SearchBtn" to="." method="_on_SearchBtn_pressed"]
 [connection signal="pressed" from="BottomPanel/VideoBtn" to="." method="_on_VideoBtn_pressed"]
