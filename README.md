@@ -4,7 +4,7 @@
   <img src="godot_experiments_social_preview.jpg" width="720">
 </p>
 
-Some of my 2D/3D/VR/UI experiments in Godot.
+Some of my 2D/3D/VR/UI experiments in Godot. You can find some of my tutorials and experiments on my [YouTube channel](https://www.youtube.com/channel/UCANaLfiFwsHttGv6qGvSEIw).
 
 ## Projects & descriptions
 
@@ -104,6 +104,7 @@ http://www.mazegenerator.net/
 
 Software engineer & gamedev. 3D, 2D & VR. 
 
+- [YouTube](https://www.youtube.com/channel/UCANaLfiFwsHttGv6qGvSEIw)
 - [Twitter](https://twitter.com/VicMeunier) 
 - [Instagram](https://www.instagram.com/vico.choco)
 - [Itch.io](https://mreliptik.itch.io/)
