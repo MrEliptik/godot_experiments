@@ -56,6 +56,7 @@ __meta__ = {
 [node name="Image" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 1 )
@@ -96,6 +97,7 @@ __meta__ = {
 [node name="MatchText" type="TextureRect" parent="MarginContainer"]
 margin_right = 1080.0
 margin_bottom = 454.0
+rect_pivot_offset = Vector2( 540, 227 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 2 )
@@ -180,4 +182,6 @@ custom_styles/focus = SubResource( 8 )
 custom_styles/normal = SubResource( 8 )
 custom_fonts/font = SubResource( 3 )
 text = "KEEP SWIPING"
+
+[node name="Tween" type="Tween" parent="."]
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/KeepSwiping" to="." method="_on_KeepSwiping_pressed"]

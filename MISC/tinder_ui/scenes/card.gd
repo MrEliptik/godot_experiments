@@ -40,18 +40,15 @@ func _ready():
 	# Choose random image set
 	images = sets[int(rand_range(0, 3))]
 	
-#	var images_temp = []
-#	for image in images:
-#		if image:
-#			images_temp.append(image)
-#	images = images_temp
-#	images.shuffle()
 	change_image(0)
 	
 	## Choose random name
 	$Button/MarginContainer/HBoxContainer/VBoxContainer/NameAge.text = name_age_arr[int(rand_range(0, name_age_arr.size()))]
 	
 	$ScrollContainer/VBoxContainer/Image.material.set_shader_param("size", $ScrollContainer/VBoxContainer/Image.rect_size)
+	
+	print($ScrollContainer/VBoxContainer/Image.texture.get_height())
+	print($ScrollContainer/VBoxContainer/Image.texture.get_width())
 	
 func _input(event):
 	if !enabled: return
@@ -66,26 +63,7 @@ func _input(event):
 			$Nope.modulate = lerp(Color("#00ffffff"), Color("#ffffffff"), abs(dist.x)/nope_like_visible_dist)
 		pressed = false
 		latest_speed = event.speed
-	
-	
-func change_image(idx):
-	for child in $MarginContainer/HBoxContainer.get_children():
-		child.value = 0
-	$ScrollContainer/VBoxContainer/Image.texture = images[idx]
-	$MarginContainer/HBoxContainer.get_child(idx).value = 100
-
-func _on_PreviousBtn_pressed():
-	if image_idx == 0: image_idx = images.size() - 1
-	else: image_idx -= 1
-	change_image(image_idx)
-
-func _on_NextBtn_pressed():
-	if image_idx == images.size() - 1: image_idx = 0
-	else: image_idx += 1
-	change_image(image_idx)
-
-func _on_Card_gui_input(event):
-	if !enabled: return
+		
 	if event is InputEventMouseButton:
 		if event.pressed:
 			pressed = true
@@ -113,6 +91,26 @@ func _on_Card_gui_input(event):
 					rect_rotation = 0
 					$Like.modulate = Color("#00ffffff")
 					$Nope.modulate = Color("#00ffffff")
+	
+	
+func change_image(idx):
+	for child in $MarginContainer/HBoxContainer.get_children():
+		child.value = 0
+	$ScrollContainer/VBoxContainer/Image.texture = images[idx]
+	$MarginContainer/HBoxContainer.get_child(idx).value = 100
+
+func _on_PreviousBtn_pressed():
+	if image_idx == 0: image_idx = images.size() - 1
+	else: image_idx -= 1
+	change_image(image_idx)
+
+func _on_NextBtn_pressed():
+	if image_idx == images.size() - 1: image_idx = 0
+	else: image_idx += 1
+	change_image(image_idx)
+
+func _on_Card_gui_input(event):
+	print(event)
 
 func _on_Button_pressed():
 	pass # Replace with function body.
