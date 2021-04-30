@@ -24,8 +24,8 @@ func _process(delta):
 		first_content.visible = false
 		second_scroll.scroll_vertical_enabled = true
 	
-#	elif scrolling_up && second_scroll.scroll_vertical == 0 && !first_content.visible:
-#		first_content.visible = true
-#		second_scroll.scroll_vertical_enabled = false
+	elif scrolling_up && second_scroll.scroll_vertical == 0 && !first_content.visible:
+		first_content.visible = true
+		second_scroll.scroll_vertical_enabled = false
 	
 	scrolling_up = false
