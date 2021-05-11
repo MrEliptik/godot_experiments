@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/slowdownCustom.gd" type="Script" id=1]
 [ext_resource path="res://scenes/kinematicBody2D.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/particles.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/timer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/tweening.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/animation.tscn" type="PackedScene" id=8]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -22,6 +23,9 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 5.0
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 508.371, 10 )
+
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 102.427, 10 )
 
@@ -32,7 +36,7 @@ script = ExtResource( 1 )
 position = Vector2( 548.168, 414.65 )
 
 [node name="RigidBody2D" parent="." instance=ExtResource( 3 )]
-position = Vector2( 802.293, 230.305 )
+position = Vector2( 846.343, 325.079 )
 physics_material_override = SubResource( 1 )
 
 [node name="Particles" parent="." instance=ExtResource( 5 )]
@@ -45,11 +49,14 @@ position = Vector2( 140.234, 200.558 )
 [node name="Timer" parent="." instance=ExtResource( 6 )]
 position = Vector2( 487.322, 180.852 )
 
+[node name="Animation" parent="." instance=ExtResource( 8 )]
+position = Vector2( 810.248, 178.869 )
+
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2( 512, 534 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="icon" type="Sprite" parent="Floor"]
 modulate = Color( 0, 0, 0, 1 )

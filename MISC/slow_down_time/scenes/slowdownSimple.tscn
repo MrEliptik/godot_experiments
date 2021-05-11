@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/slowdownSimple.gd" type="Script" id=1]
 [ext_resource path="res://scenes/kinematicBody2D.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/tweening.tscn" type="PackedScene" id=5]
 [ext_resource path="res://icon.png" type="Texture" id=6]
 [ext_resource path="res://scenes/timer.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/animation.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 547.44, 10 )
@@ -21,7 +22,7 @@ script = ExtResource( 1 )
 position = Vector2( 548.168, 414.65 )
 
 [node name="RigidBody2D" parent="." instance=ExtResource( 3 )]
-position = Vector2( 802.293, 230.305 )
+position = Vector2( 846.343, 325.079 )
 
 [node name="Particles" parent="." instance=ExtResource( 4 )]
 position = Vector2( 140.7, 390.033 )
@@ -31,6 +32,9 @@ position = Vector2( 140.234, 200.558 )
 
 [node name="Timer" parent="." instance=ExtResource( 7 )]
 position = Vector2( 487.322, 180.852 )
+
+[node name="Animation" parent="." instance=ExtResource( 8 )]
+position = Vector2( 810.248, 178.869 )
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2( 512, 534 )
