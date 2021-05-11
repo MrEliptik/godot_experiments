@@ -41,6 +41,7 @@ Some of my 2D/3D/VR/UI experiments in Godot. You can find some of my tutorials a
 ![](MISC/audio_visualizer/icon.png) | MISC | audio_visualizer | represent the audio magnitude against time both left and right channel. Drawn as the song plays | WIP 🛠
 ![](MISC/instagram_ui/icon.png) | MISC | instagram_ui | recreating some of Instagram's UI | DONE ✔
 ![](MISC/slow_down_sound/icon.png) | MISC | slow_down_sound | showcase an effect where the pitch and volume of the music is decreased with a tween. Useful for a "loosing" effect, when a player dies for example | DONE ✔
+![](MISC/slow_down_time/icon.png) | MISC | slow_down_time | two ways of slowing down time | DONE ✔
 ![](MISC/tinder_ui/icon.png) | MISC | tinder_ui | recreating some of Tinder's UI | WIP 🛠
 
 ## Videos & GIFs
