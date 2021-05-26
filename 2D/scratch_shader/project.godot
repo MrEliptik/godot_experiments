@@ -18,6 +18,10 @@ config/name="scratch_shader"
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://icon.png"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [display]
 
 window/size/width=1920
