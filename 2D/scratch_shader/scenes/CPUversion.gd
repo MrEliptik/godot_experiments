@@ -38,6 +38,3 @@ func _process(delta):
 	
 	img.unlock()
 	scratch_im.unlock()
-
-	var tex = ImageTexture.new()
-	tex.create_from_image(img)
