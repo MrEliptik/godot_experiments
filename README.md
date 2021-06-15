@@ -10,6 +10,7 @@ Some of my 2D/3D/VR/UI experiments in Godot. You can find some of my tutorials a
 
 | Icon | Type   |  Tittle | Description | Status |
 :-----:|:-------:|:-------:|:-----------:|:------:|
+![](2D/accelerometer_gamepad_game/icon.png)| 2D | accelerometer_gamepad_game | simple game with websocket server to be controlled by a smartphone's accelerometer. *See MISC/accelerometer_gamepad* | DONE ✔
 ![](2D/android_accelerometer/icon.png)| 2D | android_accelerometer | trying to use the accelerometer to set the gravity | DONE ✔
 ![](2D/loading_shader/icon.png)| 2D | loading_shader | simple loading shader effects, from black and white to rgb | DONE ✔
 ![](2D/mobile_ui/icon.png) | 2D | mobile_ui | trying the Godot's UI node on mobile | DONE ✔
@@ -39,6 +40,7 @@ Some of my 2D/3D/VR/UI experiments in Godot. You can find some of my tutorials a
 ![](VR/bow_and_arrow/icon.png) | VR | bow_and_arrow | bow and arrow mechanic | WIP 🛠
 ![](VR/control_like_interaction/icon.png) | VR | control_like_interaction | trying to recreate CONTROL like movement, and messing with area's gravity | DONE ✔
 | | | | |
+![](MISC/accelerometer_gamepad/icon.png) | MISC | accelerometer_gamepad | use the phone's accelerometer and websockets to control a game. *See 2D/accelerometer_gamepad_game* | DONE ✔
 ![](MISC/audio_visualizer/icon.png) | MISC | audio_visualizer | represent the audio magnitude against time both left and right channel. Drawn as the song plays | DONE ✔
 ![](MISC/instagram_ui/icon.png) | MISC | instagram_ui | recreating some of Instagram's UI | DONE ✔
 ![](MISC/slow_down_sound/icon.png) | MISC | slow_down_sound | showcase an effect where the pitch and volume of the music is decreased with a tween. Useful for a "loosing" effect, when a player dies for example | DONE ✔
