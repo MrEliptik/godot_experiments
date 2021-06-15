@@ -16,14 +16,15 @@ _global_script_class_icons={
 [application]
 
 config/name="accelerometer_gamepad"
-run/main_scene="res://scenes/test3D.tscn"
+run/main_scene="res://scenes/gamepad.tscn"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.png"
 
 [display]
 
 window/size/width=1920
 window/size/height=1080
-window/handheld/orientation="sensor_landscape"
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
@@ -33,4 +34,6 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
 environment/default_environment="res://default_env.tres"
