@@ -181,7 +181,6 @@ __meta__ = {
 }
 
 [node name="Connection" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -255,6 +254,7 @@ text = "CONNECT"
 
 [node name="WSClient" type="Node" parent="."]
 script = ExtResource( 4 )
+
 [connection signal="pressed" from="FireBtn" to="." method="_on_FireBtn_pressed"]
 [connection signal="pressed" from="Connection/Control/VBoxContainer/ConnectBtn" to="." method="_on_ConnectBtn_pressed"]
 [connection signal="connected" from="WSClient" to="." method="_on_WSClient_connected"]
