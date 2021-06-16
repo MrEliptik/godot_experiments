@@ -27,7 +27,7 @@ __meta__ = {
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 960, 900 )
 
-[node name="WebSocketsServer" type="Node2D" parent="."]
+[node name="WebSocketsServer" type="Node" parent="."]
 script = ExtResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]

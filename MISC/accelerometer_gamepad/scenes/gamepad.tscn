@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://visuals/circle_bubble_inner.png" type="Texture" id=1]
 [ext_resource path="res://scenes/gamepad.gd" type="Script" id=2]
@@ -19,20 +19,46 @@ font_data = ExtResource( 3 )
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.866667, 0.207843, 0.207843, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.231373, 0.231373, 0.231373, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.866667, 0.207843, 0.207843, 0 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.866667, 0.207843, 0.207843, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="DynamicFont" id=7]
 size = 72
 use_filter = true
 font_data = ExtResource( 3 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.13711, 0.13711, 0.13711, 1 )
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
 [node name="Gamepad" type="Control"]
@@ -144,14 +170,18 @@ margin_left = -596.0
 margin_top = -361.0
 margin_right = -41.0
 margin_bottom = -36.0
-custom_styles/normal = SubResource( 3 )
-custom_fonts/font = SubResource( 4 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 text = "FIRE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Connection" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -210,7 +240,7 @@ margin_right = 552.0
 margin_bottom = 179.0
 rect_min_size = Vector2( 0, 90 )
 size_flags_horizontal = 3
-custom_styles/normal = SubResource( 5 )
+custom_styles/normal = SubResource( 8 )
 custom_fonts/font = SubResource( 2 )
 text = "192.168.31.214"
 
@@ -219,7 +249,7 @@ margin_top = 183.0
 margin_right = 552.0
 margin_bottom = 376.0
 size_flags_vertical = 3
-custom_styles/focus = SubResource( 6 )
+custom_styles/focus = SubResource( 9 )
 custom_fonts/font = SubResource( 2 )
 text = "CONNECT"
 

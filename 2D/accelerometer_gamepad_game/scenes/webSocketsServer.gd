@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 signal new_accel_data(data)
 signal connected(to_url)
