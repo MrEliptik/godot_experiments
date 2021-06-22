@@ -8,11 +8,26 @@
 
 config_version=4
 
+_global_script_classes=[  ]
+_global_script_class_icons={
+}
+
 [application]
 
 config/name="flag_shader"
+run/main_scene="res://scenes/flag.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/borderless=true
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [rendering]
 
+quality/filters/anisotropic_filter_level=12
+quality/filters/msaa=3
 environment/default_environment="res://default_env.tres"
