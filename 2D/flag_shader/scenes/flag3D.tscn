@@ -12,9 +12,13 @@ code = "shader_type spatial;
 render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
 
 uniform float speed = 2.0;
-uniform float frequency = 5.0;
-uniform float amplitude = 50.0;
-uniform float inclination = 0.1;
+uniform float frequency_y = 5.0;
+uniform float frequency_x = 2.5;
+uniform float frequency_z = 2.5;
+uniform float amplitude_y = 0.1;
+uniform float amplitude_x = 0.05;
+uniform float amplitude_z = 0.05;
+uniform float inclination = -0.04;
 
 uniform sampler2D tex: hint_albedo;
 
@@ -24,17 +28,22 @@ void fragment(){
 }
 
 void vertex(){
-	VERTEX.y += sin((UV.x - TIME * speed) * frequency) * amplitude * UV.x;
-	VERTEX.x += cos((UV.y - TIME * speed) * frequency) * amplitude * 0.1 * UV.x;
-	VERTEX.z -= (1.0 - UV.x) * inclination;
+	VERTEX.y += sin((UV.x - TIME * speed) * frequency_y) * amplitude_y * UV.x;
+	VERTEX.x += cos((UV.y - TIME * speed) * frequency_x) * amplitude_x * 0.1 * UV.x;
+	VERTEX.z += sin((UV.x - TIME * speed) * frequency_z) * amplitude_z * UV.x;
+	VERTEX.x -= (1.0 - UV.y) * inclination;
 }"
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = SubResource( 2 )
 shader_param/speed = 1.0
-shader_param/frequency = 5.0
-shader_param/amplitude = 0.058
-shader_param/inclination = 0.045
+shader_param/frequency_y = 5.0
+shader_param/frequency_x = 2.5
+shader_param/frequency_z = 2.5
+shader_param/amplitude_y = 0.1
+shader_param/amplitude_x = 0.05
+shader_param/amplitude_z = 0.05
+shader_param/inclination = -0.039
 shader_param/tex = ExtResource( 1 )
 
 [sub_resource type="Environment" id=4]
