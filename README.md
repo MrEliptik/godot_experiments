@@ -12,6 +12,7 @@ Some of my 2D/3D/VR/UI experiments in Godot. You can find some of my tutorials a
 :-----:|:-------:|:-------:|:-----------:|:------:|
 ![](2D/accelerometer_gamepad_game/icon.png)| 2D | accelerometer_gamepad_game | simple game with websocket server to be controlled by a smartphone's accelerometer. *See MISC/accelerometer_gamepad* | DONE ✔
 ![](2D/android_accelerometer/icon.png)| 2D | android_accelerometer | trying to use the accelerometer to set the gravity | DONE ✔
+![](2D/connected_dots/icon.png)| 2D | connected_dots | dots moving around making connections | DONE ✔
 ![](2D/flag_shader/icon.png)| 2D | flag_shader | 2D & 3D simple flag shader | DONE ✔
 ![](2D/loading_shader/icon.png)| 2D | loading_shader | simple loading shader effects, from black and white to rgb | DONE ✔
 ![](2D/mobile_ui/icon.png) | 2D | mobile_ui | trying the Godot's UI node on mobile | DONE ✔
@@ -93,6 +94,10 @@ Some of my 2D/3D/VR/UI experiments in Godot. You can find some of my tutorials a
 ### Loading_shader
 
 ![Loading shader](videos_gifs/loading_shader.png)
+
+### Connected_dots
+
+![Connected dots](videos_gifs/connected_dots.gif)
 
 ## Useful
 
