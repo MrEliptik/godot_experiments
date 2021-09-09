@@ -34,8 +34,8 @@ position = Vector2( 480, 224.762 )
 curve = SubResource( 1 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2( 95.4192, 182.788 )
-rotation = 1.90787
+position = Vector2( 95.2921, 183.116 )
+rotation = 1.90187
 offset = 1941.56
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
@@ -49,8 +49,9 @@ texture_mode = 1
 antialiased = true
 
 [node name="Train" type="Node2D" parent="."]
-position = Vector2( 575.419, 407.55 )
-rotation = 1.90787
+position = Vector2( 575.292, 407.878 )
+rotation = 1.90187
+scale = Vector2( 1, 1 )
 
 [node name="train" type="Sprite" parent="Train"]
 scale = Vector2( 0.05, 0.1 )

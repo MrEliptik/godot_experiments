@@ -1,0 +1,143 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://addons/silent_wolf/Auth/ConfirmEmail.gd" type="Script" id=1]
+[ext_resource path="res://addons/silent_wolf/common/SWButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/silent_wolf/assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFontData" id=13]
+font_path = "res://addons/silent_wolf/assets/fonts/Comfortaa-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = SubResource( 13 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+font_data = SubResource( 13 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = SubResource( 13 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 23.0
+content_margin_right = 23.0
+content_margin_top = 23.0
+content_margin_bottom = 23.0
+bg_color = Color( 0.831373, 0.415686, 0.415686, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=6]
+content_margin_left = 23.0
+content_margin_right = 23.0
+content_margin_top = 23.0
+content_margin_bottom = 23.0
+bg_color = Color( 0.831373, 0.415686, 0.415686, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=7]
+content_margin_left = 23.0
+content_margin_right = 23.0
+content_margin_top = 23.0
+content_margin_bottom = 23.0
+bg_color = Color( 0.482353, 0.458824, 0.458824, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="DynamicFont" id=8]
+size = 64
+font_data = ExtResource( 3 )
+
+[node name="ConfirmEmail" type="TextureRect"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FormContainer" type="VBoxContainer" parent="."]
+margin_left = 565.0
+margin_top = 197.0
+margin_right = 1500.0
+margin_bottom = 798.0
+custom_constants/separation = 100
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="FormContainer"]
+margin_right = 935.0
+margin_bottom = 72.0
+custom_fonts/font = SubResource( 1 )
+text = "Confirm your email address"
+align = 1
+
+[node name="CodeContainer" type="HBoxContainer" parent="FormContainer"]
+margin_top = 172.0
+margin_right = 935.0
+margin_bottom = 247.0
+custom_constants/separation = 20
+
+[node name="Label" type="Label" parent="FormContainer/CodeContainer"]
+margin_top = 10.0
+margin_right = 133.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 2 )
+text = "Code"
+
+[node name="VerifCode" type="LineEdit" parent="FormContainer/CodeContainer"]
+margin_left = 153.0
+margin_right = 483.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 330, 75 )
+custom_fonts/font = SubResource( 3 )
+max_length = 30
+
+[node name="ErrorMessage" type="Label" parent="FormContainer"]
+visible = false
+margin_top = 522.0
+margin_right = 648.0
+margin_bottom = 559.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.866667, 0.101961, 0.101961, 1 )
+autowrap = true
+
+[node name="ConfirmButton" parent="FormContainer" instance=ExtResource( 2 )]
+margin_top = 347.0
+margin_right = 935.0
+margin_bottom = 465.0
+text = "Submit"
+
+[node name="ResendConfCodeButton" parent="FormContainer" instance=ExtResource( 2 )]
+margin_top = 565.0
+margin_right = 935.0
+margin_bottom = 683.0
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
+text = "Resend code"
+
+[node name="ProcessingLabel" type="Label" parent="FormContainer"]
+visible = false
+margin_top = 740.0
+margin_right = 648.0
+margin_bottom = 812.0
+custom_fonts/font = SubResource( 1 )
+text = "Processing..."
+align = 1
+[connection signal="pressed" from="FormContainer/ConfirmButton" to="." method="_on_ConfirmButton_pressed"]
+[connection signal="pressed" from="FormContainer/ResendConfCodeButton" to="." method="_on_ResendConfCodeButton_pressed"]

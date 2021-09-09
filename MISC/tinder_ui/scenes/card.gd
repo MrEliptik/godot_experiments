@@ -45,10 +45,7 @@ func _ready():
 	## Choose random name
 	$Button/MarginContainer/HBoxContainer/VBoxContainer/NameAge.text = name_age_arr[int(rand_range(0, name_age_arr.size()))]
 	
-	$ScrollContainer/VBoxContainer/Image.material.set_shader_param("size", $ScrollContainer/VBoxContainer/Image.rect_size)
-	
-	print($ScrollContainer/VBoxContainer/Image.texture.get_height())
-	print($ScrollContainer/VBoxContainer/Image.texture.get_width())
+	$ImageContainer/Image.material.set_shader_param("size", $ImageContainer/Image.rect_size)
 	
 func _input(event):
 	if !enabled: return
@@ -58,9 +55,11 @@ func _input(event):
 		rect_position = dist
 		rect_rotation = -(event.position.x - first_press_pos.x) * 0.025
 		if sign(dist.x) > 0: 
-			$Like.modulate = lerp(Color("#00ffffff"), Color("#ffffffff"), abs(dist.x)/nope_like_visible_dist)
+			$Like.modulate = lerp(Color("#00ffffff"), Color("#ffffffff"), 
+				abs(dist.x)/nope_like_visible_dist)
 		else:
-			$Nope.modulate = lerp(Color("#00ffffff"), Color("#ffffffff"), abs(dist.x)/nope_like_visible_dist)
+			$Nope.modulate = lerp(Color("#00ffffff"), Color("#ffffffff"), 
+				abs(dist.x)/nope_like_visible_dist)
 		pressed = false
 		latest_speed = event.speed
 		
@@ -82,7 +81,7 @@ func _input(event):
 					rect_position += latest_speed
 					emit_signal("finished")
 					if sign(latest_speed.x) > 0:
-						emit_signal("like", self, $ScrollContainer/VBoxContainer/Image.texture)
+						emit_signal("like", self, $ImageContainer/Image.texture)
 					else:
 						emit_signal("dislike", self)
 					queue_free()
@@ -96,7 +95,7 @@ func _input(event):
 func change_image(idx):
 	for child in $MarginContainer/HBoxContainer.get_children():
 		child.value = 0
-	$ScrollContainer/VBoxContainer/Image.texture = images[idx]
+	$ImageContainer/Image.texture = images[idx]
 	$MarginContainer/HBoxContainer.get_child(idx).value = 100
 
 func _on_PreviousBtn_pressed():

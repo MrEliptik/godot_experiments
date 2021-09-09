@@ -125,24 +125,14 @@ image7 = ExtResource( 9 )
 image8 = ExtResource( 11 )
 image9 = ExtResource( 12 )
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="ImageContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 1
-scroll_horizontal_enabled = false
-scroll_vertical_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
-material = SubResource( 2 )
-margin_right = 1080.0
-margin_bottom = 1920.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Image" type="TextureRect" parent="ScrollContainer/VBoxContainer"]
+[node name="Image" type="TextureRect" parent="ImageContainer"]
 material = SubResource( 2 )
 margin_right = 1080.0
 margin_bottom = 1920.0
@@ -157,6 +147,7 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {

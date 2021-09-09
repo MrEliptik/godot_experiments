@@ -1,0 +1,8 @@
+[gd_resource type="NativeScript" load_steps=2 format=2]
+
+[ext_resource path="res://addons/godot_ovrmobile/godot_ovrmobile.gdnlib" type="GDNativeLibrary" id=1]
+
+[resource]
+resource_name = "OvrMRC"
+class_name = "OvrMRC"
+library = ExtResource( 1 )

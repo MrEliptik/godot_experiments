@@ -1,0 +1,228 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://addons/silent_wolf/assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://addons/silent_wolf/Scores/assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://addons/silent_wolf/common/SWButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/silent_wolf/examples/CustomLeaderboards/TimeBasedLboards.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 120
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 76
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=3]
+
+[sub_resource type="DynamicFont" id=8]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 23.0
+content_margin_right = 23.0
+content_margin_top = 23.0
+content_margin_bottom = 23.0
+bg_color = Color( 0.831373, 0.415686, 0.415686, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 23.0
+content_margin_right = 23.0
+content_margin_top = 23.0
+content_margin_bottom = 23.0
+bg_color = Color( 0.831373, 0.415686, 0.415686, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=6]
+content_margin_left = 23.0
+content_margin_right = 23.0
+content_margin_top = 23.0
+content_margin_bottom = 23.0
+bg_color = Color( 0.666667, 0.223529, 0.223529, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="DynamicFont" id=7]
+size = 64
+font_data = ExtResource( 2 )
+
+[node name="TimeBasedLBoards" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="MainContainer" type="VBoxContainer" parent="."]
+margin_right = 1918.0
+margin_bottom = 1078.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleContainer" type="CenterContainer" parent="MainContainer"]
+margin_right = 1918.0
+margin_bottom = 135.0
+
+[node name="Label2" type="Label" parent="MainContainer/TitleContainer"]
+margin_left = 540.0
+margin_right = 1378.0
+margin_bottom = 135.0
+custom_fonts/font = SubResource( 1 )
+text = "Leaderboard"
+
+[node name="Boards" type="HBoxContainer" parent="MainContainer"]
+margin_top = 139.0
+margin_right = 1918.0
+margin_bottom = 328.0
+custom_constants/separation = 160
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Weekly" type="VBoxContainer" parent="MainContainer/Boards"]
+margin_right = 532.0
+margin_bottom = 189.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleContainer" type="CenterContainer" parent="MainContainer/Boards/Weekly"]
+margin_right = 532.0
+margin_bottom = 85.0
+
+[node name="Label" type="Label" parent="MainContainer/Boards/Weekly/TitleContainer"]
+margin_left = 76.0
+margin_right = 456.0
+margin_bottom = 85.0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 2 )
+text = "This week"
+
+[node name="HighScores" type="CenterContainer" parent="MainContainer/Boards/Weekly"]
+margin_left = 266.0
+margin_top = 89.0
+margin_right = 266.0
+margin_bottom = 189.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 4
+theme = SubResource( 3 )
+
+[node name="ScoreItemContainer" type="VBoxContainer" parent="MainContainer/Boards/Weekly/HighScores"]
+margin_top = 50.0
+margin_bottom = 50.0
+
+[node name="Monthly" type="VBoxContainer" parent="MainContainer/Boards"]
+margin_left = 692.0
+margin_right = 1224.0
+margin_bottom = 189.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleContainer" type="CenterContainer" parent="MainContainer/Boards/Monthly"]
+margin_right = 532.0
+margin_bottom = 85.0
+
+[node name="Label" type="Label" parent="MainContainer/Boards/Monthly/TitleContainer"]
+margin_left = 44.0
+margin_right = 488.0
+margin_bottom = 85.0
+custom_fonts/font = SubResource( 2 )
+text = "This month"
+
+[node name="HighScores" type="CenterContainer" parent="MainContainer/Boards/Monthly"]
+margin_left = 266.0
+margin_top = 89.0
+margin_right = 266.0
+margin_bottom = 189.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 4
+theme = SubResource( 3 )
+
+[node name="ScoreItemContainer" type="VBoxContainer" parent="MainContainer/Boards/Monthly/HighScores"]
+margin_top = 50.0
+margin_bottom = 50.0
+
+[node name="main" type="VBoxContainer" parent="MainContainer/Boards"]
+margin_left = 1384.0
+margin_right = 1918.0
+margin_bottom = 189.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleContainer" type="CenterContainer" parent="MainContainer/Boards/main"]
+margin_right = 534.0
+margin_bottom = 85.0
+
+[node name="Label" type="Label" parent="MainContainer/Boards/main/TitleContainer"]
+margin_left = 121.0
+margin_right = 413.0
+margin_bottom = 85.0
+custom_fonts/font = SubResource( 2 )
+text = "All time"
+align = 1
+
+[node name="HighScores" type="CenterContainer" parent="MainContainer/Boards/main"]
+margin_left = 267.0
+margin_top = 89.0
+margin_right = 267.0
+margin_bottom = 189.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 4
+theme = SubResource( 3 )
+
+[node name="ScoreItemContainer" type="VBoxContainer" parent="MainContainer/Boards/main/HighScores"]
+margin_top = 50.0
+margin_bottom = 50.0
+
+[node name="MessageContainer" type="CenterContainer" parent="MainContainer"]
+visible = false
+margin_left = 1144.0
+margin_top = 228.0
+margin_right = 3008.0
+margin_bottom = 265.0
+
+[node name="TextMessage" type="Label" parent="MainContainer/MessageContainer"]
+margin_left = 789.0
+margin_right = 1075.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 8 )
+text = "Loading scores..."
+valign = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="MainContainer"]
+margin_top = 332.0
+margin_right = 1918.0
+margin_bottom = 450.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CloseButtonContainer" type="CenterContainer" parent="MainContainer/CenterContainer"]
+margin_left = 609.0
+margin_right = 1308.0
+margin_bottom = 118.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CloseButton" parent="MainContainer/CenterContainer/CloseButtonContainer" instance=ExtResource( 4 )]
+margin_right = 699.0
+margin_bottom = 118.0
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
+text = "Close Leaderboard"
+[connection signal="pressed" from="MainContainer/CenterContainer/CloseButtonContainer/CloseButton" to="." method="_on_CloseButton_pressed"]

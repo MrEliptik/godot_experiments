@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://OQ_Toolkit/OQ_ARVRController/scripts/OQ_ARVRController.gd" type="Script" id=1]
+
+[node name="OQ_LeftController" type="ARVRController"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 1.5, -0.5 )
+script = ExtResource( 1 )

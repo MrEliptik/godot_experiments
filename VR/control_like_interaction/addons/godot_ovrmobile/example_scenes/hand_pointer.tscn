@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/godot_ovrmobile/example_scenes/ray_cast_with_reticle.gd" type="Script" id=1]
+[ext_resource path="res://addons/godot_ovrmobile/example_scenes/ray_reticle.tscn" type="PackedScene" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+
+[sub_resource type="CylinderMesh" id=2]
+material = SubResource( 1 )
+top_radius = 0.001
+bottom_radius = 0.01
+height = 0.05
+
+[node name="HandPointer" type="Spatial"]
+
+[node name="RayCast" type="RayCast" parent="." groups=[
+"gast_ray_caster",
+]]
+enabled = true
+cast_to = Vector3( 0, 0, -4 )
+script = ExtResource( 1 )
+
+[node name="RayReticle" parent="RayCast" instance=ExtResource( 2 )]
+
+[node name="PointerModel" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, -0.03 )
+mesh = SubResource( 2 )
+material/0 = null

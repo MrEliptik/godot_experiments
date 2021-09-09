@@ -1,0 +1,285 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://addons/silent_wolf/Auth/Register.gd" type="Script" id=1]
+[ext_resource path="res://addons/silent_wolf/common/SWButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/silent_wolf/assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://addons/silent_wolf/assets/gfx/info_icon_small.png" type="Texture" id=5]
+[ext_resource path="res://addons/silent_wolf/assets/gfx/dummy_info_icon_small.png" type="Texture" id=6]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 23.0
+content_margin_right = 23.0
+content_margin_top = 23.0
+content_margin_bottom = 23.0
+bg_color = Color( 0.831373, 0.415686, 0.415686, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 23.0
+content_margin_right = 23.0
+content_margin_top = 23.0
+content_margin_bottom = 23.0
+bg_color = Color( 0.831373, 0.415686, 0.415686, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 23.0
+content_margin_right = 23.0
+content_margin_top = 23.0
+content_margin_bottom = 23.0
+bg_color = Color( 0.482353, 0.458824, 0.458824, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="DynamicFont" id=4]
+size = 64
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 64
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 64
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 32
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 32
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 32
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 32
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+content_margin_left = 30.0
+content_margin_right = 30.0
+content_margin_top = 30.0
+content_margin_bottom = 30.0
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.666667, 0.223529, 0.223529, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="DynamicFont" id=11]
+size = 32
+outline_color = Color( 0.666667, 0.223529, 0.223529, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 32
+outline_color = Color( 0.854902, 0.0901961, 0.0901961, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 32
+font_data = ExtResource( 3 )
+
+[node name="Register" type="TextureRect"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" parent="." instance=ExtResource( 2 )]
+margin_left = 241.0
+margin_top = 54.0
+margin_right = 529.0
+margin_bottom = 172.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+text = "← Back"
+
+[node name="FormContainer" type="VBoxContainer" parent="."]
+margin_left = 396.0
+margin_top = 200.0
+margin_right = 1665.0
+margin_bottom = 1060.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_constants/separation = 60
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="FormContainer"]
+margin_right = 1269.0
+margin_bottom = 72.0
+custom_fonts/font = SubResource( 14 )
+text = "Sign up"
+align = 1
+
+[node name="MainFormContainer" type="HBoxContainer" parent="FormContainer"]
+margin_top = 132.0
+margin_right = 1269.0
+margin_bottom = 525.0
+custom_constants/separation = 30
+
+[node name="FormLabels" type="VBoxContainer" parent="FormContainer/MainFormContainer"]
+margin_right = 625.0
+margin_bottom = 393.0
+custom_constants/separation = 30
+
+[node name="PlayerNameLabel" type="Label" parent="FormContainer/MainFormContainer/FormLabels"]
+margin_right = 625.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 80 )
+custom_fonts/font = SubResource( 5 )
+text = "Username:"
+
+[node name="EmailLabel" type="Label" parent="FormContainer/MainFormContainer/FormLabels"]
+margin_top = 110.0
+margin_right = 625.0
+margin_bottom = 182.0
+custom_fonts/font = SubResource( 5 )
+text = "Email:"
+
+[node name="PasswordLabel" type="Label" parent="FormContainer/MainFormContainer/FormLabels"]
+margin_top = 212.0
+margin_right = 625.0
+margin_bottom = 284.0
+custom_fonts/font = SubResource( 5 )
+text = "Password:"
+
+[node name="ConfirmPasswordLabel" type="Label" parent="FormContainer/MainFormContainer/FormLabels"]
+margin_top = 314.0
+margin_right = 625.0
+margin_bottom = 386.0
+custom_fonts/font = SubResource( 5 )
+text = "Confirm password:"
+
+[node name="FormInputFields" type="VBoxContainer" parent="FormContainer/MainFormContainer"]
+margin_left = 655.0
+margin_right = 1155.0
+margin_bottom = 393.0
+custom_constants/separation = 30
+
+[node name="PlayerName" type="LineEdit" parent="FormContainer/MainFormContainer/FormInputFields"]
+margin_right = 500.0
+margin_bottom = 78.0
+rect_min_size = Vector2( 500, 78 )
+custom_fonts/font = SubResource( 6 )
+max_length = 30
+
+[node name="Email" type="LineEdit" parent="FormContainer/MainFormContainer/FormInputFields"]
+margin_top = 108.0
+margin_right = 500.0
+margin_bottom = 183.0
+rect_min_size = Vector2( 360, 75 )
+custom_fonts/font = SubResource( 7 )
+max_length = 50
+
+[node name="Password" type="LineEdit" parent="FormContainer/MainFormContainer/FormInputFields"]
+margin_top = 213.0
+margin_right = 500.0
+margin_bottom = 288.0
+rect_min_size = Vector2( 360, 75 )
+custom_fonts/font = SubResource( 8 )
+max_length = 30
+secret = true
+
+[node name="ConfirmPassword" type="LineEdit" parent="FormContainer/MainFormContainer/FormInputFields"]
+margin_top = 318.0
+margin_right = 500.0
+margin_bottom = 393.0
+rect_min_size = Vector2( 360, 75 )
+custom_fonts/font = SubResource( 9 )
+max_length = 30
+secret = true
+
+[node name="InfoLabels" type="VBoxContainer" parent="FormContainer/MainFormContainer"]
+margin_left = 1185.0
+margin_right = 1269.0
+margin_bottom = 393.0
+rect_min_size = Vector2( 40, 0 )
+custom_constants/separation = 24
+
+[node name="UsernameToolButton" type="ToolButton" parent="FormContainer/MainFormContainer/InfoLabels"]
+margin_right = 84.0
+margin_bottom = 80.0
+icon = ExtResource( 5 )
+
+[node name="DummyToolButton1" type="ToolButton" parent="FormContainer/MainFormContainer/InfoLabels"]
+margin_top = 104.0
+margin_right = 84.0
+margin_bottom = 184.0
+icon = ExtResource( 6 )
+
+[node name="PasswordToolButton" type="ToolButton" parent="FormContainer/MainFormContainer/InfoLabels"]
+margin_top = 208.0
+margin_right = 84.0
+margin_bottom = 288.0
+icon = ExtResource( 5 )
+
+[node name="DummyToolButton2" type="ToolButton" parent="FormContainer/MainFormContainer/InfoLabels"]
+margin_top = 312.0
+margin_right = 84.0
+margin_bottom = 392.0
+icon = ExtResource( 6 )
+
+[node name="InfoBox" type="Label" parent="FormContainer"]
+visible = false
+margin_right = 1269.0
+margin_bottom = 137.0
+rect_min_size = Vector2( 250, 0 )
+custom_styles/normal = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 0.666667, 0.223529, 0.223529, 1 )
+custom_colors/font_outline_modulate = Color( 0.937255, 0.917647, 0.917647, 1 )
+text = "Password should contain at least 8 characters including uppercase and lowercase letters, numbers and (optionally) special characters."
+autowrap = true
+
+[node name="ErrorMessage" type="Label" parent="FormContainer"]
+visible = false
+margin_right = 1189.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0.866667, 0.101961, 0.101961, 1 )
+autowrap = true
+
+[node name="RegisterButton" parent="FormContainer" instance=ExtResource( 2 )]
+margin_top = 585.0
+margin_right = 1269.0
+margin_bottom = 703.0
+text = "Submit"
+
+[node name="ProcessingLabel" type="Label" parent="FormContainer"]
+visible = false
+margin_right = 1189.0
+margin_bottom = 72.0
+custom_fonts/font = SubResource( 13 )
+text = "Processing..."
+align = 1
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="mouse_entered" from="FormContainer/MainFormContainer/InfoLabels/UsernameToolButton" to="." method="_on_UsernameToolButton_mouse_entered"]
+[connection signal="mouse_exited" from="FormContainer/MainFormContainer/InfoLabels/UsernameToolButton" to="." method="_on_UsernameToolButton_mouse_exited"]
+[connection signal="mouse_entered" from="FormContainer/MainFormContainer/InfoLabels/PasswordToolButton" to="." method="_on_PasswordToolButton_mouse_entered"]
+[connection signal="mouse_exited" from="FormContainer/MainFormContainer/InfoLabels/PasswordToolButton" to="." method="_on_PasswordToolButton_mouse_exited"]
+[connection signal="pressed" from="FormContainer/RegisterButton" to="." method="_on_RegisterButton_pressed"]

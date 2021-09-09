@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://addons/godot_ovrmobile/example_scenes/touch_controller.dae" type="PackedScene" id=1]
+[ext_resource path="res://addons/godot_ovrmobile/example_scenes/left_hand_model.glb" type="PackedScene" id=2]
+[ext_resource path="res://addons/godot_ovrmobile/example_scenes/right_hand_model.glb" type="PackedScene" id=3]
+[ext_resource path="res://addons/godot_ovrmobile/example_scenes/arvr_origin.gd" type="Script" id=4]
+[ext_resource path="res://addons/godot_ovrmobile/example_scenes/oculus_touch_controller.gd" type="Script" id=5]
+[ext_resource path="res://addons/godot_ovrmobile/example_scenes/oculus_hand_tracker.gd" type="Script" id=6]
+[ext_resource path="res://addons/godot_ovrmobile/example_scenes/hand_pointer.tscn" type="PackedScene" id=7]
+
+[node name="ARVROrigin" type="ARVROrigin"]
+script = ExtResource( 4 )
+
+[node name="ARVRCamera" type="ARVRCamera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72656, 0 )
+
+[node name="LeftTouchController" type="ARVRController" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 1.72656, -0.4 )
+script = ExtResource( 5 )
+
+[node name="TouchControllerModel" parent="LeftTouchController" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0 )
+
+[node name="RightTouchController" type="ARVRController" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1.72656, -0.4 )
+controller_id = 2
+script = ExtResource( 5 )
+
+[node name="TouchControllerModel" parent="RightTouchController" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, -8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0 )
+
+[node name="LeftHand" type="ARVRController" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.132544, 1.65044, -0.301362 )
+script = ExtResource( 6 )
+
+[node name="HandModel" parent="LeftHand" instance=ExtResource( 2 )]
+
+[node name="HandPointer" parent="LeftHand/HandModel" instance=ExtResource( 7 )]
+visible = false
+
+[node name="RightHand" type="ARVRController" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.346606, 1.72656, -0.4 )
+controller_id = 2
+script = ExtResource( 6 )
+
+[node name="HandModel" parent="RightHand" instance=ExtResource( 3 )]
+
+[node name="HandPointer" parent="RightHand/HandModel" instance=ExtResource( 7 )]
+visible = false
+[connection signal="button_pressed" from="LeftTouchController" to="LeftTouchController" method="_on_LeftTouchController_button_pressed"]
+[connection signal="button_pressed" from="RightTouchController" to="RightTouchController" method="_on_RightTouchController_button_pressed"]
+[connection signal="button_release" from="RightTouchController" to="RightTouchController" method="_on_RightTouchController_button_release"]
+[connection signal="button_pressed" from="LeftHand" to="LeftHand" method="_on_LeftHand_pinch_pressed"]
+[connection signal="button_release" from="LeftHand" to="LeftHand" method="_on_finger_pinch_release"]
+[connection signal="button_pressed" from="RightHand" to="RightHand" method="_on_RightHand_pinch_pressed"]
+[connection signal="button_release" from="RightHand" to="RightHand" method="_on_finger_pinch_release"]

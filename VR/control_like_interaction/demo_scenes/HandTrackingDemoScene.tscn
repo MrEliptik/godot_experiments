@@ -1,0 +1,64 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://OQ_Toolkit/OQ_RightController.tscn" type="PackedScene" id=1]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVROrigin.tscn" type="PackedScene" id=2]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVRCamera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://OQ_Toolkit/OQ_LeftController.tscn" type="PackedScene" id=4]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVRController/Feature_HandModel_Left.tscn" type="PackedScene" id=5]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVRController/Feature_HandModel_Right.tscn" type="PackedScene" id=6]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVROrigin/Feature_VRSimulator.tscn" type="PackedScene" id=7]
+[ext_resource path="res://demo_scenes/HandTrackingDemoScene.gd" type="Script" id=8]
+[ext_resource path="res://OQ_Toolkit/OQ_UI2D/OQ_UI2DLabel.tscn" type="PackedScene" id=9]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 16, 16 )
+
+[sub_resource type="OpenSimplexNoise" id=2]
+octaves = 6
+period = 32.0
+persistence = 0.6
+lacunarity = 1.88
+
+[sub_resource type="NoiseTexture" id=3]
+seamless = true
+noise = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.6, 0.792157, 0.0666667, 1 )
+albedo_texture = SubResource( 3 )
+uv1_scale = Vector3( 4, 4, 1 )
+
+[node name="HandTrackingDemoScene" type="Spatial"]
+script = ExtResource( 8 )
+
+[node name="OQ_ARVROrigin" parent="." instance=ExtResource( 2 )]
+
+[node name="Feature_VRSimulator" parent="OQ_ARVROrigin" instance=ExtResource( 7 )]
+
+[node name="OQ_ARVRCamera" parent="OQ_ARVROrigin" instance=ExtResource( 3 )]
+
+[node name="OQ_RightController" parent="OQ_ARVROrigin" instance=ExtResource( 1 )]
+autoload_model = false
+hand_pinch_to_button = false
+
+[node name="Feature_HandModel_Right" parent="OQ_ARVROrigin/OQ_RightController" instance=ExtResource( 6 )]
+
+[node name="OQ_LeftController" parent="OQ_ARVROrigin" instance=ExtResource( 4 )]
+autoload_model = false
+
+[node name="Feature_HandModel_Left" parent="OQ_ARVROrigin/OQ_LeftController" instance=ExtResource( 5 )]
+
+[node name="Ground" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = SubResource( 4 )
+
+[node name="Label_SimpleGesture" parent="." instance=ExtResource( 9 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 1.6, -1 )
+margin = 16
+billboard = false
+depth_test = true
+resize_mode = 0
+font_size_multiplier = 1.0
+font_color = Color( 1, 1, 1, 1 )
+background_color = Color( 0, 0, 0, 1 )
+transparent = false

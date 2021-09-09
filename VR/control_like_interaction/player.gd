@@ -5,13 +5,14 @@ const selectable_material = preload("res://materials/selectedMaterial.tres")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	vr.initialize()
 	
 func _process(delta):
-	if $ARVROriginWithHandTracking/RightHand/RayCast.is_colliding():
-		var collider = $ARVROriginWithHandTracking/RightHand/RayCast.get_collider()
-		if collider.has_method("pick_up"):
-			collider.set_selectable_material(selectable_material)
+	pass
+#	if $ARVROriginWithHandTracking/RightHand/RayCast.is_colliding():
+#		var collider = $ARVROriginWithHandTracking/RightHand/RayCast.get_collider()
+#		if collider.has_method("pick_up"):
+#			collider.set_selectable_material(selectable_material)
 		
 
 func _on_ARVROriginWithHandTracking_left_hand_pinch(btn):

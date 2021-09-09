@@ -1,0 +1,460 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://OQ_Toolkit/OQ_LeftController.tscn" type="PackedScene" id=1]
+[ext_resource path="res://OQ_Toolkit/OQ_RightController.tscn" type="PackedScene" id=2]
+[ext_resource path="res://OQ_Toolkit/OQ_UI2D/OQ_UI2DCanvas.tscn" type="PackedScene" id=3]
+[ext_resource path="res://OQ_Toolkit/OQ_UI2D/OQ_UI2DLogWindow.tscn" type="PackedScene" id=4]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVRController/Feature_ControllerModel_Left.tscn" type="PackedScene" id=5]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVRController/Feature_UIRayCast.tscn" type="PackedScene" id=6]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVROrigin/Locomotion_Stick.tscn" type="PackedScene" id=7]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVRController/Feature_ControllerModel_Right.tscn" type="PackedScene" id=8]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVRCamera.tscn" type="PackedScene" id=9]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVROrigin.tscn" type="PackedScene" id=10]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVROrigin/Feature_VRSimulator.tscn" type="PackedScene" id=11]
+[ext_resource path="res://OQ_Toolkit/OQ_UI2D/theme/oq_ui2d_standard.theme" type="Theme" id=12]
+[ext_resource path="res://levels/UITestRoom.gd" type="Script" id=13]
+[ext_resource path="res://icon.png" type="Texture" id=14]
+[ext_resource path="res://OQ_Toolkit/OQ_Helpers/OQ_VisibilityToggle.tscn" type="PackedScene" id=15]
+[ext_resource path="res://OQ_Toolkit/OQ_UI2D/OQ_UI2DLabel.tscn" type="PackedScene" id=16]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 16, 16 )
+
+[sub_resource type="OpenSimplexNoise" id=2]
+octaves = 6
+period = 32.0
+persistence = 0.6
+lacunarity = 1.88
+
+[sub_resource type="NoiseTexture" id=3]
+seamless = true
+noise = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.6, 0.792157, 0.0666667, 1 )
+albedo_texture = SubResource( 3 )
+uv1_scale = Vector3( 4, 4, 1 )
+
+[node name="UITestRoom" type="Spatial"]
+script = ExtResource( 13 )
+
+[node name="OQ_ARVROrigin" parent="." instance=ExtResource( 10 )]
+
+[node name="OQ_ARVRCamera" parent="OQ_ARVROrigin" instance=ExtResource( 9 )]
+
+[node name="OQ_LeftController" parent="OQ_ARVROrigin" instance=ExtResource( 1 )]
+
+[node name="Feature_ControllerModel_Left" parent="OQ_ARVROrigin/OQ_LeftController" instance=ExtResource( 5 )]
+
+[node name="OQ_VisibilityToggle" parent="OQ_ARVROrigin/OQ_LeftController" instance=ExtResource( 15 )]
+
+[node name="OQ_UI2DCanvas" parent="OQ_ARVROrigin/OQ_LeftController/OQ_VisibilityToggle" instance=ExtResource( 3 )]
+transform = Transform( 0.796625, 0, 0.604474, 0, 1, 0, -0.604474, 0, 0.796625, -0.0757154, 0.186514, -0.0449487 )
+visible = false
+
+[node name="ReferenceRect" type="ReferenceRect" parent="OQ_ARVROrigin/OQ_LeftController/OQ_VisibilityToggle/OQ_UI2DCanvas"]
+margin_right = 256.0
+margin_bottom = 256.0
+theme = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="OQ_ARVROrigin/OQ_LeftController/OQ_VisibilityToggle/OQ_UI2DCanvas/ReferenceRect"]
+margin_right = 256.0
+margin_bottom = 256.0
+color = Color( 0.521569, 0.596078, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="OQ_ARVROrigin/OQ_LeftController/OQ_VisibilityToggle/OQ_UI2DCanvas/ReferenceRect"]
+margin_right = 40.0
+margin_bottom = 33.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button1" type="Button" parent="OQ_ARVROrigin/OQ_LeftController/OQ_VisibilityToggle/OQ_UI2DCanvas/ReferenceRect"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 80.0
+margin_bottom = 80.0
+text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="OQ_ARVROrigin/OQ_LeftController/OQ_VisibilityToggle/OQ_UI2DCanvas/ReferenceRect"]
+margin_left = 96.0
+margin_top = 16.0
+margin_right = 160.0
+margin_bottom = 80.0
+text = "2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="OQ_ARVROrigin/OQ_LeftController/OQ_VisibilityToggle/OQ_UI2DCanvas/ReferenceRect"]
+margin_left = 176.0
+margin_top = 16.0
+margin_right = 240.0
+margin_bottom = 80.0
+text = "3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button4" type="Button" parent="OQ_ARVROrigin/OQ_LeftController/OQ_VisibilityToggle/OQ_UI2DCanvas/ReferenceRect"]
+margin_left = 16.0
+margin_top = 96.0
+margin_right = 80.0
+margin_bottom = 160.0
+text = "4"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button5" type="Button" parent="OQ_ARVROrigin/OQ_LeftController/OQ_VisibilityToggle/OQ_UI2DCanvas/ReferenceRect"]
+margin_left = 96.0
+margin_top = 96.0
+margin_right = 160.0
+margin_bottom = 160.0
+text = "5"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button6" type="Button" parent="OQ_ARVROrigin/OQ_LeftController/OQ_VisibilityToggle/OQ_UI2DCanvas/ReferenceRect"]
+margin_left = 176.0
+margin_top = 96.0
+margin_right = 240.0
+margin_bottom = 160.0
+text = "6"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button7" type="Button" parent="OQ_ARVROrigin/OQ_LeftController/OQ_VisibilityToggle/OQ_UI2DCanvas/ReferenceRect"]
+margin_left = 16.0
+margin_top = 176.0
+margin_right = 80.0
+margin_bottom = 240.0
+text = "7"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button8" type="Button" parent="OQ_ARVROrigin/OQ_LeftController/OQ_VisibilityToggle/OQ_UI2DCanvas/ReferenceRect"]
+margin_left = 96.0
+margin_top = 176.0
+margin_right = 160.0
+margin_bottom = 240.0
+text = "8"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button9" type="Button" parent="OQ_ARVROrigin/OQ_LeftController/OQ_VisibilityToggle/OQ_UI2DCanvas/ReferenceRect"]
+margin_left = 176.0
+margin_top = 176.0
+margin_right = 240.0
+margin_bottom = 240.0
+text = "9"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OQ_RightController" parent="OQ_ARVROrigin" instance=ExtResource( 2 )]
+
+[node name="Feature_ControllerModel_Right" parent="OQ_ARVROrigin/OQ_RightController" instance=ExtResource( 8 )]
+
+[node name="Feature_UIRayCast" parent="OQ_ARVROrigin/OQ_RightController" instance=ExtResource( 6 )]
+ui_raycast_visible_button = -1
+
+[node name="Feature_VRSimulator" parent="OQ_ARVROrigin" instance=ExtResource( 11 )]
+
+[node name="Locomotion_Stick" parent="OQ_ARVROrigin" instance=ExtResource( 7 )]
+
+[node name="OQ_UI2DLogWindow" parent="." instance=ExtResource( 4 )]
+transform = Transform( -4, 0, -8.74228e-08, 1.74846e-07, 3.4641, -0.5, 3.02841e-07, -2, -0.866025, 0, 3, 2 )
+
+[node name="TestUI" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.665606, 0, -0.942996, 0, 2, 0, 1.88599, 0, 0.332803, 1.85032, 1.7519, -0.245856 )
+
+[node name="Control" type="ReferenceRect" parent="TestUI"]
+margin_right = 768.0
+margin_bottom = 768.0
+theme = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="TestUI/Control"]
+margin_left = 16.0
+margin_top = 80.0
+margin_right = 160.0
+margin_bottom = 144.0
+text = "Button"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="TestUI/Control"]
+margin_top = 160.0
+margin_right = 512.0
+margin_bottom = 176.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="TestUI/Control"]
+margin_top = 256.0
+margin_right = 352.0
+margin_bottom = 512.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tab 1" type="Container" parent="TestUI/Control/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 51.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Button" type="Button" parent="TestUI/Control/TabContainer/Tab 1"]
+margin_left = 12.0
+margin_top = 13.0
+margin_right = 109.0
+margin_bottom = 52.0
+text = "Button"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tab 2" type="Container" parent="TestUI/Control/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 51.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Tab 3" type="Container" parent="TestUI/Control/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 51.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Tab 4" type="Container" parent="TestUI/Control/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 51.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="TitleLable" type="Label" parent="TestUI/Control"]
+margin_right = 512.0
+margin_bottom = 64.0
+text = "Test Controls"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="icon" type="Sprite" parent="TestUI/Control"]
+position = Vector2( 432, 320 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 14 )
+
+[node name="HSlider" type="HSlider" parent="TestUI/Control"]
+margin_left = 16.0
+margin_top = 192.0
+margin_right = 496.0
+margin_bottom = 224.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="TestUI/Control"]
+margin_left = 176.0
+margin_top = 80.0
+margin_right = 320.0
+margin_bottom = 144.0
+color = Color( 0.192157, 0.411765, 0.141176, 1 )
+
+[node name="MovementOptionsCanvas" parent="." instance=ExtResource( 3 )]
+transform = Transform( -8.74228e-08, 0, 1, 0, 2, 0, -2, 0, -4.37114e-08, -2, 1.5, -0.246 )
+
+[node name="Control" type="ReferenceRect" parent="MovementOptionsCanvas"]
+margin_right = 512.0
+margin_bottom = 512.0
+theme = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MovementOptionsCanvas/Control"]
+margin_left = 140.0
+margin_right = 392.0
+margin_bottom = 67.0
+text = "Movement Options"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="MovementOptionsCanvas/Control"]
+margin_left = 28.0
+margin_top = 224.0
+margin_right = 280.0
+margin_bottom = 280.0
+text = "Rotation Type"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoveSpeedLabel" type="Label" parent="MovementOptionsCanvas/Control"]
+margin_left = 28.0
+margin_top = 112.0
+margin_right = 280.0
+margin_bottom = 168.0
+text = "Movement Speed"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RotateSpeedLabel" type="Label" parent="MovementOptionsCanvas/Control"]
+margin_left = 28.0
+margin_top = 308.0
+margin_right = 280.0
+margin_bottom = 364.0
+text = "Smooth Turn Speed"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ClickTurnLabel" type="Label" parent="MovementOptionsCanvas/Control"]
+margin_left = 28.0
+margin_top = 392.0
+margin_right = 280.0
+margin_bottom = 448.0
+text = "Click Turn Angle"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoveSpeedSpinBox" type="SpinBox" parent="MovementOptionsCanvas/Control"]
+margin_left = 308.0
+margin_top = 112.0
+margin_right = 476.0
+margin_bottom = 168.0
+min_value = 0.1
+max_value = 4.0
+value = 0.1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RotateSpeedSpinBox" type="SpinBox" parent="MovementOptionsCanvas/Control"]
+margin_left = 308.0
+margin_top = 308.0
+margin_right = 476.0
+margin_bottom = 364.0
+min_value = 5.0
+max_value = 180.0
+step = 10.0
+value = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ClickTurnAngleSpinBox" type="SpinBox" parent="MovementOptionsCanvas/Control"]
+margin_left = 308.0
+margin_top = 392.0
+margin_right = 476.0
+margin_bottom = 448.0
+min_value = 5.0
+max_value = 180.0
+step = 5.0
+value = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RotationOptionButton" type="OptionButton" parent="MovementOptionsCanvas/Control"]
+margin_left = 308.0
+margin_top = 224.0
+margin_right = 476.0
+margin_bottom = 280.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = SubResource( 4 )
+
+[node name="InfoLabel" parent="." instance=ExtResource( 16 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 2.03673, -1.48423 )
+text = "Blub"
+
+[node name="OQ_UI2DCanvas" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1.67744, -0.544566, 0.471608, 0, 1.73205, 0.5, -1.08913, -0.838718, 0.726351, -1.0728, 1.17961, -1.37952 )
+
+[node name="ReferenceRect" type="ReferenceRect" parent="OQ_UI2DCanvas"]
+margin_right = 512.0
+margin_bottom = 128.0
+theme = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelectTitleLabel" type="Label" parent="OQ_UI2DCanvas/ReferenceRect"]
+margin_right = 512.0
+margin_bottom = 48.0
+text = "Demo Room Selector"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonPhysics" type="Button" parent="OQ_UI2DCanvas/ReferenceRect"]
+margin_left = 16.0
+margin_top = 64.0
+margin_right = 160.0
+margin_bottom = 112.0
+text = "Physics"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonClimbing" type="Button" parent="OQ_UI2DCanvas/ReferenceRect"]
+margin_left = 176.0
+margin_top = 64.0
+margin_right = 320.0
+margin_bottom = 112.0
+text = "Climbing"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="value_changed" from="MovementOptionsCanvas/Control/MoveSpeedSpinBox" to="." method="_on_MoveSpeedSpinBox_value_changed"]
+[connection signal="value_changed" from="MovementOptionsCanvas/Control/RotateSpeedSpinBox" to="." method="_on_RotateSpeedSpinBox_value_changed"]
+[connection signal="value_changed" from="MovementOptionsCanvas/Control/ClickTurnAngleSpinBox" to="." method="_on_ClickTurnAngleSpinBox_value_changed"]
+[connection signal="item_selected" from="MovementOptionsCanvas/Control/RotationOptionButton" to="." method="_on_RotationOptionButton_item_selected"]
+[connection signal="pressed" from="OQ_UI2DCanvas/ReferenceRect/ButtonPhysics" to="." method="_on_ButtonPhysics_pressed"]
+[connection signal="pressed" from="OQ_UI2DCanvas/ReferenceRect/ButtonClimbing" to="." method="_on_ButtonClimbing_pressed"]

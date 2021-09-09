@@ -27,14 +27,15 @@ transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0 )
 script = ExtResource( 3 )
 
 [node name="RigidBody" type="RigidBody" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.0854, 0 )
 
 [node name="Dirty Crate" type="MeshInstance" parent="RigidBody" index="0"]
-transform = Transform( 1, 0, 0, 0, -1.19209e-07, -1, 0, 1, -1.19209e-07, 0.223291, 29.6269, 0.287784 )
+transform = Transform( 1, 0, 0, 0, -1.19209e-07, -1, 0, 1, -1.19209e-07, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody" index="1"]
-transform = Transform( 1, 0, 0, 0, -1.19209e-07, -1, 0, 1, -1.19209e-07, 0.223291, 29.6269, 0.287784 )
+transform = Transform( 1, 0, 0, 0, -1.19209e-07, -1, 0, 1, -1.19209e-07, 0, 0, 0 )
 shape = SubResource( 2 )
 
 [node name="Dirty Crate" parent="." index="1"]

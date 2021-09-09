@@ -1,0 +1,118 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://demo_scenes/PhysicsScene.gd" type="Script" id=1]
+[ext_resource path="res://OQ_Toolkit/OQ_RightController.tscn" type="PackedScene" id=2]
+[ext_resource path="res://OQ_Toolkit/OQ_LeftController.tscn" type="PackedScene" id=3]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVRController/Feature_ControllerModel_Right.tscn" type="PackedScene" id=4]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVRController/Feature_RigidBodyGrab.tscn" type="PackedScene" id=5]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVROrigin.tscn" type="PackedScene" id=6]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVROrigin/Feature_VRSimulator.tscn" type="PackedScene" id=7]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVRCamera.tscn" type="PackedScene" id=8]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVRController/Feature_ControllerModel_Left.tscn" type="PackedScene" id=9]
+[ext_resource path="res://demo_scenes/data/models_3d/GrabAndThrowRoom/GrabAndThrowRoom.gltf" type="PackedScene" id=10]
+[ext_resource path="res://OQ_Toolkit/OQ_Classes/OQClass_GrabbableRigidBody.gd" type="Script" id=11]
+[ext_resource path="res://OQ_Toolkit/OQ_UI2D/OQ_UI2DLabel.tscn" type="PackedScene" id=12]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVROrigin/Locomotion_Stick.tscn" type="PackedScene" id=14]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.1, 0.1, 0.1 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 0.2, 0.2, 0.2 )
+
+[node name="PhysicsScene" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="OQ_ARVROrigin" parent="." instance=ExtResource( 6 )]
+
+[node name="OQ_ARVRCamera" parent="OQ_ARVROrigin" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26669, 0 )
+
+[node name="OQ_LeftController" parent="OQ_ARVROrigin" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26669, 0 )
+
+[node name="Feature_ControllerModel_Left" parent="OQ_ARVROrigin/OQ_LeftController" instance=ExtResource( 9 )]
+
+[node name="Feature_RigidBodyGrab" parent="OQ_ARVROrigin/OQ_LeftController" instance=ExtResource( 5 )]
+grab_type = 1
+reparent_mesh = true
+
+[node name="OQ_RightController" parent="OQ_ARVROrigin" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26669, 0 )
+
+[node name="Feature_ControllerModel_Right" parent="OQ_ARVROrigin/OQ_RightController" instance=ExtResource( 4 )]
+
+[node name="Feature_RigidBodyGrab" parent="OQ_ARVROrigin/OQ_RightController" instance=ExtResource( 5 )]
+
+[node name="Feature_VRSimulator" parent="OQ_ARVROrigin" instance=ExtResource( 7 )]
+
+[node name="Locomotion_Stick" parent="OQ_ARVROrigin" instance=ExtResource( 14 )]
+
+[node name="GrabAndThrowRoom" parent="." instance=ExtResource( 10 )]
+
+[node name="RigidBody" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="RigidBody2" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.23701, -1 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody2"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="RigidBody2"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="RigidBody3" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.48077, -1 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody3"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="RigidBody3"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="RigidBody4" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.238643, 1.44637, 0.415651 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody4"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="RigidBody4"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="RigidBody5" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.238643, 1.14147, 0.415651 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody5"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="RigidBody5"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="InfoLabel" parent="." instance=ExtResource( 12 )]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 1, 0, 2, -1.99021 )
+text = "InfoText"
+margin = 16
+billboard = false
+depth_test = true
+resize_mode = 0
+font_size_multiplier = 1.0
+font_color = Color( 1, 1, 1, 1 )
+background_color = Color( 0, 0, 0, 1 )
+transparent = false

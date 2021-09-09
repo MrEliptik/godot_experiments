@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://OQ_Toolkit/OQ_Helpers/scripts/OQ_VisibilityToggle.gd" type="Script" id=1]
+
+[node name="OQ_VisibilityToggle" type="Spatial"]
+script = ExtResource( 1 )

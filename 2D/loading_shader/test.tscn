@@ -6,11 +6,11 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
-shader_param/percentage = 0.0
+shader_param/percentage = 0.526
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 2 )
-shader_param/percentage = 0.0
+shader_param/percentage = 0.493
 
 [node name="Test" type="Control"]
 anchor_right = 1.0

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://OQ_Toolkit/OQ_ARVRController/models3d/OculusQuest2/OculusQuest2TouchController_Right.gltf" type="PackedScene" id=1]
+[ext_resource path="res://OQ_Toolkit/OQ_ARVRController/scripts/Feature_ControllerModel.gd" type="Script" id=2]
+
+[node name="Feature_Quest2ControllerModel_Right" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+script = ExtResource( 2 )
+
+[node name="PalmMarker" type="Spatial" parent="." index="1"]
+
+[node name="GrabMarker" type="Spatial" parent="." index="2"]
+
+[node name="UIMarker" type="Spatial" parent="." index="3"]

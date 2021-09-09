@@ -1,0 +1,208 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://addons/silent_wolf/Auth/Login.gd" type="Script" id=1]
+[ext_resource path="res://addons/silent_wolf/common/SWButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/silent_wolf/assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://addons/silent_wolf/assets/gfx/checkbox_unchecked.png" type="Texture" id=5]
+[ext_resource path="res://addons/silent_wolf/assets/gfx/checkbox_checked.png" type="Texture" id=6]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 23.0
+content_margin_right = 23.0
+content_margin_top = 23.0
+content_margin_bottom = 23.0
+bg_color = Color( 0.831373, 0.415686, 0.415686, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 23.0
+content_margin_right = 23.0
+content_margin_top = 23.0
+content_margin_bottom = 23.0
+bg_color = Color( 0.831373, 0.415686, 0.415686, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 23.0
+content_margin_right = 23.0
+content_margin_top = 23.0
+content_margin_bottom = 23.0
+bg_color = Color( 0.482353, 0.458824, 0.458824, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="DynamicFont" id=4]
+size = 64
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFontData" id=13]
+font_path = "res://addons/silent_wolf/assets/fonts/Comfortaa-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+size = 64
+font_data = SubResource( 13 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 48
+font_data = SubResource( 13 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 32
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 32
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 32
+outline_color = Color( 0.211765, 0.25098, 0.937255, 1 )
+font_data = SubResource( 13 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+content_margin_left = 5.0
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 32
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 32
+font_data = SubResource( 13 )
+
+[node name="Login" type="TextureRect"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" parent="." instance=ExtResource( 2 )]
+margin_left = 339.0
+margin_top = 117.0
+margin_right = 667.0
+margin_bottom = 235.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+text = "← Back"
+
+[node name="FormContainer" type="VBoxContainer" parent="."]
+margin_left = 679.0
+margin_top = 196.75
+margin_right = 1327.0
+margin_bottom = 933.75
+custom_constants/separation = 80
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="FormContainer"]
+margin_right = 648.0
+margin_bottom = 72.0
+custom_fonts/font = SubResource( 5 )
+text = "Log in"
+align = 1
+
+[node name="UsernameContainer" type="HBoxContainer" parent="FormContainer"]
+margin_top = 152.0
+margin_right = 648.0
+margin_bottom = 227.0
+custom_constants/separation = 20
+
+[node name="Label" type="Label" parent="FormContainer/UsernameContainer"]
+margin_top = 10.0
+margin_right = 269.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 6 )
+text = "Username:"
+
+[node name="Username" type="LineEdit" parent="FormContainer/UsernameContainer"]
+margin_left = 289.0
+margin_right = 619.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 330, 75 )
+custom_fonts/font = SubResource( 7 )
+max_length = 30
+
+[node name="PasswordContainer" type="HBoxContainer" parent="FormContainer"]
+margin_top = 307.0
+margin_right = 648.0
+margin_bottom = 382.0
+custom_constants/separation = 40
+
+[node name="Label" type="Label" parent="FormContainer/PasswordContainer"]
+margin_top = 10.0
+margin_right = 247.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 6 )
+text = "Password:"
+
+[node name="Password" type="LineEdit" parent="FormContainer/PasswordContainer"]
+margin_left = 287.0
+margin_right = 617.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 330, 75 )
+custom_fonts/font = SubResource( 8 )
+max_length = 30
+secret = true
+
+[node name="LinkButton" type="LinkButton" parent="FormContainer"]
+margin_top = 462.0
+margin_right = 648.0
+margin_bottom = 499.0
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0.321569, 0.360784, 0.92549, 1 )
+text = "Forgot Password?"
+
+[node name="RememberMeCheckBox" type="CheckBox" parent="FormContainer"]
+margin_top = 579.0
+margin_right = 648.0
+margin_bottom = 629.0
+rect_min_size = Vector2( 50, 50 )
+focus_mode = 0
+custom_icons/checked = ExtResource( 6 )
+custom_icons/unchecked = ExtResource( 5 )
+custom_styles/normal = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
+custom_constants/hseparation = 15
+text = "Stay signed in for 30 days"
+expand_icon = true
+
+[node name="ErrorMessage" type="Label" parent="FormContainer"]
+visible = false
+margin_top = 522.0
+margin_right = 648.0
+margin_bottom = 559.0
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0.866667, 0.101961, 0.101961, 1 )
+autowrap = true
+
+[node name="LoginButton" parent="FormContainer" instance=ExtResource( 2 )]
+margin_top = 709.0
+margin_right = 648.0
+margin_bottom = 827.0
+text = "Submit"
+
+[node name="ProcessingLabel" type="Label" parent="FormContainer"]
+visible = false
+margin_top = 740.0
+margin_right = 648.0
+margin_bottom = 812.0
+custom_fonts/font = SubResource( 5 )
+text = "Processing..."
+align = 1
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="FormContainer/LinkButton" to="." method="_on_LinkButton_pressed"]
+[connection signal="pressed" from="FormContainer/LoginButton" to="." method="_on_LoginButton_pressed"]
