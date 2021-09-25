@@ -10,6 +10,7 @@ Some of my 2D/3D/VR/UI experiments in Godot. You can find some of my tutorials a
 
 | Icon | Type   |  Tittle | Description | Status |
 :-----:|:-------:|:-------:|:-----------:|:------:|
+![](2D/7_tips_2D_look/icon.png)| 2D | 7 tips 2D look | showing 7 tips to make better 2D visuals | DONE ✔
 ![](2D/accelerometer_gamepad_game/icon.png)| 2D | accelerometer_gamepad_game | simple game with websocket server to be controlled by a smartphone's accelerometer. *See MISC/accelerometer_gamepad* | DONE ✔
 ![](2D/android_accelerometer/icon.png)| 2D | android_accelerometer | trying to use the accelerometer to set the gravity | DONE ✔
 ![](2D/connected_dots/icon.png)| 2D | connected_dots | dots moving around making connections | DONE ✔
@@ -25,6 +26,7 @@ Some of my 2D/3D/VR/UI experiments in Godot. You can find some of my tutorials a
 ![](3D/camera_wall/icon.png) | 3D | camera_wall | wall hiding to reveal player to the camera | DONE ✔
 ![](3D/car/icon.png) | 3D | car | a test with godot vehicle body physics and trial-like terrain | DONE ✔
 ![](3D/control_remedy/icon.png) | 3D | control_remedy | mechanic re-creation from control remedy: grabbing and throwing object through telekinesis | DONE ✔
+![](3D/fish_tank_shader/icon.png) | 3D | fish_tank_shader | leaky fish tank shader. You shoot somewhere and the water level drops until it reaches the hole | DONE ✔
 ![](3D/greenscreen_camera/icon.png) | 3D | greenscreen_camera | a greenscreen effect to a camera. The camera only sees an object, allowing you to put something in the background, like an image. | DONE ✔
 ![](3D/hoverboard/icon.png) | 3D | hoverboard | a physics based hoverboard, inspired by [Codeer](https://twitter.com/CodeerDev). | DONE ✔
 ![](3D/inverted_pendulum/icon.png) | 3D | inverted_pendulum | a test with bullet's physics. An inverted pendulm with an inertia wheel | DONE ✔
