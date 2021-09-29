@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/terrain.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/game.gd" type="Script" id=3]
+[ext_resource path="res://scenes/worm.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -4.69125, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.776316, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Terrain" parent="." instance=ExtResource( 1 )]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 493.457, 855.62 )
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 8.0
+width_curve = SubResource( 1 )
+default_color = Color( 1, 1, 1, 1 )
+gradient = SubResource( 2 )
+joint_mode = 2
+end_cap_mode = 2
+
+[node name="Worm" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1519.92, 246.902 )
+
+[node name="Worm2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1449.7, 246.902 )
+
+[node name="Worm12" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1390.31, 369.082 )
+
+[node name="Worm13" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1196.85, 499.748 )
+
+[node name="Worm14" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1296.97, 518.414 )
+
+[node name="Worm15" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1144.25, 518.414 )
+
+[node name="Worm16" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1252.85, 533.687 )
+
+[node name="Worm3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1615.06, 249.167 )
+
+[node name="Worm4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 869.82, 693.138 )
+
+[node name="Worm5" parent="." instance=ExtResource( 4 )]
+position = Vector2( 925.88, 731.579 )
+
+[node name="Worm6" parent="." instance=ExtResource( 4 )]
+position = Vector2( 618.388, 810.926 )
+
+[node name="Worm7" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1064.62, 754.297 )
+
+[node name="Worm8" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1809.86, 607.062 )
+
+[node name="Worm9" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1757.76, 679.547 )
+
+[node name="Worm10" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1560.69, 124.584 )
+
+[node name="Worm11" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1320.59, 310.326 )
