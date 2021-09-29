@@ -14,7 +14,9 @@ Some of my 2D/3D/VR/UI experiments in Godot. You can find some of my tutorials a
 ![](2D/accelerometer_gamepad_game/icon.png)| 2D | accelerometer_gamepad_game | simple game with websocket server to be controlled by a smartphone's accelerometer. *See MISC/accelerometer_gamepad* | DONE ✔
 ![](2D/android_accelerometer/icon.png)| 2D | android_accelerometer | trying to use the accelerometer to set the gravity | DONE ✔
 ![](2D/connected_dots/icon.png)| 2D | connected_dots | dots moving around making connections | DONE ✔
+![](2D/destructible_terrain/icon.png)| 2D | destructible_terrain | simple worms like destructible terrain using the Geometry class | DONE ✔
 ![](2D/flag_shader/icon.png)| 2D | flag_shader | 2D & 3D simple flag shader | DONE ✔
+![](2D/geometry_class/icon.png)| 2D | geometry_class | showcase of what the geomtry class can offer in 2D | DONE ✔
 ![](2D/loading_shader/icon.png)| 2D | loading_shader | simple loading shader effects, from black and white to rgb | DONE ✔
 ![](2D/mobile_ui/icon.png) | 2D | mobile_ui | trying the Godot's UI node on mobile | DONE ✔
 ![](2D/quick_prototype/icon.png)| 2D | quick_prototype | a small scene with a script to allow quick prototyping. You draw a shape with the line2D, and it automatically add a physics body and a background to your shape. | DONE ✔
@@ -100,6 +102,14 @@ Some of my 2D/3D/VR/UI experiments in Godot. You can find some of my tutorials a
 ### Connected_dots
 
 ![Connected dots](videos_gifs/connected_dots.gif)
+
+### Destructible terrain
+
+![Destructible terrain](videos_gifs/destructible_terrain.gif)
+
+### Geometry class
+
+![Geomtry class](videos_gifs/geometry_class.gif)
 
 ## Useful
 
