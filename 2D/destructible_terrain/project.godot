@@ -57,6 +57,6 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-quality/filters/anisotropic_filter_level=16
-quality/filters/msaa=4
+quality/filters/anisotropic_filter_level=8
+quality/filters/msaa=3
 environment/default_environment="res://default_env.tres"

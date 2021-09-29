@@ -8,7 +8,12 @@ func _ready() -> void:
 	pass
 	
 func _process(delta: float) -> void:
-	pass
+	$Camera2D.global_position = $Player.global_position + Vector2(0, -250)
+	var offset_h = (get_global_mouse_position().x - 1920) / (1920/2)
+	var offset_v = (get_global_mouse_position().y - 1080) / (1080/2)
+#	var offset_v = (Vector2(1920/2, 1080/2) - get_global_mouse_position()).normalized()
+	$Camera2D.offset_h = offset_h
+	$Camera2D.offset_v = offset_v
 
 func _physics_process(delta: float) -> void:
 	update_trajectory(delta)
