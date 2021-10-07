@@ -5,6 +5,7 @@
 2D/mobile_ui/android/.build_version
 2D/hang/build/*
 2D/destructible_terrain/build/*
+2D/geometry_class/build/*
 
 3D/valheim_tree_chop/visuals/models/axe/blinn1SG.material
 3D/valheim_tree_chop/visuals/models/axe/blinn2SG.material
