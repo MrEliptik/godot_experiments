@@ -27,7 +27,6 @@ func _physics_process(delta: float) -> void:
 	
 func explode() -> void:
 	for x in affected:
-#		x.apply_central_impulse((Vector2.UP * explosion_force).rotated(rand_range(-10, 10)))
 		x.apply_central_impulse((x.global_position - global_position).normalized() * explosion_force)
 	var inst = particles.instance()
 	inst.global_position = global_position
