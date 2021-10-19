@@ -12,3 +12,6 @@ func clip(poly):
 
 	$Polygon2D.polygon = res[0]
 	$Destructible/CollisionPolygon2D.set_deferred("polygon", res[0])
+
+	# Free the polygon to avoid memory leak
+	offset_poly.queue_free()
