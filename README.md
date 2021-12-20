@@ -133,8 +133,8 @@ Software engineer & gamedev. 3D, 2D & VR.
 
 - [Discord](https://discord.gg/83nFRPTP6t)
 - [YouTube](https://www.youtube.com/channel/UCANaLfiFwsHttGv6qGvSEIw)
-- [Twitter](https://twitter.com/VicMeunier) 
-- [Instagram](https://www.instagram.com/mreliptik_)
+- [Twitter](https://twitter.com/mreliptik_) 
+- [Instagram](https://www.instagram.com/_mreliptik)
 - [Itch.io](https://mreliptik.itch.io/)
 - [Sketchfab](https://sketchfab.com/victor.meunierpk)
 
