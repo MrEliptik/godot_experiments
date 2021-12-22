@@ -40,6 +40,7 @@ Some of my 2D/3D/VR/UI experiments in Godot. You can find some of my tutorials a
 ![](3D/tv/icon.png) | 3D | tv | displaying a video or frames on a crt tv | DONE ✔
 ![](3D/valheim_tree_chop/icon.png) | 3D | valheim_tree_chop | recreating the Valheim tree chop mechanic | DONE ✔
 ![](3D/wheelBot/icon.png) | 3D | wheelBot | a robot rolling on one wheel | DONE ✔
+![](3D/xray_vision/icon.png) | 3D | xray_vision | stting up materials to simulate an Xray/see through effect | DONE ✔
 | | | | |
 ![](VR/quest_playground/icon.png) | VR | quest_playground | a project testing various things in VR for the Oculus Quest: handtracking, handtrackings physics | WIP 🛠
 ![](VR/table_tennis/icon.png) | VR | table_tennis | trying to use Godot's physic to recreate a table tennis game | WIP 🛠
