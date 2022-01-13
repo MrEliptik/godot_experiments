@@ -49,6 +49,7 @@ Some of my 2D/3D/VR/UI experiments in Godot. You can find some of my tutorials a
 | | | | |
 ![](MISC/accelerometer_gamepad/icon.png) | MISC | accelerometer_gamepad | use the phone's accelerometer and websockets to control a game. *See 2D/accelerometer_gamepad_game* | DONE ✔
 ![](MISC/audio_visualizer/icon.png) | MISC | audio_visualizer | represent the audio magnitude against time both left and right channel. Drawn as the song plays | DONE ✔
+![](MISC/card_game/icon.png) | MISC | card_game | test using cards to make a UI | DONE ✔
 ![](MISC/instagram_ui/icon.png) | MISC | instagram_ui | recreating some of Instagram's UI | DONE ✔
 ![](MISC/slow_down_sound/icon.png) | MISC | slow_down_sound | showcase an effect where the pitch and volume of the music is decreased with a tween. Useful for a "loosing" effect, when a player dies for example | DONE ✔
 ![](MISC/slow_down_time/icon.png) | MISC | slow_down_time | two ways of slowing down time | DONE ✔
