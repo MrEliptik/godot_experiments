@@ -111,7 +111,15 @@ Some of my 2D/3D/VR/UI experiments in Godot. You can find some of my tutorials a
 
 ### Geometry class
 
-![Geomtry class](videos_gifs/geometry_class.gif)
+![Geometry class](videos_gifs/geometry_class.gif)
+
+### X-Ray Shader
+
+![XRay Shader](videos_gifs/xray_shader.gif)
+
+### UI card test
+
+![UI card test](videos_gifs/card_ui.gif)
 
 ## Useful
 
