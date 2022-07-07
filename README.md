@@ -6,6 +6,8 @@
 
 Some of my 2D/3D/VR/UI experiments in Godot. You can find some of my tutorials and experiments on my [YouTube channel](https://www.youtube.com/channel/UCANaLfiFwsHttGv6qGvSEIw).
 
+If you want shader specific experiments, head to my [Shaders experiments repo](https://github.com/MrEliptik/shaders_experiments)
+
 ## Projects & descriptions
 
 | Icon | Type   |  Tittle | Description | Status |
