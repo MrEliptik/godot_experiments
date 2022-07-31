@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
+[ext_resource path="res://visuals/player/manBlue_hold.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 36, 40 )
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 28.0
+height = 24.0
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -12,6 +14,6 @@ script = ExtResource( 1 )
 position = Vector2( 4, 0 )
 shape = SubResource( 1 )
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color( 0.0509804, 0.756863, 0.592157, 1 )
-polygon = PoolVector2Array( -16, -40, 40, -40, 40, -24, 8, -24, 8, 24, 40, 24, 40, 40, -16, 40, -32, 16, -32, -16 )
+[node name="ManBlueHold" type="Sprite" parent="."]
+scale = Vector2( 1.82857, 1.82857 )
+texture = ExtResource( 2 )

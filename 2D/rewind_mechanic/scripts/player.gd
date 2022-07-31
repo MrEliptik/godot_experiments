@@ -3,6 +3,8 @@ extends KinematicBody2D
 var velocity: Vector2 = Vector2.ZERO
 var speed: float = 600.0
 var dir: Vector2 = Vector2.ZERO
+var accel: float = 10.0
+var friction: float = 8.0
 
 var replay_duration: float = 3.0
 var rewinding: bool = false
@@ -21,11 +23,14 @@ func _process(delta: float) -> void:
 	dir.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 	
 	dir = dir.normalized()
+	if dir.abs() > Vector2.ZERO:
+		velocity = lerp(velocity, dir * speed, accel*delta)
+	else:
+		velocity = lerp(velocity, Vector2.ZERO, friction*delta)
 	
 	look_at(get_global_mouse_position())
 	
 func _physics_process(delta: float) -> void:
-	velocity = dir * speed
 	velocity = move_and_slide(velocity)
 	
 	if not rewinding:

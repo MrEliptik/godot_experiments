@@ -1,7 +1,5 @@
 extends RigidBody2D
 
-export var radius: float = 50.0
-
 var rewind_values = {
 	"transform": [],
 	"linear_velocity": [],
@@ -11,18 +9,13 @@ var rewind_duration: float = 3.0
 var rewinding: bool = false
 
 func _ready() -> void:
-	var nb_points = 32
-	var points = PoolVector2Array()
-	for i in range(nb_points+1):
-		var point = deg2rad(i * 360.0 / nb_points - 90)
-		points.push_back(Vector2.ZERO + Vector2(cos(point), sin(point)) * radius)
-	$Polygon2D.polygon = points
-	
-	$CollisionShape2D.shape.set_deferred("radius", radius)
+	pass
 	
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	if not rewinding: return
+	compute_rewind(state)
 	
+func compute_rewind(state: Physics2DDirectBodyState) -> void:
 	var transf = rewind_values["transform"].pop_back()
 	var angular_vel = rewind_values["angular_velocity"].pop_back()
 	var linear_vel = rewind_values["linear_velocity"].pop_back()
