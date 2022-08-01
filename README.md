@@ -22,6 +22,7 @@ If you want shader specific experiments, head to my [Shaders experiments repo](h
 ![](2D/loading_shader/icon.png)| 2D | loading_shader | simple loading shader effects, from black and white to rgb | DONE ✔
 ![](2D/mobile_ui/icon.png) | 2D | mobile_ui | trying the Godot's UI node on mobile | DONE ✔
 ![](2D/quick_prototype/icon.png)| 2D | quick_prototype | a small scene with a script to allow quick prototyping. You draw a shape with the line2D, and it automatically add a physics body and a background to your shape. | DONE ✔
+![](2D/rewind_mechanic/icon.png) | 2D | rewind_mechanic | time rewind mechanic for all objects, 2D & 3D | DONE ✔
 ![](2D/scratch_shader/icon.png)| 2D | scratch_shader | scratch effect done with by drawing on a viewport and using the texture in a shader | DONE ✔
 | | | | |
 ![](3D/android_maze_accelerometer/icon.png) | 3D | android_maze_accelerometer | control a maze's orientation with the phone's acceleromter | DONE ✔
@@ -114,6 +115,10 @@ If you want shader specific experiments, head to my [Shaders experiments repo](h
 ### Geometry class
 
 ![Geometry class](videos_gifs/geometry_class.gif)
+
+### Rewind mechanic
+
+![Rewind mechanic](videos_gifs/rewind.gif)
 
 ### X-Ray Shader
 
