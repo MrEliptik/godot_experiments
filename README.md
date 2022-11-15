@@ -56,6 +56,7 @@ If you want shader specific experiments, head to my [Shaders experiments repo](h
 ![](MISC/card_game/icon.png) | MISC | card_game | test using cards to make a UI | DONE ✔
 ![](MISC/instagram_ui/icon.png) | MISC | instagram_ui | recreating some of Instagram's UI | DONE ✔
 ![](MISC/everything_particles/icon.png) | MISC | everything_particles | turn anything into particles using viewports | DONE ✔
+![](MISC/random/icon.png) | MISC | random | all kinds of usage of random | DONE ✔
 ![](MISC/slow_down_time/icon.png) | MISC | slow_down_time | two ways of slowing down time | DONE ✔
 ![](MISC/tinder_ui/icon.png) | MISC | tinder_ui | recreating some of Tinder's UI | DONE ✔
 

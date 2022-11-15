@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+float random (vec2 uv) {
+    return fract(sin(dot(uv.xy,
+        vec2(12.9898,78.233))) * 43758.5453123);
+}
+
+void fragment() {
+	COLOR.rgb = vec3(random(UV));
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+
+[sub_resource type="OpenSimplexNoise" id=2]
+period = 245.4
+
+[sub_resource type="NoiseTexture" id=1]
+width = 958
+height = 1080
+noise = SubResource( 2 )
+
+[node name="TextureNoiseExample" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer"]
+material = SubResource( 4 )
+margin_right = 958.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+margin_left = 962.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource( 1 )
+expand = true
+stretch_mode = 6

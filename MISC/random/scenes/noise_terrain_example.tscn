@@ -1,0 +1,154 @@
+[gd_scene load_steps=12 format=2]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 5, 5 )
+subdivide_width = 100
+subdivide_depth = 100
+
+[sub_resource type="Shader" id=6]
+code = "shader_type spatial;
+
+render_mode cull_disabled;
+
+uniform vec4 color_1: hint_color;
+uniform vec4 color_2: hint_color;
+uniform sampler2D noise: hint_albedo;
+
+float random (vec2 uv) {
+    return fract(sin(dot(uv.xy,
+        vec2(12.9898,78.233))) * 43758.5453123);
+}
+
+void fragment() {
+	ALBEDO = mix(color_1.rgb, color_2.rgb, UV.x);
+}
+
+void vertex() {
+//	VERTEX.y += sin((UV.x*25.0))*0.5;
+
+	VERTEX.y += random(UV)*0.5;
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 6 )
+shader_param/color_1 = Color( 0.152941, 0.152941, 0.152941, 1 )
+shader_param/color_2 = Color( 1, 0.192157, 0.4, 1 )
+
+[sub_resource type="Shader" id=7]
+code = "shader_type spatial;
+
+render_mode cull_disabled;
+
+uniform vec4 color_1: hint_color;
+uniform vec4 color_2: hint_color;
+uniform sampler2D noise: hint_albedo;
+
+
+void fragment() {
+	ALBEDO = mix(color_1.rgb, color_2.rgb, UV.x);
+}
+
+void vertex() {
+	VERTEX.y += texture(noise, UV).x;
+}"
+
+[sub_resource type="OpenSimplexNoise" id=9]
+seed = 9
+period = 97.6
+
+[sub_resource type="NoiseTexture" id=10]
+seamless = true
+noise = SubResource( 9 )
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
+shader_param/color_1 = Color( 0.152941, 0.152941, 0.152941, 1 )
+shader_param/color_2 = Color( 1, 0.192157, 0.4, 1 )
+shader_param/noise = SubResource( 10 )
+
+[sub_resource type="ProceduralSky" id=4]
+
+[sub_resource type="Environment" id=5]
+background_mode = 2
+background_sky = SubResource( 4 )
+tonemap_mode = 4
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -23.443, -18.764, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -3.92548, 1.76621, 3.76714 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "camera"
+length = 10.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector3( -23.443, -18.764, 0 ), Vector3( -23.443, 18.764, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector3( -3.92548, 1.76621, 3.76714 ), Vector3( 3.925, 1.766, 3.767 ) ]
+}
+
+[node name="NoiseTerrainExample" type="Spatial"]
+
+[node name="Random" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.67606, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 3 )
+
+[node name="Noise" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.67507, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 8 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 5 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.946852, 0.127972, -0.295119, 0, 0.917456, 0.397837, 0.321671, -0.376692, 0.868695, -3.92548, 1.76621, 3.76714 )
+fov = 80.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "camera"
+anims/RESET = SubResource( 12 )
+anims/camera = SubResource( 11 )

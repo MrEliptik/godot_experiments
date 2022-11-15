@@ -1,0 +1,358 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://visuals/lato_32.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/main.gd" type="Script" id=2]
+[ext_resource path="res://visuals/lato_20.tres" type="DynamicFont" id=3]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+
+[sub_resource type="NoiseTexture" id=2]
+width = 250
+height = 200
+seamless = true
+noise = SubResource( 1 )
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 2 )
+
+[node name="Bg" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.0980392, 0.0941176, 0.164706, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 196.0
+margin_top = 242.0
+margin_right = -196.0
+margin_bottom = -242.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 1528.0
+margin_bottom = 596.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RandfContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_right = 250.0
+margin_bottom = 596.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Result" type="Label" parent="VBoxContainer/HBoxContainer/RandfContainer"]
+margin_right = 250.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 150 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+text = "RESULT"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/RandfContainer"]
+margin_top = 154.0
+margin_right = 250.0
+margin_bottom = 283.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RandfContainer/HBoxContainer"]
+margin_right = 123.0
+margin_bottom = 129.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/RandfContainer/HBoxContainer/VBoxContainer"]
+margin_right = 123.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 0, 75 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+text = "Min"
+align = 1
+valign = 1
+
+[node name="RandfMin" type="LineEdit" parent="VBoxContainer/HBoxContainer/RandfContainer/HBoxContainer/VBoxContainer"]
+margin_top = 79.0
+margin_right = 123.0
+margin_bottom = 129.0
+rect_min_size = Vector2( 0, 50 )
+custom_fonts/font = ExtResource( 3 )
+text = "0"
+align = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RandfContainer/HBoxContainer"]
+margin_left = 127.0
+margin_right = 250.0
+margin_bottom = 129.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/RandfContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 123.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 0, 75 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+text = "Max"
+align = 1
+valign = 1
+
+[node name="RandfMax" type="LineEdit" parent="VBoxContainer/HBoxContainer/RandfContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 79.0
+margin_right = 123.0
+margin_bottom = 129.0
+rect_min_size = Vector2( 0, 50 )
+custom_fonts/font = ExtResource( 3 )
+text = "1"
+align = 1
+
+[node name="ResetRandfBtn" type="Button" parent="VBoxContainer/HBoxContainer/RandfContainer"]
+margin_top = 342.0
+margin_right = 250.0
+margin_bottom = 392.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_horizontal = 3
+size_flags_vertical = 10
+custom_fonts/font = ExtResource( 1 )
+text = "reset min/max"
+
+[node name="RandfBtn" type="Button" parent="VBoxContainer/HBoxContainer/RandfContainer"]
+margin_top = 396.0
+margin_right = 250.0
+margin_bottom = 596.0
+rect_min_size = Vector2( 0, 200 )
+size_flags_horizontal = 3
+size_flags_vertical = 10
+custom_fonts/font = ExtResource( 1 )
+text = "randf()"
+
+[node name="RandiContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 254.0
+margin_right = 504.0
+margin_bottom = 596.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Result" type="Label" parent="VBoxContainer/HBoxContainer/RandiContainer"]
+margin_right = 250.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 150 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+text = "RESULT"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/RandiContainer"]
+margin_top = 154.0
+margin_right = 250.0
+margin_bottom = 283.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RandiContainer/HBoxContainer"]
+margin_right = 123.0
+margin_bottom = 129.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/RandiContainer/HBoxContainer/VBoxContainer"]
+margin_right = 123.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 0, 75 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+text = "Min"
+align = 1
+valign = 1
+
+[node name="RandiMin" type="LineEdit" parent="VBoxContainer/HBoxContainer/RandiContainer/HBoxContainer/VBoxContainer"]
+margin_top = 79.0
+margin_right = 123.0
+margin_bottom = 129.0
+rect_min_size = Vector2( 0, 50 )
+custom_fonts/font = ExtResource( 3 )
+text = "0"
+align = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RandiContainer/HBoxContainer"]
+margin_left = 127.0
+margin_right = 250.0
+margin_bottom = 129.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/RandiContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 123.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 0, 75 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+text = "Max"
+align = 1
+valign = 1
+
+[node name="RandiMax" type="LineEdit" parent="VBoxContainer/HBoxContainer/RandiContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 79.0
+margin_right = 123.0
+margin_bottom = 129.0
+rect_min_size = Vector2( 0, 50 )
+custom_fonts/font = ExtResource( 3 )
+text = "4294967295"
+align = 1
+
+[node name="ResetRandiBtn" type="Button" parent="VBoxContainer/HBoxContainer/RandiContainer"]
+margin_top = 342.0
+margin_right = 250.0
+margin_bottom = 392.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_horizontal = 3
+size_flags_vertical = 10
+custom_fonts/font = ExtResource( 1 )
+text = "reset min/max"
+
+[node name="RandiBtn" type="Button" parent="VBoxContainer/HBoxContainer/RandiContainer"]
+margin_top = 396.0
+margin_right = 250.0
+margin_bottom = 596.0
+rect_min_size = Vector2( 0, 200 )
+size_flags_horizontal = 3
+size_flags_vertical = 10
+custom_fonts/font = ExtResource( 1 )
+text = "randi()"
+
+[node name="RandfnContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 508.0
+margin_right = 758.0
+margin_bottom = 596.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Result" type="Label" parent="VBoxContainer/HBoxContainer/RandfnContainer"]
+margin_right = 250.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 150 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+text = "RESULT"
+align = 1
+valign = 1
+
+[node name="RandfnBtn" type="Button" parent="VBoxContainer/HBoxContainer/RandfnContainer"]
+margin_top = 396.0
+margin_right = 250.0
+margin_bottom = 596.0
+rect_min_size = Vector2( 0, 200 )
+size_flags_horizontal = 3
+size_flags_vertical = 10
+custom_fonts/font = ExtResource( 1 )
+text = "randfn"
+
+[node name="WeightedContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 762.0
+margin_right = 1020.0
+margin_bottom = 596.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Result" type="Label" parent="VBoxContainer/HBoxContainer/WeightedContainer"]
+margin_right = 258.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 150 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+text = "RESULT"
+align = 1
+valign = 1
+
+[node name="WeightedBtn" type="Button" parent="VBoxContainer/HBoxContainer/WeightedContainer"]
+margin_top = 396.0
+margin_right = 258.0
+margin_bottom = 596.0
+rect_min_size = Vector2( 0, 200 )
+size_flags_horizontal = 3
+size_flags_vertical = 10
+custom_fonts/font = ExtResource( 1 )
+text = "weighted random"
+
+[node name="ArrayContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 1024.0
+margin_right = 1274.0
+margin_bottom = 596.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Result" type="Label" parent="VBoxContainer/HBoxContainer/ArrayContainer"]
+margin_right = 250.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 150 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+text = "RESULT"
+align = 1
+valign = 1
+
+[node name="ArrayBtn" type="Button" parent="VBoxContainer/HBoxContainer/ArrayContainer"]
+margin_top = 396.0
+margin_right = 250.0
+margin_bottom = 596.0
+rect_min_size = Vector2( 0, 200 )
+size_flags_horizontal = 3
+size_flags_vertical = 10
+custom_fonts/font = ExtResource( 1 )
+text = "array shuffle"
+
+[node name="NoiseContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 1278.0
+margin_right = 1528.0
+margin_bottom = 596.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Result" type="Label" parent="VBoxContainer/HBoxContainer/NoiseContainer"]
+margin_right = 250.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 150 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+text = "RESULT"
+align = 1
+valign = 1
+
+[node name="TextureResult" type="TextureRect" parent="VBoxContainer/HBoxContainer/NoiseContainer"]
+margin_top = 154.0
+margin_right = 250.0
+margin_bottom = 354.0
+rect_min_size = Vector2( 0, 200 )
+texture = SubResource( 2 )
+expand = true
+stretch_mode = 6
+
+[node name="NoiseBtn" type="Button" parent="VBoxContainer/HBoxContainer/NoiseContainer"]
+margin_top = 396.0
+margin_right = 250.0
+margin_bottom = 596.0
+rect_min_size = Vector2( 0, 200 )
+size_flags_horizontal = 3
+size_flags_vertical = 10
+custom_fonts/font = ExtResource( 1 )
+text = "noise"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RandfContainer/ResetRandfBtn" to="." method="_on_ResetRandfBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RandfContainer/RandfBtn" to="." method="_on_RandfBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RandiContainer/ResetRandiBtn" to="." method="_on_ResetRandiBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RandiContainer/RandiBtn" to="." method="_on_RandiBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RandfnContainer/RandfnBtn" to="." method="_on_RandfnBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/WeightedContainer/WeightedBtn" to="." method="_on_WeightedBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ArrayContainer/ArrayBtn" to="." method="_on_ArrayfBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/NoiseContainer/NoiseBtn" to="." method="_on_NoiseBtn_pressed"]
