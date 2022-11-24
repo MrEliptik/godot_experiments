@@ -15,19 +15,18 @@ var my_array = ["A", "B", "C", "D"]
 
 var objects = ["First", "Second", "Third"]
 
-#var object_1 = {"name":"Object 1", "damage":55.0, "rarity":0.75}
-#var object_2 = {"name":"Object 2", "damage":23.0, "rarity":0.2}
-#var object_3 = {"name":"Object 3", "damage":150.0, "rarity":0.05}
-#
-#var objects = [object_1, object_2, object_3]
+var object_1 = {"name":"Object 1", "damage":55.0, "rarity":0.75}
+var object_2 = {"name":"Object 2", "damage":23.0, "rarity":0.2}
+var object_3 = {"name":"Object 3", "damage":150.0, "rarity":0.05}
 
-var rng: RandomNumberGenerator
+var _objects = [object_1, object_2, object_3]
+
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	randomize()
 	array_res.text = str(my_array)
 	
-	rng = RandomNumberGenerator.new()
 	rng.randomize()
 #	rng.seed = 564035 # Use custom seed to get reproducible outputs of random numbers
 

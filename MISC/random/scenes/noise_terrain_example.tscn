@@ -1,9 +1,38 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 5, 5 )
 subdivide_width = 100
 subdivide_depth = 100
+
+[sub_resource type="Shader" id=13]
+code = "shader_type spatial;
+
+render_mode cull_disabled;
+
+uniform vec4 color_1: hint_color;
+uniform vec4 color_2: hint_color;
+uniform sampler2D noise: hint_albedo;
+
+
+void fragment() {
+	ALBEDO = mix(color_1.rgb, color_2.rgb, UV.x);
+}
+"
+
+[sub_resource type="OpenSimplexNoise" id=9]
+seed = 9
+period = 110.5
+
+[sub_resource type="NoiseTexture" id=10]
+seamless = true
+noise = SubResource( 9 )
+
+[sub_resource type="ShaderMaterial" id=14]
+shader = SubResource( 13 )
+shader_param/color_1 = Color( 0.152941, 0.152941, 0.152941, 1 )
+shader_param/color_2 = Color( 1, 0.192157, 0.4, 1 )
+shader_param/noise = SubResource( 10 )
 
 [sub_resource type="Shader" id=6]
 code = "shader_type spatial;
@@ -52,16 +81,32 @@ void vertex() {
 	VERTEX.y += texture(noise, UV).x;
 }"
 
-[sub_resource type="OpenSimplexNoise" id=9]
-seed = 9
-period = 97.6
-
-[sub_resource type="NoiseTexture" id=10]
-seamless = true
-noise = SubResource( 9 )
-
 [sub_resource type="ShaderMaterial" id=8]
 shader = SubResource( 7 )
+shader_param/color_1 = Color( 0.152941, 0.152941, 0.152941, 1 )
+shader_param/color_2 = Color( 1, 0.192157, 0.4, 1 )
+shader_param/noise = SubResource( 10 )
+
+[sub_resource type="Shader" id=15]
+code = "shader_type spatial;
+
+render_mode cull_disabled;
+
+uniform vec4 color_1: hint_color;
+uniform vec4 color_2: hint_color;
+uniform sampler2D noise: hint_albedo;
+
+
+void fragment() {
+	ALBEDO = mix(color_1.rgb, color_2.rgb, UV.x);
+}
+
+void vertex() {
+	VERTEX.y += texture(noise, (TIME*0.1)+UV).x;
+}"
+
+[sub_resource type="ShaderMaterial" id=16]
+shader = SubResource( 15 )
 shader_param/color_1 = Color( 0.152941, 0.152941, 0.152941, 1 )
 shader_param/color_2 = Color( 1, 0.192157, 0.4, 1 )
 shader_param/noise = SubResource( 10 )
@@ -131,6 +176,11 @@ tracks/1/keys = {
 
 [node name="NoiseTerrainExample" type="Spatial"]
 
+[node name="Flat" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.32705, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 14 )
+
 [node name="Random" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.67606, 0, 0 )
 mesh = SubResource( 1 )
@@ -140,6 +190,11 @@ material/0 = SubResource( 3 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.67507, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 8 )
+
+[node name="ScrollingNoise" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.37137, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 16 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 5 )

@@ -16,7 +16,6 @@ void fragment() {
 shader = SubResource( 3 )
 
 [sub_resource type="OpenSimplexNoise" id=2]
-period = 245.4
 
 [sub_resource type="NoiseTexture" id=1]
 width = 958
