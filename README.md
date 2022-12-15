@@ -24,6 +24,7 @@ If you want shader specific experiments, head to my [Shaders experiments repo](h
 ![](2D/quick_prototype/icon.png)| 2D | quick_prototype | a small scene with a script to allow quick prototyping. You draw a shape with the line2D, and it automatically add a physics body and a background to your shape. | DONE ✔
 ![](2D/rewind_mechanic/icon.png) | 2D | rewind_mechanic | time rewind mechanic for all objects, 2D & 3D | DONE ✔
 ![](2D/scratch_shader/icon.png)| 2D | scratch_shader | scratch effect done with by drawing on a viewport and using the texture in a shader | DONE ✔
+![](2D/trajectory_line/icon.png)| 2D | trajectory_line | trajectory line using maths & a Line2D. Supports collisions! | DONE ✔
 | | | | |
 ![](3D/android_maze_accelerometer/icon.png) | 3D | android_maze_accelerometer | control a maze's orientation with the phone's acceleromter | DONE ✔
 ![](3D/area_gravity/icon.png) | 3D | area_gravity | a simple test using the gravity of an area | DONE ✔
