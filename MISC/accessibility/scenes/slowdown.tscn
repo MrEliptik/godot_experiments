@@ -1,0 +1,194 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://visuals/Lato-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scenes/slowdown.gd" type="Script" id=3]
+
+[sub_resource type="PhysicsMaterial" id=3]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="PhysicsMaterial" id=4]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 530, 24 )
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Icon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 219, 128 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Icon:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.484694, 0.484694 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Icon:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 175.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "move"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Icon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 219, 128 ), Vector2( 594, 187 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Icon:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0.3, 0.3 ), Vector2( 0.484694, 0.484694 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Icon:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 0.0, 175.0 ]
+}
+
+[sub_resource type="DynamicFont" id=7]
+size = 32
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="Slowdown" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2( 826, 251 )
+mass = 100.0
+physics_material_override = SubResource( 3 )
+gravity_scale = 10.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="RigidBody2D"]
+scale = Vector2( 0.357143, 0.357143 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource( 2 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 513, 584 )
+shape = SubResource( 1 )
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( -16, 560, -16, 608, 1040, 608, 1040, 560 )
+
+[node name="Icon" type="Sprite" parent="."]
+position = Vector2( 219, 128 )
+rotation = 3.05433
+scale = Vector2( 0.484694, 0.484694 )
+texture = ExtResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "move"
+anims/RESET = SubResource( 6 )
+anims/move = SubResource( 5 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -240.5
+margin_top = -91.0
+margin_right = 240.5
+margin_bottom = -51.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/HBoxContainer"]
+margin_right = 140.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 7 )
+text = "Timescale"
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/Control/HBoxContainer"]
+margin_left = 144.0
+margin_right = 422.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = 0.01
+max_value = 5.0
+step = 0.01
+value = 1.0
+tick_count = 20
+ticks_on_borders = true
+
+[node name="Timescale" type="Label" parent="CanvasLayer/Control/HBoxContainer"]
+margin_left = 426.0
+margin_right = 481.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 55, 0 )
+custom_fonts/font = SubResource( 7 )
+text = "1.0"
+align = 1
+
+[connection signal="value_changed" from="CanvasLayer/Control/HBoxContainer/HSlider" to="." method="_on_HSlider_value_changed"]
