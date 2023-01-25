@@ -12,7 +12,7 @@ collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="Icon" type="Sprite" parent="."]
-scale = Vector2( 0.9375, 0.9375 )
+scale = Vector2( 0.387755, 0.387755 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -4,7 +4,6 @@ func _ready() -> void:
 	pass
 
 func update_trajectory(dir: Vector2, speed: float, gravity: float, delta: float) -> void:
-	# Test, draw real trajectory
 	var max_points = 300
 	clear_points()
 	var pos: Vector2 = Vector2.ZERO

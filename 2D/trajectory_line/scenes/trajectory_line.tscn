@@ -4,15 +4,14 @@
 [ext_resource path="res://effects/scrolling_texture.gdshader" type="Shader" id=2]
 [ext_resource path="res://scripts/trajectory_line.gd" type="Script" id=3]
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 2 )
-shader_param/speed = 1.0
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
 
 [node name="TrajectoryLine" type="Line2D"]
-material = SubResource( 3 )
+material = SubResource( 2 )
 points = PoolVector2Array( 0, 2, 186, -39, 341, -2, 390, 122 )
 width = 25.0
 default_color = Color( 1, 1, 1, 1 )
