@@ -52,7 +52,7 @@ If you want shader specific experiments, head to my [Shaders experiments repo](h
 ![](VR/control_like_interaction/icon.png) | VR | control_like_interaction | trying to recreate CONTROL like movement, and messing with area's gravity | DONE ✔
 | | | | |
 ![](MISC/accelerometer_gamepad/icon.png) | MISC | accelerometer_gamepad | use the phone's accelerometer and websockets to control a game. *See 2D/accelerometer_gamepad_game* | DONE ✔
-![](MISC/accessibility/icon.png) | MISC | accessibility | a few examples of relatively easy things to make your game more accessible. See my video on the subject. | DONE ✔
+![](MISC/accessibility/icon.png) | MISC | accessibility | a few examples of relatively easy things to make your game more accessible. See: https://youtu.be/YVGL3IifhLc | DONE ✔
 ![](MISC/audio_visualizer/icon.png) | MISC | audio_visualizer | represent the audio magnitude against time both left and right channel. Drawn as the song plays | DONE ✔
 ![](MISC/camera_transition/icon.png) | MISC | camera_transition | smoothly transition between two cameras. Works both for 2D & 3D | DONE ✔
 ![](MISC/card_game/icon.png) | MISC | card_game | test using cards to make a UI | DONE ✔
