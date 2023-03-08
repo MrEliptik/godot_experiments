@@ -161,6 +161,10 @@ Software engineer & gamedev. 3D, 2D & VR.
 
 If you enjoyed this project and want to support me:
 
+**Get exlusive content and access to my game's source code**
+🔗 patreon.com/MrEliptik
+
+**One time donations**
 <a href='https://ko-fi.com/H2H23ODS7' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ## LICENSE & Credits
