@@ -174,7 +174,7 @@ If you enjoyed this project and want to support me:
 
 **Get exlusive content and access to my game's source code**
 
-<a href='patreon.com/MrEliptik' target='_blank'><img height='36' style='border:0px;height:36px;' src='medias/patreon.png' border='0' alt='Patreon link' /></a>
+<a href='https://patreon.com/MrEliptik' target='_blank'><img height='36' style='border:0px;height:36px;' src='medias/patreon.png' border='0' alt='Patreon link' /></a>
 
 **One time donations**
 
