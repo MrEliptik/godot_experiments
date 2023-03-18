@@ -1,7 +1,0 @@
-[gd_scene load_steps=3 format=2]
-
-[ext_resource path="res://visuals/models/bus/HCR2 Bus.glb" type="PackedScene" id=1]
-[ext_resource path="res://scenes/car_model.gd" type="Script" id=2]
-
-[node name="HCR2 Bus" instance=ExtResource( 1 )]
-script = ExtResource( 2 )

@@ -1,7 +1,0 @@
-[gd_resource type="SpatialMaterial" load_steps=2 format=2]
-
-[ext_resource path="res://textures/Dark/texture_08.png" type="Texture" id=1]
-
-[resource]
-flags_unshaded = true
-albedo_texture = ExtResource( 1 )

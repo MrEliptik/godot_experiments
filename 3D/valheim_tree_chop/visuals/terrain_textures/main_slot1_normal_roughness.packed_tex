@@ -1,9 +1,0 @@
-{
-	"contains_albedo": false,
-	"resolution": 1024,
-	"src": {
-		"a": "res://visuals/rocks/Rock028_2K_Roughness.jpg",
-		"normalmap_flip_y": true,
-		"rgb": "res://visuals/rocks/Rock028_2K_Normal.jpg"
-	}
-}
