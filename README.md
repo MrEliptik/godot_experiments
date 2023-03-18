@@ -8,7 +8,16 @@ Some of my 2D/3D/VR/UI experiments in Godot. You can find some of my tutorials a
 
 If you want shader specific experiments, head to my [Shaders experiments repo](https://github.com/MrEliptik/shader_experiments)
 
+All the new experiments starting from march 2023 will target Godot 4.0. If you want to checkout 3.x project, head to the [3.x branch](https://github.com/MrEliptik/godot_experiments/tree/3.x).
+
 ## Projects & descriptions
+
+| Icon | Type   |  Tittle | Description | Status |
+:-----:|:-------:|:-------:|:-----------:|:------:|
+![](2D/damped_oscillators/icon.png)| 2D | damped_oscillators | using damped oscillators to move and rotate things | DONE ✔
+
+<details>
+<summary>Godot 3.x projects</summary>
 
 | Icon | Type   |  Tittle | Description | Status |
 :-----:|:-------:|:-------:|:-----------:|:------:|
@@ -61,6 +70,8 @@ If you want shader specific experiments, head to my [Shaders experiments repo](h
 ![](MISC/random/icon.png) | MISC | random | all kinds of usage of random | DONE ✔
 ![](MISC/slow_down_time/icon.png) | MISC | slow_down_time | two ways of slowing down time | DONE ✔
 ![](MISC/tinder_ui/icon.png) | MISC | tinder_ui | recreating some of Tinder's UI | DONE ✔
+
+</details>
 
 ## Videos & GIFs
 
