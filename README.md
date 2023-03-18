@@ -61,7 +61,7 @@ All the new experiments starting from march 2023 will target Godot 4.0. If you w
 ![](VR/control_like_interaction/icon.png) | VR | control_like_interaction | trying to recreate CONTROL like movement, and messing with area's gravity | DONE ✔
 | | | | |
 ![](MISC/accelerometer_gamepad/icon.png) | MISC | accelerometer_gamepad | use the phone's accelerometer and websockets to control a game. *See 2D/accelerometer_gamepad_game* | DONE ✔
-![](MISC/accessibility/icon.png) | MISC | accessibility | a few examples of relatively easy things to make your game more accessible. See my video on the subject. | DONE ✔
+![](MISC/accessibility/icon.png) | MISC | accessibility | a few examples of relatively easy things to make your game more accessible. See: https://youtu.be/YVGL3IifhLc | DONE ✔
 ![](MISC/audio_visualizer/icon.png) | MISC | audio_visualizer | represent the audio magnitude against time both left and right channel. Drawn as the song plays | DONE ✔
 ![](MISC/camera_transition/icon.png) | MISC | camera_transition | smoothly transition between two cameras. Works both for 2D & 3D | DONE ✔
 ![](MISC/card_game/icon.png) | MISC | card_game | test using cards to make a UI | DONE ✔
@@ -171,6 +171,12 @@ Software engineer & gamedev. 3D, 2D & VR.
 - [Sketchfab](https://sketchfab.com/victor.meunierpk)
 
 If you enjoyed this project and want to support me:
+
+**Get exlusive content and access to my game's source code**
+
+🔗 patreon.com/MrEliptik
+
+**One time donations**
 
 <a href='https://ko-fi.com/H2H23ODS7' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
