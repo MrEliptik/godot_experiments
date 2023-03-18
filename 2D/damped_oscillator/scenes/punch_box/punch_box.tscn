@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dveq4aj3qt0fo"]
+
+[ext_resource type="Script" path="res://scenes/punch_box/punch_box.gd" id="1_16ftw"]
+[ext_resource type="Texture2D" uid="uid://ck4n6aooqgl51" path="res://scenes/punch_box/visuals/Base.png" id="2_wxecy"]
+[ext_resource type="Texture2D" uid="uid://uo5sctyxnis5" path="res://scenes/punch_box/visuals/Spring.png" id="3_ptusq"]
+[ext_resource type="Texture2D" uid="uid://qweiwr5oy50r" path="res://scenes/punch_box/visuals/Glove.png" id="4_ohr0v"]
+
+[node name="PunchBox" type="Node2D"]
+script = ExtResource("1_16ftw")
+
+[node name="Line2D" type="Line2D" parent="."]
+texture_repeat = 2
+points = PackedVector2Array(-64, 0, -40, 0)
+texture = ExtResource("3_ptusq")
+texture_mode = 1
+
+[node name="Glove" type="Sprite2D" parent="."]
+position = Vector2(3.99999, -6)
+scale = Vector2(0.5625, 0.5625)
+texture = ExtResource("4_ohr0v")
+
+[node name="Base" type="Sprite2D" parent="."]
+position = Vector2(-80, -4.76837e-07)
+scale = Vector2(0.4375, 0.4375)
+texture = ExtResource("2_wxecy")

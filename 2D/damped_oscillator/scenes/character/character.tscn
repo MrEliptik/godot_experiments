@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://s1cfkgndvcc0"]
+
+[ext_resource type="Script" path="res://scenes/character/character.gd" id="1_o2v3h"]
+[ext_resource type="Texture2D" uid="uid://i2bfmrjbw0dt" path="res://scenes/character/visuals/Character.png" id="2_exohj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7u1l8"]
+size = Vector2(39.9374, 50.7649)
+
+[node name="Character" type="CharacterBody2D"]
+script = ExtResource("1_o2v3h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7u1l8")
+
+[node name="Character" type="Sprite2D" parent="."]
+modulate = Color(0, 0.49609, 1, 1)
+position = Vector2(0, 22.893)
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("2_exohj")
+offset = Vector2(0, -81.442)

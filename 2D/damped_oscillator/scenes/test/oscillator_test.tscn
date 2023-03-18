@@ -1,0 +1,257 @@
+[gd_scene load_steps=16 format=3 uid="uid://mma2w12y40gj"]
+
+[ext_resource type="Script" path="res://scenes/test/oscillator_test.gd" id="1_iyy5m"]
+[ext_resource type="Script" path="res://scenes/test/hinge_door.gd" id="2_4xm5u"]
+[ext_resource type="Shader" path="res://scenes/test/bg_stripes.gdshader" id="2_iav7o"]
+[ext_resource type="PackedScene" uid="uid://s1cfkgndvcc0" path="res://scenes/character/character.tscn" id="2_sio7n"]
+[ext_resource type="Shader" path="res://scenes/test/deform.gdshader" id="3_h0lpv"]
+[ext_resource type="Texture2D" uid="uid://dkne32ybdwlp7" path="res://scenes/test/visuals/Sword.png" id="3_o3hjm"]
+[ext_resource type="PackedScene" uid="uid://dveq4aj3qt0fo" path="res://scenes/punch_box/punch_box.tscn" id="4_lvo5g"]
+[ext_resource type="Texture2D" uid="uid://dtfhmlnuamiu0" path="res://scenes/test/visuals/tree.png" id="4_ojbjt"]
+[ext_resource type="Texture2D" uid="uid://co0fvvre5i2m6" path="res://scenes/test/visuals/Door.png" id="5_v3u3q"]
+[ext_resource type="Texture2D" uid="uid://b8o6wmursabo8" path="res://scenes/test/visuals/Bumper.png" id="6_dul38"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_328la"]
+shader = ExtResource("2_iav7o")
+shader_parameter/color_gap = Color(0.0705882, 0.0705882, 0.0705882, 1)
+shader_parameter/color_stripe = Color(0.211765, 0.203922, 0.231373, 1)
+shader_parameter/divisions = 8.0
+shader_parameter/stripe_bias = 2.5
+shader_parameter/speed = 0.05
+shader_parameter/angle = 0.567
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_djwn0"]
+shader = ExtResource("3_h0lpv")
+shader_parameter/rot = 0.0
+shader_parameter/rot_point = Vector2(0.5, 0.826)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8a6rp"]
+size = Vector2(20, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfji6"]
+size = Vector2(1249, 49)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_li724"]
+bg_color = Color(0, 0, 0, 0.470588)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Oscillator" type="Node2D"]
+script = ExtResource("1_iyy5m")
+
+[node name="BG" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_328la")
+offset_left = -16.0
+offset_top = -40.0
+offset_right = 1168.0
+offset_bottom = 648.0
+
+[node name="Tree" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_djwn0")
+position = Vector2(363.828, 445.278)
+scale = Vector2(0.681983, 0.681983)
+texture = ExtResource("4_ojbjt")
+
+[node name="RotPoint" type="Node2D" parent="."]
+position = Vector2(576, 336)
+metadata/_edit_group_ = true
+
+[node name="Sword" type="Sprite2D" parent="RotPoint"]
+position = Vector2(0, -60)
+scale = Vector2(0.583333, 0.583333)
+texture = ExtResource("3_o3hjm")
+
+[node name="HingeDoor" type="Node2D" parent="."]
+position = Vector2(824, 424)
+script = ExtResource("2_4xm5u")
+metadata/_edit_group_ = true
+
+[node name="Door" type="Sprite2D" parent="HingeDoor"]
+self_modulate = Color(0.905882, 0.576471, 0.290196, 1)
+position = Vector2(0, 64)
+scale = Vector2(0.555155, 0.555155)
+texture = ExtResource("5_v3u3q")
+
+[node name="Area2D" type="Area2D" parent="HingeDoor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HingeDoor/Area2D"]
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_8a6rp")
+
+[node name="PunchBox" parent="." instance=ExtResource("4_lvo5g")]
+position = Vector2(128, 256)
+
+[node name="Character" parent="." instance=ExtResource("2_sio7n")]
+position = Vector2(583.36, 545.388)
+
+[node name="Bumper" type="Sprite2D" parent="."]
+position = Vector2(952, 248)
+scale = Vector2(0.4375, 0.4375)
+texture = ExtResource("6_dul38")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(576, 616)
+shape = SubResource("RectangleShape2D_rfji6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1152, 352)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_rfji6")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 400)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_rfji6")
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+color = Color(0.121569, 0.117647, 0.133333, 1)
+invert_enabled = true
+polygon = PackedVector2Array(24, 0, 24, 592, 1128, 592, 1128, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -199.0
+offset_top = 29.0
+offset_right = 199.0
+offset_bottom = 178.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_li724")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -152.0
+offset_top = 38.0
+offset_right = 152.0
+offset_bottom = 71.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 21
+text = "Press space to start the effect"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -169.5
+offset_top = 92.0
+offset_right = 169.5
+offset_bottom = 162.0
+grow_horizontal = 2
+
+[node name="SpringContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/SpringContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Spring"
+horizontal_alignment = 1
+
+[node name="SpringSlider" type="HSlider" parent="CanvasLayer/VBoxContainer/SpringContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 1000.0
+step = 0.1
+value = 150.0
+
+[node name="Value" type="Label" parent="CanvasLayer/VBoxContainer/SpringContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "150.0"
+horizontal_alignment = 1
+
+[node name="DampContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/DampContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Damp"
+horizontal_alignment = 1
+
+[node name="DampSlider" type="HSlider" parent="CanvasLayer/VBoxContainer/DampContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 40.0
+step = 0.1
+value = 10.0
+
+[node name="Value" type="Label" parent="CanvasLayer/VBoxContainer/DampContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "10.0"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(70, 0)
+offset_left = 83.3109
+offset_top = 315.374
+offset_right = 165.311
+offset_bottom = 348.374
+theme_override_font_sizes/font_size = 21
+text = "Position"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="."]
+custom_minimum_size = Vector2(70, 0)
+offset_left = 781.608
+offset_top = 374.99
+offset_right = 867.608
+offset_bottom = 407.99
+theme_override_font_sizes/font_size = 21
+text = "Rotation"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+custom_minimum_size = Vector2(70, 0)
+offset_left = 532.551
+offset_top = 350.95
+offset_right = 618.551
+offset_bottom = 383.95
+theme_override_font_sizes/font_size = 21
+text = "Rotation"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+custom_minimum_size = Vector2(70, 0)
+offset_left = 908.51
+offset_top = 324.223
+offset_right = 994.51
+offset_bottom = 357.223
+theme_override_font_sizes/font_size = 21
+text = "Scale"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="."]
+custom_minimum_size = Vector2(70, 0)
+offset_left = 292.706
+offset_top = 277.775
+offset_right = 443.706
+offset_bottom = 310.775
+theme_override_font_sizes/font_size = 21
+text = "Shader deform"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="HingeDoor/Area2D" to="HingeDoor" method="_on_area_2d_body_entered"]
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/SpringContainer/SpringSlider" to="." method="_on_spring_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/DampContainer/DampSlider" to="." method="_on_damp_slider_value_changed"]
