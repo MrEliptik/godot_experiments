@@ -1,7 +1,7 @@
 # Godot experiments
 
 <p align="center">
-  <img src="godot_experiments_social_preview.jpg" width="720">
+  <img src="medias/godot_experiments_social_preview.jpg" width="720">
 </p>
 
 Some of my 2D/3D/VR/UI experiments in Godot. You can find some of my tutorials and experiments on my [YouTube channel](https://www.youtube.com/channel/UCANaLfiFwsHttGv6qGvSEIw).
@@ -174,7 +174,7 @@ If you enjoyed this project and want to support me:
 
 **Get exlusive content and access to my game's source code**
 
-🔗 patreon.com/MrEliptik
+<a href='patreon.com/MrEliptik' target='_blank'><img height='36' style='border:0px;height:36px;' src='medias/patreon.png' border='0' alt='Patreon link' /></a>
 
 **One time donations**
 
