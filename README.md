@@ -4,11 +4,15 @@
   <img src="medias/godot_experiments_social_preview.jpg" width="720">
 </p>
 
+{% note %}
+
+**Warning:** All the new experiments starting from march 2023 will target Godot 4.0. If you want to checkout 3.x project, head to the [3.x branch](https://github.com/MrEliptik/godot_experiments/tree/3.x).
+
+{% endnote %}
+
 Some of my 2D/3D/VR/UI experiments in Godot. You can find some of my tutorials and experiments on my [YouTube channel](https://www.youtube.com/channel/UCANaLfiFwsHttGv6qGvSEIw).
 
 If you want shader specific experiments, head to my [Shaders experiments repo](https://github.com/MrEliptik/shader_experiments)
-
-All the new experiments starting from march 2023 will target Godot 4.0. If you want to checkout 3.x project, head to the [3.x branch](https://github.com/MrEliptik/godot_experiments/tree/3.x).
 
 ## Projects & descriptions
 
