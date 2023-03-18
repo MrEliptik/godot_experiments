@@ -14,7 +14,7 @@ All the new experiments starting from march 2023 will target Godot 4.0. If you w
 
 | Icon | Type   |  Tittle | Description | Status |
 :-----:|:-------:|:-------:|:-----------:|:------:|
-![](2D/damped_oscillators/icon.png)| 2D | damped_oscillators | using damped oscillators to move and rotate things | DONE ✔
+![](2D/damped_oscillator/icon.svg)| 2D | damped_oscillator | using damped oscillators to move and rotate things | DONE ✔
 
 <details>
 <summary>Godot 3.x projects</summary>
