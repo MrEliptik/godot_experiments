@@ -1,0 +1,3 @@
+extends Node
+
+var camera
