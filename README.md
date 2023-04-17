@@ -15,6 +15,7 @@ If you want shader specific experiments, head to my [Shaders experiments repo](h
 | Icon | Type   |  Tittle | Description | Status |
 :-----:|:-------:|:-------:|:-----------:|:------:|
 ![](2D/damped_oscillator/icon.svg)| 2D | damped_oscillator | using damped oscillators to move and rotate things | DONE ✔
+![](2D/juicy_bouncy_ball/icon.svg)| 2D | juicy_bouncy_ball | making a simple bouncing ball JUICY | DONE ✔
 
 <details>
 <summary>Godot 3.x projects</summary>
