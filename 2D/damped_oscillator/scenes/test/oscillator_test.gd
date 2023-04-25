@@ -20,13 +20,13 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		velocity = 30.0
 	
-	var force = -spring * displacement + damp * velocity
-	velocity -= force * delta
-	displacement -= velocity * delta
+	var force = -spring * displacement - damp * velocity
+	velocity += force * delta
+	displacement += velocity * delta
 	
-	rot_point.rotation = displacement
+	rot_point.rotation = -displacement
 	bumper.scale = Vector2(0.438, 0.438) + Vector2(displacement, -displacement) * scale_factor
-	tree.material.set_shader_parameter("rot", displacement*0.6)
+	tree.material.set_shader_parameter("rot", -displacement*0.6)
 
 func _on_spring_slider_value_changed(value):
 	spring = value

@@ -17,11 +17,11 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		velocity = -50.0
 	
-	var force = -spring * displacement + damp * velocity
-	velocity -= force * delta
-	displacement -= velocity * delta
+	var force = -spring * displacement - damp * velocity
+	velocity += force * delta
+	displacement += velocity * delta
 	
-	fist.position.x = displacement * multiplier
+	fist.position.x = -displacement * multiplier
 	
 	# Draw line to the fist
 	line.set_point_position(1, Vector2(fist.position.x, 0))

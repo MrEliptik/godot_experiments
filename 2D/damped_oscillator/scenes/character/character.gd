@@ -26,8 +26,8 @@ func _physics_process(delta):
 	oscillator_velocity += velocity.normalized().x * velocity_multiplier
 	
 	# Oscillator stuff
-	var force = -spring * displacement + damp * oscillator_velocity
-	oscillator_velocity -= force * delta
-	displacement -= oscillator_velocity * delta
+	var force = -spring * displacement - damp * oscillator_velocity
+	oscillator_velocity += force * delta
+	displacement += oscillator_velocity * delta
 	
-	sprite.rotation = displacement
+	sprite.rotation = -displacement
