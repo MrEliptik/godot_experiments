@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://1bbketj3wtwa"]
+
+[ext_resource type="Script" path="res://scenes/level/level.gd" id="1_qutcn"]
+[ext_resource type="Texture2D" uid="uid://dnifmj0modt65" path="res://scenes/demo_scene/visuals/tile_tilted.png" id="2_5dnt4"]
+[ext_resource type="Texture2D" uid="uid://bnjyrvck4bjyd" path="res://scenes/demo_scene/visuals/tile.png" id="3_lqxug"]
+
+[sub_resource type="Curve2D" id="Curve2D_bk3he"]
+_data = {
+"points": PackedVector2Array(-27.1262, 69.0591, 27.1262, -69.0591, -183, 360, 214.15, 34.6765, -214.15, -34.6765, -135, 208, 160.438, 73.7057, -160.438, -73.7057, -207, -64, -75.6645, 18.7288, 75.6645, -18.7288, -360, -424, -110.875, -21.7255, 110.875, 21.7255, 360, -456, 272.806, -72.8401, -272.806, 72.8401, 105, -80, -88.5449, -48.0509, 88.5449, 48.0509, 105, 160, 134.543, -87.4532, -134.543, 87.4532, -15, 368, 303.137, -47.9512, -303.137, 47.9512, 137, 680, 9.68408, 65.8802, -9.68408, -65.8802, -208, 480, 0, 0, 0, 0, -183, 360)
+}
+point_count = 11
+
+[node name="Corridor" type="StaticBody2D"]
+script = ExtResource("1_qutcn")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_bk3he")
+
+[node name="BorderLine" type="Line2D" parent="."]
+texture_repeat = 2
+points = PackedVector2Array(-128, -64, 128, 64, -128, 64, -128, -64)
+width = 15.0
+texture = ExtResource("2_5dnt4")
+texture_mode = 1
+begin_cap_mode = 1
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("3_lqxug")
+texture_scale = Vector2(2, 2)
+polygon = PackedVector2Array(-40, 8, -56, 56, 80, 56)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+build_mode = 1

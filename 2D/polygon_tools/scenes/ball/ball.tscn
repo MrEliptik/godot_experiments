@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://deycwds665jr7"]
+
+[ext_resource type="Script" path="res://scenes/ball/ball.gd" id="1_lweam"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gapii"]
+resource_local_to_scene = true
+radius = 20.0
+
+[node name="Ball" type="RigidBody2D"]
+script = ExtResource("1_lweam")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 1, 0.654902, 1)
+polygon = PackedVector2Array(0, -24, 16, -8, 8, 16, -16, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gapii")

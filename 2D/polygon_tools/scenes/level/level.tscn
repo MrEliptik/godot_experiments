@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://qm01oc0ov4m4"]
+
+[ext_resource type="Script" path="res://scenes/level/level.gd" id="1_lixj8"]
+[ext_resource type="Texture2D" uid="uid://dnifmj0modt65" path="res://scenes/demo_scene/visuals/tile_tilted.png" id="2_4o6i4"]
+[ext_resource type="Texture2D" uid="uid://bnjyrvck4bjyd" path="res://scenes/demo_scene/visuals/tile.png" id="2_axr8e"]
+
+[sub_resource type="Curve2D" id="Curve2D_bk3he"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 720, 248, 0, 0, 0, 0, -304, 248, 0, 0, 0, 0, -304, 72, -75.6645, 18.7288, 75.6645, -18.7288, -240, -8, -110.875, -21.7255, 110.875, 21.7255, -16, 96, -86.9346, 27.0883, 86.9346, -27.0883, 216, 48, -86.3046, -44.7272, 86.3046, 44.7272, 432, 128, 0, 0, 0, 0, 664, 80, 0, 0, 0, 0, 744, 168, 0, 0, 0, 0, 720, 248)
+}
+point_count = 10
+
+[node name="Level" type="StaticBody2D"]
+script = ExtResource("1_lixj8")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_bk3he")
+
+[node name="BorderLine" type="Line2D" parent="."]
+texture_repeat = 2
+points = PackedVector2Array(-128, -64, 128, 64, -128, 64, -128, -64)
+width = 15.0
+texture = ExtResource("2_4o6i4")
+texture_mode = 1
+begin_cap_mode = 1
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("2_axr8e")
+texture_scale = Vector2(2, 2)
+polygon = PackedVector2Array(-40, 8, -56, 56, 80, 56)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

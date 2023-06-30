@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b83302fpbtyfm"]
+
+[ext_resource type="Script" path="res://scenes/obstacle/obstacle.gd" id="1_d1gu3"]
+
+[node name="Obstacle" type="StaticBody2D"]
+script = ExtResource("1_d1gu3")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-128, 64, 128, 64, 128, -64, -128, -64)
+
+[node name="BorderPolygon" type="Polygon2D" parent="."]
+color = Color(1, 0.894118, 0.458824, 1)
+invert_enabled = true
+invert_border = 14.6
+polygon = PackedVector2Array(-128, 64, 128, 64, 128, -64, -128, -64)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

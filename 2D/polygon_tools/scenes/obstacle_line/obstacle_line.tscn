@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhbuqhtoi6tuk"]
+
+[ext_resource type="Script" path="res://scenes/obstacle_line/obstacle_line.gd" id="1_wy3ma"]
+
+[node name="ObstacleLine" type="StaticBody2D"]
+script = ExtResource("1_wy3ma")
+
+[node name="BorderLine" type="Line2D" parent="."]
+points = PackedVector2Array(-128, -64, 128, -64, 128, 64, -128, 64, -128, -64)
+width = 15.0
+default_color = Color(0.0666667, 0.607843, 1, 1)
+begin_cap_mode = 1
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-72, -24, -48, 32, 56, 24, 56, -24)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

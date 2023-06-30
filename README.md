@@ -16,6 +16,7 @@ If you want shader specific experiments, head to my [Shaders experiments repo](h
 :-----:|:-------:|:-------:|:-----------:|:------:|
 ![](2D/damped_oscillator/icon.svg)| 2D | damped_oscillator | using damped oscillators to move and rotate things | DONE ✔
 ![](2D/juicy_bouncy_ball/icon.svg)| 2D | juicy_bouncy_ball | making a simple bouncing ball JUICY | DONE ✔
+![](2D/polygon_tools/icon.svg)| 2D | polygon_tool | How to use Polygon2D, CollisionPolygon2D, Line2D and Path2D to create obstacles, levels and more | DONE ✔
 
 <details>
 <summary>Godot 3.x projects</summary>

@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=3 uid="uid://b7armo27rqxmx"]
+
+[ext_resource type="Script" path="res://scenes/demo_scene/demo_scene.gd" id="1_0e56c"]
+[ext_resource type="PackedScene" uid="uid://b83302fpbtyfm" path="res://scenes/obstacle/obstacle.tscn" id="1_enok4"]
+[ext_resource type="PackedScene" uid="uid://dhbuqhtoi6tuk" path="res://scenes/obstacle_line/obstacle_line.tscn" id="2_xjb3c"]
+[ext_resource type="Texture2D" uid="uid://dnifmj0modt65" path="res://scenes/demo_scene/visuals/tile_tilted.png" id="3_eqxxb"]
+[ext_resource type="Texture2D" uid="uid://bnjyrvck4bjyd" path="res://scenes/demo_scene/visuals/tile.png" id="3_tmusq"]
+[ext_resource type="Script" path="res://scenes/demo_scene/ball_spawner.gd" id="5_4721b"]
+[ext_resource type="PackedScene" uid="uid://qm01oc0ov4m4" path="res://scenes/level/level.tscn" id="7_q5twa"]
+[ext_resource type="PackedScene" uid="uid://1bbketj3wtwa" path="res://scenes/corridor/corridor.tscn" id="8_tw7si"]
+
+[sub_resource type="Curve2D" id="Curve2D_nai1k"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 720, 248, 0, 0, 0, 0, -304, 248, 0, 0, 0, 0, -304, 72, 0, 0, 0, 0, -208, 8, 0, 0, 0, 0, -24, 120, 0, 0, 0, 0, 232, 56, 0, 0, 0, 0, 456, 144, 0, 0, 0, 0, 640, 120, 0, 0, 0, 0, 744, 168, 0, 0, 0, 0, 720, 248)
+}
+point_count = 10
+
+[node name="DemoScene" type="Node2D"]
+script = ExtResource("1_0e56c")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+texture_repeat = 2
+color = Color(0.105882, 0.223529, 0.356863, 1)
+texture = ExtResource("3_tmusq")
+polygon = PackedVector2Array(-600, -808, 3072, -776, 3072, 1736, -776, 1792)
+
+[node name="Obstacle" parent="." instance=ExtResource("1_enok4")]
+position = Vector2(184, 408)
+
+[node name="ObstacleLine" parent="." instance=ExtResource("2_xjb3c")]
+position = Vector2(576, 400)
+metadata/_edit_group_ = true
+
+[node name="BorderLine" parent="ObstacleLine" index="0"]
+points = PackedVector2Array(-128, -64, 0, -64, 112, -112, 176, 24, 128, 104, -48, 168, -128, 64, -128, -64)
+
+[node name="ObstacleLineTextured" parent="." instance=ExtResource("2_xjb3c")]
+position = Vector2(992, 400)
+metadata/_edit_group_ = true
+
+[node name="BorderLine" parent="ObstacleLineTextured" index="0"]
+texture_repeat = 2
+points = PackedVector2Array(-128, -64, 0, -64, 112, -112, 176, 24, 128, 104, -48, 168, -128, 64, -128, -64)
+default_color = Color(1, 1, 1, 1)
+texture = ExtResource("3_eqxxb")
+texture_mode = 1
+
+[node name="Polygon2D" parent="ObstacleLineTextured" index="1"]
+texture_repeat = 2
+texture = ExtResource("3_tmusq")
+texture_scale = Vector2(2, 2)
+
+[node name="Level" parent="." instance=ExtResource("7_q5twa")]
+position = Vector2(240, 904)
+metadata/_edit_group_ = true
+
+[node name="Path2D" parent="Level" index="0"]
+curve = SubResource("Curve2D_nai1k")
+
+[node name="BorderLine" parent="Level" index="1"]
+points = PackedVector2Array()
+
+[node name="Polygon2D" parent="Level" index="2"]
+polygon = PackedVector2Array(-112, 136, 168, 144, 176, 216, -88, 208, -152, 168)
+
+[node name="Level2" parent="." instance=ExtResource("7_q5twa")]
+position = Vector2(1296, 904)
+metadata/_edit_group_ = true
+
+[node name="BorderLine" parent="Level2" index="1"]
+points = PackedVector2Array()
+
+[node name="Polygon2D" parent="Level2" index="2"]
+polygon = PackedVector2Array()
+
+[node name="Corridor" parent="." instance=ExtResource("8_tw7si")]
+position = Vector2(1671, 192)
+metadata/_edit_group_ = true
+
+[node name="BallSpawner" type="Node" parent="."]
+script = ExtResource("5_4721b")
+
+[node name="Timer" type="Timer" parent="BallSpawner"]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="BallSpawner/Timer" to="BallSpawner" method="_on_timer_timeout"]
+
+[editable path="ObstacleLine"]
+[editable path="ObstacleLineTextured"]
+[editable path="Level"]
+[editable path="Level2"]
+[editable path="Corridor"]
