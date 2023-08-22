@@ -167,7 +167,7 @@ Software engineer & gamedev. 3D, 2D & VR.
 
 - [Discord](https://discord.gg/83nFRPTP6t)
 - [YouTube](https://www.youtube.com/channel/UCANaLfiFwsHttGv6qGvSEIw)
-- [Twitter](https://twitter.com/mreliptik_) 
+- [Twitter](https://twitter.com/mreliptik) 
 - [Instagram](https://www.instagram.com/mreliptik)
 - [Itch.io](https://mreliptik.itch.io/)
 - [Sketchfab](https://sketchfab.com/victor.meunierpk)
@@ -184,7 +184,7 @@ If you enjoyed this project and want to support me:
 
 ## LICENSE & Credits
 
-This project is distributed under the MIT license, which it's free to use, modify and redistribute, for both personnal and commercial projects. For more information see [LICENSE.md](https://github.com/MrEliptik/godot_experiments/blob/master/LICENSE).
+This project is distributed under the MIT license, which it's free to use, modify and redistribute, for both personal and commercial projects. For more information see [LICENSE.md](https://github.com/MrEliptik/godot_experiments/blob/master/LICENSE).
 
 - **2D/accelerometer_gamepad_game**! (spaceships) [Kenney](https://www.kenney.nl/)
 - **2D/android_accelerometer**: (texture + balls) [Kenney](https://www.kenney.nl/)
