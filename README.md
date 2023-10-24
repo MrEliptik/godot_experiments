@@ -10,7 +10,7 @@ Some of my 2D/3D/VR/UI experiments in Godot. You can find some of my tutorials a
 
 If you want shader specific experiments, head to my [Shaders experiments repo](https://github.com/MrEliptik/shader_experiments)
 
-## Projects & descriptions
+## 🦺 Projects & descriptions
 
 | Icon | Type   |  Tittle | Description | Status |
 :-----:|:-------:|:-------:|:-----------:|:------:|
@@ -75,7 +75,7 @@ If you want shader specific experiments, head to my [Shaders experiments repo](h
 
 </details>
 
-## Videos & GIFs
+## 📹 Videos & GIFs
 
 ### Accelerometer android maze 3D
 
@@ -145,7 +145,7 @@ If you want shader specific experiments, head to my [Shaders experiments repo](h
 
 ![UI card test](videos_gifs/card_ui.gif)
 
-## Useful
+## 👍 Useful
 
 - [3D/android_maze_acceloremeter]:
   - GLES2 was buggy for me, some texture were not shown
@@ -161,7 +161,7 @@ Icon background color: #022C4D
 
 http://www.mazegenerator.net/
 
-## About me
+## 💁‍♂️ About me
 
 Software engineer & gamedev. 3D, 2D & VR. 
 
@@ -182,7 +182,7 @@ If you enjoyed this project and want to support me:
 
 <a href='https://ko-fi.com/H2H23ODS7' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
-## LICENSE & Credits
+## 📔 LICENSE & Credits
 
 This project is distributed under the MIT license, which it's free to use, modify and redistribute, for both personal and commercial projects. For more information see [LICENSE.md](https://github.com/MrEliptik/godot_experiments/blob/master/LICENSE).
 
