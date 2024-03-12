@@ -166,11 +166,12 @@ http://www.mazegenerator.net/
 Software engineer & gamedev. 3D, 2D & VR. 
 
 - [Discord](https://discord.gg/83nFRPTP6t)
-- [YouTube](https://www.youtube.com/channel/UCANaLfiFwsHttGv6qGvSEIw)
-- [Twitter](https://twitter.com/mreliptik) 
+- [YouTube - Gamedev](https://www.youtube.com/c/MrEliptik)
+- [YouTube - Godot related](https://www.youtube.com/@mrelipteach)
+- [Twitter](https://twitter.com/mreliptik)
 - [Instagram](https://www.instagram.com/mreliptik)
 - [Itch.io](https://mreliptik.itch.io/)
-- [Sketchfab](https://sketchfab.com/victor.meunierpk)
+- [All links](https://bento.me/mreliptik)
 
 If you enjoyed this project and want to support me:
 
