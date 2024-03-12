@@ -77,73 +77,110 @@ If you want shader specific experiments, head to my [Shaders experiments repo](h
 
 ## 📹 Videos & GIFs
 
-### Accelerometer android maze 3D
-
-<img src="videos_gifs/accelerometer_android_maze.gif" width=400>
-
-### Accelerometer android 2D
-
-![](videos_gifs/android_accelerometer.gif)
-
-### Inverted_pendulum
-
-![](videos_gifs/inverted_pendulum.gif)
-
-### Area_gravity
-
-![](videos_gifs/area_gravity.gif)
-
-### Camera_walls
-
-![](videos_gifs/camera_walls.gif)
-
-### Audio_visualizer
-
-![](videos_gifs/audio_visualizer.gif)
-
-### Car
-
-![Car](videos_gifs/car.gif)
-
-### Greenscreen_camera
-
-![Car](videos_gifs/greenscreen_camera.png)
-
-### Balloon_deploy
-
-![Car](videos_gifs/balloon_deploy.gif)
-
-### Control_remedy
-
-![Car](videos_gifs/control_throw.gif)
-
-### Loading_shader
-
-![Loading shader](videos_gifs/loading_shader.png)
-
-### Connected_dots
-
-![Connected dots](videos_gifs/connected_dots.gif)
-
-### Destructible terrain
-
-![Destructible terrain](videos_gifs/destructible_terrain.gif)
-
-### Geometry class
-
-![Geometry class](videos_gifs/geometry_class.gif)
-
-### Rewind mechanic
-
-![Rewind mechanic](videos_gifs/rewind.gif)
-
-### X-Ray Shader
-
-![XRay Shader](videos_gifs/xray_shader.gif)
-
-### UI card test
-
-![UI card test](videos_gifs/card_ui.gif)
+<p float="left">
+  <div style="width: 33%; max-height: 75px; float: left">
+    <h3>Accelerometer android maze 3D</h3>
+    <a href="">
+      <img src="videos_gifs/accelerometer_android_maze.gif"/>
+    </a>
+  </div>
+  <div style="width: 33%; float: left">
+    <h3>Accelerometer android 2D</h3>
+    <a href="">
+      <img src="videos_gifs/android_accelerometer.gif"/>
+    </a>
+  </div>
+  <div style="width: 33%; float: left">
+    <h3>Inverted_pendulum</h3>
+    <a href="">
+      <img src="videos_gifs/inverted_pendulum.gif"/>
+    </a>
+  </div>
+  <div style="width: 33%; float: left">
+    <h3>Area_gravity</h3>
+    <a href="">
+      <img src="videos_gifs/area_gravity.gif"/>
+    </a>
+  </div>
+  <div style="width: 33%; float: left">
+    <h3>Camera_walls</h3>
+    <a href="">
+      <img src="videos_gifs/camera_walls.gif"/>
+    </a>
+  </div>
+  <div style="width: 33%; float: left">
+    <h3>Audio_visualizer</h3>
+    <a href="">
+      <img src="videos_gifs/audio_visualizer.gif"/>
+    </a>
+  </div>
+  <div style="width: 33%; float: left">
+    <h3>Car</h3>
+    <a href="">
+      <img src="videos_gifs/car.gif"/>
+    </a>
+  </div>
+  <div style="width: 33%; float: left">
+    <h3>Greenscreen_camera</h3>
+    <a href="">
+      <img src="videos_gifs/greenscreen_camera.png"/>
+    </a>
+  </div>
+  <div style="width: 33%; float: left">
+    <h3>Balloon_deploy</h3>
+    <a href="">
+      <img src="videos_gifs/balloon_deploy.gif"/>
+    </a>
+  </div>
+  <div style="width: 33%; float: left">
+    <h3>Control_remedy</h3>
+    <a href="">
+      <img src="videos_gifs/control_throw.gif"/>
+    </a>
+  </div>
+  <div style="width: 33%; float: left">
+    <h3>Loading_shader</h3>
+    <a href="">
+      <img src="videos_gifs/loading_shader.png"/>
+    </a>
+  </div>
+  <div style="width: 33%; float: left">
+    <h3>Connected_dots</h3>
+    <a href="">
+      <img src="videos_gifs/connected_dots.gif"/>
+    </a>
+  </div>
+  <div style="width: 33%; float: left">
+    <h3>Destructible</h3>
+    <a href="">
+      <img src="videos_gifs/destructible_terrain.gif"/>
+    </a>
+  </div>
+  <div style="width: 33%; float: left">
+    <h3>Geometry class</h3>
+    <a href="">
+      <img src="videos_gifs/geometry_class.gif"/>
+    </a>
+  </div>
+  <div style="width: 33%; float: left">
+    <h3>Rewind mechanic</h3>
+    <a href="">
+      <img src="videos_gifs/rewind.gif"/>
+    </a>
+  </div>
+  <div style="width: 33%; float: left">
+    <h3>X-Ray Shader</h3>
+    <a href="">
+      <img src="videos_gifs/xray_shader.gif"/>
+    </a>
+  </div>
+  <div style="width: 33%; float: left">
+    <h3>UI card test</h3>
+    <a href="">
+      <img src="videos_gifs/card_ui.gif"/>
+    </a>
+  </div>
+</p>
 
 ## 👍 Useful
 
