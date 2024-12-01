@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtkbh65tu7rsn"]
+
+[ext_resource type="PackedScene" uid="uid://cttmukc4qj4dl" path="res://scenes/grappling_hook/grappling_hook.tscn" id="1_3je7o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pckm"]
+size = Vector2(1983, 34)
+
+[node name="Main" type="Node2D"]
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(954.5, 7)
+shape = SubResource("RectangleShape2D_5pckm")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(946, 1071)
+shape = SubResource("RectangleShape2D_5pckm")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
+position = Vector2(2, 501)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_5pckm")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1921, 480)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_5pckm")
+
+[node name="GrapplingHook" parent="." instance=ExtResource("1_3je7o")]
+position = Vector2(960, 540)

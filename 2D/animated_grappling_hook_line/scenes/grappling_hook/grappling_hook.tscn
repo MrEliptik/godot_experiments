@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cttmukc4qj4dl"]
+
+[ext_resource type="Script" path="res://scenes/grappling_hook/scripts/grappling_hook.gd" id="1_lxo7o"]
+
+[sub_resource type="Curve" id="Curve_md0yj"]
+_data = [Vector2(0.0247525, 0), 0.0, -3.06177, 0, 0, Vector2(0.0445545, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.033131, 0.0, 0, 0]
+point_count = 3
+
+[node name="GrapplingHook" type="Node2D"]
+script = ExtResource("1_lxo7o")
+curve = SubResource("Curve_md0yj")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-16, -8, 24, -8, 24, 8, -16, 8)
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 6.0
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(2000, 0)
